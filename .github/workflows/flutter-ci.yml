@@ -40,6 +40,8 @@ jobs:
         run: |
           cmp ../content/english/a1/lessons.json assets/lessons/english_a1.json
           cmp ../content/legal-english/lessons.json assets/lessons/legal_english.json
+          cmp ../content/english/expansion/lessons.json assets/lessons/general_expansion.json
+          cmp ../content/legal-english/expansion/lessons.json assets/lessons/legal_expansion.json
       - name: Validate lesson JSON before tests and build
         run: python ../scripts/validate_content.py --content-dir ../content
       - name: Test content validator
