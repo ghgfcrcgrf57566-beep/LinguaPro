@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'learning_engine.dart';
+
 class WordProgress {
   const WordProgress({
     required this.lessonId,
@@ -176,17 +178,14 @@ class LearningStore {
     final progress = await loadProgress();
     final key = _key(lessonId, term);
     final old = progress[key];
-    final repetitions = correct ? (old?.repetitions ?? 0) + 1 : 0;
-    final interval = correct
-        ? (old == null || old.repetitions == 0
-            ? 1
-            : old.repetitions == 1
-                ? 3
-                : old.repetitions == 2
-                    ? 7
-                    : (old.intervalDays * 2).clamp(1, 90).toInt())
-        : 0;
-    final due = current.add(Duration(days: correct ? interval : 0, hours: correct ? 0 : 4));
+    final previousRepetitions = old?.repetitions ?? 0;
+    final repetitions = correct ? previousRepetitions + 1 : 0;
+    final interval = LearningEngine.nextReviewInterval(
+      correct: correct,
+      previousRepetitions: previousRepetitions,
+      previousIntervalDays: old?.intervalDays ?? 0,
+    );
+    final due = current.add(correct ? Duration(days: interval) : const Duration(hours: 4));
     progress[key] = WordProgress(
       lessonId: lessonId,
       term: term,
