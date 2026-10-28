@@ -91,7 +91,7 @@ class LearningStore {
                 ? 3
                 : old.repetitions == 2
                     ? 7
-                    : (old.intervalDays * 2).clamp(1, 90))
+                    : (old.intervalDays * 2).clamp(1, 90).toInt())
         : 0;
     final due = DateTime.now().add(Duration(days: correct ? interval : 0, hours: correct ? 0 : 4));
     progress[key] = WordProgress(
