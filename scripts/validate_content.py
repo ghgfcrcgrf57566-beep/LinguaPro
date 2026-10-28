@@ -52,10 +52,14 @@ def validate_lesson(lesson: object, file_label: str) -> str:
     require(isinstance(lesson["vocabulary"], list), f"{file_label}: vocabulary must be an array")
     for i, item in enumerate(lesson["vocabulary"]):
         label = f"{file_label}: vocabulary[{i}]"
-        require(isinstance(item, dict) and set(item) == {"term", "meaning", "example"},
-                f"{label} must contain term, meaning, example only")
+        require(isinstance(item, dict) and
+                set(item) in ({"term", "meaning", "example"},
+                              {"term", "meaning", "example", "pronunciation"}),
+                f"{label} must contain term, meaning, example, and optional pronunciation")
         for field in ("term", "meaning", "example"):
             non_empty_string(item[field], f"{label}.{field}")
+        if "pronunciation" in item:
+            non_empty_string(item["pronunciation"], f"{label}.pronunciation")
 
     require(isinstance(lesson["sections"], list) and lesson["sections"],
             f"{file_label}: sections must be a non-empty array")
