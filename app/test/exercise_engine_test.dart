@@ -28,6 +28,19 @@ void main() {
     expect(engine.grade(question, 2).isCorrect, isFalse);
   });
 
+  test('choice-based sentence completion grades the selected option', () {
+    final question = ExerciseQuestion.fromJson({
+      'id': 'blank-1',
+      'type': 'fill_blank',
+      'prompt': 'The ___ is open.',
+      'options': ['court', 'coat', 'course'],
+      'answer_index': 0,
+      'accepted_answers': ['court'],
+    });
+    expect(engine.grade(question, 0).isCorrect, isTrue);
+    expect(engine.grade(question, 1).isCorrect, isFalse);
+  });
+
   test('matching requires every defined pair to be correct', () {
     final question = ExerciseQuestion.fromJson({
       'id': 'match-1', 'type': 'matching', 'prompt': 'Match terms',
