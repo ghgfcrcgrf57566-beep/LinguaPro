@@ -263,7 +263,9 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
     final allowed = await LearningEngine.instance.consumeAttempt(eventId);
     if (!allowed) {
       _submitting = false;
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('انتهت محاولاتك اليومية. يمكنك تعديلها من خريطة التعلم.')));
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('انتهت محاولاتك اليومية. يمكنك تعديلها من خريطة التعلم.')));
+      }
       return;
     }
     final grade = _engine.grade(question, response);
@@ -289,8 +291,12 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
     if (!mounted) return;
     setState(() {
       _grade = grade;
-      if (grade.isCorrect == true) _correct++;
-      if (!grade.isAutoGraded) _reviewRequired++;
+      if (grade.isCorrect == true) {
+        _correct++;
+      }
+      if (!grade.isAutoGraded) {
+        _reviewRequired++;
+      }
     });
   }
 
@@ -302,9 +308,13 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
       setState(() => _speaking = true);
       await _tts.speak(text);
     } catch (_) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('تعذر تشغيل النطق على هذا الجهاز.')));
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('تعذر تشغيل النطق على هذا الجهاز.')));
+      }
     } finally {
-      if (mounted) setState(() => _speaking = false);
+      if (mounted) {
+        setState(() => _speaking = false);
+      }
     }
   }
 
