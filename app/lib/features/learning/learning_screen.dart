@@ -199,6 +199,8 @@ class LessonScreen extends StatefulWidget {
 class _LessonScreenState extends State<LessonScreen> {
   int _tab = 0;
   int _wordIndex = 0;
+  final int _wordSessionId = DateTime.now().microsecondsSinceEpoch;
+  bool _ratingWord = false;
   int _questionIndex = 0;
   bool _meaningVisible = false;
   bool _answered = false;
@@ -368,13 +370,13 @@ class _LessonScreenState extends State<LessonScreen> {
           const SizedBox(height: 10),
           Row(children: [
             Expanded(child: OutlinedButton.icon(
-              onPressed: () => _rateWord(false),
+              onPressed: _ratingWord ? null : () => _rateWord(false),
               icon: const Icon(Icons.replay_rounded),
               label: const Text('لم أتذكرها'),
             )),
             const SizedBox(width: 10),
             Expanded(child: FilledButton.icon(
-              onPressed: () => _rateWord(true),
+              onPressed: _ratingWord ? null : () => _rateWord(true),
               icon: const Icon(Icons.check_circle_outline),
               label: const Text('تذكرتها'),
             )),
@@ -394,34 +396,46 @@ class _LessonScreenState extends State<LessonScreen> {
   }
 
   Future<void> _rateWord(bool remembered) async {
+    if (_ratingWord || _wordIndex >= widget.lesson.vocabulary.length) return;
+    setState(() => _ratingWord = true);
     final word = widget.lesson.vocabulary[_wordIndex];
-    if (remembered) {
-      await LearningSoundService.instance.correct();
-      await HapticFeedback.lightImpact();
-    } else {
-      await LearningSoundService.instance.incorrect();
-      await HapticFeedback.mediumImpact();
-    }
-    await LearningStore.instance.recordWord(
-      lessonId: widget.lesson.id,
-      term: word.term,
-      meaning: word.meaning,
-      correct: remembered,
-    );
-    if (!mounted) return;
-    if (_wordIndex >= widget.lesson.vocabulary.length - 1) {
+    try {
+      if (remembered) {
+        await LearningSoundService.instance.correct();
+        await HapticFeedback.lightImpact();
+      } else {
+        await LearningSoundService.instance.incorrect();
+        await HapticFeedback.mediumImpact();
+      }
+      await LearningStore.instance.recordWord(
+        lessonId: widget.lesson.id,
+        term: word.term,
+        meaning: word.meaning,
+        correct: remembered,
+        eventId: 'lesson-word:${_wordSessionId}:$_wordIndex',
+      );
+      if (!mounted) return;
+      final finishedWords = _wordIndex >= widget.lesson.vocabulary.length - 1;
       setState(() {
-        _tab = 2;
+        _ratingWord = false;
         _meaningVisible = false;
+        if (finishedWords) {
+          _tab = 2;
+        } else {
+          _wordIndex++;
+        }
       });
+      if (finishedWords) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('انتهت مراجعة المفردات. أكمل الاختبار لتثبيت ما تعلمته.'),
+        ));
+      }
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _ratingWord = false);
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('انتهت مراجعة المفردات. أكمل الاختبار لتثبيت ما تعلمته.'),
+        content: Text('تعذر حفظ تقييم المفردة. حاول مرة أخرى.'),
       ));
-    } else {
-      setState(() {
-        _wordIndex++;
-        _meaningVisible = false;
-      });
     }
   }
 
