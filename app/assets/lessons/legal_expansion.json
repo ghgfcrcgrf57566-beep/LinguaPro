@@ -1,148 +1,292 @@
 {
   "schema_version": 1,
-  "content_version": "2026.10.28.7",
+  "content_version": "2026.10.28.8",
   "lessons": [
     {
-      "id": "legal-civil-claims",
-      "title": "Civil claims and parties",
+      "id": "legal-mediation",
+      "title": "Mediation and dispute resolution",
       "level": "LEGAL",
       "language": "en",
       "track": "legal-english",
-      "description": "Learn English used to describe civil claims and parties.",
+      "description": "Learn language for mediation and alternative dispute resolution.",
       "objectives": [
-        "Identify parties in a civil case",
-        "Describe a claim simply",
-        "Distinguish claimant from defendant"
+        "Describe mediation",
+        "Suggest practical settlement steps",
+        "Use neutral negotiation language"
       ],
       "vocabulary": [
         {
-          "term": "Claimant",
-          "meaning": "المدعي",
-          "example": "The claimant filed a civil claim."
+          "term": "Mediation",
+          "meaning": "وساطة",
+          "example": "The parties agreed to try mediation."
         },
         {
-          "term": "Defendant",
-          "meaning": "المدعى عليه",
-          "example": "The defendant received the claim."
+          "term": "Mediator",
+          "meaning": "وسيط",
+          "example": "The mediator met with both parties."
         },
         {
-          "term": "Civil claim",
-          "meaning": "دعوى مدنية",
-          "example": "The civil claim concerns unpaid rent."
+          "term": "Facilitate",
+          "meaning": "يسهّل",
+          "example": "The mediator helps facilitate discussion."
         },
         {
-          "term": "Relief",
-          "meaning": "طلب أو جبر قضائي",
-          "example": "The claimant seeks monetary relief."
+          "term": "Proposal",
+          "meaning": "مقترح",
+          "example": "Each party reviewed the proposal."
         },
         {
-          "term": "Respondent",
-          "meaning": "المستجيب أو المدعى عليه بحسب الإجراء",
-          "example": "The respondent filed a reply."
+          "term": "Resolve",
+          "meaning": "يحلّ",
+          "example": "They hope to resolve the dispute."
         }
       ],
       "sections": [
         {
-          "heading": "Courtroom example",
-          "body": "The claimant filed a civil claim. The defendant submitted a response. The court will review the documents and hear both parties."
+          "heading": "Professional dialogue",
+          "body": "A: Would your client consider mediation?\nB: We are open to discussing the proposal.\nA: The mediator can help the parties explore options."
         },
         {
-          "heading": "Usage note",
-          "body": "Legal terms vary by jurisdiction. Respondent is common in some applications and appeals; defendant is common in many civil claims."
+          "heading": "Language tip",
+          "body": "Use neutral phrases such as “explore options” and “seek a resolution” to avoid implying that a party has already accepted an offer."
         }
       ],
       "quiz": [
         {
-          "question": "Who usually brings a civil claim?",
+          "question": "Who facilitates mediation?",
           "options": [
-            "The claimant",
-            "The witness",
-            "The interpreter"
+            "A mediator",
+            "A claimant only",
+            "A translator only"
           ],
           "answer_index": 0,
-          "explanation": "The claimant brings the claim before the court."
+          "explanation": "A mediator facilitates discussion between parties."
         },
         {
-          "question": "Who is the defendant?",
+          "question": "What does resolve a dispute mean?",
           "options": [
-            "The party against whom a claim is brought",
-            "The court clerk",
-            "The expert witness"
+            "Find a way to settle it",
+            "Start another dispute",
+            "Ignore all documents"
           ],
           "answer_index": 0,
-          "explanation": "The defendant is the party against whom the claim is brought."
+          "explanation": "To resolve a dispute is to settle or solve it."
         }
       ]
     },
     {
-      "id": "legal-settlement-negotiation",
-      "title": "Settlement and negotiation",
+      "id": "legal-research-citations",
+      "title": "Legal research and citations",
       "level": "LEGAL",
       "language": "en",
       "track": "legal-english",
-      "description": "Discuss settlement proposals and terms in clear professional English.",
+      "description": "Read and discuss legal sources, authorities and citations in English.",
       "objectives": [
-        "Describe a settlement offer",
-        "Negotiate terms politely",
-        "Recognize common settlement language"
+        "Identify legal authority",
+        "Refer to a statutory provision",
+        "Summarize a source accurately"
       ],
       "vocabulary": [
         {
-          "term": "Settlement",
-          "meaning": "تسوية",
-          "example": "The parties reached a settlement."
+          "term": "Authority",
+          "meaning": "مرجع قانوني أو سند",
+          "example": "The judgment cites a relevant authority."
         },
         {
-          "term": "Offer",
-          "meaning": "عرض",
-          "example": "The defendant made a settlement offer."
+          "term": "Provision",
+          "meaning": "نص أو حكم قانوني",
+          "example": "The provision sets out the filing period."
         },
         {
-          "term": "Counteroffer",
-          "meaning": "عرض مقابل",
-          "example": "The claimant sent a counteroffer."
+          "term": "Statute",
+          "meaning": "قانون تشريعي",
+          "example": "The statute governs the procedure."
         },
         {
-          "term": "Terms",
-          "meaning": "شروط",
-          "example": "The agreement sets out the payment terms."
+          "term": "Citation",
+          "meaning": "إحالة أو توثيق مرجعي",
+          "example": "Please verify the citation."
         },
         {
-          "term": "Dispute",
-          "meaning": "نزاع",
-          "example": "The parties want to resolve the dispute."
+          "term": "Precedent",
+          "meaning": "سابقة قضائية",
+          "example": "The lawyer discussed a relevant precedent."
         }
       ],
       "sections": [
         {
-          "heading": "Negotiation dialogue",
-          "body": "A: Our client is willing to consider a settlement.\nB: Please send the proposed terms in writing.\nA: We will review the offer and respond by Friday."
+          "heading": "Research note",
+          "body": "The memorandum identifies the statutory provision, explains its wording and cites the authority relied upon."
         },
         {
-          "heading": "Usage note",
-          "body": "The legal effect of settlement communications depends on the applicable law. This lesson teaches language, not jurisdiction-specific legal advice."
+          "heading": "Language tip",
+          "body": "Distinguish the source from the argument: “The statute provides…” reports a text; “This suggests…” introduces an interpretation."
         }
       ],
       "quiz": [
         {
-          "question": "What is a counteroffer?",
+          "question": "What is a statutory provision?",
           "options": [
-            "A response proposing different terms",
-            "A final court judgment",
+            "A section or rule in legislation",
+            "A client invoice",
+            "A witness's address"
+          ],
+          "answer_index": 0,
+          "explanation": "A provision is a part of a law that sets out a rule."
+        },
+        {
+          "question": "What should you do with a legal citation?",
+          "options": [
+            "Verify the source and reference",
+            "Assume it is correct",
+            "Remove its date"
+          ],
+          "answer_index": 0,
+          "explanation": "Legal citations should be checked against the actual source."
+        }
+      ]
+    },
+    {
+      "id": "legal-written-submissions",
+      "title": "Written submissions and legal arguments",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Structure a concise written submission with issues, reasons and requested relief.",
+      "objectives": [
+        "State the issue",
+        "Connect facts to a legal argument",
+        "Present a clear request"
+      ],
+      "vocabulary": [
+        {
+          "term": "Submission",
+          "meaning": "مذكرة أو مرافعة مكتوبة",
+          "example": "Counsel filed written submissions."
+        },
+        {
+          "term": "Ground",
+          "meaning": "سبب قانوني للطعن أو الطلب",
+          "example": "The appeal raises one ground."
+        },
+        {
+          "term": "Argument",
+          "meaning": "حجة أو دفع",
+          "example": "The argument relies on the wording of the statute."
+        },
+        {
+          "term": "Accordingly",
+          "meaning": "وبناءً عليه",
+          "example": "Accordingly, the applicant requests relief."
+        },
+        {
+          "term": "Prayer for relief",
+          "meaning": "الطلبات الختامية",
+          "example": "The prayer for relief appears at the end."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Model paragraph",
+          "body": "For the reasons set out above, the applicant submits that the decision should be reconsidered. Accordingly, the applicant respectfully requests the relief stated below."
+        },
+        {
+          "heading": "Language tip",
+          "body": "A clear submission identifies the issue, gives reasons supported by sources, then states the requested order. Local court rules determine required form and terminology."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is a ground of appeal?",
+          "options": [
+            "A reason relied on to challenge a decision",
+            "The court building",
+            "A payment schedule"
+          ],
+          "answer_index": 0,
+          "explanation": "A ground states a reason why a decision is challenged."
+        },
+        {
+          "question": "Which phrase introduces a conclusion?",
+          "options": [
+            "Accordingly",
+            "Yesterday morning",
+            "For example only"
+          ],
+          "answer_index": 0,
+          "explanation": "Accordingly signals a conclusion or result."
+        }
+      ]
+    },
+    {
+      "id": "legal-client-costs",
+      "title": "Client communication and legal costs",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Explain fees, disbursements and next steps to a client in clear language.",
+      "objectives": [
+        "Explain a fee estimate",
+        "Distinguish fees from expenses",
+        "Communicate next steps clearly"
+      ],
+      "vocabulary": [
+        {
+          "term": "Fee",
+          "meaning": "أتعاب",
+          "example": "The lawyer explained the fee."
+        },
+        {
+          "term": "Disbursement",
+          "meaning": "مصروف مدفوع نيابة عن العميل",
+          "example": "The filing fee is a disbursement."
+        },
+        {
+          "term": "Estimate",
+          "meaning": "تقدير",
+          "example": "This is an estimate of the likely costs."
+        },
+        {
+          "term": "Invoice",
+          "meaning": "فاتورة",
+          "example": "The office sent an invoice."
+        },
+        {
+          "term": "Scope of work",
+          "meaning": "نطاق العمل",
+          "example": "The engagement letter defines the scope of work."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Client email example",
+          "body": "Dear Client, our current estimate covers the work described in the engagement letter. Court fees and other disbursements may be charged separately. We will contact you before any material change to the scope of work."
+        },
+        {
+          "heading": "Language tip",
+          "body": "Avoid promising a fixed total unless the engagement terms support it. Explain assumptions, exclusions and the next update in plain language."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "A disbursement is usually…",
+          "options": [
+            "An expense paid on behalf of the client",
+            "A court judgment",
             "A witness statement"
           ],
           "answer_index": 0,
-          "explanation": "A counteroffer proposes different or revised terms."
+          "explanation": "A disbursement is an expense paid for a client, such as a filing fee."
         },
         {
-          "question": "Which word means an unresolved disagreement?",
+          "question": "What defines the scope of work?",
           "options": [
-            "Dispute",
-            "Invoice",
-            "Appointment"
+            "The work agreed with the client",
+            "The weather forecast",
+            "A witness list only"
           ],
           "answer_index": 0,
-          "explanation": "A dispute is a disagreement between parties."
+          "explanation": "The scope of work describes the legal services covered by the engagement."
         }
       ]
     }
