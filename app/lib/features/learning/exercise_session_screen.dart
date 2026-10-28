@@ -421,9 +421,11 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
       }
       if (mounted) setState(() { _listening = true; _speechStatus = 'listening'; });
       await _speech.listen(
-        localeId: 'en_US',
-        listenFor: const Duration(seconds: 30),
-        pauseFor: const Duration(seconds: 3),
+        listenOptions: stt.SpeechListenOptions(
+          localeId: 'en_US',
+          listenFor: const Duration(seconds: 30),
+          pauseFor: const Duration(seconds: 3),
+        ),
         onResult: (result) {
           if (!mounted) return;
           setState(() {
