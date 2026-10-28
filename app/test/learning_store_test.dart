@@ -144,9 +144,9 @@ void main() {
     const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
     for (final level in levels) {
       expect(general.any((lesson) => lesson['level'] == level), isTrue,
-          reason: 'Missing general English content for ' + level);
+          reason: 'Missing general English content for $level');
       expect(legal.any((lesson) => lesson['level'] == level), isTrue,
-          reason: 'Missing legal English content for ' + level);
+          reason: 'Missing legal English content for $level');
     }
     final ids = <String>{};
     for (final lesson in [...general, ...legal]) {
