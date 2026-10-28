@@ -237,7 +237,7 @@ class LearningStore {
 
   Future<int> unlockedBadgeCount() async {
     final completed = await completedLessons();
-    return completed.length;
+    return <int>{1, 3, 5, 10}.where((milestone) => completed.length >= milestone).length;
   }
 
   Future<Set<String>> completedLessons() async {
