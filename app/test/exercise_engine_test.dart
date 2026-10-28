@@ -28,6 +28,19 @@ void main() {
     expect(engine.grade(question, 2).isCorrect, isFalse);
   });
 
+  test('choice-based sentence completion grades the selected option', () {
+    final question = ExerciseQuestion.fromJson({
+      'id': 'blank-1',
+      'type': 'fill_blank',
+      'prompt': 'The ___ is open.',
+      'options': ['court', 'coat', 'course'],
+      'answer_index': 0,
+      'accepted_answers': ['court'],
+    });
+    expect(engine.grade(question, 0).isCorrect, isTrue);
+    expect(engine.grade(question, 1).isCorrect, isFalse);
+  });
+
   test('matching requires every defined pair to be correct', () {
     final question = ExerciseQuestion.fromJson({
       'id': 'match-1', 'type': 'matching', 'prompt': 'Match terms',
@@ -78,6 +91,10 @@ void main() {
     expect(questions.any((q) => q.type == ExerciseType.translation && q.acceptedAnswers.contains('Client')), isTrue);
     expect(questions.any((q) => q.type == ExerciseType.listeningChoice && q.spokenText.isNotEmpty), isTrue);
     expect(questions.any((q) => q.type == ExerciseType.courtScenario && q.requiresHumanOrAIReview), isTrue);
+    expect(questions.any((q) => q.type == ExerciseType.fillBlank && q.options.isNotEmpty && q.answerIndex != null), isTrue);
+    expect(questions.any((q) => q.prompt.startsWith('Client interview:')), isTrue);
+    expect(questions.any((q) => q.prompt.startsWith('Witness examination:')), isTrue);
+    expect(questions.any((q) => q.prompt.startsWith('Court advocacy:')), isTrue);
   });
 
 }

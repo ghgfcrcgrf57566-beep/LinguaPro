@@ -36,6 +36,32 @@ jobs:
             flutter create --platforms=android --project-name english_learning_legal_academy /tmp/linguapro_android_template
             cp -R /tmp/linguapro_android_template/android ./android
           fi
+      - name: Configure Android speech recognition permissions
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          manifest = Path("android/app/src/main/AndroidManifest.xml")
+          content = manifest.read_text()
+          marker = "<application"
+          if marker not in content:
+              raise SystemExit("Android manifest is missing the application element")
+          permissions = [
+              '    <uses-permission android:name="android.permission.RECORD_AUDIO" />\\n',
+              '    <uses-permission android:name="android.permission.INTERNET" />\\n',
+          ]
+          for permission in permissions:
+              permission_name = permission.split('"')[1]
+              if permission_name not in content:
+                  content = content.replace(marker, permission + "    " + marker, 1)
+          if "<queries>" not in content:
+              queries = ('    <queries>\\n'
+                         '        <intent>\\n'
+                         '            <action android:name="android.speech.RecognitionService" />\\n'
+                         '        </intent>\\n'
+                         '    </queries>\\n')
+              content = content.replace(marker, queries + "    " + marker, 1)
+          manifest.write_text(content)
+          PY
       - name: Verify packaged lessons match canonical content
         run: |
           cmp ../content/english/a1/lessons.json assets/lessons/english_a1.json

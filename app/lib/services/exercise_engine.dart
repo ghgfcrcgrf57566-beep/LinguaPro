@@ -118,7 +118,8 @@ class ExerciseEngine {
           ? ExerciseGrade(isCorrect: true, isAutoGraded: true, feedback: question.explanation.isEmpty ? 'كل المطابقات صحيحة.' : question.explanation)
           : _wrong(question);
     }
-    if (question.type == ExerciseType.multipleChoice || question.type == ExerciseType.listeningChoice) {
+    if (question.type == ExerciseType.multipleChoice || question.type == ExerciseType.listeningChoice ||
+        (question.type == ExerciseType.fillBlank && question.options.isNotEmpty)) {
       if (response is! int || question.answerIndex == null) return _wrong(question);
       final correct = response == question.answerIndex;
       return correct
