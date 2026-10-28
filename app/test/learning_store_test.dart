@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:english_learning_legal_academy/models/learning_lesson.dart';
@@ -121,6 +123,39 @@ void main() {
       expect(queue.single.term, 'hello');
       expect(queue.single.needsExtraPractice, isTrue);
     });
+  });
+
+  test('general and legal tracks include lessons across all CEFR bands', () async {
+    Future<List<Map<String, dynamic>>> read(String path) async {
+      final data = jsonDecode(await rootBundle.loadString(path)) as Map<String, dynamic>;
+      return (data['lessons'] as List)
+          .map((item) => Map<String, dynamic>.from(item as Map))
+          .toList();
+    }
+
+    final general = [
+      ...await read('assets/lessons/english_a1.json'),
+      ...await read('assets/lessons/general_expansion.json'),
+    ];
+    final legal = [
+      ...await read('assets/lessons/legal_english.json'),
+      ...await read('assets/lessons/legal_expansion.json'),
+    ];
+    const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+    for (final level in levels) {
+      expect(general.any((lesson) => lesson['level'] == level), isTrue,
+          reason: 'Missing general English content for ' + level);
+      expect(legal.any((lesson) => lesson['level'] == level), isTrue,
+          reason: 'Missing legal English content for ' + level);
+    }
+    final ids = <String>{};
+    for (final lesson in [...general, ...legal]) {
+      expect(ids.add(lesson['id'] as String), isTrue, reason: 'Duplicate lesson ID');
+      expect((lesson['objectives'] as List).isNotEmpty, isTrue);
+      expect((lesson['vocabulary'] as List).isNotEmpty, isTrue);
+      expect((lesson['sections'] as List).isNotEmpty, isTrue);
+      expect((lesson['quiz'] as List).isNotEmpty, isTrue);
+    }
   });
 
 }
