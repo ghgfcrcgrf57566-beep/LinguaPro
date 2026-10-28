@@ -240,6 +240,21 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
     } else {
       response = _answer.text;
     }
+    if (response is String && response.trim().isEmpty) {
+      _submitting = false;
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('أدخل إجابتك قبل المتابعة.')),
+      );
+      return;
+    }
+    if ((question.type == ExerciseType.multipleChoice || question.type == ExerciseType.listeningChoice) &&
+        (response is! int || response < 0 || response >= question.options.length)) {
+      _submitting = false;
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('اختر إجابة أولًا.')),
+      );
+      return;
+    }
     final eventId = 'exercise-session:$_sessionId:${question.id}';
     final allowed = await LearningEngine.instance.consumeAttempt(eventId);
     if (!allowed) {
@@ -263,7 +278,7 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
       );
       await _recordReviewProgress(question, response, grade, eventId);
       if (grade.isCorrect == true) {
-        await LearningEngine.instance.awardXp(eventId: 'exercise-correct:${question.id}', points: 1);
+        await LearningEngine.instance.awardXp(eventId: 'exercise-correct:$_sessionId:${question.id}', points: 1);
       }
     }
     _submitting = false;
