@@ -41,7 +41,7 @@ class LearningEngine {
     if (previousRepetitions == 1) return 3;
     if (previousRepetitions == 2) return 7;
     if (previousRepetitions == 3) return 14;
-    return (previousIntervalDays * 2).clamp(1, 90);
+    return (previousIntervalDays * 2).clamp(1, 90).toInt();
   }
 
   static bool isUnlocked({
@@ -151,7 +151,7 @@ class LearningEngine {
     int xp = 10,
     DateTime? now,
   }) async {
-    if (lessonId.trim().isEmpty) throw ArgumentError('lessonId is required.');
+    if (lessonId.trim().isEmpty || completionEventId.trim().isEmpty) throw ArgumentError('lessonId and completionEventId are required.');
     final prefs = await SharedPreferences.getInstance();
     final completed = prefs.getStringList(_completedKey) ?? <String>[];
     final isNewCompletion = !completed.contains(lessonId);
@@ -159,7 +159,7 @@ class LearningEngine {
       completed.add(lessonId);
       await prefs.setStringList(_completedKey, completed);
     }
-    final awarded = await awardXp(eventId: completionEventId, points: xp, now: now);
+    final awarded = await awardXp(eventId: 'lesson:' + lessonId, points: xp, now: now);
     return isNewCompletion || awarded;
   }
 
