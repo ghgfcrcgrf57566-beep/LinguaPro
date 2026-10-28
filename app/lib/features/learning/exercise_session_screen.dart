@@ -193,7 +193,7 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
     if (index < 0 || index >= widget.questions.length) return;
     final question = widget.questions[index];
     if (question.type == ExerciseType.wordOrder && question.acceptedAnswers.isNotEmpty) {
-      _wordBank.addAll(question.acceptedAnswers.first.trim().split(RegExp(r'\\s+'))..shuffle());
+      _wordBank.addAll(question.acceptedAnswers.first.trim().split(RegExp(r'\s+'))..shuffle());
     }
   }
 
@@ -519,11 +519,8 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
             child: Wrap(spacing: 7, runSpacing: 7, children: [
               for (var i = 0; i < _orderedWords.length; i++)
                 ActionChip(label: Text(_orderedWords[i]), onPressed: _grade == null ? () => setState(() {
-                  final word = _orderedWords.removeAt(i);
-                  final sourceIndex = _usedWordIndices.removeAt(i);
-                  _wordBank.insert(sourceIndex, word);
-                  _usedWordIndices.insert(i, -1);
-                  _usedWordIndices.remove(-1);
+                  _orderedWords.removeAt(i);
+                  _usedWordIndices.removeAt(i);
                 }) : null),
             ]),
           ),
