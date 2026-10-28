@@ -190,14 +190,26 @@ class LearningEngine {
   }) async {
     final prefs = await SharedPreferences.getInstance();
     final completed = prefs.getStringList(_completedKey) ?? <String>[];
-    var changed = false;
-    for (final id in completedLessonIds) {
-      if (id.trim().isNotEmpty && !completed.contains(id)) {
+    final awarded = prefs.getStringList(_awardedEventsKey) ?? <String>[];
+    var completedChanged = false;
+    var awardedChanged = false;
+    for (final rawId in completedLessonIds) {
+      final id = rawId.trim();
+      if (id.isEmpty) continue;
+      if (!completed.contains(id)) {
         completed.add(id);
-        changed = true;
+        completedChanged = true;
+      }
+      // Legacy completed lessons already received their XP in the old ledger.
+      // Mark their stable XP event so reopening one cannot award it a second time.
+      final legacyLessonEvent = 'lesson:$id';
+      if (!awarded.contains(legacyLessonEvent)) {
+        awarded.add(legacyLessonEvent);
+        awardedChanged = true;
       }
     }
-    if (changed) await prefs.setStringList(_completedKey, completed);
+    if (completedChanged) await prefs.setStringList(_completedKey, completed);
+    if (awardedChanged) await prefs.setStringList(_awardedEventsKey, awarded);
     final currentXp = prefs.getInt(_xpKey) ?? 0;
     if (legacyXp > currentXp) await prefs.setInt(_xpKey, legacyXp);
   }
