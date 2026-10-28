@@ -6,6 +6,7 @@
       "id": "legal-contract-basics",
       "title": "أساسيات مفردات العقود",
       "level": "LEGAL",
+      "language": "en",
       "track": "legal-english",
       "description": "تعلم مفردات شائعة في العقود والاتفاقيات مع أمثلة مبسطة.",
       "objectives": [
@@ -82,6 +83,7 @@
       "id": "legal-court-vocabulary",
       "title": "مصطلحات المحكمة والدعوى",
       "level": "LEGAL",
+      "language": "en",
       "track": "legal-english",
       "description": "تعرف إلى مصطلحات المحكمة والدعوى مع الانتباه لاختلاف المصطلح بحسب السياق القانوني.",
       "objectives": [
