@@ -23,12 +23,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Future<_Diagnostics> _loadDiagnostics() async {
-    final generalText = await rootBundle.loadString('assets/lessons/english_a1.json');
-    final legalText = await rootBundle.loadString('assets/lessons/legal_english.json');
-    final general = jsonDecode(generalText) as Map<String, dynamic>;
-    final legal = jsonDecode(legalText) as Map<String, dynamic>;
-    final generalLessons = (general['lessons'] as List<dynamic>? ?? const []);
-    final legalLessons = (legal['lessons'] as List<dynamic>? ?? const []);
+    Future<List<dynamic>> readLessons(String path) async {
+      final decoded = jsonDecode(await rootBundle.loadString(path)) as Map<String, dynamic>;
+      return decoded['lessons'] as List<dynamic>? ?? const [];
+    }
+
+    final generalLessons = <dynamic>[
+      ...await readLessons('assets/lessons/english_a1.json'),
+      ...await readLessons('assets/lessons/general_expansion.json'),
+    ];
+    final legalLessons = <dynamic>[
+      ...await readLessons('assets/lessons/legal_english.json'),
+      ...await readLessons('assets/lessons/legal_expansion.json'),
+    ];
     final allIds = <String>[
       ...generalLessons.map((item) => (item as Map<String, dynamic>)['id'] as String? ?? ''),
       ...legalLessons.map((item) => (item as Map<String, dynamic>)['id'] as String? ?? ''),
