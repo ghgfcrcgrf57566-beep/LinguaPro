@@ -655,7 +655,7 @@ class _LessonScreenState extends State<LessonScreen> {
 
   Future<void> _answer(int index) async {
     final question = widget.lesson.quiz[_questionIndex];
-    final eventId = 'quiz:' + widget.lesson.id + ':' + _quizSessionId.toString() + ':' + _questionIndex.toString();
+    final eventId = 'quiz:${widget.lesson.id}:$_quizSessionId:$_questionIndex';
     final allowed = await LearningEngine.instance.consumeAttempt(eventId);
     if (!allowed) {
       if (mounted) {
@@ -700,7 +700,7 @@ class _LessonScreenState extends State<LessonScreen> {
     if (!completed.contains(widget.lesson.id)) {
       _earnedXp = 10;
       await LearningStore.instance.awardLessonXp(widget.lesson.id);
-      await LearningEngine.instance.completeLesson(lessonId: widget.lesson.id, completionEventId: 'lesson:' + widget.lesson.id, xp: 10);
+      await LearningEngine.instance.completeLesson(lessonId: widget.lesson.id, completionEventId: 'lesson:${widget.lesson.id}', xp: 10);
       final completedCount = completed.length + 1;
       const badges = <int, String>{
         1: 'شارة البداية 🥉',
