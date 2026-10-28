@@ -179,8 +179,10 @@ void main() {
   test('review queue includes weak words', () async {
     final store = LearningStore.instance;
     await store.recordWord(lessonId: 'a1-greetings', term: 'hello', meaning: 'مرحبًا', correct: false, eventId: 'weak-1');
+    await store.recordWord(lessonId: 'a1-greetings', term: 'hello', meaning: 'مرحبًا', correct: false, eventId: 'weak-1');
     final queue = await store.loadReviewQueue();
     expect(queue.map((word) => word.term), contains('hello'));
+    expect(queue.single.wrongCount, 1);
   });
 
   test('general and legal tracks include lessons across all CEFR bands', () async {
