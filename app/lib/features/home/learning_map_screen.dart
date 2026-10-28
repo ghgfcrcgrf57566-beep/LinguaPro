@@ -5,6 +5,7 @@ import '../../models/learning_lesson.dart';
 import '../../services/learning_engine.dart';
 import '../../services/learning_store.dart';
 import '../learning/learning_screen.dart';
+import '../learning/exercise_session_screen.dart';
 import '../settings/settings_screen.dart';
 
 class LearningMapScreen extends StatefulWidget {
@@ -125,6 +126,15 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
                 _ChallengeLine(label: 'تحدي اليوم: أكمل درسًا', current: challenges['dailyLessons'] ?? 0, target: challenges['dailyTarget'] ?? 1),
                 const SizedBox(height: 10),
                 _ChallengeLine(label: 'تحدي الأسبوع: خمسة دروس', current: challenges['weeklyLessons'] ?? 0, target: challenges['weeklyTarget'] ?? 5),
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton.icon(
+                    onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ExerciseSessionScreen())),
+                    icon: const Icon(Icons.extension_rounded),
+                    label: const Text('جرّب أنواع التمارين التفاعلية'),
+                  ),
+                ),
                 if (badges.isNotEmpty) ...[
                   const SizedBox(height: 12),
                   const Text('شاراتك', style: TextStyle(fontWeight: FontWeight.w800)),
