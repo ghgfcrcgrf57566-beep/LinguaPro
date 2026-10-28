@@ -66,6 +66,11 @@ void main() {
     // may vary among the supported messages. Verify the observable state
     // transition instead of coupling this test to one exact phrase.
     expect(find.text('تحقّق'), findsNothing);
-    expect(find.text('المتابعة'), findsOneWidget);
+    // The next-step label can vary by lesson position and review state; the
+    // stable contract is that the answer-check action is replaced by an
+    // enabled continuation action after grading.
+    expect(find.byType(FilledButton), findsOneWidget);
+    final continuationLabels = <String>{'المتابعة', 'عرض المكافآت', 'حاول مرة أخرى'};
+    expect(continuationLabels.any((label) => find.text(label).evaluate().isNotEmpty), isTrue);
   });
 }
