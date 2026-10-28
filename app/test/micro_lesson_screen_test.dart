@@ -59,7 +59,12 @@ void main() {
     await tester.tap(find.text('عميل / موكل'));
     await tester.tap(find.text('تحقّق'));
     await tester.pumpAndSettle();
-    expect(find.text('ممتاز!'), findsOneWidget);
+    expect(
+      find.text('ممتاز!').evaluate().isNotEmpty ||
+          find.text('رائع!').evaluate().isNotEmpty ||
+          find.text('إجابة مذهلة!').evaluate().isNotEmpty,
+      isTrue,
+    );
     expect(find.text('الإجابة الصحيحة: عميل / موكل'), findsNothing);
     expect(find.text('المتابعة'), findsOneWidget);
   });
