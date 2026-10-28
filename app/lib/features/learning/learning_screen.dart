@@ -9,6 +9,7 @@ import 'package:flutter_tts/flutter_tts.dart';
 import '../../models/learning_lesson.dart';
 import '../../services/learning_store.dart';
 import '../../services/learning_engine.dart';
+import 'exercise_session_screen.dart';
 
 enum LearningMode { general, legal, review }
 
@@ -426,6 +427,17 @@ class _LessonScreenState extends State<LessonScreen> {
             SelectableText(section.body, style: const TextStyle(height: 1.9, fontSize: 15)),
           ]),
         )),
+      const SizedBox(height: 12),
+      FilledButton.icon(
+        onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (_) => ExerciseSessionScreen(
+            questions: buildExercisesForLesson(widget.lesson),
+            lessonId: widget.lesson.id,
+          ),
+        )),
+        icon: const Icon(Icons.extension_rounded),
+        label: const Text('تمارين تفاعلية مرتبطة بهذا الدرس'),
+      ),
       if (widget.lesson.isLegal)
         const Padding(
           padding: EdgeInsets.all(8),
