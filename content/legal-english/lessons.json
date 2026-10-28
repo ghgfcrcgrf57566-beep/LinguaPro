@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "content_version": "2026.10.28-1",
+  "lessons": [
+    {
+      "id": "legal-contract-basics",
+      "title": "Basic contract vocabulary",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Understand a small set of common words used when discussing contracts.",
+      "objectives": [
+        "Recognize common contract terms.",
+        "Explain a basic contract concept in plain English.",
+        "Distinguish a party from an obligation."
+      ],
+      "vocabulary": [
+        {
+          "term": "contract",
+          "meaning": "عقد",
+          "example": "The parties signed the contract."
+        },
+        {
+          "term": "party",
+          "meaning": "طرف في العقد",
+          "example": "Each party must read the agreement."
+        },
+        {
+          "term": "obligation",
+          "meaning": "التزام",
+          "example": "Payment is one of the buyer's obligations."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Plain-English explanation",
+          "body": "A contract is an agreement that creates obligations for the parties. The exact legal effect depends on the applicable law and the facts."
+        },
+        {
+          "heading": "Important note",
+          "body": "This lesson teaches English vocabulary only. It is not legal advice and does not determine the law that applies to a real dispute."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does “obligation” mean in this lesson?",
+          "options": ["An obligation or duty", "A courthouse", "A witness"],
+          "answer_index": 0,
+          "explanation": "An obligation is something a person or party is required to do."
+        }
+      ]
+    }
+  ]
+}
