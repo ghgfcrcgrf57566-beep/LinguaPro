@@ -30,8 +30,8 @@ void main() {
     await tester.tap(find.text('Greetings and introductions'));
     await tester.pumpAndSettle();
 
-    expect(find.text('المفردات'), findsOneWidget);
-    expect(find.text('الشرح'), findsOneWidget);
-    expect(find.text('الاختبار'), findsOneWidget);
+    expect(find.text('Client'), findsOneWidget);
+    expect(find.text('عميل / موكل'), findsOneWidget);
+    expect(find.text('1/8'), findsOneWidget);
   });
 }
