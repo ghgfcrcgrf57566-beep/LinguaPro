@@ -54,8 +54,8 @@ void main() {
       expect(await engine.dailyGoal(), 20);
       await engine.setDailyGoal(35);
       expect(await engine.dailyGoal(), 35);
-      expect(() => engine.setDailyGoal(33), throwsArgumentError);
-      expect(() => engine.setDailyGoal(500), throwsArgumentError);
+      await expectLater(engine.setDailyGoal(33), throwsArgumentError);
+      await expectLater(engine.setDailyGoal(500), throwsArgumentError);
     });
 
     test('wrong answer events are stored once and can be reviewed/resolved', () async {
