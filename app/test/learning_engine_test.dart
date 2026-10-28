@@ -53,6 +53,24 @@ void main() {
       expect(await engine.unlockedBadges(), contains('البداية'));
     });
 
+    test('legacy completion and XP migrate without awarding duplicate XP', () async {
+      final engine = LearningEngine.instance;
+      await engine.migrateLegacyProgress(
+        completedLessonIds: ['legacy-lesson'],
+        legacyXp: 30,
+      );
+      expect(await engine.completedLessons(), contains('legacy-lesson'));
+      expect(await engine.totalXp(), 30);
+
+      await engine.migrateLegacyProgress(
+        completedLessonIds: ['legacy-lesson', 'another-legacy-lesson'],
+        legacyXp: 20,
+      );
+      expect(await engine.completedLessons(),
+          containsAll(['legacy-lesson', 'another-legacy-lesson']));
+      expect(await engine.totalXp(), 30);
+    });
+
     test('daily goal is configurable with safe limits', () async {
       final engine = LearningEngine.instance;
       expect(await engine.dailyGoal(), 20);
