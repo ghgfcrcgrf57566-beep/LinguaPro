@@ -937,8 +937,10 @@ class ReviewSessionScreen extends StatefulWidget {
 
 class _ReviewSessionScreenState extends State<ReviewSessionScreen> {
   late Future<List<WordProgress>> _dueFuture;
+  final int _sessionId = DateTime.now().microsecondsSinceEpoch;
   int _index = 0;
   bool _showMeaning = false;
+  bool _rating = false;
 
   @override
   void initState() {
@@ -1008,12 +1010,12 @@ class _ReviewSessionScreenState extends State<ReviewSessionScreen> {
               const SizedBox(height: 10),
               Row(children: [
                 Expanded(child: OutlinedButton(
-                  onPressed: () => _rate(word, false),
+                  onPressed: _rating ? null : () => _rate(word, false),
                   child: const Text('لم أتذكرها'),
                 )),
                 const SizedBox(width: 10),
                 Expanded(child: FilledButton(
-                  onPressed: () => _rate(word, true),
+                  onPressed: _rating ? null : () => _rate(word, true),
                   child: const Text('تذكرتها'),
                 )),
               ]),
@@ -1025,23 +1027,41 @@ class _ReviewSessionScreenState extends State<ReviewSessionScreen> {
   );
 
   Future<void> _rate(WordProgress word, bool remembered) async {
-    await (remembered
-        ? LearningSoundService.instance.correct()
-        : LearningSoundService.instance.incorrect());
-    await (remembered
-        ? HapticFeedback.lightImpact()
-        : HapticFeedback.mediumImpact());
-    await LearningStore.instance.recordWord(
-      lessonId: word.lessonId,
-      term: word.term,
-      meaning: word.meaning,
-      correct: remembered,
-    );
-    if (!mounted) return;
-    setState(() {
-      _index++;
-      _showMeaning = false;
-    });
+    if (_rating) return;
+    setState(() => _rating = true);
+    try {
+      await (remembered
+          ? LearningSoundService.instance.correct()
+          : LearningSoundService.instance.incorrect());
+      await (remembered
+          ? HapticFeedback.lightImpact()
+          : HapticFeedback.mediumImpact());
+      await LearningStore.instance.recordWord(
+        lessonId: word.lessonId,
+        term: word.term,
+        meaning: word.meaning,
+        correct: remembered,
+        eventId: 'review-session:$_sessionId:$_index',
+      );
+      if (remembered) {
+        await LearningEngine.instance.awardXp(
+          eventId: 'review-session-xp:$_sessionId:$_index',
+          points: 1,
+        );
+      }
+      if (!mounted) return;
+      setState(() {
+        _rating = false;
+        _index++;
+        _showMeaning = false;
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _rating = false);
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('تعذر حفظ نتيجة المراجعة. حاول مرة أخرى.'),
+      ));
+    }
   }
 }
 
