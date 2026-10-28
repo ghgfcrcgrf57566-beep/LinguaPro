@@ -29,7 +29,7 @@ class _SpacedReviewScreenState extends State<SpacedReviewScreen> {
   }
 
   String _normalize(String value) =>
-      value.trim().toLowerCase().replaceAll(RegExp(r'\\s+'), ' ');
+      value.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
 
   Future<void> _check() async {
     if (_answered || _index >= _queue.length) return;
