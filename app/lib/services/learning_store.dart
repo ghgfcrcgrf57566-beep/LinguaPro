@@ -97,6 +97,8 @@ class LearningStore {
   static const _quizResultsKey = 'linguapro_quiz_results_v1';
   static const _xpKey = 'linguapro_total_xp_v1';
   static const _xpAwardedLessonsKey = 'linguapro_xp_awarded_lessons_v1';
+  static const _wordReviewEventsKey = 'linguapro_word_review_events_v1';
+  static const _syncQueueKey = 'linguapro_pending_sync_v1';
 
   Future<Map<String, WordProgress>> loadProgress() async {
     final prefs = await SharedPreferences.getInstance();
@@ -163,8 +165,12 @@ class LearningStore {
     required String term,
     required String meaning,
     required bool correct,
+    String? eventId,
   }) async {
     final prefs = await SharedPreferences.getInstance();
+    final reviewEventId = eventId ?? 'word-review:$lessonId:${term.trim().toLowerCase()}:${DateTime.now().microsecondsSinceEpoch}';
+    final processed = prefs.getStringList(_wordReviewEventsKey) ?? <String>[];
+    if (processed.contains(reviewEventId)) return;
     final progress = await loadProgress();
     final key = _key(lessonId, term);
     final old = progress[key];
@@ -193,6 +199,46 @@ class LearningStore {
     await prefs.setString(_progressKey, jsonEncode(
       progress.map((k, value) => MapEntry(k, value.toJson())),
     ));
+    processed.add(reviewEventId);
+    await prefs.setStringList(_wordReviewEventsKey, processed);
+    final outbox = prefs.getStringList(_syncQueueKey) ?? <String>[];
+    outbox.add(jsonEncode({
+      'eventId': reviewEventId,
+      'type': 'word_reviewed',
+      'lessonId': lessonId,
+      'term': term,
+      'meaning': meaning,
+      'correct': correct,
+      'createdAt': DateTime.now().toIso8601String(),
+    }));
+    await prefs.setStringList(_syncQueueKey, outbox);
+  }
+
+  Future<List<Map<String, dynamic>>> pendingSyncEvents() async {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getStringList(_syncQueueKey) ?? <String>[];
+    return raw.map((entry) {
+      try { return Map<String, dynamic>.from(jsonDecode(entry) as Map); }
+      catch (_) { return <String, dynamic>{}; }
+    }).where((event) => event.isNotEmpty).toList(growable: false);
+  }
+
+  /// Remove events only after a remote service confirms successful receipt.
+  Future<void> acknowledgeSyncEvents(Iterable<String> eventIds) async {
+    final acknowledged = eventIds.toSet();
+    if (acknowledged.isEmpty) return;
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getStringList(_syncQueueKey) ?? <String>[];
+    final remaining = <String>[];
+    for (final entry in raw) {
+      try {
+        final event = Map<String, dynamic>.from(jsonDecode(entry) as Map);
+        if (!acknowledged.contains(event['eventId'])) remaining.add(entry);
+      } catch (_) {
+        remaining.add(entry);
+      }
+    }
+    await prefs.setStringList(_syncQueueKey, remaining);
   }
 
   Future<List<QuizResult>> loadQuizResults() async {
