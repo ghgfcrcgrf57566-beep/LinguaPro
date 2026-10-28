@@ -105,7 +105,7 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
                 Text('الهدف اليومي $today/$goal XP  ✎',style:const TextStyle(color:Colors.white,fontSize:12,fontWeight:FontWeight.w800)),const SizedBox(height:8),
                 ClipRRect(borderRadius:BorderRadius.circular(8),child:LinearProgressIndicator(value:goal==0?0:(today/goal).clamp(0.0,1.0),minHeight:8,backgroundColor:Colors.white24,color:const Color(0xFFFFD36B)))
               ]))),const SizedBox(width:14),Container(width:1,height:42,color:Colors.white24),const SizedBox(width:14),
-              Expanded(child:Column(crossAxisAlignment:CrossAxisAlignment.start,children:[Text($done / ${lessons.length} درس',style:const TextStyle(color:Colors.white,fontWeight:FontWeight.w900,fontSize:15)),const Text('تقدم المسار',style:TextStyle(color:Color(0xFFE0F4EA),fontSize:12))]))
+              Expanded(child:Column(crossAxisAlignment:CrossAxisAlignment.start,children:[Text('$done / ${lessons.length} درس',style:const TextStyle(color:Colors.white,fontWeight:FontWeight.w900,fontSize:15)),const Text('تقدم المسار',style:TextStyle(color:Color(0xFFE0F4EA),fontSize:12))]))
             ])
           ])),
           const SizedBox(height:16),
@@ -155,7 +155,7 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
               ]),
             ),
           ),
-          const SizedBox(height:22),Row(children:[const Expanded(child:Text('خريطة التعلّم',style:TextStyle(fontSize:21,fontWeight:FontWeight.w900))),Text(${lessons.length} درس',style:const TextStyle(color:Color(0xFF728078),fontWeight:FontWeight.w700))]),
+          const SizedBox(height:22),Row(children:[const Expanded(child:Text('خريطة التعلّم',style:TextStyle(fontSize:21,fontWeight:FontWeight.w900))),Text('${lessons.length} درس',style:const TextStyle(color:Color(0xFF728078),fontWeight:FontWeight.w700))]),
           const SizedBox(height:5),const Text('أكمل الدروس بالترتيب لفتح الخطوة التالية.',style:TextStyle(color:Color(0xFF728078),fontSize:12)),const SizedBox(height:18),
           for(final level in levels)...[
             _Level(level:level,count:grouped[level]!.length),const SizedBox(height:12),
@@ -205,7 +205,7 @@ class _Level extends StatelessWidget {
   const _Level({required this.level,required this.count});final String level;final int count;
   @override Widget build(BuildContext context)=>Container(padding:const EdgeInsets.symmetric(horizontal:16,vertical:14),decoration:BoxDecoration(color:const Color(0xFF176B4D),borderRadius:BorderRadius.circular(16)),child:Row(children:[
     Container(padding:const EdgeInsets.symmetric(horizontal:10,vertical:6),decoration:BoxDecoration(color:Colors.white.withValues(alpha:.16),borderRadius:BorderRadius.circular(9)),child:Text(level.toUpperCase(),style:const TextStyle(color:Colors.white,fontWeight:FontWeight.w900))),
-    const SizedBox(width:10),Expanded(child:Text(level=='LEGAL'?'المسار القانوني':'المستوى $level,style:const TextStyle(color:Colors.white,fontWeight:FontWeight.w800))),Text('$count درس',style:const TextStyle(color:Color(0xFFD8F2E4),fontSize:12))
+    const SizedBox(width:10),Expanded(child:Text(level=='LEGAL'?'المسار القانوني':'المستوى $level',style:const TextStyle(color:Colors.white,fontWeight:FontWeight.w800))),Text('$count درس',style:const TextStyle(color:Color(0xFFD8F2E4),fontSize:12))
   ]));
 }
 class _LessonNode extends StatelessWidget {
@@ -220,7 +220,7 @@ class _LessonNode extends StatelessWidget {
           Container(width:66,height:66,decoration:BoxDecoration(color:color,shape:BoxShape.circle,border:Border.all(color:color.withValues(alpha:.45),width:5),boxShadow:[BoxShadow(color:color.withValues(alpha:.20),blurRadius:0,offset:const Offset(0,5))]),child:Icon(done?Icons.check_rounded:unlocked?(lesson.isLegal?Icons.gavel_rounded:Icons.star_rounded):Icons.lock_rounded,color:Colors.white,size:29)),
           const SizedBox(width:12),Flexible(child:Container(padding:const EdgeInsets.symmetric(horizontal:13,vertical:12),decoration:BoxDecoration(color:Colors.white,borderRadius:BorderRadius.circular(15),border:Border.all(color:const Color(0xFFE2EAE4))),child:Column(crossAxisAlignment:CrossAxisAlignment.start,children:[
             Text(lesson.title,maxLines:2,overflow:TextOverflow.ellipsis,style:const TextStyle(fontWeight:FontWeight.w900,color:Color(0xFF27362D))),
-            const SizedBox(height:4),Text(${lesson.vocabulary.length} مفردات · ${lesson.quiz.length} أسئلة',style:const TextStyle(fontSize:11,color:Color(0xFF7A897F))),
+            const SizedBox(height:4),Text('${lesson.vocabulary.length} مفردات · ${lesson.quiz.length} أسئلة',style:const TextStyle(fontSize:11,color:Color(0xFF7A897F))),
             if(done)const Text('مكتمل ✓',style:TextStyle(fontSize:11,fontWeight:FontWeight.w800,color:Color(0xFF1D9B69)))
           ])))
         ])
