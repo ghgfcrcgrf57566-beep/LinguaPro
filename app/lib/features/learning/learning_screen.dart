@@ -412,7 +412,7 @@ class _LessonScreenState extends State<LessonScreen> {
         term: word.term,
         meaning: word.meaning,
         correct: remembered,
-        eventId: 'lesson-word:${_wordSessionId}:$_wordIndex',
+        eventId: 'lesson-word:$_wordSessionId:$_wordIndex',
       );
       if (!mounted) return;
       final finishedWords = _wordIndex >= widget.lesson.vocabulary.length - 1;
