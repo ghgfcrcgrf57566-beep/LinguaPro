@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "2026.10.28.6",
+  "content_version": "2026.10.28.7",
   "lessons": [
     {
       "id": "legal-contract-basics",
@@ -1204,6 +1204,468 @@
           ],
           "answer_index": 0,
           "explanation": "Allege تعني يدعي، ولا تثبت وحدها صحة الادعاء."
+        }
+      ]
+    },
+    {
+      "id": "legal-civil-claims",
+      "title": "Civil claims and parties",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Learn basic English used to describe civil claims, claimants and defendants.",
+      "objectives": [
+        "Identify parties in a civil case",
+        "Describe a claim in plain English",
+        "Distinguish claimant from defendant"
+      ],
+      "vocabulary": [
+        {
+          "term": "Claimant",
+          "meaning": "المدعي",
+          "example": "The claimant filed a civil claim.",
+          "pronunciation": "KLAY-munt"
+        },
+        {
+          "term": "Defendant",
+          "meaning": "المدعى عليه",
+          "example": "The defendant received the claim.",
+          "pronunciation": "di-FEN-dunt"
+        },
+        {
+          "term": "Civil claim",
+          "meaning": "دعوى مدنية",
+          "example": "The civil claim concerns unpaid rent.",
+          "pronunciation": "SIV-ul klaym"
+        },
+        {
+          "term": "Relief",
+          "meaning": "طلب أو جبر قضائي",
+          "example": "The claimant seeks monetary relief.",
+          "pronunciation": "ri-LEEF"
+        },
+        {
+          "term": "Respondent",
+          "meaning": "المستجيب / المدعى عليه بحسب الإجراء",
+          "example": "The respondent filed a reply.",
+          "pronunciation": "ri-SPON-dunt"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Courtroom example",
+          "body": "The claimant filed a civil claim. The defendant submitted a response. The court will review the documents and hear both parties."
+        },
+        {
+          "heading": "Usage note",
+          "body": "Legal terms can vary by jurisdiction and procedure. Respondent is common in some applications and appeals; defendant is common in many civil claims."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Who usually brings a civil claim?",
+          "options": [
+            "The claimant",
+            "The witness",
+            "The interpreter"
+          ],
+          "answer_index": 0,
+          "explanation": "The claimant brings the claim before the court."
+        },
+        {
+          "question": "Who is the defendant?",
+          "options": [
+            "The person responding to the claim",
+            "The court clerk",
+            "The expert witness"
+          ],
+          "answer_index": 0,
+          "explanation": "The defendant is the party against whom the claim is brought."
+        }
+      ]
+    },
+    {
+      "id": "legal-motions-applications",
+      "title": "Motions and court applications",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Use common terms for asking a court to make a procedural order.",
+      "objectives": [
+        "Recognize motion and application",
+        "State the order requested",
+        "Use respectful formal wording"
+      ],
+      "vocabulary": [
+        {
+          "term": "Application",
+          "meaning": "طلب قضائي",
+          "example": "The lawyer filed an application for an extension.",
+          "pronunciation": "ap-li-KAY-shun"
+        },
+        {
+          "term": "Motion",
+          "meaning": "طلب / عريضة إجرائية بحسب النظام",
+          "example": "The motion asks the court to dismiss the case.",
+          "pronunciation": "MOH-shun"
+        },
+        {
+          "term": "Grant",
+          "meaning": "يقبل أو يمنح الطلب",
+          "example": "The court may grant the application.",
+          "pronunciation": "grant"
+        },
+        {
+          "term": "Dismiss",
+          "meaning": "يرفض الدعوى أو الطلب إجرائيًا",
+          "example": "The court dismissed the motion.",
+          "pronunciation": "dis-MISS"
+        },
+        {
+          "term": "Extension",
+          "meaning": "تمديد",
+          "example": "The party requested an extension of time.",
+          "pronunciation": "ik-STEN-shun"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Formal wording",
+          "body": "The applicant respectfully requests an extension of time to file the response. The request is supported by the reasons set out below."
+        },
+        {
+          "heading": "Usage note",
+          "body": "Motion and application are not interchangeable in every legal system. Learn the term used by the relevant court and procedure."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does “extension of time” mean?",
+          "options": [
+            "More time is requested or allowed",
+            "The case is transferred permanently",
+            "Evidence is destroyed"
+          ],
+          "answer_index": 0,
+          "explanation": "An extension gives additional time for a procedural step."
+        },
+        {
+          "question": "Which phrase is appropriately formal?",
+          "options": [
+            "Give me more time now.",
+            "The applicant respectfully requests an extension.",
+            "I want it because I said so."
+          ],
+          "answer_index": 1,
+          "explanation": "Formal legal writing states the request respectfully and precisely."
+        }
+      ]
+    },
+    {
+      "id": "legal-settlement-negotiation",
+      "title": "Settlement and negotiation",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Discuss settlement proposals, terms and without-prejudice communications in general terms.",
+      "objectives": [
+        "Describe a settlement offer",
+        "Negotiate terms politely",
+        "Recognize common settlement language"
+      ],
+      "vocabulary": [
+        {
+          "term": "Settlement",
+          "meaning": "تسوية",
+          "example": "The parties reached a settlement.",
+          "pronunciation": "SET-ul-ment"
+        },
+        {
+          "term": "Offer",
+          "meaning": "عرض",
+          "example": "The defendant made a settlement offer.",
+          "pronunciation": "OFF-er"
+        },
+        {
+          "term": "Counteroffer",
+          "meaning": "عرض مقابل",
+          "example": "The claimant sent a counteroffer.",
+          "pronunciation": "KOWN-ter-off-er"
+        },
+        {
+          "term": "Terms",
+          "meaning": "شروط",
+          "example": "The agreement sets out the payment terms.",
+          "pronunciation": "turmz"
+        },
+        {
+          "term": "Dispute",
+          "meaning": "نزاع",
+          "example": "The parties want to resolve the dispute.",
+          "pronunciation": "dis-PYOOT"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Negotiation dialogue",
+          "body": "A: Our client is willing to consider a settlement.\nB: Please send the proposed terms in writing.\nA: We will review the offer and respond by Friday."
+        },
+        {
+          "heading": "Usage note",
+          "body": "The legal effect of settlement communications and labels such as without prejudice depends on the applicable law. This lesson teaches language, not jurisdiction-specific advice."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is a counteroffer?",
+          "options": [
+            "A response proposing different terms",
+            "A final court judgment",
+            "A witness statement"
+          ],
+          "answer_index": 0,
+          "explanation": "A counteroffer proposes different or revised terms."
+        },
+        {
+          "question": "Which word means an unresolved disagreement?",
+          "options": [
+            "Dispute",
+            "Invoice",
+            "Appointment"
+          ],
+          "answer_index": 0,
+          "explanation": "A dispute is a disagreement between parties."
+        }
+      ]
+    },
+    {
+      "id": "legal-cross-examination",
+      "title": "Questions, testimony and cross-examination",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Practice neutral courtroom phrases about testimony and questioning witnesses.",
+      "objectives": [
+        "Identify testimony and witness",
+        "Understand leading questions",
+        "Use neutral questioning phrases"
+      ],
+      "vocabulary": [
+        {
+          "term": "Testimony",
+          "meaning": "شهادة",
+          "example": "The witness gave testimony in court.",
+          "pronunciation": "TES-tuh-moh-nee"
+        },
+        {
+          "term": "Cross-examination",
+          "meaning": "استجواب الشاهد من الطرف الآخر",
+          "example": "Counsel began cross-examination.",
+          "pronunciation": "kross-ig-zam-uh-NAY-shun"
+        },
+        {
+          "term": "Leading question",
+          "meaning": "سؤال إيحائي",
+          "example": "The judge considered whether the question was leading.",
+          "pronunciation": "LEE-ding KWES-chun"
+        },
+        {
+          "term": "Credibility",
+          "meaning": "المصداقية",
+          "example": "The court assessed the witness’s credibility.",
+          "pronunciation": "kred-uh-BIL-uh-tee"
+        },
+        {
+          "term": "Recall",
+          "meaning": "يتذكر / يستدعي مجددًا بحسب السياق",
+          "example": "Do you recall the date of the meeting?",
+          "pronunciation": "ri-KAWL"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Questioning example",
+          "body": "Counsel: Do you recall the date of the meeting?\nWitness: I believe it was 12 May.\nCounsel: Did you make a written note that day?"
+        },
+        {
+          "heading": "Language tip",
+          "body": "Use short, clear questions. Court rules about leading questions and witness examination differ by jurisdiction."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is testimony?",
+          "options": [
+            "A witness’s evidence or statement",
+            "A court building",
+            "A payment receipt"
+          ],
+          "answer_index": 0,
+          "explanation": "Testimony is evidence given by a witness, often orally."
+        },
+        {
+          "question": "Which phrase asks about memory neutrally?",
+          "options": [
+            "You remember it, don't you?",
+            "Do you recall the date?",
+            "You must agree with me."
+          ],
+          "answer_index": 1,
+          "explanation": "“Do you recall…?” is a neutral question form."
+        }
+      ]
+    },
+    {
+      "id": "legal-judgment-enforcement",
+      "title": "Judgments and enforcement",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Learn common terms used after a court issues a judgment.",
+      "objectives": [
+        "Distinguish judgment from enforcement",
+        "Describe a payment order",
+        "Recognize appeal-related wording"
+      ],
+      "vocabulary": [
+        {
+          "term": "Judgment",
+          "meaning": "حكم قضائي",
+          "example": "The court delivered its judgment.",
+          "pronunciation": "JUJ-ment"
+        },
+        {
+          "term": "Enforcement",
+          "meaning": "تنفيذ الحكم",
+          "example": "The creditor applied for enforcement.",
+          "pronunciation": "en-FORSS-ment"
+        },
+        {
+          "term": "Creditor",
+          "meaning": "دائن",
+          "example": "The creditor seeks payment under the judgment.",
+          "pronunciation": "KRED-it-er"
+        },
+        {
+          "term": "Debtor",
+          "meaning": "مدين",
+          "example": "The debtor disputed the amount due.",
+          "pronunciation": "DET-er"
+        },
+        {
+          "term": "Stay of enforcement",
+          "meaning": "وقف تنفيذ الحكم",
+          "example": "The party requested a stay of enforcement.",
+          "pronunciation": "stay uhv en-FORSS-ment"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Practice paragraph",
+          "body": "The court delivered a judgment ordering payment. The creditor applied for enforcement. The debtor requested a stay while an appeal was considered."
+        },
+        {
+          "heading": "Usage note",
+          "body": "The availability and effect of a stay, appeal or enforcement procedure depend on the governing law and court order."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Who is owed money?",
+          "options": [
+            "The creditor",
+            "The debtor",
+            "The interpreter"
+          ],
+          "answer_index": 0,
+          "explanation": "A creditor is the person or entity to whom a debt is owed."
+        },
+        {
+          "question": "What does “stay of enforcement” generally refer to?",
+          "options": [
+            "A pause in enforcement",
+            "A new contract",
+            "A witness interview"
+          ],
+          "answer_index": 0,
+          "explanation": "A stay temporarily suspends enforcement, subject to the applicable law."
+        }
+      ]
+    },
+    {
+      "id": "legal-drafting-clauses",
+      "title": "Drafting clear contract clauses",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Use precise English for obligations, conditions, notices and termination clauses.",
+      "objectives": [
+        "Write a clear obligation",
+        "Identify a condition and a notice period",
+        "Use concise drafting language"
+      ],
+      "vocabulary": [
+        {
+          "term": "Shall",
+          "meaning": "يلتزم / يجب بحسب سياق الصياغة",
+          "example": "The buyer shall pay within ten days.",
+          "pronunciation": "shal"
+        },
+        {
+          "term": "Provided that",
+          "meaning": "بشرط أن",
+          "example": "Payment is due, provided that the invoice is valid.",
+          "pronunciation": "pruh-VY-did that"
+        },
+        {
+          "term": "Notice period",
+          "meaning": "مدة الإشعار",
+          "example": "The contract requires a 30-day notice period.",
+          "pronunciation": "NOH-tis PEER-ee-ud"
+        },
+        {
+          "term": "Terminate",
+          "meaning": "ينهي العقد",
+          "example": "Either party may terminate the agreement under this clause.",
+          "pronunciation": "TUR-muh-nayt"
+        },
+        {
+          "term": "Breach",
+          "meaning": "إخلال أو مخالفة تعاقدية",
+          "example": "Late payment may constitute a breach.",
+          "pronunciation": "breech"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Drafting example",
+          "body": "The buyer shall pay the invoice within ten days of receipt. Either party may terminate this agreement by giving 30 days’ written notice, subject to the terms of this agreement."
+        },
+        {
+          "heading": "Language tip",
+          "body": "Drafting should identify who must act, what action is required, when it must happen and any condition or exception. The legal effect of shall can vary by drafting convention."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "A “notice period” is…",
+          "options": [
+            "A period of advance warning",
+            "A court fee",
+            "A witness’s answer"
+          ],
+          "answer_index": 0,
+          "explanation": "A notice period is the time between notice and the relevant effective action."
+        },
+        {
+          "question": "What can “breach of contract” mean?",
+          "options": [
+            "Failure to comply with a contractual duty",
+            "Signing every page",
+            "A court holiday"
+          ],
+          "answer_index": 0,
+          "explanation": "A breach occurs when a party fails to meet a contractual obligation."
         }
       ]
     }
