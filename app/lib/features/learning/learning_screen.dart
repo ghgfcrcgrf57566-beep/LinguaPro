@@ -684,7 +684,7 @@ class _LessonScreenState extends State<LessonScreen> {
     if (!completed.contains(widget.lesson.id)) {
       _earnedXp = 10;
       await LearningStore.instance.awardLessonXp(widget.lesson.id);
-      await LearningEngine.instance.awardXp(eventId: 'lesson:' + widget.lesson.id, points: 10);
+      await LearningEngine.instance.completeLesson(lessonId: widget.lesson.id, completionEventId: 'lesson:' + widget.lesson.id, xp: 10);
       final completedCount = completed.length + 1;
       const badges = <int, String>{
         1: 'شارة البداية 🥉',
