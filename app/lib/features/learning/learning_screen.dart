@@ -393,6 +393,18 @@ class _ReviewListState extends State<_ReviewList> {
             child: Text('لديك ${due.length} كلمة حان موعد مراجعتها من أصل ${all.length} كلمة مسجلة. يتضمن المحتوى الحالي ${widget.lessons.fold<int>(0, (sum, lesson) => sum + lesson.vocabulary.length)} مفردة تعليمية. الكلمات التي لم تتذكرها تعود للمراجعة بعد نحو أربع ساعات، ثم تتباعد المواعيد مع نجاح التذكر.', style: const TextStyle(height: 1.8)),
           ),
           const SizedBox(height: 14),
+          if (due.isNotEmpty)
+            FilledButton.icon(
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => const ReviewSessionScreen(),
+              )).then((_) {
+                if (mounted) setState(() {
+                  _future = LearningStore.instance.loadProgress();
+                });
+              }),
+              icon: const Icon(Icons.replay_circle_filled_rounded),
+              label: Text('ابدأ مراجعة ${due.length} كلمة مستحقة'),
+            ),
           if (all.isEmpty)
             const Card(child: Padding(
               padding: EdgeInsets.all(20),
@@ -418,6 +430,118 @@ class _ReviewListState extends State<_ReviewList> {
     final days = difference.inDays;
     if (days == 1) return 'غدًا';
     return 'بعد $days أيام';
+  }
+}
+
+
+class ReviewSessionScreen extends StatefulWidget {
+  const ReviewSessionScreen({super.key});
+
+  @override
+  State<ReviewSessionScreen> createState() => _ReviewSessionScreenState();
+}
+
+class _ReviewSessionScreenState extends State<ReviewSessionScreen> {
+  late Future<List<WordProgress>> _dueFuture;
+  int _index = 0;
+  bool _showMeaning = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _dueFuture = _loadDue();
+  }
+
+  Future<List<WordProgress>> _loadDue() async {
+    final progress = await LearningStore.instance.loadProgress();
+    final due = progress.values.where((item) => item.isDue).toList()
+      ..sort((a, b) => a.dueAt.compareTo(b.dueAt));
+    return due;
+  }
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(title: const Text('مراجعة الكلمات')),
+    body: FutureBuilder<List<WordProgress>>(
+      future: _dueFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState != ConnectionState.done) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        final words = snapshot.data ?? const <WordProgress>[];
+        if (_index >= words.length) {
+          return Center(child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              const Icon(Icons.celebration_rounded, size: 56, color: Color(0xFFE0A92E)),
+              const SizedBox(height: 12),
+              const Text('أكملت مراجعة الكلمات المستحقة!', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900), textAlign: TextAlign.center),
+              const SizedBox(height: 8),
+              const Text('ستعود الكلمات التي احتجت إلى مراجعتها لاحقًا، وستتباعد المواعيد للكلمات التي تتذكرها.', textAlign: TextAlign.center, style: TextStyle(height: 1.8)),
+              const SizedBox(height: 18),
+              FilledButton(onPressed: () => Navigator.of(context).pop(), child: const Text('العودة إلى مركز المراجعة')),
+            ]),
+          ));
+        }
+        final word = words[_index];
+        return ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            LinearProgressIndicator(value: (_index + 1) / words.length, minHeight: 6),
+            const SizedBox(height: 18),
+            Text('الكلمة ${_index + 1} من ${words.length}', style: const TextStyle(color: Colors.grey)),
+            const SizedBox(height: 20),
+            Card(child: Padding(
+              padding: const EdgeInsets.all(26),
+              child: Column(children: [
+                Text(word.term, style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w900, color: Color(0xFF263E81))),
+                const SizedBox(height: 22),
+                if (_showMeaning)
+                  Text(word.meaning, style: const TextStyle(fontSize: 23, fontWeight: FontWeight.w700))
+                else
+                  const Text('حاول تذكر المعنى قبل إظهاره', textAlign: TextAlign.center, style: TextStyle(height: 1.7)),
+              ]),
+            )),
+            const SizedBox(height: 18),
+            if (!_showMeaning)
+              FilledButton.icon(
+                onPressed: () => setState(() => _showMeaning = true),
+                icon: const Icon(Icons.visibility_outlined),
+                label: const Text('أظهر المعنى'),
+              )
+            else ...[
+              const Text('هل تذكرت المعنى قبل إظهاره؟', textAlign: TextAlign.center),
+              const SizedBox(height: 10),
+              Row(children: [
+                Expanded(child: OutlinedButton(
+                  onPressed: () => _rate(word, false),
+                  child: const Text('لم أتذكرها'),
+                )),
+                const SizedBox(width: 10),
+                Expanded(child: FilledButton(
+                  onPressed: () => _rate(word, true),
+                  child: const Text('تذكرتها'),
+                )),
+              ]),
+            ],
+          ],
+        );
+      },
+    ),
+  );
+
+  Future<void> _rate(WordProgress word, bool remembered) async {
+    await LearningStore.instance.recordWord(
+      lessonId: word.lessonId,
+      term: word.term,
+      meaning: word.meaning,
+      correct: remembered,
+    );
+    if (!mounted) return;
+    setState(() {
+      _index++;
+      _showMeaning = false;
+    });
   }
 }
 
