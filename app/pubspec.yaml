@@ -20,3 +20,5 @@ flutter:
   assets:
     - assets/lessons/english_a1.json
     - assets/lessons/legal_english.json
+    - assets/lessons/general_expansion.json
+    - assets/lessons/legal_expansion.json
