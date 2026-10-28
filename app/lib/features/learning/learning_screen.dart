@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart' show HapticFeedback, rootBundle;
+import '../../services/learning_sound_service.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 import '../../models/learning_lesson.dart';
@@ -199,6 +200,36 @@ class _LessonScreenState extends State<LessonScreen> {
   String _newBadge = '';
   final FlutterTts _tts = FlutterTts();
   bool _speaking = false;
+  bool _soundEnabled = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSoundSetting();
+  }
+
+  Future<void> _loadSoundSetting() async {
+    await LearningSoundService.instance.load();
+    if (mounted) setState(() => _soundEnabled = LearningSoundService.instance.enabled);
+  }
+
+  Future<void> _toggleSounds() async {
+    final enabled = !_soundEnabled;
+    await LearningSoundService.instance.setEnabled(enabled);
+    if (!mounted) return;
+    setState(() => _soundEnabled = enabled);
+    if (enabled) {
+      await LearningSoundService.instance.tap();
+      await HapticFeedback.selectionClick();
+    }
+  }
+
+  Future<void> _changeTab(int tab) async {
+    if (_tab == tab) return;
+    await LearningSoundService.instance.tap();
+    await HapticFeedback.selectionClick();
+    if (mounted) setState(() => _tab = tab);
+  }
 
   Future<void> _speak(String text) async {
     try {
@@ -229,19 +260,28 @@ class _LessonScreenState extends State<LessonScreen> {
   Widget build(BuildContext context) {
     final lesson = widget.lesson;
     return Scaffold(
-      appBar: AppBar(title: Text(lesson.title, maxLines: 1, overflow: TextOverflow.ellipsis)),
+      appBar: AppBar(
+        title: Text(lesson.title, maxLines: 1, overflow: TextOverflow.ellipsis),
+        actions: [
+          IconButton(
+            tooltip: _soundEnabled ? 'إيقاف المؤثرات الصوتية' : 'تشغيل المؤثرات الصوتية',
+            onPressed: _toggleSounds,
+            icon: Icon(_soundEnabled ? Icons.volume_up_rounded : Icons.volume_off_rounded),
+          ),
+        ],
+      ),
       body: _finished ? _completion() : Column(
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
             child: Row(children: [
-              _ModeChip(label: 'المفردات', selected: _tab == 0, onTap: () => setState(() => _tab = 0)),
+              _ModeChip(label: 'المفردات', selected: _tab == 0, onTap: () => _changeTab(0)),
               const SizedBox(width: 8),
-              _ModeChip(label: 'الشرح', selected: _tab == 1, onTap: () => setState(() => _tab = 1)),
+              _ModeChip(label: 'الشرح', selected: _tab == 1, onTap: () => _changeTab(1)),
               const SizedBox(width: 8),
-              _ModeChip(label: 'الاختبار', selected: _tab == 2, onTap: () => setState(() => _tab = 2)),
+              _ModeChip(label: 'الاختبار', selected: _tab == 2, onTap: () => _changeTab(2)),
               const SizedBox(width: 8),
-              _ModeChip(label: 'الاستماع', selected: _tab == 3, onTap: () => setState(() => _tab = 3)),
+              _ModeChip(label: 'الاستماع', selected: _tab == 3, onTap: () => _changeTab(3)),
             ]),
           ),
           Expanded(child: IndexedStack(
@@ -328,6 +368,13 @@ class _LessonScreenState extends State<LessonScreen> {
 
   Future<void> _rateWord(bool remembered) async {
     final word = widget.lesson.vocabulary[_wordIndex];
+    if (remembered) {
+      await LearningSoundService.instance.correct();
+      await HapticFeedback.lightImpact();
+    } else {
+      await LearningSoundService.instance.incorrect();
+      await HapticFeedback.mediumImpact();
+    }
     await LearningStore.instance.recordWord(
       lessonId: widget.lesson.id,
       term: word.term,
@@ -433,10 +480,7 @@ class _LessonScreenState extends State<LessonScreen> {
               side: BorderSide(color: _listenAnswered && i == correctOption ? Colors.green : _listenAnswered && i == _listenSelected ? Colors.red : const Color(0xFFDDE3EF)),
               backgroundColor: _listenAnswered && i == correctOption ? const Color(0xFFE7F7EC) : _listenAnswered && i == _listenSelected ? const Color(0xFFFFEBEE) : null,
             ),
-            onPressed: _listenAnswered ? null : () => setState(() {
-              _listenSelected = i;
-              _listenAnswered = true;
-            }),
+            onPressed: _listenAnswered ? null : () => _answerListening(i),
             child: Text(words[_listenOptionIndices[i]].meaning),
           ),
         ),
@@ -456,6 +500,19 @@ class _LessonScreenState extends State<LessonScreen> {
         ),
       ],
     ]);
+  }
+
+  Future<void> _answerListening(int index) async {
+    final correct = _listenOptionIndices[index] == _listenIndex;
+    await (correct
+        ? LearningSoundService.instance.correct()
+        : LearningSoundService.instance.incorrect());
+    await (correct ? HapticFeedback.lightImpact() : HapticFeedback.mediumImpact());
+    if (!mounted) return;
+    setState(() {
+      _listenSelected = index;
+      _listenAnswered = true;
+    });
   }
 
   Widget _quiz() {
@@ -530,9 +587,14 @@ class _LessonScreenState extends State<LessonScreen> {
     ]);
   }
 
-  void _answer(int index) {
+  Future<void> _answer(int index) async {
     final question = widget.lesson.quiz[_questionIndex];
     final correct = index == question.answerIndex;
+    await (correct
+        ? LearningSoundService.instance.correct()
+        : LearningSoundService.instance.incorrect());
+    await (correct ? HapticFeedback.lightImpact() : HapticFeedback.mediumImpact());
+    if (!mounted) return;
     setState(() {
       _answered = true;
       _selectedAnswerIndex = index;
@@ -568,6 +630,8 @@ class _LessonScreenState extends State<LessonScreen> {
     }
     await LearningStore.instance.markLessonComplete(widget.lesson.id);
     _totalXp = await LearningStore.instance.totalXp();
+    await LearningSoundService.instance.complete();
+    await HapticFeedback.heavyImpact();
     if (!mounted) return;
     setState(() => _finished = true);
   }
