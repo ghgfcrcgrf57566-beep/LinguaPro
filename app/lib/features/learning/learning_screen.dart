@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -189,6 +190,11 @@ class _LessonScreenState extends State<LessonScreen> {
   int _selectedAnswerIndex = -1;
   int _score = 0;
   bool _finished = false;
+  int _listenIndex = 0;
+  int _listenSelected = -1;
+  bool _listenAnswered = false;
+  List<int> _listenOptionIndices = <int>[];
+  int _earnedXp = 0;
   final FlutterTts _tts = FlutterTts();
   bool _speaking = false;
 
@@ -232,11 +238,13 @@ class _LessonScreenState extends State<LessonScreen> {
               _ModeChip(label: 'الشرح', selected: _tab == 1, onTap: () => setState(() => _tab = 1)),
               const SizedBox(width: 8),
               _ModeChip(label: 'الاختبار', selected: _tab == 2, onTap: () => setState(() => _tab = 2)),
+              const SizedBox(width: 8),
+              _ModeChip(label: 'الاستماع', selected: _tab == 3, onTap: () => setState(() => _tab = 3)),
             ]),
           ),
           Expanded(child: IndexedStack(
             index: _tab,
-            children: [_vocabulary(), _sections(), _quiz()],
+            children: [_vocabulary(), _sections(), _quiz(), _listeningPractice()],
           )),
         ],
       ),
@@ -361,6 +369,93 @@ class _LessonScreenState extends State<LessonScreen> {
     ],
   );
 
+  Widget _listeningPractice() {
+    final words = widget.lesson.vocabulary;
+    if (words.length < 2) {
+      return const Center(child: Padding(
+        padding: EdgeInsets.all(24),
+        child: Text('يحتاج تدريب الاستماع إلى مفردتين على الأقل في هذا الدرس.'),
+      ));
+    }
+    if (_listenIndex >= words.length) {
+      return Center(child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          const Icon(Icons.headphones_rounded, size: 52, color: Color(0xFFE0A92E)),
+          const SizedBox(height: 12),
+          const Text('أحسنت! أنهيت تدريب الاستماع 🎧', textAlign: TextAlign.center, style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900)),
+          const SizedBox(height: 12),
+          FilledButton(onPressed: () => setState(() {
+            _listenIndex = 0;
+            _listenSelected = -1;
+            _listenAnswered = false;
+            _listenOptionIndices = <int>[];
+          }), child: const Text('تدرب مرة أخرى')),
+        ]),
+      ));
+    }
+    final target = words[_listenIndex];
+    if (_listenOptionIndices.isEmpty) {
+      final alternatives = List<int>.generate(words.length, (i) => i)..remove(_listenIndex);
+      _listenOptionIndices = <int>[_listenIndex, ...alternatives.take(3)];
+      _listenOptionIndices.shuffle(math.Random(widget.lesson.id.hashCode + _listenIndex));
+    }
+    final correctOption = _listenOptionIndices.indexOf(_listenIndex);
+    return ListView(padding: const EdgeInsets.all(18), children: [
+      LinearProgressIndicator(value: (_listenIndex + 1) / words.length, minHeight: 6),
+      const SizedBox(height: 18),
+      Text('تمرين الاستماع ${_listenIndex + 1} من ${words.length}', style: const TextStyle(color: Colors.grey)),
+      const SizedBox(height: 20),
+      Card(child: Padding(
+        padding: const EdgeInsets.all(22),
+        child: Column(children: [
+          const Icon(Icons.hearing_rounded, size: 46, color: Color(0xFF334C82)),
+          const SizedBox(height: 10),
+          const Text('استمع إلى الكلمة ثم اختر معناها', textAlign: TextAlign.center, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
+          const SizedBox(height: 14),
+          FilledButton.icon(
+            onPressed: _speaking ? null : () => _speak(target.term),
+            icon: const Icon(Icons.volume_up_rounded),
+            label: const Text('استمع مرة أخرى'),
+          ),
+        ]),
+      )),
+      const SizedBox(height: 14),
+      for (var i = 0; i < _listenOptionIndices.length; i++)
+        Padding(
+          padding: const EdgeInsets.only(bottom: 9),
+          child: OutlinedButton(
+            style: OutlinedButton.styleFrom(
+              padding: const EdgeInsets.all(14),
+              alignment: Alignment.centerRight,
+              side: BorderSide(color: _listenAnswered && i == correctOption ? Colors.green : _listenAnswered && i == _listenSelected ? Colors.red : const Color(0xFFDDE3EF)),
+              backgroundColor: _listenAnswered && i == correctOption ? const Color(0xFFE7F7EC) : _listenAnswered && i == _listenSelected ? const Color(0xFFFFEBEE) : null,
+            ),
+            onPressed: _listenAnswered ? null : () => setState(() {
+              _listenSelected = i;
+              _listenAnswered = true;
+            }),
+            child: Text(words[_listenOptionIndices[i]].meaning),
+          ),
+        ),
+      if (_listenAnswered) ...[
+        Padding(
+          padding: const EdgeInsets.all(12),
+          child: Text(_listenSelected == correctOption ? 'إجابة صحيحة! رائع 👏' : 'ليس تمامًا. الكلمة كانت: ${target.term} — ${target.meaning}', style: const TextStyle(height: 1.7)),
+        ),
+        FilledButton(
+          onPressed: () => setState(() {
+            _listenIndex++;
+            _listenSelected = -1;
+            _listenAnswered = false;
+            _listenOptionIndices = <int>[];
+          }),
+          child: Text(_listenIndex == words.length - 1 ? 'إنهاء التدريب' : 'التالي'),
+        ),
+      ],
+    ]);
+  }
+
   Widget _quiz() {
     final questions = widget.lesson.quiz;
     if (questions.isEmpty) return const Center(child: Text('لا توجد أسئلة لهذا الدرس.'));
@@ -456,6 +551,11 @@ class _LessonScreenState extends State<LessonScreen> {
       score: _score,
       total: widget.lesson.quiz.length,
     );
+    final completed = await LearningStore.instance.completedLessons();
+    if (!completed.contains(widget.lesson.id)) {
+      _earnedXp = 10;
+      await LearningStore.instance.awardLessonXp(widget.lesson.id);
+    }
     await LearningStore.instance.markLessonComplete(widget.lesson.id);
     if (!mounted) return;
     setState(() => _finished = true);
@@ -481,6 +581,8 @@ class _LessonScreenState extends State<LessonScreen> {
         Text('أكملت: ${widget.lesson.title}', textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.w700)),
         const SizedBox(height: 8),
         Text('نتيجتك: $_score من ${widget.lesson.quiz.length}'),
+        const SizedBox(height: 8),
+        Text(_earnedXp > 0 ? 'مكافأتك: +$_earnedXp XP ⭐' : 'أعدت الدرس؛ نقاط الخبرة لا تتكرر لنفس المرحلة.'),
         const SizedBox(height: 18),
         FilledButton(onPressed: () => Navigator.of(context).pop(), child: const Text('العودة إلى المسار')),
       ]),
