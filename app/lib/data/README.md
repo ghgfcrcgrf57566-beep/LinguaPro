@@ -1,0 +1,1 @@
+This folder will contain content data sources and cache adapters. Phase 1 keeps the network client in services; the content repository is added when the API contract and content schema are defined.
