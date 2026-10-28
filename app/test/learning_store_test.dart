@@ -73,6 +73,21 @@ void main() {
       expect(word.accuracy, 1);
       expect(word.needsExtraPractice, isFalse);
     });
+    test('recovered vocabulary is no longer marked weak after accuracy improves', () {
+      final word = WordProgress(
+        lessonId: 'a1-likes',
+        term: 'book',
+        meaning: 'كتاب',
+        dueAt: DateTime(2026, 10, 29),
+        intervalDays: 1,
+        repetitions: 4,
+        correctCount: 8,
+        wrongCount: 2,
+        lastResult: true,
+      );
+      expect(word.accuracy, 0.8);
+      expect(word.needsExtraPractice, isFalse);
+    });
   });
 
   group('Learning content models', () {
