@@ -24,7 +24,9 @@ class _MistakeReviewScreenState extends State<MistakeReviewScreen> {
     body: FutureBuilder<List<Map<String, dynamic>>>(
       future: _future,
       builder: (context, snapshot) {
-        if (snapshot.connectionState != ConnectionState.done) return const Center(child: CircularProgressIndicator());
+        if (snapshot.connectionState != ConnectionState.done) {
+          return const Center(child: CircularProgressIndicator());
+        }
         if (snapshot.hasError) return const Center(child: Text('تعذر تحميل سجل الأخطاء المحلي.'));
         final mistakes = snapshot.data ?? const <Map<String, dynamic>>[];
         if (mistakes.isEmpty) return const Center(child: Padding(
