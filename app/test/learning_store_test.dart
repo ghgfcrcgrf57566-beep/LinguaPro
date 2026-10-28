@@ -7,6 +7,7 @@ import 'package:english_learning_legal_academy/services/learning_store.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  setUp(() { SharedPreferences.setMockInitialValues(<String, Object>{}); });
   group('QuizResult', () {
     test('round-trips a saved score and calculates percentage', () {
       final original = QuizResult(
@@ -111,8 +112,7 @@ void main() {
     });
   });
   group('spaced review queue', () {
-    test('weak vocabulary enters the review queue while future scheduled words stay out', () async {
-      SharedPreferences.setMockInitialValues(<String, Object>{});
+    test('weak vocabulary enters review queue while future scheduled words stay out', () async {
       final store = LearningStore.instance;
       await store.recordWord(lessonId: 'a1-greetings', term: 'hello', meaning: 'مرحبًا', correct: true);
       expect(await store.loadDueWords(), isEmpty);
@@ -123,6 +123,15 @@ void main() {
       expect(queue, hasLength(1));
       expect(queue.single.term, 'hello');
       expect(queue.single.needsExtraPractice, isTrue);
+    });
+
+    test('review queue prioritizes weak vocabulary and respects limit', () async {
+      final store = LearningStore.instance;
+      await store.recordWord(lessonId: 'lesson', term: 'court', meaning: 'محكمة', correct: true);
+      await store.recordWord(lessonId: 'lesson', term: 'appeal', meaning: 'استئناف', correct: false);
+      final queue = await store.loadReviewQueue(limit: 1);
+      expect(queue, hasLength(1));
+      expect(queue.single.term, 'appeal');
     });
   });
 
