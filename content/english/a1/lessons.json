@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "content_version": "2026.10.28-1",
+  "lessons": [
+    {
+      "id": "a1-greetings",
+      "title": "Greetings and introductions",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "Learn common greetings and how to introduce yourself politely.",
+      "objectives": [
+        "Use a basic greeting.",
+        "Ask and answer someone's name.",
+        "Introduce yourself with a short sentence."
+      ],
+      "vocabulary": [
+        {
+          "term": "Hello",
+          "meaning": "مرحبًا",
+          "example": "Hello, my name is Sara."
+        },
+        {
+          "term": "Nice to meet you",
+          "meaning": "سعيد بلقائك",
+          "example": "Nice to meet you, Ahmed."
+        },
+        {
+          "term": "My name is...",
+          "meaning": "اسمي...",
+          "example": "My name is Ali."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Useful dialogue",
+          "body": "A: Hello! What is your name?\nB: My name is Sara. What is your name?\nA: I'm Omar. Nice to meet you.\nB: Nice to meet you, too."
+        },
+        {
+          "heading": "Language tip",
+          "body": "Use “What is your name?” to ask for a person's name. “I'm…” is a natural short form of “I am…”."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which sentence introduces your name?",
+          "options": ["My name is Ali.", "Where are you?", "Good night."],
+          "answer_index": 0,
+          "explanation": "“My name is…” is a common way to introduce yourself."
+        }
+      ]
+    },
+    {
+      "id": "a1-likes",
+      "title": "Talking about things you like",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "Say what you like and ask another person about their preferences.",
+      "objectives": [
+        "Use “I like…” with a noun.",
+        "Ask “What do you like?”",
+        "Give a simple positive or negative answer."
+      ],
+      "vocabulary": [
+        {
+          "term": "book",
+          "meaning": "كتاب",
+          "example": "I like books."
+        },
+        {
+          "term": "like",
+          "meaning": "يحب / يعجبه",
+          "example": "I like English."
+        },
+        {
+          "term": "don't like",
+          "meaning": "لا يحب / لا يعجبه",
+          "example": "I don't like cold coffee."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Ask and answer",
+          "body": "A: What do you like?\nB: I like books. What about you?\nA: I like music."
+        },
+        {
+          "heading": "Language tip",
+          "body": "Use “I like + noun” to talk about preferences. For example: “I like books.”"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Choose the correct sentence.",
+          "options": ["I likes books.", "I like books.", "I liking books."],
+          "answer_index": 1,
+          "explanation": "With “I”, use the base verb “like”."
+        }
+      ]
+    }
+  ]
+}
