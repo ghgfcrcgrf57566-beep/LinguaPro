@@ -31,7 +31,7 @@ class WordProgress {
 
   double get accuracy => attempts == 0 ? 0 : correctCount / attempts;
 
-  bool get needsExtraPractice => wrongCount > 0 && (accuracy < 0.7 || wrongCount >= 2);
+  bool get needsExtraPractice => wrongCount > 0 && accuracy < 0.7;
 
   factory WordProgress.fromJson(Map<String, dynamic> json) => WordProgress(
         lessonId: json['lessonId'] as String? ?? '',
