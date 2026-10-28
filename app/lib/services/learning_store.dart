@@ -166,9 +166,11 @@ class LearningStore {
     required String meaning,
     required bool correct,
     String? eventId,
+    DateTime? now,
   }) async {
     final prefs = await SharedPreferences.getInstance();
-    final reviewEventId = eventId ?? 'word-review:$lessonId:${term.trim().toLowerCase()}:${DateTime.now().microsecondsSinceEpoch}';
+    final current = now ?? DateTime.now();
+    final reviewEventId = eventId ?? 'word-review:$lessonId:${term.trim().toLowerCase()}:${current.microsecondsSinceEpoch}';
     final processed = prefs.getStringList(_wordReviewEventsKey) ?? <String>[];
     if (processed.contains(reviewEventId)) return;
     final progress = await loadProgress();
@@ -184,7 +186,7 @@ class LearningStore {
                     ? 7
                     : (old.intervalDays * 2).clamp(1, 90).toInt())
         : 0;
-    final due = DateTime.now().add(Duration(days: correct ? interval : 0, hours: correct ? 0 : 4));
+    final due = current.add(Duration(days: correct ? interval : 0, hours: correct ? 0 : 4));
     progress[key] = WordProgress(
       lessonId: lessonId,
       term: term,
@@ -209,7 +211,7 @@ class LearningStore {
       'term': term,
       'meaning': meaning,
       'correct': correct,
-      'createdAt': DateTime.now().toIso8601String(),
+      'createdAt': current.toIso8601String(),
     }));
     await prefs.setStringList(_syncQueueKey, outbox);
   }
