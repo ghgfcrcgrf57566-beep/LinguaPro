@@ -61,6 +61,12 @@ void main() {
       );
       expect(await engine.completedLessons(), contains('legacy-lesson'));
       expect(await engine.totalXp(), 30);
+      await engine.completeLesson(
+        lessonId: 'legacy-lesson',
+        completionEventId: 'legacy-replay',
+      );
+      expect(await engine.totalXp(), 30,
+          reason: 'A migrated lesson must not award XP again on replay.');
 
       await engine.migrateLegacyProgress(
         completedLessonIds: ['legacy-lesson', 'another-legacy-lesson'],
