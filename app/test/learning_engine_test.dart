@@ -77,11 +77,11 @@ void main() {
 
     test('wrong answer events are stored once and can be reviewed/resolved', () async {
       final engine = LearningEngine.instance;
-      final data = {
+      final data = <String, dynamic>{
         'eventId': 'answer-1', 'lessonId': 'a1-greetings', 'prompt': 'Translate hello',
         'answer': 'goodbye', 'correct': false, 'targetTerm': 'hello', 'targetMeaning': 'مرحبًا',
       };
-      await engine.recordAnswer(eventId: data['eventId']!, lessonId: data['lessonId']!, prompt: data['prompt']!, answer: data['answer']!, correct: false, targetTerm: data['targetTerm'], targetMeaning: data['targetMeaning']);
+      await engine.recordAnswer(eventId: data['eventId'] as String, lessonId: data['lessonId'] as String, prompt: data['prompt'] as String, answer: data['answer'] as String, correct: false, targetTerm: data['targetTerm'] as String, targetMeaning: data['targetMeaning'] as String);
       await engine.recordAnswer(eventId: data['eventId']!, lessonId: data['lessonId']!, prompt: data['prompt']!, answer: data['answer']!, correct: false, targetTerm: data['targetTerm'], targetMeaning: data['targetMeaning']);
       expect((await engine.mistakes()).length, 1);
       await engine.markMistakeResolved('answer-1');
