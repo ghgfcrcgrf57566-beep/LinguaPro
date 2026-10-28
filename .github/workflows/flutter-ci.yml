@@ -36,6 +36,20 @@ jobs:
             flutter create --platforms=android --project-name english_learning_legal_academy /tmp/linguapro_android_template
             cp -R /tmp/linguapro_android_template/android ./android
           fi
+      - name: Add microphone permission for speech recognition
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          manifest = Path("android/app/src/main/AndroidManifest.xml")
+          content = manifest.read_text()
+          permission = '    <uses-permission android:name="android.permission.RECORD_AUDIO" />\\n'
+          if "android.permission.RECORD_AUDIO" not in content:
+              marker = "<application"
+              if marker not in content:
+                  raise SystemExit("Android manifest is missing the application element")
+              content = content.replace(marker, permission + "    " + marker, 1)
+              manifest.write_text(content)
+          PY
       - name: Verify packaged lessons match canonical content
         run: |
           cmp ../content/english/a1/lessons.json assets/lessons/english_a1.json
