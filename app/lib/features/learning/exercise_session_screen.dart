@@ -259,6 +259,16 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
       }
       return;
     }
+    if (question.type == ExerciseType.matching &&
+        question.pairs.any((pair) => (_pairs[pair.key] ?? '').trim().isEmpty)) {
+      _submitting = false;
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('أكمل مطابقة جميع العناصر أولًا.')),
+        );
+      }
+      return;
+    }
     final eventId = 'exercise-session:$_sessionId:${question.id}';
     final allowed = await LearningEngine.instance.consumeAttempt(eventId);
     if (!allowed) {
