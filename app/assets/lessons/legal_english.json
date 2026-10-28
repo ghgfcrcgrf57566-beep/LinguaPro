@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "2026.10.28.3",
+  "content_version": "2026.10.28.4",
   "lessons": [
     {
       "id": "legal-contract-basics",
@@ -240,6 +240,170 @@
           ],
           "answer_index": 0,
           "explanation": "Defendant هو المدعى عليه، مع مراعاة المصطلح المعتمد في نوع القضية."
+        }
+      ]
+    },
+    {
+      "id": "legal-evidence-and-witnesses",
+      "title": "Evidence, witnesses and documents",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "تعلم مفردات الأدلة والشهود والمستندات في نصوص قانونية تعليمية عامة.",
+      "objectives": [
+        "تمييز evidence وwitness وdocument",
+        "قراءة جملة عن تقديم دليل",
+        "فهم أن الترجمة تعتمد على السياق والنظام القانوني"
+      ],
+      "vocabulary": [
+        {
+          "term": "Witness",
+          "meaning": "شاهد",
+          "example": "The witness answered the questions.",
+          "pronunciation": "WIT-niss"
+        },
+        {
+          "term": "Statement",
+          "meaning": "إفادة أو بيان بحسب السياق",
+          "example": "The witness gave a statement.",
+          "pronunciation": "STAYT-munt"
+        },
+        {
+          "term": "Document",
+          "meaning": "مستند أو وثيقة",
+          "example": "Please attach the document.",
+          "pronunciation": "DOK-yuh-munt"
+        },
+        {
+          "term": "Exhibit",
+          "meaning": "مستند أو شيء مقدم كدليل في الدعوى",
+          "example": "The document was marked as an exhibit.",
+          "pronunciation": "ig-ZIB-it"
+        },
+        {
+          "term": "Testimony",
+          "meaning": "شهادة أو أقوال الشاهد",
+          "example": "The testimony was recorded.",
+          "pronunciation": "TES-tuh-moh-nee"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Reading practice",
+          "body": "The witness gave a statement. The lawyer submitted a document as evidence. The court considered the material according to the applicable rules."
+        },
+        {
+          "heading": "ملاحظة مصطلحية",
+          "body": "قد يختلف المقابل الدقيق لكلمات statement وexhibit وtestimony بحسب نوع الإجراء وقواعد الإثبات في النظام المعني. هذا المحتوى لتعلم اللغة وليس استشارة قانونية."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does witness mean?",
+          "options": [
+            "شاهد",
+            "عقد",
+            "موعد"
+          ],
+          "answer_index": 0,
+          "explanation": "Witness تعني شاهدًا."
+        },
+        {
+          "question": "A document may be submitted as...",
+          "options": [
+            "evidence",
+            "breakfast",
+            "direction"
+          ],
+          "answer_index": 0,
+          "explanation": "Evidence تعني دليلًا أو أدلة إثبات بحسب السياق."
+        },
+        {
+          "question": "What is testimony most closely related to?",
+          "options": [
+            "أقوال الشاهد أو شهادته",
+            "قائمة طعام",
+            "وقت الدوام"
+          ],
+          "answer_index": 0,
+          "explanation": "Testimony تعني الشهادة أو أقوال الشاهد في سياق قانوني."
+        }
+      ]
+    },
+    {
+      "id": "legal-letters-and-notices",
+      "title": "Legal letters and formal notices",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "مصطلحات عملية لقراءة المراسلات والإشعارات الرسمية بلغة إنجليزية واضحة.",
+      "objectives": [
+        "تمييز notice وrequest وresponse",
+        "فهم عبارات المراسلات الرسمية",
+        "كتابة جملة مهذبة ومباشرة"
+      ],
+      "vocabulary": [
+        {
+          "term": "Notice",
+          "meaning": "إشعار أو إخطار بحسب السياق",
+          "example": "The company sent a written notice.",
+          "pronunciation": "NOH-tiss"
+        },
+        {
+          "term": "Request",
+          "meaning": "طلب",
+          "example": "We received your request.",
+          "pronunciation": "ri-KWEST"
+        },
+        {
+          "term": "Response",
+          "meaning": "رد أو استجابة",
+          "example": "Please send your response by Friday.",
+          "pronunciation": "ri-SPONS"
+        },
+        {
+          "term": "Attached",
+          "meaning": "مرفق",
+          "example": "Please find the document attached.",
+          "pronunciation": "uh-TACHT"
+        },
+        {
+          "term": "Sincerely",
+          "meaning": "مع خالص التحية؛ ختام رسمي للرسالة",
+          "example": "Sincerely, Alex Morgan.",
+          "pronunciation": "sin-SEER-lee"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Sample formal email",
+          "body": "Dear Ms. Ali,\\nPlease find the requested document attached. We would appreciate your response by Friday.\\nSincerely,\\nAlex Morgan"
+        },
+        {
+          "heading": "Writing tip",
+          "body": "ابدأ الرسالة الرسمية بتحية مناسبة، وضح الغرض بجملة مباشرة، ثم اذكر المرفقات أو الموعد عند الحاجة. لا تفترض أن مهلة واردة في مثال لغوي تمثل مهلة قانونية فعلية."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does attached mean in an email?",
+          "options": [
+            "مرفق",
+            "مرفوض دائمًا",
+            "جلسة محكمة"
+          ],
+          "answer_index": 0,
+          "explanation": "Attached تشير إلى ملف أو مستند مرفق بالرسالة."
+        },
+        {
+          "question": "Which is a formal closing?",
+          "options": [
+            "Sincerely",
+            "What food?",
+            "Turn left"
+          ],
+          "answer_index": 0,
+          "explanation": "Sincerely من عبارات الختام الشائعة في الرسائل الرسمية."
         }
       ]
     }
