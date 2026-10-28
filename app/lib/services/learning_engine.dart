@@ -17,6 +17,11 @@ class LearningEngine {
   static const _attemptsKey = 'lp_engine_attempts_v1';
   static const _wrongAnswersKey = 'lp_engine_wrong_answers_v1';
   static const _syncQueueKey = 'lp_engine_pending_sync_v1';
+  static const _attemptLimitKey = 'lp_engine_attempt_limit_v1';
+  static const _attemptsUsedKey = 'lp_engine_attempts_used_v1';
+  static const _attemptDayKey = 'lp_engine_attempt_day_v1';
+  static const _consumedAttemptEventsKey = 'lp_engine_consumed_attempt_events_v1';
+  static const _completionDatesKey = 'lp_engine_completion_dates_v1';
 
   static String normalizeAnswer(String value) => value
       .toLowerCase()
@@ -159,7 +164,13 @@ class LearningEngine {
       completed.add(lessonId);
       await prefs.setStringList(_completedKey, completed);
     }
-    final awarded = await awardXp(eventId: 'lesson:' + lessonId, points: xp, now: now);
+    final current = now ?? DateTime.now();
+    if (isNewCompletion) {
+      final dates = _readJsonMap(prefs.getString(_completionDatesKey));
+      dates[lessonId] = _dateKey(current);
+      await prefs.setString(_completionDatesKey, jsonEncode(dates));
+    }
+    final awarded = await awardXp(eventId: 'lesson:' + lessonId, points: xp, now: current);
     return isNewCompletion || awarded;
   }
 
@@ -239,6 +250,89 @@ class LearningEngine {
         return <String, dynamic>{};
       }
     }).where((item) => item.isNotEmpty).toList(growable: false);
+  }
+
+
+  /// Configure daily attempts. Zero means unlimited; the default is unlimited.
+  Future<void> setDailyAttemptLimit(int limit) async {
+    if (limit < 0 || limit > 20) {
+      throw ArgumentError('Daily attempt limit must be between 0 and 20.');
+    }
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(_attemptLimitKey, limit);
+    await prefs.setInt(_attemptsUsedKey, 0);
+    await prefs.setString(_attemptDayKey, _dateKey(DateTime.now()));
+  }
+
+  Future<int> dailyAttemptLimit() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getInt(_attemptLimitKey) ?? 0;
+  }
+
+  Future<int?> attemptsRemaining({DateTime? now}) async {
+    final prefs = await SharedPreferences.getInstance();
+    final limit = prefs.getInt(_attemptLimitKey) ?? 0;
+    if (limit == 0) return null;
+    final date = _dateKey(now ?? DateTime.now());
+    final savedDate = prefs.getString(_attemptDayKey);
+    final used = savedDate == date ? (prefs.getInt(_attemptsUsedKey) ?? 0) : 0;
+    return (limit - used).clamp(0, limit);
+  }
+
+  /// Consumes an attempt once per event. Returns false when no attempts remain.
+  Future<bool> consumeAttempt(String eventId, {DateTime? now}) async {
+    if (eventId.trim().isEmpty) throw ArgumentError('eventId is required.');
+    final prefs = await SharedPreferences.getInstance();
+    final events = prefs.getStringList(_consumedAttemptEventsKey) ?? <String>[];
+    if (events.contains(eventId)) return true;
+    final current = now ?? DateTime.now();
+    final date = _dateKey(current);
+    final limit = prefs.getInt(_attemptLimitKey) ?? 0;
+    final used = prefs.getString(_attemptDayKey) == date ? (prefs.getInt(_attemptsUsedKey) ?? 0) : 0;
+    if (limit > 0 && used >= limit) return false;
+    events.add(eventId);
+    await prefs.setStringList(_consumedAttemptEventsKey, events);
+    await prefs.setString(_attemptDayKey, date);
+    await prefs.setInt(_attemptsUsedKey, used + 1);
+    return true;
+  }
+
+  /// Simple, transparent challenges based on locally stored lesson completions.
+  Future<Map<String, int>> challengeSummary({DateTime? now}) async {
+    final prefs = await SharedPreferences.getInstance();
+    final dates = _readJsonMap(prefs.getString(_completionDatesKey));
+    final current = _dateOnly(now ?? DateTime.now());
+    var today = 0;
+    var thisWeek = 0;
+    for (final value in dates.values) {
+      if (value is! String) continue;
+      final parsed = DateTime.tryParse(value);
+      if (parsed == null) continue;
+      final day = _dateOnly(parsed);
+      final age = current.difference(day).inDays;
+      if (age == 0) today++;
+      if (age >= 0 && age < 7) thisWeek++;
+    }
+    return <String, int>{
+      'dailyLessons': today,
+      'dailyTarget': 1,
+      'weeklyLessons': thisWeek,
+      'weeklyTarget': 5,
+    };
+  }
+
+  Future<List<String>> unlockedBadges() async {
+    final completed = await completedLessons();
+    final xp = await totalXp();
+    final currentStreak = await streak();
+    final badges = <String>[];
+    if (completed.isNotEmpty) badges.add('البداية');
+    if (completed.length >= 3) badges.add('المثابرة');
+    if (completed.length >= 10) badges.add('عشرة دروس');
+    if (xp >= 100) badges.add('جامع الخبرة');
+    if (currentStreak >= 3) badges.add('ثلاثة أيام متتالية');
+    if (currentStreak >= 7) badges.add('أسبوع من التعلّم');
+    return badges;
   }
 
   static Map<String, dynamic> _readJsonMap(String? raw) {
