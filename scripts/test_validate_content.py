@@ -66,6 +66,21 @@ class ContentValidationTests(unittest.TestCase):
             with self.assertRaises(ContentValidationError):
                 validate_file(self.write_document(directory, document))
 
+    def test_accepts_cefr_level_in_legal_english_track(self) -> None:
+        document = json.loads(json.dumps(VALID_DOCUMENT))
+        lesson = document["lessons"][0]
+        lesson["level"] = "B2"
+        lesson["track"] = "legal-english"
+        with tempfile.TemporaryDirectory() as directory:
+            self.assertEqual(validate_file(self.write_document(directory, document)), 1)
+
+    def test_rejects_legal_level_in_general_track(self) -> None:
+        document = json.loads(json.dumps(VALID_DOCUMENT))
+        document["lessons"][0]["level"] = "LEGAL"
+        with tempfile.TemporaryDirectory() as directory:
+            with self.assertRaises(ContentValidationError):
+                validate_file(self.write_document(directory, document))
+
 
 if __name__ == "__main__":
     unittest.main()
