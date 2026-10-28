@@ -863,6 +863,12 @@ class _ReviewSessionScreenState extends State<ReviewSessionScreen> {
   );
 
   Future<void> _rate(WordProgress word, bool remembered) async {
+    await (remembered
+        ? LearningSoundService.instance.correct()
+        : LearningSoundService.instance.incorrect());
+    await (remembered
+        ? HapticFeedback.lightImpact()
+        : HapticFeedback.mediumImpact());
     await LearningStore.instance.recordWord(
       lessonId: word.lessonId,
       term: word.term,
