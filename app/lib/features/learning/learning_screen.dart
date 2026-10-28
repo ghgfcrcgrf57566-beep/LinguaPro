@@ -398,9 +398,11 @@ class _ReviewListState extends State<_ReviewList> {
               onPressed: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (_) => const ReviewSessionScreen(),
               )).then((_) {
-                if (mounted) setState(() {
-                  _future = LearningStore.instance.loadProgress();
-                });
+                if (mounted) {
+                  setState(() {
+                    _future = LearningStore.instance.loadProgress();
+                  });
+                }
               }),
               icon: const Icon(Icons.replay_circle_filled_rounded),
               label: Text('ابدأ مراجعة ${due.length} كلمة مستحقة'),
