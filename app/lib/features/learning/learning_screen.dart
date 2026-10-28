@@ -196,7 +196,11 @@ class _LessonScreenState extends State<LessonScreen> {
   int _quizSessionId = DateTime.now().microsecondsSinceEpoch;
   bool _finished = false;
   int _listenIndex = 0;
+  int _listenSessionId = DateTime.now().microsecondsSinceEpoch;
+  bool _listenChecking = false;
   int _typingIndex = 0;
+  int _typingSessionId = DateTime.now().microsecondsSinceEpoch;
+  bool _typingChecking = false;
   int _typingScore = 0;
   bool _typingAnswered = false;
   bool _typingCorrect = false;
@@ -447,6 +451,7 @@ class _LessonScreenState extends State<LessonScreen> {
           const Text('أحسنت! أنهيت تدريب الاستماع 🎧', textAlign: TextAlign.center, style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900)),
           const SizedBox(height: 12),
           FilledButton(onPressed: () => setState(() {
+            _listenSessionId = DateTime.now().microsecondsSinceEpoch;
             _listenIndex = 0;
             _listenSelected = -1;
             _listenAnswered = false;
@@ -525,7 +530,7 @@ class _LessonScreenState extends State<LessonScreen> {
         const SizedBox(height: 8),
         Text('نتيجتك: $_typingScore من ${words.length}'),
         const SizedBox(height: 14),
-        FilledButton(onPressed: () => setState(() { _typingIndex = 0; _typingScore = 0; _typingAnswered = false; _typingCorrect = false; _typingController.clear(); }), child: const Text('أعد التدريب')),
+        FilledButton(onPressed: () => setState(() { _typingSessionId = DateTime.now().microsecondsSinceEpoch; _typingIndex = 0; _typingScore = 0; _typingAnswered = false; _typingCorrect = false; _typingController.clear(); }), child: const Text('أعد التدريب')),
       ])));
     }
     final word = words[_typingIndex];
@@ -560,7 +565,15 @@ class _LessonScreenState extends State<LessonScreen> {
   String _normalizeTypingAnswer(String value) => value.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
 
   Future<void> _checkTypingAnswer() async {
-    if (_typingAnswered || _typingIndex >= widget.lesson.vocabulary.length) return;
+    if (_typingAnswered || _typingChecking || _typingIndex >= widget.lesson.vocabulary.length) return;
+    _typingChecking = true;
+    final eventId = 'typing:${widget.lesson.id}:$_typingSessionId:$_typingIndex';
+    final allowed = await LearningEngine.instance.consumeAttempt(eventId);
+    if (!allowed) {
+      _typingChecking = false;
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('انتهت محاولاتك اليومية. يمكنك تغيير نظام المحاولات من خريطة التعلّم أو المتابعة غدًا.')));
+      return;
+    }
     final word = widget.lesson.vocabulary[_typingIndex];
     final correct = _normalizeTypingAnswer(_typingController.text) == _normalizeTypingAnswer(word.term);
     await LearningStore.instance.recordWord(
@@ -571,10 +584,20 @@ class _LessonScreenState extends State<LessonScreen> {
     );
     await (correct ? LearningSoundService.instance.correct() : LearningSoundService.instance.incorrect());
     await (correct ? HapticFeedback.lightImpact() : HapticFeedback.mediumImpact());
+    _typingChecking = false;
     if (!mounted) return;
     setState(() { _typingAnswered = true; _typingCorrect = correct; if (correct) _typingScore++; });
   }
   Future<void> _answerListening(int index) async {
+    if (_listenAnswered || _listenChecking) return;
+    _listenChecking = true;
+    final eventId = 'listening:${widget.lesson.id}:$_listenSessionId:$_listenIndex';
+    final allowed = await LearningEngine.instance.consumeAttempt(eventId);
+    if (!allowed) {
+      _listenChecking = false;
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('انتهت محاولاتك اليومية. يمكنك تغيير نظام المحاولات من خريطة التعلّم أو المتابعة غدًا.')));
+      return;
+    }
     final correct = _listenOptionIndices[index] == _listenIndex;
     final word = widget.lesson.vocabulary[_listenIndex];
     await LearningStore.instance.recordWord(
@@ -587,6 +610,7 @@ class _LessonScreenState extends State<LessonScreen> {
         ? LearningSoundService.instance.correct()
         : LearningSoundService.instance.incorrect());
     await (correct ? HapticFeedback.lightImpact() : HapticFeedback.mediumImpact());
+    _listenChecking = false;
     if (!mounted) return;
     setState(() {
       _listenSelected = index;
