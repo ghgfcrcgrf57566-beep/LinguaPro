@@ -147,8 +147,9 @@ List<ExerciseQuestion> buildExercisesForLesson(LearningLesson lesson) {
 }
 
 class ExerciseSessionScreen extends StatefulWidget {
-  const ExerciseSessionScreen({super.key, this.questions = demoExerciseQuestions});
+  const ExerciseSessionScreen({super.key, this.questions = demoExerciseQuestions, this.lessonId});
   final List<ExerciseQuestion> questions;
+  final String? lessonId;
   @override
   State<ExerciseSessionScreen> createState() => _ExerciseSessionScreenState();
 }
@@ -199,7 +200,7 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
           ? question.options[response] : response?.toString() ?? '';
       await LearningEngine.instance.recordAnswer(
         eventId: eventId,
-        lessonId: question.id.split('-').first,
+        lessonId: widget.lessonId ?? question.id.split('-').first,
         prompt: question.prompt,
         answer: chosen,
         correct: grade.isCorrect == true,
