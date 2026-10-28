@@ -140,8 +140,8 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
                   width: double.infinity,
                   child: OutlinedButton.icon(
                     onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ExerciseSessionScreen())),
-                    icon: const Icon(Icons.extension_rounded),
-                    label: const Text('جرّب أنواع التمارين التفاعلية'),
+                    icon: const Icon(Icons.grid_view_rounded),
+                    label: const Text('أنواع التمارين'),
                   ),
                 ),
                 const SizedBox(height: 6),
