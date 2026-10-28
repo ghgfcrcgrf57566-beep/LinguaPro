@@ -113,6 +113,36 @@ class LearningStore {
     }
   }
 
+  /// Returns scheduled vocabulary whose review time has arrived.
+  Future<List<WordProgress>> loadDueWords({DateTime? now, int limit = 30}) async {
+    if (limit <= 0) return const [];
+    final current = now ?? DateTime.now();
+    final progress = await loadProgress();
+    final due = progress.values.where((word) => !word.dueAt.isAfter(current)).toList();
+    due.sort((a, b) {
+      final weakOrder = (b.needsExtraPractice ? 1 : 0).compareTo(a.needsExtraPractice ? 1 : 0);
+      if (weakOrder != 0) return weakOrder;
+      return a.dueAt.compareTo(b.dueAt);
+    });
+    return due.take(limit).toList(growable: false);
+  }
+
+  /// Returns both due and weak words, prioritizing due items and then low accuracy.
+  Future<List<WordProgress>> loadReviewQueue({DateTime? now, int limit = 30}) async {
+    if (limit <= 0) return const [];
+    final progress = await loadProgress();
+    final current = now ?? DateTime.now();
+    final queue = progress.values.where((word) => !word.dueAt.isAfter(current) || word.needsExtraPractice).toList();
+    queue.sort((a, b) {
+      final dueOrder = (b.isDue ? 1 : 0).compareTo(a.isDue ? 1 : 0);
+      if (dueOrder != 0) return dueOrder;
+      final accuracyOrder = a.accuracy.compareTo(b.accuracy);
+      if (accuracyOrder != 0) return accuracyOrder;
+      return b.wrongCount.compareTo(a.wrongCount);
+    });
+    return queue.take(limit).toList(growable: false);
+  }
+
   /// Returns the words that need extra practice first, without changing their due dates.
   Future<List<WordProgress>> loadWeakWords({int limit = 5}) async {
     if (limit <= 0) return const [];
