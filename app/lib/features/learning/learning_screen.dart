@@ -136,7 +136,11 @@ class _LearningScreenState extends State<LearningScreen> {
               for (var index = 0; index < lessons.length; index++) ...[
                 Builder(builder: (context) {
                   final lesson = lessons[index];
-                  final isLocked = index > 0 && !_completedIds.contains(lessons[index - 1].id);
+                  final previous = index > 0 ? lessons[index - 1] : null;
+                  final previousScore = previous == null ? null : _bestQuizResults[previous.id];
+                  final isLocked = index > 0 &&
+                      (!_completedIds.contains(previous!.id) ||
+                          previousScore == null || previousScore.percentage < 0.7);
                   final isCompleted = _completedIds.contains(lesson.id);
                   return Card(
                   child: ListTile(
