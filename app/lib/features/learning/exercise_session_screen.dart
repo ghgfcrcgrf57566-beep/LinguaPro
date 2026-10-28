@@ -134,7 +134,7 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
                 initialValue: _pairs[pair.key],
                 decoration: const InputDecoration(border: OutlineInputBorder(), isDense: true),
                 hint: const Text('اختر المعنى'),
-                items: q.pairs.map((item) => DropdownMenuItem(value: item.value, child: Text(item.right))).toList(),
+                items: q.pairs.map((item) => DropdownMenuItem(value: item.value, child: Text(item.value))).toList(),
                 onChanged: _grade == null ? (value) { if (value != null) setState(() => _pairs[pair.key] = value); } : null,
               )),
             ])),
