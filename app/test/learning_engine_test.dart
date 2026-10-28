@@ -21,6 +21,8 @@ void main() {
       const ids = ['one', 'two', 'three'];
       expect(LearningEngine.isUnlocked(index: 0, completedLessonIds: {}, orderedLessonIds: ids), isTrue);
       expect(LearningEngine.isUnlocked(index: 1, completedLessonIds: {}, orderedLessonIds: ids), isFalse);
+      expect(LearningEngine.isUnlocked(index: 1, completedLessonIds: {'one'}, orderedLessonIds: ids), isFalse,
+          reason: 'Completion without a recorded passing quiz must not unlock the next lesson.');
       expect(LearningEngine.isUnlocked(index: 1, completedLessonIds: {'one'}, orderedLessonIds: ids, bestScores: {'one': 69}), isFalse);
       expect(LearningEngine.isUnlocked(index: 1, completedLessonIds: {'one'}, orderedLessonIds: ids, bestScores: {'one': 70}), isTrue);
       expect(LearningEngine.isUnlocked(index: 3, completedLessonIds: {'one', 'two'}, orderedLessonIds: ids), isFalse);
