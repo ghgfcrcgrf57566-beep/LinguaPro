@@ -52,11 +52,43 @@ class WordProgress {
       };
 }
 
+class QuizResult {
+  const QuizResult({
+    required this.lessonId,
+    required this.score,
+    required this.total,
+    required this.completedAt,
+  });
+
+  final String lessonId;
+  final int score;
+  final int total;
+  final DateTime completedAt;
+
+  double get percentage => total <= 0 ? 0 : score / total;
+
+  factory QuizResult.fromJson(Map<String, dynamic> json) => QuizResult(
+        lessonId: json['lessonId'] as String? ?? '',
+        score: json['score'] as int? ?? 0,
+        total: json['total'] as int? ?? 0,
+        completedAt: DateTime.tryParse(json['completedAt'] as String? ?? '') ??
+            DateTime.fromMillisecondsSinceEpoch(0),
+      );
+
+  Map<String, dynamic> toJson() => {
+        'lessonId': lessonId,
+        'score': score,
+        'total': total,
+        'completedAt': completedAt.toIso8601String(),
+      };
+}
+
 class LearningStore {
   LearningStore._();
   static final LearningStore instance = LearningStore._();
   static const _progressKey = 'linguapro_word_progress_v1';
   static const _lessonKey = 'linguapro_completed_lessons_v1';
+  static const _quizResultsKey = 'linguapro_quiz_results_v1';
 
   Future<Map<String, WordProgress>> loadProgress() async {
     final prefs = await SharedPreferences.getInstance();
@@ -108,6 +140,59 @@ class LearningStore {
     await prefs.setString(_progressKey, jsonEncode(
       progress.map((k, value) => MapEntry(k, value.toJson())),
     ));
+  }
+
+  Future<List<QuizResult>> loadQuizResults() async {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString(_quizResultsKey);
+    if (raw == null || raw.isEmpty) return const [];
+    try {
+      final decoded = jsonDecode(raw) as List<dynamic>;
+      return decoded
+          .map((item) => QuizResult.fromJson(
+                Map<String, dynamic>.from(item as Map),
+              ))
+          .toList(growable: false);
+    } catch (_) {
+      return const [];
+    }
+  }
+
+  Future<void> recordQuizResult({
+    required String lessonId,
+    required int score,
+    required int total,
+  }) async {
+    if (lessonId.trim().isEmpty || total < 0 || score < 0 || score > total) {
+      throw ArgumentError('Invalid quiz result.');
+    }
+    final prefs = await SharedPreferences.getInstance();
+    final results = await loadQuizResults();
+    results.add(QuizResult(
+      lessonId: lessonId,
+      score: score,
+      total: total,
+      completedAt: DateTime.now(),
+    ));
+    await prefs.setString(
+      _quizResultsKey,
+      jsonEncode(results.map((result) => result.toJson()).toList()),
+    );
+  }
+
+  Future<Map<String, QuizResult>> bestQuizResults() async {
+    final results = await loadQuizResults();
+    final best = <String, QuizResult>{};
+    for (final result in results) {
+      final previous = best[result.lessonId];
+      if (previous == null ||
+          result.percentage > previous.percentage ||
+          (result.percentage == previous.percentage &&
+              result.completedAt.isAfter(previous.completedAt))) {
+        best[result.lessonId] = result;
+      }
+    }
+    return best;
   }
 
   Future<Set<String>> completedLessons() async {
