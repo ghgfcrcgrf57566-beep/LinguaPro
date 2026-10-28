@@ -22,7 +22,6 @@ class MicroLessonScreen extends StatefulWidget {
 
 class _MicroLessonScreenState extends State<MicroLessonScreen> {
   late final List<MicroLessonStep> _steps;
-  final TextEditingController _unusedAnswerController = TextEditingController();
   final FlutterTts _tts = FlutterTts();
   final int _sessionId = DateTime.now().microsecondsSinceEpoch;
   final DateTime _startedAt = DateTime.now();
@@ -64,7 +63,6 @@ class _MicroLessonScreenState extends State<MicroLessonScreen> {
 
   @override
   void dispose() {
-    _unusedAnswerController.dispose();
     _tts.stop();
     super.dispose();
   }
@@ -100,7 +98,7 @@ class _MicroLessonScreenState extends State<MicroLessonScreen> {
         _showMessage('اختر الكلمات ورتبها أولًا.');
         return;
       }
-      answer = _wordBankSelection.join(' ');
+      answer = _wordBankSelection.map(_tokenFromKey).join(' ');
       correct = LearningEngine.matchesAnswer(answer, step.acceptedAnswers);
     } else {
       if (_selectedOption == null ||
@@ -228,7 +226,7 @@ class _MicroLessonScreenState extends State<MicroLessonScreen> {
     setState(() => _saving = true);
     try {
       final total = _gradedMainAttempts;
-      final score = _firstTryCorrect.clamp(0, total);
+      final score = _firstTryCorrect.clamp(0, total).toInt();
       await LearningStore.instance.recordQuizResult(
         lessonId: widget.lesson.id,
         score: score,
@@ -297,7 +295,7 @@ class _MicroLessonScreenState extends State<MicroLessonScreen> {
               Expanded(child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: LinearProgressIndicator(
-                  value: progress.clamp(0.0, 1.0),
+                  value: progress.clamp(0.0, 1.0).toDouble(),
                   minHeight: 9,
                   backgroundColor: const Color(0xFFE1E9E2),
                   color: const Color(0xFF58CC02),
