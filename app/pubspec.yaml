@@ -22,3 +22,4 @@ flutter:
     - assets/lessons/legal_english.json
     - assets/lessons/general_expansion.json
     - assets/lessons/legal_expansion.json
+    - assets/audio/interactive/
