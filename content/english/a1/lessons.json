@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "2026.10.28.3",
+  "content_version": "2026.10.28.4",
   "lessons": [
     {
       "id": "a1-greetings",
@@ -201,6 +201,247 @@
           ],
           "answer_index": 0,
           "explanation": "نستخدم eat مع I."
+        }
+      ]
+    },
+    {
+      "id": "a1-food-and-drinks",
+      "title": "Food, drinks and ordering",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "تعلم أسماء أطعمة ومشروبات واطلب شيئًا بأدب في مقهى أو مطعم.",
+      "objectives": [
+        "تسمية أطعمة ومشروبات شائعة",
+        "استخدام I would like لطلب شيء",
+        "السؤال عن السعر بطريقة بسيطة"
+      ],
+      "vocabulary": [
+        {
+          "term": "water",
+          "meaning": "ماء",
+          "example": "Can I have some water, please?",
+          "pronunciation": "WAW-ter"
+        },
+        {
+          "term": "bread",
+          "meaning": "خبز",
+          "example": "I eat bread for breakfast.",
+          "pronunciation": "bred"
+        },
+        {
+          "term": "menu",
+          "meaning": "قائمة الطعام",
+          "example": "Can I see the menu, please?",
+          "pronunciation": "MEN-yoo"
+        },
+        {
+          "term": "I'd like...",
+          "meaning": "أودّ... / أريد بأدب",
+          "example": "I'd like a cup of tea, please.",
+          "pronunciation": "ayd lyk"
+        },
+        {
+          "term": "How much?",
+          "meaning": "بكم؟ / كم السعر؟",
+          "example": "How much is the sandwich?",
+          "pronunciation": "how much"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "At a café",
+          "body": "Customer: Hello. I'd like a cup of tea, please.\\nServer: Of course. Would you like bread, too?\\nCustomer: No, thank you. How much is the tea?"
+        },
+        {
+          "heading": "Language tip",
+          "body": "استخدم I'd like بدل I want عندما تريد طلب شيء بأدب. أضف please لجعل الطلب ألطف."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which is a polite way to order tea?",
+          "options": [
+            "Give tea now.",
+            "I'd like a cup of tea, please.",
+            "I tea want."
+          ],
+          "answer_index": 1,
+          "explanation": "I'd like... صيغة مهذبة لطلب شيء."
+        },
+        {
+          "question": "What does menu mean?",
+          "options": [
+            "قائمة الطعام",
+            "فاتورة الكهرباء",
+            "محطة الحافلات"
+          ],
+          "answer_index": 0,
+          "explanation": "Menu تعني قائمة الطعام أو المشروبات."
+        },
+        {
+          "question": "Complete: How ___ is the sandwich?",
+          "options": [
+            "many",
+            "much",
+            "old"
+          ],
+          "answer_index": 1,
+          "explanation": "نستخدم How much للسؤال عن السعر."
+        }
+      ]
+    },
+    {
+      "id": "a1-places-and-directions",
+      "title": "Places and asking for directions",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "تعلم السؤال عن أماكن قريبة وفهم الاتجاهات الأساسية.",
+      "objectives": [
+        "السؤال عن موقع مكان",
+        "فهم left وright وstraight",
+        "استخدام Where is...?"
+      ],
+      "vocabulary": [
+        {
+          "term": "Where is...?",
+          "meaning": "أين يوجد...؟",
+          "example": "Where is the bus station?",
+          "pronunciation": "wair iz"
+        },
+        {
+          "term": "left",
+          "meaning": "اليسار",
+          "example": "Turn left at the street.",
+          "pronunciation": "left"
+        },
+        {
+          "term": "right",
+          "meaning": "اليمين",
+          "example": "The bank is on the right.",
+          "pronunciation": "ryt"
+        },
+        {
+          "term": "straight ahead",
+          "meaning": "إلى الأمام مباشرة",
+          "example": "Go straight ahead for two minutes.",
+          "pronunciation": "strayt uh-HED"
+        },
+        {
+          "term": "near",
+          "meaning": "قريب من",
+          "example": "The pharmacy is near the school.",
+          "pronunciation": "neer"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Asking for help",
+          "body": "A: Excuse me, where is the pharmacy?\\nB: Go straight ahead, then turn left. It is near the school.\\nA: Thank you!"
+        },
+        {
+          "heading": "Language tip",
+          "body": "استخدم Where is...? للسؤال عن المكان. Turn left تعني انعطف يسارًا، وturn right تعني انعطف يمينًا."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does turn left mean?",
+          "options": [
+            "انعطف يمينًا",
+            "انعطف يسارًا",
+            "واصل النوم"
+          ],
+          "answer_index": 1,
+          "explanation": "Left تعني اليسار."
+        },
+        {
+          "question": "Choose the correct question.",
+          "options": [
+            "Where the bank?",
+            "Where is the bank?",
+            "Where bank is? "
+          ],
+          "answer_index": 1,
+          "explanation": "الصيغة الصحيحة للسؤال عن مكان مفرد هي Where is the...?"
+        }
+      ]
+    },
+    {
+      "id": "a1-time-and-days",
+      "title": "Time, days and simple plans",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "تحدث عن الوقت وأيام الأسبوع وحدد موعدًا بسيطًا.",
+      "objectives": [
+        "ذكر أيام الأسبوع",
+        "السؤال عن الوقت",
+        "اقتراح موعد والرد عليه"
+      ],
+      "vocabulary": [
+        {
+          "term": "today",
+          "meaning": "اليوم",
+          "example": "I am busy today.",
+          "pronunciation": "tuh-DAY"
+        },
+        {
+          "term": "tomorrow",
+          "meaning": "غدًا",
+          "example": "See you tomorrow.",
+          "pronunciation": "tuh-MOR-oh"
+        },
+        {
+          "term": "Monday",
+          "meaning": "يوم الاثنين",
+          "example": "My class is on Monday.",
+          "pronunciation": "MUN-day"
+        },
+        {
+          "term": "What time...?",
+          "meaning": "في أي وقت...؟",
+          "example": "What time is the lesson?",
+          "pronunciation": "wut tym"
+        },
+        {
+          "term": "at seven",
+          "meaning": "في الساعة السابعة",
+          "example": "The lesson starts at seven.",
+          "pronunciation": "at SEV-en"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Making a plan",
+          "body": "A: Are you free tomorrow?\\nB: Yes. What time is the lesson?\\nA: At seven in the evening.\\nB: Great. See you tomorrow!"
+        },
+        {
+          "heading": "Language tip",
+          "body": "نستخدم at مع وقت محدد: at seven, at nine thirty. ونستخدم on مع أيام الأسبوع: on Monday."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Complete: The lesson starts ___ seven.",
+          "options": [
+            "in",
+            "on",
+            "at"
+          ],
+          "answer_index": 2,
+          "explanation": "نستخدم at قبل وقت محدد مثل at seven."
+        },
+        {
+          "question": "What does tomorrow mean?",
+          "options": [
+            "أمس",
+            "غدًا",
+            "الآن"
+          ],
+          "answer_index": 1,
+          "explanation": "Tomorrow تعني غدًا."
         }
       ]
     }
