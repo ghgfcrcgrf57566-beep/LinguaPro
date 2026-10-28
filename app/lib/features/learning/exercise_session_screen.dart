@@ -152,6 +152,29 @@ List<ExerciseQuestion> buildExercisesForLesson(LearningLesson lesson) {
       requiresHumanOrAIReview: true,
       hint: 'تختلف المصطلحات والإجراءات بحسب النظام القانوني والاختصاص القضائي.',
     ));
+    result.addAll(<ExerciseQuestion>[
+      ExerciseQuestion(
+        id: '${lesson.id}-client-interview',
+        type: ExerciseType.dialogue,
+        prompt: 'Client interview: greet a client, ask what legal help they need, and request the key dates.',
+        requiresHumanOrAIReview: true,
+        hint: 'ابدأ بتحية مهنية، ثم اسأل سؤالًا مفتوحًا عن المشكلة والتواريخ المهمة.',
+      ),
+      ExerciseQuestion(
+        id: '${lesson.id}-witness-examination',
+        type: ExerciseType.courtScenario,
+        prompt: 'Witness examination: ask a witness one neutral question about what they personally saw.',
+        requiresHumanOrAIReview: true,
+        hint: 'تجنب السؤال الإيحائي وافصل بين ما شاهده الشاهد وما استنتجه.',
+      ),
+      ExerciseQuestion(
+        id: '${lesson.id}-court-advocacy',
+        type: ExerciseType.courtScenario,
+        prompt: 'Court advocacy: make a short, respectful submission explaining your client’s main point.',
+        requiresHumanOrAIReview: true,
+        hint: 'اعرض الوقائع بإيجاز، ثم الطلب وسببه، دون اختلاق وقائع أو قواعد قانونية.',
+      ),
+    ]);
   }
   return result;
 }
@@ -251,7 +274,7 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
       return;
     }
 
-    if (question.type == ExerciseType.matching && response is Map) {
+    if ((question.type == ExerciseType.matching) && response is Map) {
       for (final pair in question.pairs) {
         final pairCorrect = response[pair.key]?.toString().trim().toLowerCase() ==
             pair.value.trim().toLowerCase();
@@ -459,7 +482,20 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
           Chip(label: Text(_typeLabel(q.type))),
         ]),
         const SizedBox(height: 12),
-        Text(q.prompt, style: const TextStyle(fontSize: 21, height: 1.6, fontWeight: FontWeight.w900)),
+        Container(
+          padding: const EdgeInsets.all(18),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: const Color(0xFFE1E8EC), width: 1.5),
+            boxShadow: const [BoxShadow(color: Color(0x0D1F2937), blurRadius: 10, offset: Offset(0, 4))],
+          ),
+          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Icon(Icons.chat_bubble_rounded, color: Color(0xFF58CC02), size: 26),
+            const SizedBox(width: 12),
+            Expanded(child: Text(q.prompt, style: const TextStyle(fontSize: 21, height: 1.6, fontWeight: FontWeight.w900))),
+          ]),
+        ),
         const SizedBox(height: 18),
         if (q.type == ExerciseType.dictation && q.spokenText.isNotEmpty)
           Align(alignment: Alignment.centerRight, child: OutlinedButton.icon(
@@ -540,7 +576,7 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
           ]),
           TextButton.icon(onPressed: _grade == null ? () => setState(() { _orderedWords.clear(); _usedWordIndices.clear(); }) : null, icon: const Icon(Icons.refresh_rounded), label: const Text('إعادة الترتيب')),
         ] else ...[
-          if (q.type == ExerciseType.speakingPrompt || q.type == ExerciseType.courtScenario)
+          if (q.type == ExerciseType.speakingPrompt || q.type == ExerciseType.courtScenario || q.type == ExerciseType.dialogue)
             Align(alignment: Alignment.centerRight, child: FilledButton.tonalIcon(
               onPressed: _grade == null ? _startListening : null,
               icon: Icon(_listening ? Icons.stop_circle_rounded : Icons.mic_rounded),
