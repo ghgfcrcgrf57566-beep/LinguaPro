@@ -152,7 +152,7 @@ class LearningStore {
           .map((item) => QuizResult.fromJson(
                 Map<String, dynamic>.from(item as Map),
               ))
-          .toList(growable: false);
+          .toList();
     } catch (_) {
       return const [];
     }
