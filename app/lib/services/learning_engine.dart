@@ -59,8 +59,9 @@ class LearningEngine {
     if (index <= 0) return true;
     if (index >= orderedLessonIds.length) return false;
     final previous = orderedLessonIds[index - 1];
+    final previousScore = bestScores[previous];
     return completedLessonIds.contains(previous) &&
-        (bestScores[previous] == null || bestScores[previous]! >= requiredScorePercent);
+        previousScore != null && previousScore >= requiredScorePercent;
   }
 
   Future<int> totalXp() async {
