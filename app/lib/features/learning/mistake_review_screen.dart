@@ -27,9 +27,12 @@ class _MistakeReviewScreenState extends State<MistakeReviewScreen> {
         if (snapshot.connectionState != ConnectionState.done) {
           return const Center(child: CircularProgressIndicator());
         }
-        if (snapshot.hasError) return const Center(child: Text('تعذر تحميل سجل الأخطاء المحلي.'));
+        if (snapshot.hasError) {
+          return const Center(child: Text('تعذر تحميل سجل الأخطاء المحلي.'));
+        }
         final mistakes = snapshot.data ?? const <Map<String, dynamic>>[];
-        if (mistakes.isEmpty) return const Center(child: Padding(
+        if (mistakes.isEmpty) {
+          return const Center(child: Padding(
           padding: EdgeInsets.all(24),
           child: Column(mainAxisSize: MainAxisSize.min, children: [
             Icon(Icons.check_circle_outline_rounded, size: 56, color: Color(0xFF1D9B69)),
@@ -38,7 +41,8 @@ class _MistakeReviewScreenState extends State<MistakeReviewScreen> {
             SizedBox(height: 8),
             Text('عند الخطأ في اختبار محلي، سيُحفظ السؤال وإجابتك لتعود إليه لاحقًا.', textAlign: TextAlign.center),
           ]),
-        ));
+          ));
+        }
         return ListView(padding: const EdgeInsets.all(16), children: [
           Text('أخطاء تحتاج إلى مراجعة: ${mistakes.length}', style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 18)),
           const SizedBox(height: 12),
