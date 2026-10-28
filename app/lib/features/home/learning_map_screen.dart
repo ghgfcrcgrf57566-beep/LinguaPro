@@ -7,6 +7,7 @@ import '../../services/learning_store.dart';
 import '../learning/learning_screen.dart';
 import '../learning/exercise_session_screen.dart';
 import '../learning/mistake_review_screen.dart';
+import '../learning/spaced_review_screen.dart';
 import '../settings/settings_screen.dart';
 
 class LearningMapScreen extends StatefulWidget {
@@ -144,6 +145,15 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
                     onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const MistakeReviewScreen())).then((_) => refresh()),
                     icon: const Icon(Icons.history_rounded),
                     label: Text('مراجعة أخطائي (${mistakes.length})'),
+                  ),
+                ),
+                const SizedBox(height: 6),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton.icon(
+                    onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const SpacedReviewScreen())).then((_) => refresh()),
+                    icon: const Icon(Icons.psychology_alt_rounded),
+                    label: const Text('المراجعة المتباعدة للمفردات'),
                   ),
                 ),
                 if (badges.isNotEmpty) ...[
