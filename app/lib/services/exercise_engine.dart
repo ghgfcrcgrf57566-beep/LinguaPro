@@ -27,6 +27,7 @@ class ExerciseQuestion {
     this.pairs = const <MapEntry<String, String>>[],
     this.explanation = '',
     this.hint = '',
+    this.spokenText = '',
     this.requiresHumanOrAIReview = false,
   });
 
@@ -39,6 +40,7 @@ class ExerciseQuestion {
   final List<MapEntry<String, String>> pairs;
   final String explanation;
   final String hint;
+  final String spokenText;
   final bool requiresHumanOrAIReview;
 
   factory ExerciseQuestion.fromJson(Map<String, dynamic> json) {
@@ -83,6 +85,7 @@ class ExerciseQuestion {
       pairs: pairs,
       explanation: json['explanation']?.toString() ?? '',
       hint: json['hint']?.toString() ?? '',
+      spokenText: json['spoken_text']?.toString() ?? json['spokenText']?.toString() ?? '',
       requiresHumanOrAIReview: type == ExerciseType.speakingPrompt || type == ExerciseType.courtScenario || type == ExerciseType.sentenceWriting,
     );
   }
