@@ -33,6 +33,43 @@ void main() {
     });
   });
 
+  group('WordProgress practice signals', () {
+    test('calculates accuracy and flags repeated mistakes for extra practice', () {
+      final word = WordProgress(
+        lessonId: 'a1-likes',
+        term: 'book',
+        meaning: 'كتاب',
+        dueAt: DateTime(2026, 10, 28),
+        intervalDays: 0,
+        repetitions: 0,
+        correctCount: 1,
+        wrongCount: 2,
+        lastResult: false,
+      );
+
+      expect(word.attempts, 3);
+      expect(word.accuracy, closeTo(1 / 3, 0.001));
+      expect(word.needsExtraPractice, isTrue);
+    });
+
+    test('does not flag a word without mistakes', () {
+      final word = WordProgress(
+        lessonId: 'a1-likes',
+        term: 'read',
+        meaning: 'يقرأ',
+        dueAt: DateTime(2026, 10, 29),
+        intervalDays: 1,
+        repetitions: 1,
+        correctCount: 1,
+        wrongCount: 0,
+        lastResult: true,
+      );
+
+      expect(word.accuracy, 1);
+      expect(word.needsExtraPractice, isFalse);
+    });
+  });
+
   group('Learning content models', () {
     test('parses vocabulary and lesson metadata', () {
       final lesson = LearningLesson.fromJson({
