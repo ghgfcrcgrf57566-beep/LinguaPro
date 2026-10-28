@@ -22,17 +22,16 @@ jobs:
         working-directory: app
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
           cache: true
           cache-dependency-path: app/pubspec.yaml
-      - name: Generate Android platform files if needed
+      - name: Generate Android platform files if missing
         run: |
           if [ ! -f android/gradlew ]; then
-            flutter create --platforms=android --project-name english_learning_legal_academy .
+            flutter create --platforms=android --project-name english_learning_legal_academy /tmp/linguapro_android_template
+            cp -R /tmp/linguapro_android_template/android ./android
           fi
       - run: flutter pub get
       - run: flutter analyze
