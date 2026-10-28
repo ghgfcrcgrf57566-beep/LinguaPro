@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:english_learning_legal_academy/models/learning_lesson.dart';
 import 'package:english_learning_legal_academy/services/learning_store.dart';
 
@@ -106,4 +107,20 @@ void main() {
       );
     });
   });
+  group('spaced review queue', () {
+    test('weak vocabulary enters the review queue while future scheduled words stay out', () async {
+      SharedPreferences.setMockInitialValues(<String, Object>{});
+      final store = LearningStore.instance;
+      await store.recordWord(lessonId: 'a1-greetings', term: 'hello', meaning: 'مرحبًا', correct: true);
+      expect(await store.loadDueWords(), isEmpty);
+      expect(await store.loadReviewQueue(), isEmpty);
+
+      await store.recordWord(lessonId: 'a1-greetings', term: 'hello', meaning: 'مرحبًا', correct: false);
+      final queue = await store.loadReviewQueue();
+      expect(queue, hasLength(1));
+      expect(queue.single.term, 'hello');
+      expect(queue.single.needsExtraPractice, isTrue);
+    });
+  });
+
 }
