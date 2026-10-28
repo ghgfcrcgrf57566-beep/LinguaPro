@@ -176,6 +176,13 @@ void main() {
     expect(remaining.map((event) => event['eventId']).toList(), ['review-event-2']);
   });
 
+  test('review queue includes weak words', () async {
+    final store = LearningStore.instance;
+    await store.recordWord(lessonId: 'a1-greetings', term: 'hello', meaning: 'مرحبًا', correct: false, eventId: 'weak-1');
+    final queue = await store.loadReviewQueue();
+    expect(queue.map((word) => word.term), contains('hello'));
+  });
+
   test('general and legal tracks include lessons across all CEFR bands', () async {
     Future<List<Map<String, dynamic>>> read(String path) async {
       final data = jsonDecode(await rootBundle.loadString(path)) as Map<String, dynamic>;
