@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
           _BrandMark(),
           SizedBox(width: 10),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text('LinguaPro', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800)),
+            Text('أكاديمية الإنجليزية', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800)),
             Text('ENGLISH LEARNING ACADEMY', style: TextStyle(fontSize: 9, letterSpacing: 1, color: Color(0xFF7F899E))),
           ]),
         ]),
