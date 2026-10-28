@@ -1,0 +1,1 @@
+Repositories will coordinate remote content sources and any approved cache. Do not treat GitHub as a user database. Implementations will be added with the content API in a later phase.
