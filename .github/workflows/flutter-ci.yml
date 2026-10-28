@@ -36,6 +36,10 @@ jobs:
             flutter create --platforms=android --project-name english_learning_legal_academy /tmp/linguapro_android_template
             cp -R /tmp/linguapro_android_template/android ./android
           fi
+      - name: Verify packaged lessons match canonical content
+        run: |
+          cmp ../content/english/a1/lessons.json assets/lessons/english_a1.json
+          cmp ../content/legal-english/lessons.json assets/lessons/legal_english.json
       - name: Validate lesson JSON before tests and build
         run: python ../scripts/validate_content.py --content-dir ../content
       - name: Test content validator
