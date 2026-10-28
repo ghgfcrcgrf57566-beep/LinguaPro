@@ -91,6 +91,10 @@ void main() {
     expect(questions.any((q) => q.type == ExerciseType.translation && q.acceptedAnswers.contains('Client')), isTrue);
     expect(questions.any((q) => q.type == ExerciseType.listeningChoice && q.spokenText.isNotEmpty), isTrue);
     expect(questions.any((q) => q.type == ExerciseType.courtScenario && q.requiresHumanOrAIReview), isTrue);
+    expect(questions.any((q) => q.type == ExerciseType.fillBlank && q.options.isNotEmpty && q.answerIndex != null), isTrue);
+    expect(questions.any((q) => q.prompt.startsWith('Client interview:')), isTrue);
+    expect(questions.any((q) => q.prompt.startsWith('Witness examination:')), isTrue);
+    expect(questions.any((q) => q.prompt.startsWith('Court advocacy:')), isTrue);
   });
 
 }
