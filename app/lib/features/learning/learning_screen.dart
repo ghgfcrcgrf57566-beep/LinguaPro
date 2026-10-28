@@ -512,543 +512,58 @@ class _LessonScreenState extends State<LessonScreen> {
 
   Widget _writingPractice() {
     final words = widget.lesson.vocabulary;
-    if (words.isEmpty) {
-      return const Center(child: Text('لا توجد مفردات للتدرب على كتابتها.'));
-    }
+    if (words.isEmpty) return const Center(child: Text('لا توجد مفردات للتدرب على كتابتها.'));
     if (_typingIndex >= words.length) {
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(Icons.edit_note_rounded, size: 54, color: Color(0xFFE0A92E)),
-              const SizedBox(height: 12),
-              const Text('اكتمل تدريب الكتابة!', style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900)),
-              const SizedBox(height: 8),
-              Text('نتيجتك: $_typingScore من ${words.length}'),
-              const SizedBox(height: 14),
-              FilledButton(
-                onPressed: () => setState(() {
-                  _typingIndex = 0;
-                  _typingScore = 0;
-                  _typingAnswered = false;
-                  _typingCorrect = false;
-                  _typingController.clear();
-                }),
-                child: const Text('أعد التدريب'),
-              ),
-            ],
-          ),
-        ),
-      );
+      return Center(child: Padding(padding: const EdgeInsets.all(24), child: Column(mainAxisSize: MainAxisSize.min, children: [
+        const Icon(Icons.edit_note_rounded, size: 54, color: Color(0xFFE0A92E)),
+        const SizedBox(height: 12),
+        const Text('اكتمل تدريب الكتابة!', style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900)),
+        const SizedBox(height: 8),
+        Text('نتيجتك: $_typingScore من ${words.length}'),
+        const SizedBox(height: 14),
+        FilledButton(onPressed: () => setState(() { _typingIndex = 0; _typingScore = 0; _typingAnswered = false; _typingCorrect = false; _typingController.clear(); }), child: const Text('أعد التدريب')),
+      ])));
     }
     final word = words[_typingIndex];
-    return ListView(
-      padding: const EdgeInsets.all(18),
-      children: [
-        LinearProgressIndicator(value: (_typingIndex + 1) / words.length, minHeight: 6),
-        const SizedBox(height: 18),
-        Text('تمرين الكتابة ${_typingIndex + 1} من ${words.length}', style: const TextStyle(color: Colors.grey)),
-        const SizedBox(height: 18),
-        Card(
-          child: Padding(
-            padding: const EdgeInsets.all(22),
-            child: Column(
-              children: [
-                const Icon(Icons.translate_rounded, size: 42, color: Color(0xFF334C82)),
-                const SizedBox(height: 12),
-                const Text('اكتب المقابل الإنجليزي', style: TextStyle(fontSize: 19, fontWeight: FontWeight.w800)),
-                const SizedBox(height: 12),
-                Text(word.meaning, textAlign: TextAlign.center, style: const TextStyle(fontSize: 23, fontWeight: FontWeight.w700)),
-                const SizedBox(height: 18),
-                TextField(
-                  controller: _typingController,
-                  enabled: !_typingAnswered,
-                  textInputAction: TextInputAction.done,
-                  autocorrect: false,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Type in English…',
-                    prefixIcon: Icon(Icons.keyboard_alt_outlined),
-                  ),
-                  onSubmitted: (_) {
-                    if (!_typingAnswered) _checkTypingAnswer();
-                  },
-                ),
-                if (_typingAnswered) ...[
-                  const SizedBox(height: 14),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: _typingCorrect ? const Color(0xFFE7F7EC) : const Color(0xFFFFEBEE),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      _typingCorrect
-                          ? 'صحيح! أحسنت 👏'
-                          : 'الإجابة المقترحة: ${word.term}',
-                      style: TextStyle(
-                        color: _typingCorrect ? Colors.green.shade800 : Colors.red.shade800,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                ],
-              ],
-            ),
-          ),
-        ),
-        const SizedBox(height: 12),
-        if (!_typingAnswered)
-          FilledButton.icon(
-            onPressed: _checkTypingAnswer,
-            icon: const Icon(Icons.check_rounded),
-            label: const Text('تحقق من الإجابة'),
-          )
-        else
-          FilledButton(
-            onPressed: () => setState(() {
-              _typingIndex++;
-              _typingAnswered = false;
-              _typingCorrect = false;
-              _typingController.clear();
-            }),
-            child: Text(_typingIndex == words.length - 1 ? 'عرض النتيجة' : 'التالي'),
-          ),
-        const SizedBox(height: 8),
-        TextButton.icon(
-          onPressed: _speaking ? null : () => _speak(word.term),
-          icon: const Icon(Icons.volume_up_rounded),
-          label: const Text('استمع إلى النطق'),
-        ),
-      ],
-    );
-  }
-
-  String _normalizeTypingAnswer(String value) => value
-      .trim()
-      .toLowerCase()
-      .replaceAll(RegExp(r'[.!?,;:]+
-    final correct = _listenOptionIndices[index] == _listenIndex;
-    await (correct
-        ? LearningSoundService.instance.correct()
-        : LearningSoundService.instance.incorrect());
-    await (correct ? HapticFeedback.lightImpact() : HapticFeedback.mediumImpact());
-    if (!mounted) return;
-    setState(() {
-      _listenSelected = index;
-      _listenAnswered = true;
-    });
-  }
-
-  Widget _quiz() {
-    final questions = widget.lesson.quiz;
-    if (questions.isEmpty) return const Center(child: Text('لا توجد أسئلة لهذا الدرس.'));
-    if (_questionIndex >= questions.length) {
-      return Center(child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          const Icon(Icons.emoji_events_rounded, size: 52, color: Color(0xFFE0A92E)),
-          const SizedBox(height: 12),
-          Text('نتيجتك: $_score من ${questions.length}', style: const TextStyle(fontSize: 23, fontWeight: FontWeight.w900)),
-          const SizedBox(height: 12),
-          FilledButton(onPressed: _resetQuiz, child: const Text('إعادة الاختبار')),
-          TextButton(onPressed: _completeLesson, child: const Text('إنهاء الدرس وحفظ التقدم')),
-        ]),
-      ));
-    }
-    final question = questions[_questionIndex];
     return ListView(padding: const EdgeInsets.all(18), children: [
-      LinearProgressIndicator(value: (_questionIndex + 1) / questions.length, minHeight: 6),
-      const SizedBox(height: 20),
-      Text('السؤال ${_questionIndex + 1} من ${questions.length}', style: const TextStyle(color: Colors.grey)),
-      const SizedBox(height: 12),
-      Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Expanded(child: Text(question.question, style: const TextStyle(fontSize: 21, fontWeight: FontWeight.w800, height: 1.6))),
-        IconButton(tooltip: 'استمع إلى السؤال', onPressed: _speaking ? null : () => _speak(question.question), icon: const Icon(Icons.volume_up_rounded)),
-      ]),
+      LinearProgressIndicator(value: (_typingIndex + 1) / words.length, minHeight: 6),
       const SizedBox(height: 18),
-      for (var i = 0; i < question.options.length; i++)
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: OutlinedButton(
-            style: OutlinedButton.styleFrom(
-              alignment: Alignment.centerRight,
-              padding: const EdgeInsets.all(15),
-              side: BorderSide(
-                color: !_answered
-                    ? const Color(0xFFDDE3EF)
-                    : i == question.answerIndex
-                        ? Colors.green
-                        : i == _selectedAnswerIndex
-                            ? Colors.red
-                            : const Color(0xFFDDE3EF),
-              ),
-              backgroundColor: !_answered
-                  ? null
-                  : i == question.answerIndex
-                      ? const Color(0xFFE7F7EC)
-                      : i == _selectedAnswerIndex
-                          ? const Color(0xFFFFEBEE)
-                          : null,
-            ),
-            onPressed: _answered ? null : () => _answer(i),
-            child: Text(question.options[i], style: const TextStyle(fontSize: 15)),
-          ),
-        ),
-      if (_answered) Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(color: const Color(0xFFEAF0FF), borderRadius: BorderRadius.circular(12)),
-        child: Text(question.explanation, style: const TextStyle(height: 1.7)),
-      ),
-      const SizedBox(height: 14),
-      if (_answered) FilledButton(
-        onPressed: () => setState(() {
-          _questionIndex++;
-          _answered = false;
-          _selectedAnswerIndex = -1;
-        }),
-        child: Text(_questionIndex == questions.length - 1 ? 'عرض النتيجة' : 'السؤال التالي'),
-      ),
+      Text('تمرين الكتابة ${_typingIndex + 1} من ${words.length}', style: const TextStyle(color: Colors.grey)),
+      const SizedBox(height: 18),
+      Card(child: Padding(padding: const EdgeInsets.all(22), child: Column(children: [
+        const Icon(Icons.translate_rounded, size: 42, color: Color(0xFF334C82)),
+        const SizedBox(height: 12),
+        const Text('اكتب المقابل الإنجليزي', style: TextStyle(fontSize: 19, fontWeight: FontWeight.w800)),
+        const SizedBox(height: 12),
+        Text(word.meaning, textAlign: TextAlign.center, style: const TextStyle(fontSize: 23, fontWeight: FontWeight.w700)),
+        const SizedBox(height: 18),
+        TextField(controller: _typingController, enabled: !_typingAnswered, textInputAction: TextInputAction.done, autocorrect: false, decoration: const InputDecoration(border: OutlineInputBorder(), hintText: 'Type in English…', prefixIcon: Icon(Icons.keyboard_alt_outlined)), onSubmitted: (_) { if (!_typingAnswered) _checkTypingAnswer(); }),
+        if (_typingAnswered) ...[
+          const SizedBox(height: 14),
+          Container(width: double.infinity, padding: const EdgeInsets.all(12), decoration: BoxDecoration(color: _typingCorrect ? const Color(0xFFE7F7EC) : const Color(0xFFFFEBEE), borderRadius: BorderRadius.circular(12)), child: Text(_typingCorrect ? 'صحيح! أحسنت 👏' : 'الإجابة المقترحة: ${word.term}', style: TextStyle(color: _typingCorrect ? Colors.green.shade800 : Colors.red.shade800, fontWeight: FontWeight.w700))),
+        ],
+      ]))),
+      const SizedBox(height: 12),
+      if (!_typingAnswered)
+        FilledButton.icon(onPressed: _checkTypingAnswer, icon: const Icon(Icons.check_rounded), label: const Text('تحقق من الإجابة'))
+      else
+        FilledButton(onPressed: () => setState(() { _typingIndex++; _typingAnswered = false; _typingCorrect = false; _typingController.clear(); }), child: Text(_typingIndex == words.length - 1 ? 'عرض النتيجة' : 'التالي')),
+      const SizedBox(height: 8),
+      TextButton.icon(onPressed: _speaking ? null : () => _speak(word.term), icon: const Icon(Icons.volume_up_rounded), label: const Text('استمع إلى النطق')),
     ]);
   }
 
-  Future<void> _answer(int index) async {
-    final question = widget.lesson.quiz[_questionIndex];
-    final correct = index == question.answerIndex;
-    await (correct
-        ? LearningSoundService.instance.correct()
-        : LearningSoundService.instance.incorrect());
-    await (correct ? HapticFeedback.lightImpact() : HapticFeedback.mediumImpact());
-    if (!mounted) return;
-    setState(() {
-      _answered = true;
-      _selectedAnswerIndex = index;
-      if (correct) _score++;
-    });
-  }
-
-  void _resetQuiz() => setState(() {
-    _questionIndex = 0;
-    _score = 0;
-    _answered = false;
-    _selectedAnswerIndex = -1;
-  });
-
-  Future<void> _completeLesson() async {
-    await LearningStore.instance.recordQuizResult(
-      lessonId: widget.lesson.id,
-      score: _score,
-      total: widget.lesson.quiz.length,
-    );
-    final completed = await LearningStore.instance.completedLessons();
-    if (!completed.contains(widget.lesson.id)) {
-      _earnedXp = 10;
-      await LearningStore.instance.awardLessonXp(widget.lesson.id);
-      final completedCount = completed.length + 1;
-      const badges = <int, String>{
-        1: 'شارة البداية 🥉',
-        3: 'شارة المثابرة 🥈',
-        5: 'شارة المتعلم النشيط 🥇',
-        10: 'شارة خبير المسار 🏆',
-      };
-      _newBadge = badges[completedCount] ?? '';
-    }
-    await LearningStore.instance.markLessonComplete(widget.lesson.id);
-    _totalXp = await LearningStore.instance.totalXp();
-    await LearningSoundService.instance.complete();
-    await HapticFeedback.heavyImpact();
-    if (!mounted) return;
-    setState(() => _finished = true);
-  }
-
-  Widget _completion() => Center(
-    child: Padding(
-      padding: const EdgeInsets.all(24),
-      child: Column(mainAxisSize: MainAxisSize.min, children: [
-        AnimatedContainer(
-          duration: const Duration(milliseconds: 650),
-          padding: const EdgeInsets.all(22),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: const LinearGradient(colors: [Color(0xFFFFE7A3), Color(0xFFFFC94F), Color(0xFFFFF3CC)]),
-            boxShadow: [BoxShadow(color: const Color(0xFFFFC94F).withValues(alpha: 0.35), blurRadius: 24, spreadRadius: 3)],
-          ),
-          child: const Icon(Icons.auto_awesome_rounded, size: 48, color: Color(0xFF5B3C00)),
-        ),
-        const SizedBox(height: 16),
-        const Text('مفاجأة! فتحت إنجازًا جديدًا 🎉', textAlign: TextAlign.center, style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900)),
-        const SizedBox(height: 8),
-        Text('أكملت: ${widget.lesson.title}', textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.w700)),
-        const SizedBox(height: 8),
-        Text('نتيجتك: $_score من ${widget.lesson.quiz.length}'),
-        const SizedBox(height: 8),
-        Text(_earnedXp > 0 ? 'مكافأتك: +$_earnedXp XP ⭐' : 'أعدت الدرس؛ نقاط الخبرة لا تتكرر لنفس المرحلة.'),
-        Text('إجمالي الخبرة: $_totalXp XP'),
-        if (_newBadge.isNotEmpty) ...[
-          const SizedBox(height: 10),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            decoration: BoxDecoration(color: const Color(0xFFFFF0D3), borderRadius: BorderRadius.circular(14)),
-            child: Text('شارة جديدة: $_newBadge', textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.w900)),
-          ),
-        ],
-        const SizedBox(height: 18),
-        FilledButton(onPressed: () => Navigator.of(context).pop(), child: const Text('العودة إلى المسار')),
-      ]),
-    ),
-  );
-}
-
-class _ReviewList extends StatefulWidget {
-  const _ReviewList({required this.lessons});
-  final List<LearningLesson> lessons;
-
-  @override
-  State<_ReviewList> createState() => _ReviewListState();
-}
-
-class _ReviewListState extends State<_ReviewList> {
-  late Future<Map<String, WordProgress>> _future;
-
-  @override
-  void initState() {
-    super.initState();
-    _future = LearningStore.instance.loadProgress();
-  }
-
-  @override
-  Widget build(BuildContext context) => FutureBuilder<Map<String, WordProgress>>(
-    future: _future,
-    builder: (context, snapshot) {
-      if (snapshot.connectionState != ConnectionState.done) return const Center(child: CircularProgressIndicator());
-      final all = (snapshot.data ?? {}).values.toList()
-        ..sort((a, b) => a.dueAt.compareTo(b.dueAt));
-      final due = all.where((item) => item.isDue).toList();
-      return ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          Container(
-            padding: const EdgeInsets.all(18),
-            decoration: BoxDecoration(color: const Color(0xFFEAF0FF), borderRadius: BorderRadius.circular(16)),
-            child: Text('لديك ${due.length} كلمة حان موعد مراجعتها من أصل ${all.length} كلمة مسجلة. يتضمن المحتوى الحالي ${widget.lessons.fold<int>(0, (sum, lesson) => sum + lesson.vocabulary.length)} مفردة تعليمية. الكلمات التي لم تتذكرها تعود للمراجعة بعد نحو أربع ساعات، ثم تتباعد المواعيد مع نجاح التذكر.', style: const TextStyle(height: 1.8)),
-          ),
-          const SizedBox(height: 14),
-          if (all.any((item) => item.needsExtraPractice))
-            OutlinedButton.icon(
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) => const ReviewSessionScreen(weakOnly: true),
-              )).then((_) {
-                if (mounted) {
-                  setState(() {
-                    _future = LearningStore.instance.loadProgress();
-                  });
-                }
-              }),
-              icon: const Icon(Icons.psychology_alt_rounded),
-              label: Text('تدرب على الكلمات الصعبة ${all.where((item) => item.needsExtraPractice).length}'),
-            ),
-          if (due.isNotEmpty)
-            FilledButton.icon(
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) => const ReviewSessionScreen(),
-              )).then((_) {
-                if (mounted) {
-                  setState(() {
-                    _future = LearningStore.instance.loadProgress();
-                  });
-                }
-              }),
-              icon: const Icon(Icons.replay_circle_filled_rounded),
-              label: Text('ابدأ مراجعة ${due.length} كلمة مستحقة'),
-            ),
-          if (all.isEmpty)
-            const Card(child: Padding(
-              padding: EdgeInsets.all(20),
-              child: Text('ابدأ درسًا ثم قيّم تذكرك للكلمات حتى تتكون قائمة مراجعتك الشخصية.'),
-            )),
-          for (final item in all)
-            Card(child: ListTile(
-              leading: Icon(item.isDue ? Icons.notifications_active_outlined : Icons.schedule_rounded,
-                  color: item.isDue ? Colors.deepOrange : Colors.blueGrey),
-              title: Text(item.term, style: const TextStyle(fontWeight: FontWeight.w800)),
-              subtitle: Text('${item.meaning}\nدقة التذكر: ${(item.accuracy * 100).round()}% · الصحيحة: ${item.correctCount} · الأخطاء: ${item.wrongCount}${item.needsExtraPractice ? '\nتحتاج إلى تدريب إضافي' : ''}'),
-              isThreeLine: true,
-              trailing: Text(item.isDue ? 'مستحقة' : _remaining(item.dueAt)),
-            )),
-        ],
-      );
-    },
-  );
-
-  String _remaining(DateTime due) {
-    final difference = due.difference(DateTime.now());
-    if (difference.inHours < 24) return 'لاحقًا اليوم';
-    final days = difference.inDays;
-    if (days == 1) return 'غدًا';
-    return 'بعد $days أيام';
-  }
-}
-
-
-class ReviewSessionScreen extends StatefulWidget {
-  const ReviewSessionScreen({super.key, this.weakOnly = false});
-  final bool weakOnly;
-
-  @override
-  State<ReviewSessionScreen> createState() => _ReviewSessionScreenState();
-}
-
-class _ReviewSessionScreenState extends State<ReviewSessionScreen> {
-  late Future<List<WordProgress>> _dueFuture;
-  int _index = 0;
-  bool _showMeaning = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _dueFuture = _loadDue();
-  }
-
-  Future<List<WordProgress>> _loadDue() async {
-    final progress = await LearningStore.instance.loadProgress();
-    final due = progress.values.where((item) => widget.weakOnly ? item.needsExtraPractice : item.isDue).toList()
-      ..sort((a, b) => a.dueAt.compareTo(b.dueAt));
-    return due;
-  }
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: Text(widget.weakOnly ? 'تدريب الكلمات الصعبة' : 'مراجعة الكلمات')),
-    body: FutureBuilder<List<WordProgress>>(
-      future: _dueFuture,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState != ConnectionState.done) {
-          return const Center(child: CircularProgressIndicator());
-        }
-        final words = snapshot.data ?? const <WordProgress>[];
-        if (_index >= words.length) {
-          return Center(child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
-              const Icon(Icons.celebration_rounded, size: 56, color: Color(0xFFE0A92E)),
-              const SizedBox(height: 12),
-              const Text('أكملت مراجعة الكلمات المستحقة!', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900), textAlign: TextAlign.center),
-              const SizedBox(height: 8),
-              const Text('ستعود الكلمات التي احتجت إلى مراجعتها لاحقًا، وستتباعد المواعيد للكلمات التي تتذكرها.', textAlign: TextAlign.center, style: TextStyle(height: 1.8)),
-              const SizedBox(height: 18),
-              FilledButton(onPressed: () => Navigator.of(context).pop(), child: const Text('العودة إلى مركز المراجعة')),
-            ]),
-          ));
-        }
-        final word = words[_index];
-        return ListView(
-          padding: const EdgeInsets.all(20),
-          children: [
-            LinearProgressIndicator(value: (_index + 1) / words.length, minHeight: 6),
-            const SizedBox(height: 18),
-            Text('الكلمة ${_index + 1} من ${words.length}', style: const TextStyle(color: Colors.grey)),
-            const SizedBox(height: 20),
-            Card(child: Padding(
-              padding: const EdgeInsets.all(26),
-              child: Column(children: [
-                Text(word.term, style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w900, color: Color(0xFF263E81))),
-                const SizedBox(height: 22),
-                if (_showMeaning)
-                  Text(word.meaning, style: const TextStyle(fontSize: 23, fontWeight: FontWeight.w700))
-                else
-                  const Text('حاول تذكر المعنى قبل إظهاره', textAlign: TextAlign.center, style: TextStyle(height: 1.7)),
-              ]),
-            )),
-            const SizedBox(height: 18),
-            if (!_showMeaning)
-              FilledButton.icon(
-                onPressed: () => setState(() => _showMeaning = true),
-                icon: const Icon(Icons.visibility_outlined),
-                label: const Text('أظهر المعنى'),
-              )
-            else ...[
-              const Text('هل تذكرت المعنى قبل إظهاره؟', textAlign: TextAlign.center),
-              const SizedBox(height: 10),
-              Row(children: [
-                Expanded(child: OutlinedButton(
-                  onPressed: () => _rate(word, false),
-                  child: const Text('لم أتذكرها'),
-                )),
-                const SizedBox(width: 10),
-                Expanded(child: FilledButton(
-                  onPressed: () => _rate(word, true),
-                  child: const Text('تذكرتها'),
-                )),
-              ]),
-            ],
-          ],
-        );
-      },
-    ),
-  );
-
-  Future<void> _rate(WordProgress word, bool remembered) async {
-    await (remembered
-        ? LearningSoundService.instance.correct()
-        : LearningSoundService.instance.incorrect());
-    await (remembered
-        ? HapticFeedback.lightImpact()
-        : HapticFeedback.mediumImpact());
-    await LearningStore.instance.recordWord(
-      lessonId: word.lessonId,
-      term: word.term,
-      meaning: word.meaning,
-      correct: remembered,
-    );
-    if (!mounted) return;
-    setState(() {
-      _index++;
-      _showMeaning = false;
-    });
-  }
-}
-
-class _ModeChip extends StatelessWidget {
-  const _ModeChip({required this.label, required this.selected, required this.onTap});
-  final String label;
-  final bool selected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) => Expanded(
-    child: OutlinedButton(
-      onPressed: onTap,
-      style: OutlinedButton.styleFrom(
-        backgroundColor: selected ? const Color(0xFFEAF0FF) : null,
-        side: BorderSide(color: selected ? const Color(0xFF4968E8) : const Color(0xFFDDE3EF)),
-      ),
-      child: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis),
-    ),
-  );
-}
-), '')
-      .replaceAll(RegExp(r'\\s+'), ' ');
+  String _normalizeTypingAnswer(String value) => value.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
 
   Future<void> _checkTypingAnswer() async {
     if (_typingAnswered || _typingIndex >= widget.lesson.vocabulary.length) return;
     final word = widget.lesson.vocabulary[_typingIndex];
-    final correct = _normalizeTypingAnswer(_typingController.text) ==
-        _normalizeTypingAnswer(word.term);
-    await (correct
-        ? LearningSoundService.instance.correct()
-        : LearningSoundService.instance.incorrect());
+    final correct = _normalizeTypingAnswer(_typingController.text) == _normalizeTypingAnswer(word.term);
+    await (correct ? LearningSoundService.instance.correct() : LearningSoundService.instance.incorrect());
     await (correct ? HapticFeedback.lightImpact() : HapticFeedback.mediumImpact());
     if (!mounted) return;
-    setState(() {
-      _typingAnswered = true;
-      _typingCorrect = correct;
-      if (correct) _typingScore++;
-    });
+    setState(() { _typingAnswered = true; _typingCorrect = correct; if (correct) _typingScore++; });
   }
-
   Future<void> _answerListening(int index) async {
     final correct = _listenOptionIndices[index] == _listenIndex;
     await (correct
