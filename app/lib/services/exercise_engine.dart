@@ -62,7 +62,7 @@ class ExerciseQuestion {
     if (type == null) throw FormatException('Unsupported exercise type: $rawType');
     final rawAnswers = json['accepted_answers'] ?? json['acceptedAnswers'];
     final answers = rawAnswers is List
-        ? rawAnswers.map((value) => value.toString()).toList(growable: false)
+        ? rawAnswers.map((value) => value.toString()).toList(growable: true)
         : <String>[];
     final singleAnswer = json['answer']?.toString();
     if (answers.isEmpty && singleAnswer != null && singleAnswer.isNotEmpty) answers.add(singleAnswer);
