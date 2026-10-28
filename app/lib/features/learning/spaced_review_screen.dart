@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../services/learning_store.dart';
 import '../../services/learning_engine.dart';
+import '../../services/learning_engine.dart';
 
 class SpacedReviewScreen extends StatefulWidget {
   const SpacedReviewScreen({super.key});
@@ -54,6 +55,12 @@ class _SpacedReviewScreenState extends State<SpacedReviewScreen> {
         correct: correct,
         eventId: 'spaced-review:$_sessionId:$_index',
       );
+      if (correct) {
+        await LearningEngine.instance.awardXp(
+          eventId: 'spaced-review-xp:$_sessionId:$_index',
+          points: 1,
+        );
+      }
       if (!mounted) return;
       setState(() { _answered = true; _correct = correct; _checking = false; });
     } catch (_) {
