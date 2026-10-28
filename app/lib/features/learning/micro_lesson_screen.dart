@@ -153,7 +153,7 @@ class _MicroLessonScreenState extends State<MicroLessonScreen> {
           _totalCorrect++;
           if (!isReview) _firstTryCorrect++;
         } else {
-          _hearts = math.max(0, _hearts - 1);
+          _hearts = math.max(0, _hearts - 1).toInt();
           if (!isReview && _queuedMistakeIds.add(step.id)) {
             _mistakes.add(step);
           }
