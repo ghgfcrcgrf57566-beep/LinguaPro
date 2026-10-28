@@ -110,7 +110,7 @@ class ExerciseEngine {
       if (response is! Map || question.pairs.isEmpty) return _wrong(question);
       final pairsCorrect = question.pairs.every((pair) =>
         response[pair.key] != null &&
-        LearningEngine.matchesAnswer(response[pair.key].toString(), [pair.value]));
+        response[pair.key].toString().trim().toLowerCase() == pair.value.trim().toLowerCase());
       return pairsCorrect
           ? ExerciseGrade(isCorrect: true, isAutoGraded: true, feedback: question.explanation.isEmpty ? 'كل المطابقات صحيحة.' : question.explanation)
           : _wrong(question);
