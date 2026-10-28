@@ -41,8 +41,8 @@ def validate_lesson(lesson: object, file_label: str) -> str:
     require(lesson["level"] in LEVELS, f"{file_label}: unsupported level {lesson['level']!r}")
     require(lesson["language"] == "en", f"{file_label}: language must be 'en'")
     require(lesson["track"] in TRACKS, f"{file_label}: unsupported track {lesson['track']!r}")
-    require((lesson["level"] == "LEGAL") == (lesson["track"] == "legal-english"),
-            f"{file_label}: LEGAL level and legal-english track must be used together")
+    require(lesson["level"] != "LEGAL" or lesson["track"] == "legal-english",
+            f"{file_label}: LEGAL-level lessons must use the legal-english track")
 
     require(isinstance(lesson["objectives"], list) and lesson["objectives"],
             f"{file_label}: objectives must be a non-empty array")
