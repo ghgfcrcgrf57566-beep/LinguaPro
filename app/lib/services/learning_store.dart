@@ -95,6 +95,8 @@ class LearningStore {
   static const _progressKey = 'linguapro_word_progress_v1';
   static const _lessonKey = 'linguapro_completed_lessons_v1';
   static const _quizResultsKey = 'linguapro_quiz_results_v1';
+  static const _xpKey = 'linguapro_total_xp_v1';
+  static const _xpAwardedLessonsKey = 'linguapro_xp_awarded_lessons_v1';
 
   Future<Map<String, WordProgress>> loadProgress() async {
     final prefs = await SharedPreferences.getInstance();
@@ -214,6 +216,28 @@ class LearningStore {
       }
     }
     return best;
+  }
+
+  /// Awards XP only once per lesson, so replaying a lesson cannot be used to farm points.
+  Future<int> awardLessonXp(String lessonId) async {
+    final prefs = await SharedPreferences.getInstance();
+    final awarded = prefs.getStringList(_xpAwardedLessonsKey) ?? <String>[];
+    if (awarded.contains(lessonId)) return prefs.getInt(_xpKey) ?? 0;
+    awarded.add(lessonId);
+    final total = (prefs.getInt(_xpKey) ?? 0) + 10;
+    await prefs.setStringList(_xpAwardedLessonsKey, awarded);
+    await prefs.setInt(_xpKey, total);
+    return total;
+  }
+
+  Future<int> totalXp() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getInt(_xpKey) ?? 0;
+  }
+
+  Future<int> unlockedBadgeCount() async {
+    final completed = await completedLessons();
+    return completed.length;
   }
 
   Future<Set<String>> completedLessons() async {
