@@ -453,7 +453,7 @@ class _LessonScreenState extends State<LessonScreen> {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             gradient: const LinearGradient(colors: [Color(0xFFFFE7A3), Color(0xFFFFC94F), Color(0xFFFFF3CC)]),
-            boxShadow: [BoxShadow(color: const Color(0xFFFFC94F).withOpacity(0.35), blurRadius: 24, spreadRadius: 3)],
+            boxShadow: [BoxShadow(color: const Color(0xFFFFC94F).withValues(alpha: 0.35), blurRadius: 24, spreadRadius: 3)],
           ),
           child: const Icon(Icons.auto_awesome_rounded, size: 48, color: Color(0xFF5B3C00)),
         ),
