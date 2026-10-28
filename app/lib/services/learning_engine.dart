@@ -170,7 +170,7 @@ class LearningEngine {
       dates[lessonId] = _dateKey(current);
       await prefs.setString(_completionDatesKey, jsonEncode(dates));
     }
-    final awarded = await awardXp(eventId: 'lesson:' + lessonId, points: xp, now: current);
+    final awarded = await awardXp(eventId: 'lesson:$lessonId', points: xp, now: current);
     return isNewCompletion || awarded;
   }
 
