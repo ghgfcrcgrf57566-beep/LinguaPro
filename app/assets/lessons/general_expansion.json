@@ -146,6 +146,294 @@
           "explanation": "Buy is irregular; its past form is bought."
         }
       ]
+    },
+    {
+      "id": "a1-clothes-weather",
+      "title": "Clothes and the weather",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "Describe weather and everyday clothes.",
+      "objectives": [
+        "Describe the weather",
+        "Name common clothes",
+        "Make simple suggestions"
+      ],
+      "vocabulary": [
+        {
+          "term": "Sunny",
+          "meaning": "مشمس",
+          "example": "It is sunny today."
+        },
+        {
+          "term": "Rainy",
+          "meaning": "ممطر",
+          "example": "It is rainy this morning."
+        },
+        {
+          "term": "Jacket",
+          "meaning": "سترة",
+          "example": "Take your jacket."
+        },
+        {
+          "term": "Shoes",
+          "meaning": "أحذية",
+          "example": "These shoes are comfortable."
+        },
+        {
+          "term": "Cold",
+          "meaning": "بارد",
+          "example": "It is cold outside."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Useful dialogue",
+          "body": "A: What is the weather like?\nB: It is cold and rainy.\nA: Take your jacket.\nB: Good idea, thank you."
+        },
+        {
+          "heading": "Language tip",
+          "body": "Use “It is…” to describe weather: It is sunny. It is cold."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which word describes wet weather?",
+          "options": [
+            "Rainy",
+            "Sunny",
+            "Quiet"
+          ],
+          "answer_index": 0,
+          "explanation": "Rainy means that rain is falling or likely."
+        },
+        {
+          "question": "Complete: It ___ cold today.",
+          "options": [
+            "are",
+            "is",
+            "am"
+          ],
+          "answer_index": 1,
+          "explanation": "Use “it is” to describe the weather."
+        }
+      ]
+    },
+    {
+      "id": "a2-making-appointments",
+      "title": "Making appointments",
+      "level": "A2",
+      "language": "en",
+      "track": "general-english",
+      "description": "Arrange a meeting and respond politely.",
+      "objectives": [
+        "Suggest a time",
+        "Accept an invitation politely",
+        "Confirm an arrangement"
+      ],
+      "vocabulary": [
+        {
+          "term": "Available",
+          "meaning": "متاح",
+          "example": "Are you available tomorrow?"
+        },
+        {
+          "term": "Appointment",
+          "meaning": "موعد",
+          "example": "I have an appointment at ten."
+        },
+        {
+          "term": "Reschedule",
+          "meaning": "يعيد تحديد الموعد",
+          "example": "Can we reschedule the meeting?"
+        },
+        {
+          "term": "Confirm",
+          "meaning": "يؤكد",
+          "example": "Please confirm the time."
+        },
+        {
+          "term": "Convenient",
+          "meaning": "مناسب",
+          "example": "Is three o’clock convenient?"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Useful dialogue",
+          "body": "A: Are you available on Tuesday?\nB: I am available after two.\nA: Shall we meet at three?\nB: That is convenient."
+        },
+        {
+          "heading": "Language tip",
+          "body": "“Could we…?” and “Would … be convenient?” are polite ways to arrange a meeting."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Choose a polite suggestion.",
+          "options": [
+            "Come now.",
+            "Could we meet at three?",
+            "You must come at three."
+          ],
+          "answer_index": 1,
+          "explanation": "Could we…? is a polite suggestion."
+        },
+        {
+          "question": "What does reschedule mean?",
+          "options": [
+            "Change the date or time",
+            "Pay a bill",
+            "Read a book"
+          ],
+          "answer_index": 0,
+          "explanation": "To reschedule is to arrange a new date or time."
+        }
+      ]
+    },
+    {
+      "id": "a2-health-advice",
+      "title": "Health problems and advice",
+      "level": "A2",
+      "language": "en",
+      "track": "general-english",
+      "description": "Describe common symptoms and understand everyday advice.",
+      "objectives": [
+        "Describe symptoms",
+        "Ask for help",
+        "Use should for advice"
+      ],
+      "vocabulary": [
+        {
+          "term": "Headache",
+          "meaning": "صداع",
+          "example": "I have a headache."
+        },
+        {
+          "term": "Fever",
+          "meaning": "حمّى",
+          "example": "He has a fever."
+        },
+        {
+          "term": "Rest",
+          "meaning": "راحة / يستريح",
+          "example": "You should get some rest."
+        },
+        {
+          "term": "Medicine",
+          "meaning": "دواء",
+          "example": "Take the medicine as directed."
+        },
+        {
+          "term": "Symptom",
+          "meaning": "عَرَض مرضي",
+          "example": "A cough can be a symptom."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Useful dialogue",
+          "body": "A: What is wrong?\nB: I have a headache.\nA: You should rest.\nB: Thank you."
+        },
+        {
+          "heading": "Language tip",
+          "body": "Use should + base verb to give advice: You should rest."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Choose the correct sentence.",
+          "options": [
+            "You should to rest.",
+            "You should rest.",
+            "You should resting."
+          ],
+          "answer_index": 1,
+          "explanation": "Use should followed by the base verb."
+        },
+        {
+          "question": "A headache is a…",
+          "options": [
+            "Symptom",
+            "Schedule",
+            "Contract"
+          ],
+          "answer_index": 0,
+          "explanation": "A headache is a symptom."
+        }
+      ]
+    },
+    {
+      "id": "b1-opinions-reasons",
+      "title": "Giving opinions and reasons",
+      "level": "B1",
+      "language": "en",
+      "track": "general-english",
+      "description": "Express an opinion, support it with reasons and disagree politely.",
+      "objectives": [
+        "State an opinion",
+        "Connect reasons and results",
+        "Disagree politely"
+      ],
+      "vocabulary": [
+        {
+          "term": "In my view",
+          "meaning": "من وجهة نظري",
+          "example": "In my view, practice is essential."
+        },
+        {
+          "term": "However",
+          "meaning": "ومع ذلك",
+          "example": "The plan is useful; however, it is expensive."
+        },
+        {
+          "term": "Therefore",
+          "meaning": "لذلك",
+          "example": "The road was closed; therefore, we arrived late."
+        },
+        {
+          "term": "Although",
+          "meaning": "على الرغم من",
+          "example": "Although it was difficult, we finished."
+        },
+        {
+          "term": "Evidence",
+          "meaning": "دليل / أدلة",
+          "example": "The evidence supports this view."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Useful dialogue",
+          "body": "A: In my view, online lessons save time.\nB: I agree to some extent. However, classroom practice is also useful."
+        },
+        {
+          "heading": "Language tip",
+          "body": "Use however to introduce contrast and therefore to introduce a result."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which connector introduces a result?",
+          "options": [
+            "Although",
+            "Therefore",
+            "However"
+          ],
+          "answer_index": 1,
+          "explanation": "Therefore introduces a consequence or result."
+        },
+        {
+          "question": "Choose a polite disagreement.",
+          "options": [
+            "You are wrong.",
+            "I see your point, but I have a different view.",
+            "That makes no sense."
+          ],
+          "answer_index": 1,
+          "explanation": "This phrase acknowledges the other person before disagreeing."
+        }
+      ]
     }
   ]
 }
