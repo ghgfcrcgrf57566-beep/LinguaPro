@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart' show ThemeMode;
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Device-local preferences. No account or cloud service is required.
@@ -20,7 +21,7 @@ class AppPreferences {
       'dark' => ThemeMode.dark,
       _ => ThemeMode.system,
     };
-    textScale.value = (prefs.getDouble(_textScaleKey) ?? 1.0).clamp(0.85, 1.3);
+    textScale.value = (prefs.getDouble(_textScaleKey) ?? 1.0).clamp(0.85, 1.3).toDouble();
   }
 
   Future<void> setThemeMode(ThemeMode value) async {
