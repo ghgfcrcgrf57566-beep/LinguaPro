@@ -6,6 +6,7 @@ import '../../services/learning_engine.dart';
 import '../../services/learning_store.dart';
 import '../learning/learning_screen.dart';
 import '../learning/exercise_session_screen.dart';
+import '../learning/mistake_review_screen.dart';
 import '../settings/settings_screen.dart';
 
 class LearningMapScreen extends StatefulWidget {
@@ -19,6 +20,7 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
   int? attemptsLeft;
   Map<String, int> challenges = <String, int>{};
   List<String> badges = <String>[];
+  List<Map<String, dynamic>> mistakes = <Map<String, dynamic>>[];
   Set<String> completed = <String>{};
   Map<String, QuizResult> bestScores = <String, QuizResult>{};
   late Future<List<LearningLesson>> lessonsFuture;
@@ -35,9 +37,9 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
   }
   Future<void> refresh() async {
     final e = LearningEngine.instance;
-    final v = await Future.wait<Object>([LearningStore.instance.totalXp(),e.dailyGoal(),e.todayXp(),e.streak(),LearningStore.instance.completedLessons(),e.challengeSummary(),e.unlockedBadges(),e.dailyAttemptLimit(),e.attemptsRemaining().then((value) => value ?? -1),LearningStore.instance.bestQuizResults()]);
+    final v = await Future.wait<Object>([LearningStore.instance.totalXp(),e.dailyGoal(),e.todayXp(),e.streak(),LearningStore.instance.completedLessons(),e.challengeSummary(),e.unlockedBadges(),e.dailyAttemptLimit(),e.attemptsRemaining().then((value) => value ?? -1),LearningStore.instance.bestQuizResults(),e.mistakes()]);
     if (!mounted) return;
-    setState(() { xp=v[0] as int; goal=v[1] as int; today=v[2] as int; streak=v[3] as int; completed=v[4] as Set<String>; challenges=v[5] as Map<String,int>; badges=v[6] as List<String>; attemptLimit=v[7] as int; attemptsLeft=(v[8] as int) < 0 ? null : v[8] as int; bestScores=v[9] as Map<String, QuizResult>; });
+    setState(() { xp=v[0] as int; goal=v[1] as int; today=v[2] as int; streak=v[3] as int; completed=v[4] as Set<String>; challenges=v[5] as Map<String,int>; badges=v[6] as List<String>; attemptLimit=v[7] as int; attemptsLeft=(v[8] as int) < 0 ? null : v[8] as int; bestScores=v[9] as Map<String, QuizResult>; mistakes=v[10] as List<Map<String, dynamic>>; });
   }
   void switchTrack(bool value) { if (legal == value) return; setState(() { legal=value; lessonsFuture=loadLessons(); }); }
   Future<void> changeGoal() async {
@@ -133,6 +135,15 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
                     onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ExerciseSessionScreen())),
                     icon: const Icon(Icons.extension_rounded),
                     label: const Text('جرّب أنواع التمارين التفاعلية'),
+                  ),
+                ),
+                const SizedBox(height: 6),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton.icon(
+                    onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const MistakeReviewScreen())).then((_) => refresh()),
+                    icon: const Icon(Icons.history_rounded),
+                    label: Text('مراجعة أخطائي (${mistakes.length})'),
                   ),
                 ),
                 if (badges.isNotEmpty) ...[
