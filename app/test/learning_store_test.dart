@@ -6,6 +6,7 @@ import 'package:english_learning_legal_academy/models/learning_lesson.dart';
 import 'package:english_learning_legal_academy/services/learning_store.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
   group('QuizResult', () {
     test('round-trips a saved score and calculates percentage', () {
       final original = QuizResult(
