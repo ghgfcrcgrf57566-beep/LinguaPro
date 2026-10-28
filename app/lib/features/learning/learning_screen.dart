@@ -127,7 +127,7 @@ class _LessonScreenState extends State<LessonScreen> {
   int _tab = 0;
   int _wordIndex = 0;
   int _questionIndex = 0;
-  int? _selected;
+  bool _meaningVisible = false;
   bool _answered = false;
   int _score = 0;
   bool _finished = false;
@@ -177,30 +177,75 @@ class _LessonScreenState extends State<LessonScreen> {
               const SizedBox(height: 8),
               Text('مساعدة للنطق: ${word.pronunciation}', style: const TextStyle(color: Colors.grey)),
             ],
-            const SizedBox(height: 14),
-            Text(word.meaning, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700)),
-            const Divider(height: 30),
-            Text(word.example, textAlign: TextAlign.center, style: const TextStyle(fontSize: 17)),
+            const SizedBox(height: 18),
+            if (_meaningVisible) ...[
+              Text(word.meaning, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700)),
+              const Divider(height: 30),
+              Text(word.example, textAlign: TextAlign.center, style: const TextStyle(fontSize: 17)),
+            ] else
+              const Text('حاول تذكر المعنى قبل إظهاره', textAlign: TextAlign.center, style: TextStyle(fontSize: 16, height: 1.7)),
           ]),
         )),
         const SizedBox(height: 16),
-        const Text('حاول أن تقول المعنى من ذاكرتك قبل إظهاره، ثم استخدم الكلمة في جملة من إنشائك.', style: TextStyle(height: 1.8)),
-        const SizedBox(height: 16),
-        Row(children: [
-          Expanded(child: OutlinedButton(
-            onPressed: _wordIndex == 0 ? null : () => setState(() => _wordIndex--),
-            child: const Text('السابقة'),
-          )),
-          const SizedBox(width: 12),
-          Expanded(child: FilledButton(
-            onPressed: _wordIndex >= words.length - 1
-                ? () => setState(() => _tab = 2)
-                : () => setState(() => _wordIndex++),
-            child: Text(_wordIndex >= words.length - 1 ? 'ابدأ الاختبار' : 'الكلمة التالية'),
-          )),
-        ]),
+        if (!_meaningVisible)
+          FilledButton.icon(
+            onPressed: () => setState(() => _meaningVisible = true),
+            icon: const Icon(Icons.visibility_outlined),
+            label: const Text('أظهر المعنى'),
+          )
+        else ...[
+          const Text('قيّم تذكرك بصدق حتى يحدد التطبيق موعد المراجعة الأنسب.', textAlign: TextAlign.center, style: TextStyle(height: 1.7)),
+          const SizedBox(height: 10),
+          Row(children: [
+            Expanded(child: OutlinedButton.icon(
+              onPressed: () => _rateWord(false),
+              icon: const Icon(Icons.replay_rounded),
+              label: const Text('لم أتذكرها'),
+            )),
+            const SizedBox(width: 10),
+            Expanded(child: FilledButton.icon(
+              onPressed: () => _rateWord(true),
+              icon: const Icon(Icons.check_circle_outline),
+              label: const Text('تذكرتها'),
+            )),
+          ]),
+        ],
+        const SizedBox(height: 10),
+        OutlinedButton(
+          onPressed: () => setState(() => _tab = 1),
+          child: const Text('قراءة الشرح والأمثلة'),
+        ),
+        OutlinedButton(
+          onPressed: () => setState(() => _tab = 2),
+          child: const Text('انتقل إلى الاختبار'),
+        ),
       ],
     );
+  }
+
+  Future<void> _rateWord(bool remembered) async {
+    final word = widget.lesson.vocabulary[_wordIndex];
+    await LearningStore.instance.recordWord(
+      lessonId: widget.lesson.id,
+      term: word.term,
+      meaning: word.meaning,
+      correct: remembered,
+    );
+    if (!mounted) return;
+    if (_wordIndex >= widget.lesson.vocabulary.length - 1) {
+      setState(() {
+        _tab = 2;
+        _meaningVisible = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('انتهت مراجعة المفردات. أكمل الاختبار لتثبيت ما تعلمته.'),
+      ));
+    } else {
+      setState(() {
+        _wordIndex++;
+        _meaningVisible = false;
+      });
+    }
   }
 
   Widget _sections() => ListView(
@@ -270,7 +315,6 @@ class _LessonScreenState extends State<LessonScreen> {
       if (_answered) FilledButton(
         onPressed: () => setState(() {
           _questionIndex++;
-          _selected = null;
           _answered = false;
         }),
         child: Text(_questionIndex == questions.length - 1 ? 'عرض النتيجة' : 'السؤال التالي'),
@@ -278,31 +322,18 @@ class _LessonScreenState extends State<LessonScreen> {
     ]);
   }
 
-  Future<void> _answer(int index) async {
+  void _answer(int index) {
     final question = widget.lesson.quiz[_questionIndex];
     final correct = index == question.answerIndex;
     setState(() {
-      _selected = index;
       _answered = true;
       if (correct) _score++;
     });
-    // Tie quiz performance to review scheduling, so missed vocabulary returns sooner.
-    final words = widget.lesson.vocabulary;
-    if (words.isNotEmpty) {
-      final word = words[_questionIndex % words.length];
-      await LearningStore.instance.recordWord(
-        lessonId: widget.lesson.id,
-        term: word.term,
-        meaning: word.meaning,
-        correct: correct,
-      );
-    }
   }
 
   void _resetQuiz() => setState(() {
     _questionIndex = 0;
     _score = 0;
-    _selected = null;
     _answered = false;
   });
 
@@ -359,13 +390,13 @@ class _ReviewListState extends State<_ReviewList> {
           Container(
             padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(color: const Color(0xFFEAF0FF), borderRadius: BorderRadius.circular(16)),
-            child: Text('لديك ${due.length} كلمة حان موعد مراجعتها من أصل ${all.length} كلمة مسجلة. الإجابات الخاطئة تعود للمراجعة في وقت أقرب.', style: const TextStyle(height: 1.8)),
+            child: Text('لديك ${due.length} كلمة حان موعد مراجعتها من أصل ${all.length} كلمة مسجلة. الكلمات التي لم تتذكرها تعود للمراجعة بعد نحو أربع ساعات، ثم تتباعد المواعيد مع نجاح التذكر.', style: const TextStyle(height: 1.8)),
           ),
           const SizedBox(height: 14),
           if (all.isEmpty)
             const Card(child: Padding(
               padding: EdgeInsets.all(20),
-              child: Text('ابدأ درسًا ثم أجب عن أسئلته حتى تتكون قائمة مراجعتك الشخصية.'),
+              child: Text('ابدأ درسًا ثم قيّم تذكرك للكلمات حتى تتكون قائمة مراجعتك الشخصية.'),
             )),
           for (final item in all)
             Card(child: ListTile(
@@ -382,8 +413,9 @@ class _ReviewListState extends State<_ReviewList> {
   );
 
   String _remaining(DateTime due) {
-    final days = due.difference(DateTime.now()).inDays;
-    if (days <= 0) return 'اليوم';
+    final difference = due.difference(DateTime.now());
+    if (difference.inHours < 24) return 'لاحقًا اليوم';
+    final days = difference.inDays;
     if (days == 1) return 'غدًا';
     return 'بعد $days أيام';
   }
