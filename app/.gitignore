@@ -1,0 +1,17 @@
+.dart_tool/
+.packages
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.idea/
+.vscode/
+*.iml
+.env
+.env.*
+!.env.example
+*.jks
+*.keystore
+key.properties
+.DS_Store
+Thumbs.db
