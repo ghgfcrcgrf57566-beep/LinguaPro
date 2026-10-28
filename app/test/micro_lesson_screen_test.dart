@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:english_learning_legal_academy/features/learning/micro_lesson_screen.dart';
-import 'package:english_learning_legal_academy/services/learning_sound_service.dart';
 import 'package:english_learning_legal_academy/models/learning_lesson.dart';
 
 void main() {
@@ -46,7 +45,6 @@ void main() {
       ],
     );
 
-    await LearningSoundService.instance.setEnabled(false);
     await tester.pumpWidget(const MaterialApp(home: MicroLessonScreen(lesson: lesson)));
     await tester.pumpAndSettle();
 
