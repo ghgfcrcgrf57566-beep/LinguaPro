@@ -27,6 +27,12 @@ class WordProgress {
 
   bool get isDue => !dueAt.isAfter(DateTime.now());
 
+  int get attempts => correctCount + wrongCount;
+
+  double get accuracy => attempts == 0 ? 0 : correctCount / attempts;
+
+  bool get needsExtraPractice => wrongCount > 0 && (accuracy < 0.7 || wrongCount >= 2);
+
   factory WordProgress.fromJson(Map<String, dynamic> json) => WordProgress(
         lessonId: json['lessonId'] as String? ?? '',
         term: json['term'] as String? ?? '',
@@ -103,6 +109,21 @@ class LearningStore {
     } catch (_) {
       return {};
     }
+  }
+
+  /// Returns the words that need extra practice first, without changing their due dates.
+  Future<List<WordProgress>> loadWeakWords({int limit = 5}) async {
+    if (limit <= 0) return const [];
+    final progress = await loadProgress();
+    final weak = progress.values.where((word) => word.needsExtraPractice).toList();
+    weak.sort((a, b) {
+      final accuracyOrder = a.accuracy.compareTo(b.accuracy);
+      if (accuracyOrder != 0) return accuracyOrder;
+      final mistakesOrder = b.wrongCount.compareTo(a.wrongCount);
+      if (mistakesOrder != 0) return mistakesOrder;
+      return a.dueAt.compareTo(b.dueAt);
+    });
+    return weak.take(limit).toList(growable: false);
   }
 
   Future<void> recordWord({
