@@ -67,11 +67,19 @@ List<ExerciseQuestion> buildExercisesForLesson(LearningLesson lesson) {
       }
       final escaped = RegExp(RegExp.escape(word.term), caseSensitive: false);
       if (escaped.hasMatch(word.example)) {
+        final blankOptions = <String>{word.term};
+        for (final candidate in lesson.vocabulary) {
+          if (blankOptions.length >= 4) break;
+          blankOptions.add(candidate.term);
+        }
+        final options = blankOptions.toList()..shuffle();
         result.add(ExerciseQuestion(
           id: '${lesson.id}-blank-$i',
           type: ExerciseType.fillBlank,
           prompt: word.example.replaceFirst(escaped, '_____'),
           acceptedAnswers: [word.term],
+          options: options,
+          answerIndex: options.indexOf(word.term),
           explanation: 'الكلمة الناقصة: ${word.term}. ${word.meaning}',
         ));
       }
@@ -215,7 +223,7 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
     if (lessonId == null || grade.isCorrect == null) return;
     final correct = grade.isCorrect == true;
 
-    if (question.type == ExerciseType.translation && question.acceptedAnswers.isNotEmpty) {
+    if ((question.type == ExerciseType.translation || question.type == ExerciseType.fillBlank) && question.acceptedAnswers.isNotEmpty) {
       final promptParts = question.prompt.split(':');
       final meaning = promptParts.length > 1 ? promptParts.skip(1).join(':').trim() : question.prompt;
       await LearningStore.instance.recordWord(
