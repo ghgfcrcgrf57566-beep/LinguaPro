@@ -19,11 +19,18 @@ class LearningScreen extends StatefulWidget {
 
 class _LearningScreenState extends State<LearningScreen> {
   late Future<List<LearningLesson>> _lessonsFuture;
+  Set<String> _completedIds = <String>{};
 
   @override
   void initState() {
     super.initState();
     _lessonsFuture = _loadLessons();
+    _loadCompletedLessons();
+  }
+
+  Future<void> _loadCompletedLessons() async {
+    final completed = await LearningStore.instance.completedLessons();
+    if (mounted) setState(() => _completedIds = completed);
   }
 
   Future<List<LearningLesson>> _loadLessons() async {
@@ -86,6 +93,26 @@ class _LearningScreenState extends State<LearningScreen> {
                 ),
               ),
               const SizedBox(height: 16),
+              Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFEFF3FF),
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text('إنجازك: ${lessons.where((lesson) => _completedIds.contains(lesson.id)).length} من ${lessons.length} دروس',
+                      style: const TextStyle(fontWeight: FontWeight.w800, color: Color(0xFF334C82))),
+                  const SizedBox(height: 9),
+                  LinearProgressIndicator(
+                    value: lessons.isEmpty ? 0 : lessons.where((lesson) => _completedIds.contains(lesson.id)).length / lessons.length,
+                    minHeight: 7,
+                    borderRadius: BorderRadius.circular(7),
+                  ),
+                  const SizedBox(height: 6),
+                  const Text('يُحتسب الدرس بعد إنهاء الاختبار وحفظ النتيجة.', style: TextStyle(fontSize: 11, color: Color(0xFF687590))),
+                ]),
+              ),
+              const SizedBox(height: 10),
               for (final lesson in lessons)
                 Card(
                   child: ListTile(
@@ -101,10 +128,15 @@ class _LearningScreenState extends State<LearningScreen> {
                       child: Text('${lesson.description}\n${lesson.vocabulary.length} مفردات · ${lesson.quiz.length} أسئلة'),
                     ),
                     isThreeLine: true,
-                    trailing: const Icon(Icons.chevron_left_rounded),
-                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => LessonScreen(lesson: lesson),
-                    )),
+                    trailing: _completedIds.contains(lesson.id)
+                        ? const Icon(Icons.check_circle_rounded, color: Colors.green)
+                        : const Icon(Icons.chevron_left_rounded),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => LessonScreen(lesson: lesson),
+                      ));
+                      await _loadCompletedLessons();
+                    },
                   ),
                 ),
             ],
