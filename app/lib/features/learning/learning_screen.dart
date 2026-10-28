@@ -8,6 +8,8 @@ import 'package:flutter_tts/flutter_tts.dart';
 
 import '../../models/learning_lesson.dart';
 import '../../services/learning_store.dart';
+import '../../services/learning_engine.dart';
+import 'exercise_session_screen.dart';
 
 enum LearningMode { general, legal, review }
 
@@ -33,8 +35,14 @@ class _LearningScreenState extends State<LearningScreen> {
   }
 
   Future<void> _loadCompletedLessons() async {
-    final completed = await LearningStore.instance.completedLessons();
-    final bestResults = await LearningStore.instance.bestQuizResults();
+    final store = LearningStore.instance;
+    final engine = LearningEngine.instance;
+    await engine.migrateLegacyProgress(
+      completedLessonIds: await store.completedLessons(),
+      legacyXp: await store.totalXp(),
+    );
+    final completed = await engine.completedLessons();
+    final bestResults = await store.bestQuizResults();
     if (mounted) {
       setState(() {
         _completedIds = completed;
@@ -128,7 +136,11 @@ class _LearningScreenState extends State<LearningScreen> {
               for (var index = 0; index < lessons.length; index++) ...[
                 Builder(builder: (context) {
                   final lesson = lessons[index];
-                  final isLocked = index > 0 && !_completedIds.contains(lessons[index - 1].id);
+                  final previous = index > 0 ? lessons[index - 1] : null;
+                  final previousScore = previous == null ? null : _bestQuizResults[previous.id];
+                  final isLocked = index > 0 &&
+                      (!_completedIds.contains(previous!.id) ||
+                          previousScore == null || previousScore.percentage < 0.7);
                   final isCompleted = _completedIds.contains(lesson.id);
                   return Card(
                   child: ListTile(
@@ -187,14 +199,21 @@ class LessonScreen extends StatefulWidget {
 class _LessonScreenState extends State<LessonScreen> {
   int _tab = 0;
   int _wordIndex = 0;
+  final int _wordSessionId = DateTime.now().microsecondsSinceEpoch;
+  bool _ratingWord = false;
   int _questionIndex = 0;
   bool _meaningVisible = false;
   bool _answered = false;
   int _selectedAnswerIndex = -1;
   int _score = 0;
+  int _quizSessionId = DateTime.now().microsecondsSinceEpoch;
   bool _finished = false;
   int _listenIndex = 0;
+  int _listenSessionId = DateTime.now().microsecondsSinceEpoch;
+  bool _listenChecking = false;
   int _typingIndex = 0;
+  int _typingSessionId = DateTime.now().microsecondsSinceEpoch;
+  bool _typingChecking = false;
   int _typingScore = 0;
   bool _typingAnswered = false;
   bool _typingCorrect = false;
@@ -351,13 +370,13 @@ class _LessonScreenState extends State<LessonScreen> {
           const SizedBox(height: 10),
           Row(children: [
             Expanded(child: OutlinedButton.icon(
-              onPressed: () => _rateWord(false),
+              onPressed: _ratingWord ? null : () => _rateWord(false),
               icon: const Icon(Icons.replay_rounded),
               label: const Text('لم أتذكرها'),
             )),
             const SizedBox(width: 10),
             Expanded(child: FilledButton.icon(
-              onPressed: () => _rateWord(true),
+              onPressed: _ratingWord ? null : () => _rateWord(true),
               icon: const Icon(Icons.check_circle_outline),
               label: const Text('تذكرتها'),
             )),
@@ -377,34 +396,46 @@ class _LessonScreenState extends State<LessonScreen> {
   }
 
   Future<void> _rateWord(bool remembered) async {
+    if (_ratingWord || _wordIndex >= widget.lesson.vocabulary.length) return;
+    setState(() => _ratingWord = true);
     final word = widget.lesson.vocabulary[_wordIndex];
-    if (remembered) {
-      await LearningSoundService.instance.correct();
-      await HapticFeedback.lightImpact();
-    } else {
-      await LearningSoundService.instance.incorrect();
-      await HapticFeedback.mediumImpact();
-    }
-    await LearningStore.instance.recordWord(
-      lessonId: widget.lesson.id,
-      term: word.term,
-      meaning: word.meaning,
-      correct: remembered,
-    );
-    if (!mounted) return;
-    if (_wordIndex >= widget.lesson.vocabulary.length - 1) {
+    try {
+      if (remembered) {
+        await LearningSoundService.instance.correct();
+        await HapticFeedback.lightImpact();
+      } else {
+        await LearningSoundService.instance.incorrect();
+        await HapticFeedback.mediumImpact();
+      }
+      await LearningStore.instance.recordWord(
+        lessonId: widget.lesson.id,
+        term: word.term,
+        meaning: word.meaning,
+        correct: remembered,
+        eventId: 'lesson-word:$_wordSessionId:$_wordIndex',
+      );
+      if (!mounted) return;
+      final finishedWords = _wordIndex >= widget.lesson.vocabulary.length - 1;
       setState(() {
-        _tab = 2;
+        _ratingWord = false;
         _meaningVisible = false;
+        if (finishedWords) {
+          _tab = 2;
+        } else {
+          _wordIndex++;
+        }
       });
+      if (finishedWords) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('انتهت مراجعة المفردات. أكمل الاختبار لتثبيت ما تعلمته.'),
+        ));
+      }
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _ratingWord = false);
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('انتهت مراجعة المفردات. أكمل الاختبار لتثبيت ما تعلمته.'),
+        content: Text('تعذر حفظ تقييم المفردة. حاول مرة أخرى.'),
       ));
-    } else {
-      setState(() {
-        _wordIndex++;
-        _meaningVisible = false;
-      });
     }
   }
 
@@ -420,6 +451,17 @@ class _LessonScreenState extends State<LessonScreen> {
             SelectableText(section.body, style: const TextStyle(height: 1.9, fontSize: 15)),
           ]),
         )),
+      const SizedBox(height: 12),
+      FilledButton.icon(
+        onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (_) => ExerciseSessionScreen(
+            questions: buildExercisesForLesson(widget.lesson),
+            lessonId: widget.lesson.id,
+          ),
+        )),
+        icon: const Icon(Icons.extension_rounded),
+        label: const Text('تمارين تفاعلية مرتبطة بهذا الدرس'),
+      ),
       if (widget.lesson.isLegal)
         const Padding(
           padding: EdgeInsets.all(8),
@@ -445,6 +487,7 @@ class _LessonScreenState extends State<LessonScreen> {
           const Text('أحسنت! أنهيت تدريب الاستماع 🎧', textAlign: TextAlign.center, style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900)),
           const SizedBox(height: 12),
           FilledButton(onPressed: () => setState(() {
+            _listenSessionId = DateTime.now().microsecondsSinceEpoch;
             _listenIndex = 0;
             _listenSelected = -1;
             _listenAnswered = false;
@@ -523,7 +566,7 @@ class _LessonScreenState extends State<LessonScreen> {
         const SizedBox(height: 8),
         Text('نتيجتك: $_typingScore من ${words.length}'),
         const SizedBox(height: 14),
-        FilledButton(onPressed: () => setState(() { _typingIndex = 0; _typingScore = 0; _typingAnswered = false; _typingCorrect = false; _typingController.clear(); }), child: const Text('أعد التدريب')),
+        FilledButton(onPressed: () => setState(() { _typingSessionId = DateTime.now().microsecondsSinceEpoch; _typingIndex = 0; _typingScore = 0; _typingAnswered = false; _typingCorrect = false; _typingController.clear(); }), child: const Text('أعد التدريب')),
       ])));
     }
     final word = words[_typingIndex];
@@ -558,20 +601,52 @@ class _LessonScreenState extends State<LessonScreen> {
   String _normalizeTypingAnswer(String value) => value.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
 
   Future<void> _checkTypingAnswer() async {
-    if (_typingAnswered || _typingIndex >= widget.lesson.vocabulary.length) return;
+    if (_typingAnswered || _typingChecking || _typingIndex >= widget.lesson.vocabulary.length) return;
+    _typingChecking = true;
+    final eventId = 'typing:${widget.lesson.id}:$_typingSessionId:$_typingIndex';
+    final allowed = await LearningEngine.instance.consumeAttempt(eventId);
+    if (!allowed) {
+      _typingChecking = false;
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('انتهت محاولاتك اليومية. يمكنك تغيير نظام المحاولات من خريطة التعلّم أو المتابعة غدًا.')));
+      return;
+    }
     final word = widget.lesson.vocabulary[_typingIndex];
     final correct = _normalizeTypingAnswer(_typingController.text) == _normalizeTypingAnswer(word.term);
+    await LearningStore.instance.recordWord(
+      lessonId: widget.lesson.id,
+      term: word.term,
+      meaning: word.meaning,
+      correct: correct,
+    );
     await (correct ? LearningSoundService.instance.correct() : LearningSoundService.instance.incorrect());
     await (correct ? HapticFeedback.lightImpact() : HapticFeedback.mediumImpact());
+    _typingChecking = false;
     if (!mounted) return;
     setState(() { _typingAnswered = true; _typingCorrect = correct; if (correct) _typingScore++; });
   }
   Future<void> _answerListening(int index) async {
+    if (_listenAnswered || _listenChecking) return;
+    _listenChecking = true;
+    final eventId = 'listening:${widget.lesson.id}:$_listenSessionId:$_listenIndex';
+    final allowed = await LearningEngine.instance.consumeAttempt(eventId);
+    if (!allowed) {
+      _listenChecking = false;
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('انتهت محاولاتك اليومية. يمكنك تغيير نظام المحاولات من خريطة التعلّم أو المتابعة غدًا.')));
+      return;
+    }
     final correct = _listenOptionIndices[index] == _listenIndex;
+    final word = widget.lesson.vocabulary[_listenIndex];
+    await LearningStore.instance.recordWord(
+      lessonId: widget.lesson.id,
+      term: word.term,
+      meaning: word.meaning,
+      correct: correct,
+    );
     await (correct
         ? LearningSoundService.instance.correct()
         : LearningSoundService.instance.incorrect());
     await (correct ? HapticFeedback.lightImpact() : HapticFeedback.mediumImpact());
+    _listenChecking = false;
     if (!mounted) return;
     setState(() {
       _listenSelected = index;
@@ -653,10 +728,25 @@ class _LessonScreenState extends State<LessonScreen> {
 
   Future<void> _answer(int index) async {
     final question = widget.lesson.quiz[_questionIndex];
+    final eventId = 'quiz:${widget.lesson.id}:$_quizSessionId:$_questionIndex';
+    final allowed = await LearningEngine.instance.consumeAttempt(eventId);
+    if (!allowed) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('انتهت محاولاتك اليومية. يمكنك تغيير نظام المحاولات من خريطة التعلّم أو المتابعة غدًا.')));
+      }
+      return;
+    }
     final correct = index == question.answerIndex;
-    await (correct
-        ? LearningSoundService.instance.correct()
-        : LearningSoundService.instance.incorrect());
+    await LearningEngine.instance.recordAnswer(
+      eventId: eventId,
+      lessonId: widget.lesson.id,
+      prompt: question.question,
+      answer: question.options[index],
+      correct: correct,
+      targetTerm: question.options[question.answerIndex],
+      targetMeaning: question.explanation,
+    );
+    await (correct ? LearningSoundService.instance.correct() : LearningSoundService.instance.incorrect());
     await (correct ? HapticFeedback.lightImpact() : HapticFeedback.mediumImpact());
     if (!mounted) return;
     setState(() {
@@ -665,8 +755,8 @@ class _LessonScreenState extends State<LessonScreen> {
       if (correct) _score++;
     });
   }
-
   void _resetQuiz() => setState(() {
+    _quizSessionId = DateTime.now().microsecondsSinceEpoch;
     _questionIndex = 0;
     _score = 0;
     _answered = false;
@@ -679,10 +769,18 @@ class _LessonScreenState extends State<LessonScreen> {
       score: _score,
       total: widget.lesson.quiz.length,
     );
-    final completed = await LearningStore.instance.completedLessons();
+    final store = LearningStore.instance;
+    final engine = LearningEngine.instance;
+    await engine.migrateLegacyProgress(
+      completedLessonIds: await store.completedLessons(),
+      legacyXp: await store.totalXp(),
+    );
+    final completed = await engine.completedLessons();
     if (!completed.contains(widget.lesson.id)) {
-      _earnedXp = 10;
-      await LearningStore.instance.awardLessonXp(widget.lesson.id);
+      final xpBefore = await engine.totalXp();
+      await engine.completeLesson(lessonId: widget.lesson.id, completionEventId: 'lesson:${widget.lesson.id}', xp: 10);
+      final xpAfter = await engine.totalXp();
+      _earnedXp = xpAfter - xpBefore;
       final completedCount = completed.length + 1;
       const badges = <int, String>{
         1: 'شارة البداية 🥉',
@@ -693,7 +791,7 @@ class _LessonScreenState extends State<LessonScreen> {
       _newBadge = badges[completedCount] ?? '';
     }
     await LearningStore.instance.markLessonComplete(widget.lesson.id);
-    _totalXp = await LearningStore.instance.totalXp();
+    _totalXp = await engine.totalXp();
     await LearningSoundService.instance.complete();
     await HapticFeedback.heavyImpact();
     if (!mounted) return;
@@ -839,8 +937,10 @@ class ReviewSessionScreen extends StatefulWidget {
 
 class _ReviewSessionScreenState extends State<ReviewSessionScreen> {
   late Future<List<WordProgress>> _dueFuture;
+  final int _sessionId = DateTime.now().microsecondsSinceEpoch;
   int _index = 0;
   bool _showMeaning = false;
+  bool _rating = false;
 
   @override
   void initState() {
@@ -910,12 +1010,12 @@ class _ReviewSessionScreenState extends State<ReviewSessionScreen> {
               const SizedBox(height: 10),
               Row(children: [
                 Expanded(child: OutlinedButton(
-                  onPressed: () => _rate(word, false),
+                  onPressed: _rating ? null : () => _rate(word, false),
                   child: const Text('لم أتذكرها'),
                 )),
                 const SizedBox(width: 10),
                 Expanded(child: FilledButton(
-                  onPressed: () => _rate(word, true),
+                  onPressed: _rating ? null : () => _rate(word, true),
                   child: const Text('تذكرتها'),
                 )),
               ]),
@@ -927,23 +1027,41 @@ class _ReviewSessionScreenState extends State<ReviewSessionScreen> {
   );
 
   Future<void> _rate(WordProgress word, bool remembered) async {
-    await (remembered
-        ? LearningSoundService.instance.correct()
-        : LearningSoundService.instance.incorrect());
-    await (remembered
-        ? HapticFeedback.lightImpact()
-        : HapticFeedback.mediumImpact());
-    await LearningStore.instance.recordWord(
-      lessonId: word.lessonId,
-      term: word.term,
-      meaning: word.meaning,
-      correct: remembered,
-    );
-    if (!mounted) return;
-    setState(() {
-      _index++;
-      _showMeaning = false;
-    });
+    if (_rating) return;
+    setState(() => _rating = true);
+    try {
+      await (remembered
+          ? LearningSoundService.instance.correct()
+          : LearningSoundService.instance.incorrect());
+      await (remembered
+          ? HapticFeedback.lightImpact()
+          : HapticFeedback.mediumImpact());
+      await LearningStore.instance.recordWord(
+        lessonId: word.lessonId,
+        term: word.term,
+        meaning: word.meaning,
+        correct: remembered,
+        eventId: 'review-session:$_sessionId:$_index',
+      );
+      if (remembered) {
+        await LearningEngine.instance.awardXp(
+          eventId: 'review-session-xp:$_sessionId:$_index',
+          points: 1,
+        );
+      }
+      if (!mounted) return;
+      setState(() {
+        _rating = false;
+        _index++;
+        _showMeaning = false;
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _rating = false);
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('تعذر حفظ نتيجة المراجعة. حاول مرة أخرى.'),
+      ));
+    }
   }
 }
 

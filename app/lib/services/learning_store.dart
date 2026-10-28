@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'learning_engine.dart';
+
 class WordProgress {
   const WordProgress({
     required this.lessonId,
@@ -31,7 +33,7 @@ class WordProgress {
 
   double get accuracy => attempts == 0 ? 0 : correctCount / attempts;
 
-  bool get needsExtraPractice => wrongCount > 0 && (accuracy < 0.7 || wrongCount >= 2);
+  bool get needsExtraPractice => wrongCount > 0 && accuracy < 0.7;
 
   factory WordProgress.fromJson(Map<String, dynamic> json) => WordProgress(
         lessonId: json['lessonId'] as String? ?? '',
@@ -97,6 +99,8 @@ class LearningStore {
   static const _quizResultsKey = 'linguapro_quiz_results_v1';
   static const _xpKey = 'linguapro_total_xp_v1';
   static const _xpAwardedLessonsKey = 'linguapro_xp_awarded_lessons_v1';
+  static const _wordReviewEventsKey = 'linguapro_word_review_events_v1';
+  static const _syncQueueKey = 'linguapro_pending_sync_v1';
 
   Future<Map<String, WordProgress>> loadProgress() async {
     final prefs = await SharedPreferences.getInstance();
@@ -111,6 +115,36 @@ class LearningStore {
     } catch (_) {
       return {};
     }
+  }
+
+  /// Returns scheduled vocabulary whose review time has arrived.
+  Future<List<WordProgress>> loadDueWords({DateTime? now, int limit = 30}) async {
+    if (limit <= 0) return const [];
+    final current = now ?? DateTime.now();
+    final progress = await loadProgress();
+    final due = progress.values.where((word) => !word.dueAt.isAfter(current)).toList();
+    due.sort((a, b) {
+      final weakOrder = (b.needsExtraPractice ? 1 : 0).compareTo(a.needsExtraPractice ? 1 : 0);
+      if (weakOrder != 0) return weakOrder;
+      return a.dueAt.compareTo(b.dueAt);
+    });
+    return due.take(limit).toList(growable: false);
+  }
+
+  /// Returns both due and weak words, prioritizing due items and then low accuracy.
+  Future<List<WordProgress>> loadReviewQueue({DateTime? now, int limit = 30}) async {
+    if (limit <= 0) return const [];
+    final progress = await loadProgress();
+    final current = now ?? DateTime.now();
+    final queue = progress.values.where((word) => !word.dueAt.isAfter(current) || word.needsExtraPractice).toList();
+    queue.sort((a, b) {
+      final dueOrder = ((!b.dueAt.isAfter(current)) ? 1 : 0).compareTo((!a.dueAt.isAfter(current)) ? 1 : 0);
+      if (dueOrder != 0) return dueOrder;
+      final accuracyOrder = a.accuracy.compareTo(b.accuracy);
+      if (accuracyOrder != 0) return accuracyOrder;
+      return b.wrongCount.compareTo(a.wrongCount);
+    });
+    return queue.take(limit).toList(growable: false);
   }
 
   /// Returns the words that need extra practice first, without changing their due dates.
@@ -133,22 +167,25 @@ class LearningStore {
     required String term,
     required String meaning,
     required bool correct,
+    String? eventId,
+    DateTime? now,
   }) async {
     final prefs = await SharedPreferences.getInstance();
+    final current = now ?? DateTime.now();
+    final reviewEventId = eventId ?? 'word-review:$lessonId:${term.trim().toLowerCase()}:${current.microsecondsSinceEpoch}';
+    final processed = prefs.getStringList(_wordReviewEventsKey) ?? <String>[];
+    if (processed.contains(reviewEventId)) return;
     final progress = await loadProgress();
     final key = _key(lessonId, term);
     final old = progress[key];
-    final repetitions = correct ? (old?.repetitions ?? 0) + 1 : 0;
-    final interval = correct
-        ? (old == null || old.repetitions == 0
-            ? 1
-            : old.repetitions == 1
-                ? 3
-                : old.repetitions == 2
-                    ? 7
-                    : (old.intervalDays * 2).clamp(1, 90).toInt())
-        : 0;
-    final due = DateTime.now().add(Duration(days: correct ? interval : 0, hours: correct ? 0 : 4));
+    final previousRepetitions = old?.repetitions ?? 0;
+    final repetitions = correct ? previousRepetitions + 1 : 0;
+    final interval = LearningEngine.nextReviewInterval(
+      correct: correct,
+      previousRepetitions: previousRepetitions,
+      previousIntervalDays: old?.intervalDays ?? 0,
+    );
+    final due = current.add(correct ? Duration(days: interval) : const Duration(hours: 4));
     progress[key] = WordProgress(
       lessonId: lessonId,
       term: term,
@@ -163,6 +200,46 @@ class LearningStore {
     await prefs.setString(_progressKey, jsonEncode(
       progress.map((k, value) => MapEntry(k, value.toJson())),
     ));
+    processed.add(reviewEventId);
+    await prefs.setStringList(_wordReviewEventsKey, processed);
+    final outbox = prefs.getStringList(_syncQueueKey) ?? <String>[];
+    outbox.add(jsonEncode({
+      'eventId': reviewEventId,
+      'type': 'word_reviewed',
+      'lessonId': lessonId,
+      'term': term,
+      'meaning': meaning,
+      'correct': correct,
+      'createdAt': current.toIso8601String(),
+    }));
+    await prefs.setStringList(_syncQueueKey, outbox);
+  }
+
+  Future<List<Map<String, dynamic>>> pendingSyncEvents() async {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getStringList(_syncQueueKey) ?? <String>[];
+    return raw.map((entry) {
+      try { return Map<String, dynamic>.from(jsonDecode(entry) as Map); }
+      catch (_) { return <String, dynamic>{}; }
+    }).where((event) => event.isNotEmpty).toList(growable: false);
+  }
+
+  /// Remove events only after a remote service confirms successful receipt.
+  Future<void> acknowledgeSyncEvents(Iterable<String> eventIds) async {
+    final acknowledged = eventIds.toSet();
+    if (acknowledged.isEmpty) return;
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getStringList(_syncQueueKey) ?? <String>[];
+    final remaining = <String>[];
+    for (final entry in raw) {
+      try {
+        final event = Map<String, dynamic>.from(jsonDecode(entry) as Map);
+        if (!acknowledged.contains(event['eventId'])) remaining.add(entry);
+      } catch (_) {
+        remaining.add(entry);
+      }
+    }
+    await prefs.setStringList(_syncQueueKey, remaining);
   }
 
   Future<List<QuizResult>> loadQuizResults() async {

@@ -1,8 +1,13 @@
+import 'dart:convert';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:english_learning_legal_academy/models/learning_lesson.dart';
 import 'package:english_learning_legal_academy/services/learning_store.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+  setUp(() { SharedPreferences.setMockInitialValues(<String, Object>{}); });
   group('QuizResult', () {
     test('round-trips a saved score and calculates percentage', () {
       final original = QuizResult(
@@ -68,6 +73,21 @@ void main() {
       expect(word.accuracy, 1);
       expect(word.needsExtraPractice, isFalse);
     });
+    test('recovered vocabulary is no longer marked weak after accuracy improves', () {
+      final word = WordProgress(
+        lessonId: 'a1-likes',
+        term: 'book',
+        meaning: 'كتاب',
+        dueAt: DateTime(2026, 10, 29),
+        intervalDays: 1,
+        repetitions: 4,
+        correctCount: 8,
+        wrongCount: 2,
+        lastResult: true,
+      );
+      expect(word.accuracy, 0.8);
+      expect(word.needsExtraPractice, isFalse);
+    });
   });
 
   group('Learning content models', () {
@@ -106,4 +126,166 @@ void main() {
       );
     });
   });
+  group('spaced review queue', () {
+    test('weak vocabulary enters review queue while future scheduled words stay out', () async {
+      final store = LearningStore.instance;
+      await store.recordWord(lessonId: 'a1-greetings', term: 'hello', meaning: 'مرحبًا', correct: true);
+      expect(await store.loadDueWords(), isEmpty);
+      expect(await store.loadReviewQueue(), isEmpty);
+
+      await store.recordWord(lessonId: 'a1-greetings', term: 'hello', meaning: 'مرحبًا', correct: false);
+      final queue = await store.loadReviewQueue();
+      expect(queue, hasLength(1));
+      expect(queue.single.term, 'hello');
+      expect(queue.single.needsExtraPractice, isTrue);
+    });
+
+    test('review queue prioritizes weak vocabulary and respects limit', () async {
+      final store = LearningStore.instance;
+      await store.recordWord(lessonId: 'lesson', term: 'court', meaning: 'محكمة', correct: true);
+      await store.recordWord(lessonId: 'lesson', term: 'appeal', meaning: 'استئناف', correct: false);
+      final queue = await store.loadReviewQueue(limit: 1);
+      expect(queue, hasLength(1));
+      expect(queue.single.term, 'appeal');
+    });
+  });
+
+  test('offline review events remain queued until acknowledged', () async {
+    SharedPreferences.setMockInitialValues(<String, Object>{});
+    final store = LearningStore.instance;
+    await store.recordWord(
+      lessonId: 'a1-greetings',
+      term: 'hello',
+      meaning: 'مرحبًا',
+      correct: false,
+      eventId: 'review-event-1',
+    );
+    await store.recordWord(
+      lessonId: 'a1-greetings',
+      term: 'goodbye',
+      meaning: 'إلى اللقاء',
+      correct: true,
+      eventId: 'review-event-2',
+    );
+    final pending = await store.pendingSyncEvents();
+    expect(pending.map((event) => event['eventId']).toSet(),
+        containsAll(['review-event-1', 'review-event-2']));
+
+    await store.acknowledgeSyncEvents(['review-event-1']);
+    final remaining = await store.pendingSyncEvents();
+    expect(remaining.map((event) => event['eventId']).toList(), ['review-event-2']);
+  });
+
+  test('review queue includes weak words', () async {
+    final store = LearningStore.instance;
+    await store.recordWord(lessonId: 'a1-greetings', term: 'hello', meaning: 'مرحبًا', correct: false, eventId: 'weak-1');
+    await store.recordWord(lessonId: 'a1-greetings', term: 'hello', meaning: 'مرحبًا', correct: false, eventId: 'weak-1');
+    final queue = await store.loadReviewQueue();
+    expect(queue.map((word) => word.term), contains('hello'));
+    expect(queue.single.wrongCount, 1);
+  });
+
+  test('general and legal tracks include lessons across all CEFR bands', () async {
+    Future<List<Map<String, dynamic>>> read(String path) async {
+      final data = jsonDecode(await rootBundle.loadString(path)) as Map<String, dynamic>;
+      return (data['lessons'] as List)
+          .map((item) => Map<String, dynamic>.from(item as Map))
+          .toList();
+    }
+
+    final general = [
+      ...await read('assets/lessons/english_a1.json'),
+      ...await read('assets/lessons/general_expansion.json'),
+    ];
+    final legal = [
+      ...await read('assets/lessons/legal_english.json'),
+      ...await read('assets/lessons/legal_expansion.json'),
+    ];
+    const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+    for (final level in levels) {
+      expect(general.any((lesson) => lesson['level'] == level), isTrue,
+          reason: 'Missing general English content for $level');
+      expect(legal.any((lesson) => lesson['level'] == level), isTrue,
+          reason: 'Missing legal English content for $level');
+    }
+    final ids = <String>{};
+    for (final lesson in [...general, ...legal]) {
+      expect(ids.add(lesson['id'] as String), isTrue, reason: 'Duplicate lesson ID');
+      expect((lesson['objectives'] as List).isNotEmpty, isTrue);
+      expect((lesson['vocabulary'] as List).isNotEmpty, isTrue);
+      expect((lesson['sections'] as List).isNotEmpty, isTrue);
+      expect((lesson['quiz'] as List).isNotEmpty, isTrue);
+    }
+  });
+
+  group('review schedule clock', () {
+    test('correct answers schedule the next review and incorrect answers retry after four hours', () async {
+      final store = LearningStore.instance;
+      final start = DateTime(2026, 10, 28, 9);
+      await store.recordWord(
+        lessonId: 'schedule-test',
+        term: 'appeal',
+        meaning: 'استئناف',
+        correct: true,
+        eventId: 'schedule-correct',
+        now: start,
+      );
+      expect(await store.loadDueWords(now: start.add(const Duration(hours: 23))), isEmpty);
+      expect((await store.loadDueWords(now: start.add(const Duration(days: 1)))).single.term, 'appeal');
+
+      await store.recordWord(
+        lessonId: 'schedule-test',
+        term: 'appeal',
+        meaning: 'استئناف',
+        correct: false,
+        eventId: 'schedule-wrong',
+        now: start.add(const Duration(days: 1)),
+      );
+      expect(await store.loadDueWords(now: start.add(const Duration(days: 1, hours: 3))), isEmpty);
+      expect((await store.loadDueWords(now: start.add(const Duration(days: 1, hours: 4)))).single.term, 'appeal');
+    });
+  });
+
+  group('shared spaced repetition schedule', () {
+    test('uses the 1, 3, 7, 14 day progression and a four-hour retry after an error', () async {
+      final store = LearningStore.instance;
+      final start = DateTime(2026, 10, 28, 9);
+      await store.recordWord(
+        lessonId: 'schedule-test',
+        term: 'evidence',
+        meaning: 'دليل',
+        correct: true,
+        eventId: 'schedule-1',
+        now: start,
+      );
+      var word = (await store.loadProgress()).values.single;
+      expect(word.intervalDays, 1);
+      expect(word.dueAt, start.add(const Duration(days: 1)));
+
+      await store.recordWord(
+        lessonId: 'schedule-test',
+        term: 'evidence',
+        meaning: 'دليل',
+        correct: true,
+        eventId: 'schedule-2',
+        now: start.add(const Duration(days: 1)),
+      );
+      word = (await store.loadProgress()).values.single;
+      expect(word.intervalDays, 3);
+      expect(word.dueAt, start.add(const Duration(days: 4)));
+
+      await store.recordWord(
+        lessonId: 'schedule-test',
+        term: 'evidence',
+        meaning: 'دليل',
+        correct: false,
+        eventId: 'schedule-3',
+        now: start.add(const Duration(days: 4)),
+      );
+      word = (await store.loadProgress()).values.single;
+      expect(word.intervalDays, 0);
+      expect(word.dueAt, start.add(const Duration(days: 4, hours: 4)));
+    });
+  });
+
 }

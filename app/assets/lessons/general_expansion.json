@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "2026.10.28.7",
+  "content_version": "2026.10.28.11",
   "lessons": [
     {
       "id": "a1-work-and-study",
@@ -720,6 +720,498 @@
           ],
           "answer_index": 0,
           "explanation": "A clear purpose and next step help the reader respond."
+        }
+      ]
+    },
+    {
+      "id": "b2-evaluating-evidence",
+      "title": "Evaluating evidence and arguments",
+      "level": "B2",
+      "language": "en",
+      "track": "general-english",
+      "description": "Compare claims with evidence and express qualified conclusions.",
+      "objectives": [
+        "Distinguish a claim from supporting evidence",
+        "Use cautious language when evaluating information",
+        "Summarize a reasoned conclusion"
+      ],
+      "vocabulary": [
+        {
+          "term": "Evidence",
+          "meaning": "دليل / أدلة",
+          "example": "The evidence supports the main conclusion."
+        },
+        {
+          "term": "Reliable",
+          "meaning": "موثوق",
+          "example": "We need a reliable source before making a claim."
+        },
+        {
+          "term": "Assumption",
+          "meaning": "افتراض",
+          "example": "The argument depends on an assumption."
+        },
+        {
+          "term": "Nevertheless",
+          "meaning": "مع ذلك",
+          "example": "The sample was small; nevertheless, the result is useful."
+        },
+        {
+          "term": "Substantial",
+          "meaning": "جوهري / كبير",
+          "example": "There is substantial evidence for the proposal."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Reading",
+          "body": "A strong argument states a clear claim and supports it with relevant evidence. A reliable source explains where its information came from. If evidence is incomplete, a careful writer acknowledges the limitation rather than presenting an assumption as a fact."
+        },
+        {
+          "heading": "Language focus",
+          "body": "Use although, whereas, nevertheless and therefore to show contrast and consequence. Phrases such as “the evidence suggests” are more cautious than “this proves” when certainty is limited."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which word introduces a contrast with the previous statement?",
+          "options": [
+            "Nevertheless",
+            "Therefore",
+            "For instance"
+          ],
+          "answer_index": 0,
+          "explanation": "Nevertheless signals contrast or an unexpected result."
+        },
+        {
+          "question": "A reliable source is one that is…",
+          "options": [
+            "Trustworthy and dependable",
+            "Always very short",
+            "Written without evidence"
+          ],
+          "answer_index": 0,
+          "explanation": "Reliable means likely to be accurate or trustworthy."
+        },
+        {
+          "question": "Which sentence is appropriately cautious?",
+          "options": [
+            "The findings suggest a possible link.",
+            "The findings prove everything.",
+            "No evidence is needed."
+          ],
+          "answer_index": 0,
+          "explanation": "Suggests a possible link communicates a qualified conclusion."
+        }
+      ]
+    },
+    {
+      "id": "c1-nuanced-discussion",
+      "title": "Nuanced discussion and synthesis",
+      "level": "C1",
+      "language": "en",
+      "track": "general-english",
+      "description": "Synthesize different viewpoints and qualify complex claims.",
+      "objectives": [
+        "Synthesize two viewpoints",
+        "Use concessive structures naturally",
+        "Qualify a conclusion without losing clarity"
+      ],
+      "vocabulary": [
+        {
+          "term": "Conversely",
+          "meaning": "وعلى العكس",
+          "example": "The first approach is inexpensive; conversely, it takes longer."
+        },
+        {
+          "term": "Whereas",
+          "meaning": "بينما / في حين أن",
+          "example": "Whereas demand increased, supply remained stable."
+        },
+        {
+          "term": "To some extent",
+          "meaning": "إلى حد ما",
+          "example": "The proposal is, to some extent, effective."
+        },
+        {
+          "term": "Corroborate",
+          "meaning": "يؤيد / يعزز بالدليل",
+          "example": "Independent data corroborate the initial findings."
+        },
+        {
+          "term": "Implication",
+          "meaning": "دلالة / أثر محتمل",
+          "example": "One implication is that training must change."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Model paragraph",
+          "body": "Although the proposal may reduce short-term costs, its long-term implications remain uncertain. Independent data corroborate some of the expected benefits, whereas other findings point to implementation risks. To some extent, the outcome will depend on how consistently the policy is applied."
+        },
+        {
+          "heading": "Language focus",
+          "body": "Synthesis connects ideas rather than listing them. Use concessive clauses to acknowledge a limitation, contrast markers to compare evidence, and qualified expressions to avoid overstating a conclusion."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does corroborate mean?",
+          "options": [
+            "Support with additional evidence",
+            "Reject without review",
+            "Repeat word for word"
+          ],
+          "answer_index": 0,
+          "explanation": "Corroborate means confirm or support with additional evidence."
+        },
+        {
+          "question": "Which phrase explicitly limits the strength of a claim?",
+          "options": [
+            "To some extent",
+            "Without exception",
+            "Beyond all doubt"
+          ],
+          "answer_index": 0,
+          "explanation": "To some extent indicates a qualified or partial claim."
+        },
+        {
+          "question": "A synthesis should…",
+          "options": [
+            "Connect and compare ideas from different sources",
+            "List quotations without explanation",
+            "Remove all differences"
+          ],
+          "answer_index": 0,
+          "explanation": "Synthesis explains relationships between ideas and sources."
+        }
+      ]
+    },
+    {
+      "id": "c2-precision-and-register",
+      "title": "Precision, register and rhetorical control",
+      "level": "C2",
+      "language": "en",
+      "track": "general-english",
+      "description": "Choose precise wording and adapt register for complex professional communication.",
+      "objectives": [
+        "Distinguish subtle shades of meaning",
+        "Adapt register to audience and purpose",
+        "Revise a complex statement for precision"
+      ],
+      "vocabulary": [
+        {
+          "term": "Insofar as",
+          "meaning": "بقدر ما / من حيث إن",
+          "example": "The conclusion is valid insofar as the data are accurate."
+        },
+        {
+          "term": "Tentative",
+          "meaning": "متحفظ / غير جازم",
+          "example": "The report offers a tentative explanation."
+        },
+        {
+          "term": "Salient",
+          "meaning": "بارز / جوهري",
+          "example": "The salient issue is the lack of comparable data."
+        },
+        {
+          "term": "Underscore",
+          "meaning": "يؤكد / يبرز",
+          "example": "The results underscore the need for careful review."
+        },
+        {
+          "term": "Conspicuous",
+          "meaning": "واضح للعيان / لافت",
+          "example": "A conspicuous omission weakens the report."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Editing exercise",
+          "body": "Less precise: “The report says the plan is bad.” More precise: “The report identifies substantial implementation risks and offers a tentative explanation for the projected shortfall.” The revision distinguishes the source's finding from the writer's own judgment."
+        },
+        {
+          "heading": "Language focus",
+          "body": "At advanced levels, accuracy includes register, implication and degree of certainty. Use “insofar as” to state a limit, “salient” to identify what matters most, and “tentative” when a conclusion remains provisional."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which adjective identifies the most important point?",
+          "options": [
+            "Salient",
+            "Tentative",
+            "Conspicuous"
+          ],
+          "answer_index": 0,
+          "explanation": "Salient means most noticeable or important in a particular context."
+        },
+        {
+          "question": "A tentative conclusion is…",
+          "options": [
+            "Provisional and not fully certain",
+            "Guaranteed beyond doubt",
+            "Unrelated to the evidence"
+          ],
+          "answer_index": 0,
+          "explanation": "Tentative indicates caution or incomplete certainty."
+        },
+        {
+          "question": "Why revise “the plan is bad” in a professional report?",
+          "options": [
+            "To state specific risks and the basis for the assessment",
+            "To make the claim less clear",
+            "To hide the evidence"
+          ],
+          "answer_index": 0,
+          "explanation": "Precise wording identifies the nature and basis of an evaluation."
+        }
+      ]
+    },
+    {
+      "id": "b2-negotiating-solutions",
+      "title": "Negotiating practical solutions",
+      "level": "B2",
+      "language": "en",
+      "track": "general-english",
+      "description": "Negotiate options politely and explain trade-offs.",
+      "objectives": [
+        "Suggest alternatives tactfully",
+        "Explain trade-offs",
+        "Confirm next steps"
+      ],
+      "vocabulary": [
+        {
+          "term": "Trade-off",
+          "meaning": "موازنة بين مزايا وعيوب",
+          "example": "There is a trade-off between speed and cost."
+        },
+        {
+          "term": "Feasible",
+          "meaning": "قابل للتنفيذ",
+          "example": "The revised schedule is feasible."
+        },
+        {
+          "term": "Compromise",
+          "meaning": "حل وسط",
+          "example": "Both teams accepted a compromise."
+        },
+        {
+          "term": "Clarify",
+          "meaning": "يوضح",
+          "example": "Could you clarify the delivery date?"
+        },
+        {
+          "term": "Tentatively",
+          "meaning": "مبدئيًا",
+          "example": "We have tentatively agreed to meet on Friday."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Dialogue",
+          "body": "A: The deadline may be difficult to meet. B: Could we deliver the first stage on Friday and the rest next week? A: That seems feasible. Let us clarify responsibilities."
+        },
+        {
+          "heading": "Language focus",
+          "body": "Use could we…? to suggest options politely. A trade-off describes what is gained and sacrificed. Tentatively signals that an arrangement is not final."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "A trade-off is…",
+          "options": [
+            "A balance between competing benefits and costs",
+            "A final invoice",
+            "A personal introduction"
+          ],
+          "answer_index": 0,
+          "explanation": "A trade-off involves accepting a limitation in exchange for another benefit."
+        },
+        {
+          "question": "Which phrase politely suggests an option?",
+          "options": [
+            "Could we deliver the first stage on Friday?",
+            "You must do it now.",
+            "Your idea is useless."
+          ],
+          "answer_index": 0,
+          "explanation": "Could we…? is a collaborative way to suggest an option."
+        },
+        {
+          "question": "A tentative agreement is…",
+          "options": [
+            "Provisional and not yet final",
+            "Guaranteed forever",
+            "Already cancelled"
+          ],
+          "answer_index": 0,
+          "explanation": "Tentative means provisional or subject to confirmation."
+        }
+      ]
+    },
+    {
+      "id": "c1-presenting-complex-issues",
+      "title": "Presenting a complex issue clearly",
+      "level": "C1",
+      "language": "en",
+      "track": "general-english",
+      "description": "Structure a concise presentation of a complex issue.",
+      "objectives": [
+        "Signpost a presentation",
+        "Summarize competing considerations",
+        "Separate findings from recommendations"
+      ],
+      "vocabulary": [
+        {
+          "term": "Counterargument",
+          "meaning": "حجة مضادة",
+          "example": "The main counterargument concerns cost."
+        },
+        {
+          "term": "On balance",
+          "meaning": "بعد الموازنة",
+          "example": "On balance, the second option is preferable."
+        },
+        {
+          "term": "Implementation",
+          "meaning": "تنفيذ",
+          "example": "Implementation will require staff training."
+        },
+        {
+          "term": "Recommendation",
+          "meaning": "توصية",
+          "example": "My recommendation is to run a pilot."
+        },
+        {
+          "term": "Signpost",
+          "meaning": "يمهد أو يوضح مسار العرض",
+          "example": "First, I will signpost the main issues."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Presentation extract",
+          "body": "The proposal could reduce delays. The main counterargument concerns implementation costs. On balance, the evidence supports a limited pilot rather than a full launch. I recommend a three-month trial with clear measures of success."
+        },
+        {
+          "heading": "Language focus",
+          "body": "Signposting phrases guide listeners. Present a counterargument fairly before responding to it, and distinguish reported evidence from your own recommendation."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "A counterargument…",
+          "options": [
+            "Presents a reason against a position",
+            "Repeats the title",
+            "Lists unrelated facts"
+          ],
+          "answer_index": 0,
+          "explanation": "A counterargument challenges or qualifies the main position."
+        },
+        {
+          "question": "Which phrase signals a conclusion after weighing factors?",
+          "options": [
+            "On balance",
+            "By accident",
+            "At first sight only"
+          ],
+          "answer_index": 0,
+          "explanation": "On balance introduces a conclusion after considering different factors."
+        },
+        {
+          "question": "A recommendation should be…",
+          "options": [
+            "Distinguished from the evidence supporting it",
+            "Presented as a proven fact without support",
+            "Hidden from the audience"
+          ],
+          "answer_index": 0,
+          "explanation": "Professional communication separates findings from proposed actions."
+        }
+      ]
+    },
+    {
+      "id": "c2-editing-for-precision",
+      "title": "Editing for precision and tone",
+      "level": "C2",
+      "language": "en",
+      "track": "general-english",
+      "description": "Revise professional prose for precision, nuance and register.",
+      "objectives": [
+        "Replace vague claims with specific descriptions",
+        "Calibrate certainty",
+        "Remove ambiguity without oversimplifying"
+      ],
+      "vocabulary": [
+        {
+          "term": "Ambiguous",
+          "meaning": "ملتبس",
+          "example": "The instruction is ambiguous about who must respond."
+        },
+        {
+          "term": "Substantiate",
+          "meaning": "يدعم بالأدلة",
+          "example": "The report does not substantiate that conclusion."
+        },
+        {
+          "term": "Proportionate",
+          "meaning": "متناسب",
+          "example": "The response should be proportionate to the risk."
+        },
+        {
+          "term": "Unduly",
+          "meaning": "على نحو مفرط",
+          "example": "The process should not be unduly burdensome."
+        },
+        {
+          "term": "Precisely",
+          "meaning": "على وجه الدقة",
+          "example": "State precisely which figures require revision."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Editing example",
+          "body": "Vague: “The process is bad.” Revised: “The current process creates avoidable delays and places a disproportionate administrative burden on small teams.” The revision identifies the problem without an unsupported absolute judgment."
+        },
+        {
+          "heading": "Language focus",
+          "body": "Choose verbs that match the evidence: indicate, suggest, demonstrate or substantiate. Avoid absolute wording unless the evidence warrants it."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Substantiate means…",
+          "options": [
+            "Support a claim with evidence",
+            "Make a statement less specific",
+            "Change the subject"
+          ],
+          "answer_index": 0,
+          "explanation": "To substantiate is to support an assertion with evidence."
+        },
+        {
+          "question": "An ambiguous instruction…",
+          "options": [
+            "Can be understood in more than one way",
+            "Is always legally binding",
+            "Contains no words"
+          ],
+          "answer_index": 0,
+          "explanation": "Ambiguity arises when wording allows multiple interpretations."
+        },
+        {
+          "question": "Why avoid absolute claims without strong evidence?",
+          "options": [
+            "They may overstate what the evidence establishes",
+            "They always improve accuracy",
+            "They remove all ambiguity"
+          ],
+          "answer_index": 0,
+          "explanation": "The strength of a claim should match the strength of its evidence."
         }
       ]
     }

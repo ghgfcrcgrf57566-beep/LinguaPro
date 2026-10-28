@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "2026.10.28.8",
+  "content_version": "2026.10.28.11",
   "lessons": [
     {
       "id": "legal-mediation",
@@ -287,6 +287,990 @@
           ],
           "answer_index": 0,
           "explanation": "The scope of work describes the legal services covered by the engagement."
+        }
+      ]
+    },
+    {
+      "id": "legal-a1-client-greeting",
+      "title": "Greeting a client at reception",
+      "level": "A1",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Use simple greetings and identity questions in a legal office.",
+      "objectives": [
+        "Greet a visitor politely",
+        "Ask and state names",
+        "Identify a simple appointment"
+      ],
+      "vocabulary": [
+        {
+          "term": "Client",
+          "meaning": "موكّل / عميل",
+          "example": "The client is here."
+        },
+        {
+          "term": "Lawyer",
+          "meaning": "محامٍ",
+          "example": "The lawyer is in the office."
+        },
+        {
+          "term": "Name",
+          "meaning": "اسم",
+          "example": "What is your name?"
+        },
+        {
+          "term": "Appointment",
+          "meaning": "موعد",
+          "example": "I have an appointment."
+        },
+        {
+          "term": "Please wait",
+          "meaning": "يرجى الانتظار",
+          "example": "Please wait here."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Dialogue",
+          "body": "Receptionist: Good morning. What is your name?\\nVisitor: My name is Ali. I have an appointment.\\nReceptionist: Thank you. Please wait here."
+        },
+        {
+          "heading": "Language focus",
+          "body": "Use “What is your name?” to ask for a name and “I have an appointment” to explain why you are visiting. In a real office, follow local confidentiality and visitor procedures."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which sentence tells reception you have a meeting arranged?",
+          "options": [
+            "I have an appointment.",
+            "I am a witness.",
+            "Close the door."
+          ],
+          "answer_index": 0,
+          "explanation": "An appointment is an arranged meeting."
+        },
+        {
+          "question": "Who may receive legal advice from a lawyer?",
+          "options": [
+            "A client",
+            "A courthouse building",
+            "A document"
+          ],
+          "answer_index": 0,
+          "explanation": "A client is the person receiving professional legal services."
+        },
+        {
+          "question": "Choose a polite instruction.",
+          "options": [
+            "Please wait here.",
+            "Wait now, you!",
+            "You name."
+          ],
+          "answer_index": 0,
+          "explanation": "Please makes the instruction more polite."
+        }
+      ]
+    },
+    {
+      "id": "legal-a2-appointment-details",
+      "title": "Arranging a client appointment",
+      "level": "A2",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Ask about dates, times and basic documents for an appointment.",
+      "objectives": [
+        "Ask when a client is available",
+        "Confirm date and time",
+        "Request a relevant document politely"
+      ],
+      "vocabulary": [
+        {
+          "term": "Available",
+          "meaning": "متاح",
+          "example": "Are you available on Tuesday?"
+        },
+        {
+          "term": "Confirm",
+          "meaning": "يؤكد",
+          "example": "Please confirm the appointment."
+        },
+        {
+          "term": "Document",
+          "meaning": "مستند",
+          "example": "Please bring the document."
+        },
+        {
+          "term": "At noon",
+          "meaning": "عند الظهر",
+          "example": "The appointment is at noon."
+        },
+        {
+          "term": "Reschedule",
+          "meaning": "يعيد تحديد الموعد",
+          "example": "Can we reschedule the meeting?"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Dialogue",
+          "body": "Lawyer: Are you available on Tuesday at noon?\\nClient: Yes, I am.\\nLawyer: Please bring the contract and your identification document.\\nClient: I will bring them."
+        },
+        {
+          "heading": "Language focus",
+          "body": "Use “Are you available…?” to ask about availability. Use “Could you bring…?” for a polite request. Confirm the date and time clearly to avoid misunderstandings."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which phrase asks politely for a document?",
+          "options": [
+            "Could you bring the contract, please?",
+            "Bring it because I said so.",
+            "Where contract yesterday?"
+          ],
+          "answer_index": 0,
+          "explanation": "Could you… please? is a polite request."
+        },
+        {
+          "question": "What does reschedule mean?",
+          "options": [
+            "Arrange a new time",
+            "Sign a judgment",
+            "Translate a witness"
+          ],
+          "answer_index": 0,
+          "explanation": "To reschedule is to change the planned date or time."
+        },
+        {
+          "question": "Which detail should be confirmed for an appointment?",
+          "options": [
+            "Date and time",
+            "The client's favourite colour",
+            "An unrelated address"
+          ],
+          "answer_index": 0,
+          "explanation": "Confirming date and time prevents scheduling confusion."
+        }
+      ]
+    },
+    {
+      "id": "legal-b1-narrating-facts",
+      "title": "Narrating facts in a client interview",
+      "level": "B1",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Use past simple and sequence markers to report a client's account clearly.",
+      "objectives": [
+        "Describe events in chronological order",
+        "Use past-tense verbs accurately",
+        "Separate reported facts from assumptions"
+      ],
+      "vocabulary": [
+        {
+          "term": "Occurred",
+          "meaning": "وقع / حدث",
+          "example": "The incident occurred on Monday."
+        },
+        {
+          "term": "According to",
+          "meaning": "وفقًا لـ",
+          "example": "According to the client, the payment was made."
+        },
+        {
+          "term": "Subsequently",
+          "meaning": "لاحقًا / بعد ذلك",
+          "example": "The parties subsequently exchanged letters."
+        },
+        {
+          "term": "Allege",
+          "meaning": "يدّعي",
+          "example": "The claimant alleges that the goods were damaged."
+        },
+        {
+          "term": "Record",
+          "meaning": "يسجل / محضر",
+          "example": "Please record the date of the call."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Interview note",
+          "body": "According to the client, the agreement was signed in March. The goods arrived two weeks later, but several items were missing. The client subsequently sent a written complaint. The supplier has not yet responded."
+        },
+        {
+          "heading": "Language focus",
+          "body": "Use the past simple for completed events. Sequence markers such as first, later and subsequently help establish chronology. “Allege” attributes a claim to a party; it does not mean the allegation has been proven."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which verb introduces a claim that is not yet established as fact?",
+          "options": [
+            "Allege",
+            "Prove",
+            "Guarantee"
+          ],
+          "answer_index": 0,
+          "explanation": "Allege reports a party's assertion without treating it as proven."
+        },
+        {
+          "question": "Which phrase helps show chronology?",
+          "options": [
+            "Subsequently",
+            "Nevertheless",
+            "Although"
+          ],
+          "answer_index": 0,
+          "explanation": "Subsequently means later or after that."
+        },
+        {
+          "question": "Why write “according to the client”?",
+          "options": [
+            "To identify the source of the account",
+            "To prove the account automatically",
+            "To omit the source"
+          ],
+          "answer_index": 0,
+          "explanation": "Attribution distinguishes a person's account from an independently established fact."
+        }
+      ]
+    },
+    {
+      "id": "legal-b2-structuring-submissions",
+      "title": "Structuring written legal submissions",
+      "level": "B2",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Organize a legal submission around issues, authority, analysis and relief.",
+      "objectives": [
+        "State an issue precisely",
+        "Link authority to analysis",
+        "Present a clear requested remedy"
+      ],
+      "vocabulary": [
+        {
+          "term": "Issue",
+          "meaning": "مسألة محل نزاع",
+          "example": "The central issue is whether notice was valid."
+        },
+        {
+          "term": "Authority",
+          "meaning": "سند أو مرجع قانوني",
+          "example": "The submission relies on statutory authority."
+        },
+        {
+          "term": "Interpretation",
+          "meaning": "تفسير",
+          "example": "The interpretation depends on the wording of the provision."
+        },
+        {
+          "term": "Accordingly",
+          "meaning": "وبناءً عليه",
+          "example": "Accordingly, the appellant requests that the order be set aside."
+        },
+        {
+          "term": "Relief sought",
+          "meaning": "الطلب أو الإنصاف المطلوب",
+          "example": "The relief sought is stated in the final section."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Model structure",
+          "body": "Issue: whether the notice complied with the contract. Rule: the relevant clause requires written notice. Analysis: the email record indicates that notice was sent before the deadline, although receipt remains disputed. Conclusion: the court is respectfully asked to determine whether the contractual requirement was satisfied."
+        },
+        {
+          "heading": "Legal-language caution",
+          "body": "A persuasive submission separates the issue, governing rule, application to facts and conclusion. The terms “appellant”, “claimant”, “applicant” and “petitioner” vary by procedural posture and jurisdiction; use the term adopted by the relevant court."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does “relief sought” identify?",
+          "options": [
+            "The remedy or order requested",
+            "The lawyer's office address",
+            "A witness's accent"
+          ],
+          "answer_index": 0,
+          "explanation": "Relief sought states what the party asks the court to order."
+        },
+        {
+          "question": "A strong legal submission should…",
+          "options": [
+            "Connect authority to the facts and requested result",
+            "List laws without analysis",
+            "Treat every allegation as proven"
+          ],
+          "answer_index": 0,
+          "explanation": "Legal analysis explains how the relevant rule applies to the facts."
+        },
+        {
+          "question": "Why should procedural party labels be checked by jurisdiction?",
+          "options": [
+            "Their meanings and use can differ between systems",
+            "They are identical in every court",
+            "They never appear in legal writing"
+          ],
+          "answer_index": 0,
+          "explanation": "Procedural terminology depends on the court and legal system."
+        }
+      ]
+    },
+    {
+      "id": "legal-c1-comparative-terminology",
+      "title": "Comparing legal terminology across systems",
+      "level": "C1",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Explain why similar English legal terms may have different meanings across jurisdictions.",
+      "objectives": [
+        "Compare terms without assuming equivalence",
+        "Qualify jurisdiction-specific definitions",
+        "Explain a translation choice"
+      ],
+      "vocabulary": [
+        {
+          "term": "Jurisdiction",
+          "meaning": "اختصاص قضائي أو ولاية قانونية",
+          "example": "The court's jurisdiction depends on the statute."
+        },
+        {
+          "term": "Equivalence",
+          "meaning": "تكافؤ / مقابلة اصطلاحية",
+          "example": "There is no exact equivalence between the two terms."
+        },
+        {
+          "term": "Precedent",
+          "meaning": "سابقة قضائية",
+          "example": "Precedent has a different role across legal systems."
+        },
+        {
+          "term": "Codified",
+          "meaning": "مقنن / مدون في تشريع",
+          "example": "The rule is codified in a statute."
+        },
+        {
+          "term": "Context-dependent",
+          "meaning": "يتوقف على السياق",
+          "example": "The translation is context-dependent."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Comparative note",
+          "body": "The English word “equity” can refer to a body of doctrine in some common-law systems, while in ordinary financial writing it may mean ownership value. A translation should therefore identify the field, jurisdiction and procedural context before selecting an Arabic equivalent."
+        },
+        {
+          "heading": "Translation method",
+          "body": "Avoid one-to-one substitution when institutions differ. State the source jurisdiction, explain the function of the institution, and use a short explanatory gloss if the target system has no direct equivalent."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What should guide translation of a jurisdiction-specific term?",
+          "options": [
+            "Its function and legal context",
+            "Its spelling alone",
+            "The shortest possible Arabic word"
+          ],
+          "answer_index": 0,
+          "explanation": "Legal translation requires functional and contextual analysis."
+        },
+        {
+          "question": "If no exact equivalent exists, the translator should…",
+          "options": [
+            "Explain the concept and qualify the translation",
+            "Invent an identical institution",
+            "Ignore the jurisdiction"
+          ],
+          "answer_index": 0,
+          "explanation": "An explanatory gloss can preserve meaning without claiming false equivalence."
+        },
+        {
+          "question": "Why is “equity” potentially ambiguous?",
+          "options": [
+            "It has different legal and ordinary meanings",
+            "It always means the same thing",
+            "It is never used in law"
+          ],
+          "answer_index": 0,
+          "explanation": "The term's meaning changes with legal system and context."
+        }
+      ]
+    },
+    {
+      "id": "legal-c2-advanced-opinion-drafting",
+      "title": "Drafting a qualified legal opinion",
+      "level": "C2",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Draft nuanced legal analysis that distinguishes settled rules, factual uncertainty and risk.",
+      "objectives": [
+        "Qualify conclusions accurately",
+        "Separate law, evidence and assumptions",
+        "Express risk without overstating certainty"
+      ],
+      "vocabulary": [
+        {
+          "term": "On the present record",
+          "meaning": "في ضوء الأوراق المتاحة حاليًا",
+          "example": "On the present record, the claim appears arguable."
+        },
+        {
+          "term": "Subject to",
+          "meaning": "رهناً بـ / مع مراعاة",
+          "example": "The conclusion is subject to verification of the original document."
+        },
+        {
+          "term": "Material",
+          "meaning": "جوهري / مؤثر",
+          "example": "The discrepancy may be material to liability."
+        },
+        {
+          "term": "Contingent upon",
+          "meaning": "متوقف على",
+          "example": "The outcome is contingent upon the court's findings."
+        },
+        {
+          "term": "In the alternative",
+          "meaning": "احتياطيًا / على سبيل البديل",
+          "example": "In the alternative, the client may seek compensation."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Opinion extract",
+          "body": "On the present record, the claim appears arguable, subject to verification of the signed original and the applicable limitation period. The discrepancy may be material if the court finds that it affected performance. The likely outcome remains contingent upon the evidence admitted and the court's interpretation of the governing provision."
+        },
+        {
+          "heading": "Drafting discipline",
+          "body": "Distinguish a legal rule from a factual assumption and a prediction. “May”, “likely” and “subject to” should reflect the actual degree of uncertainty. Procedural phrases such as “in the alternative” must match the remedies available under the relevant law."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does “on the present record” signal?",
+          "options": [
+            "The assessment is based on currently available materials",
+            "The outcome is guaranteed",
+            "The case has already been decided"
+          ],
+          "answer_index": 0,
+          "explanation": "The phrase limits the opinion to the evidence currently available."
+        },
+        {
+          "question": "A conclusion “subject to verification” is…",
+          "options": [
+            "Conditional on checking a relevant fact or document",
+            "Unconditionally final",
+            "A statement that no evidence matters"
+          ],
+          "answer_index": 0,
+          "explanation": "The conclusion depends on a verification step."
+        },
+        {
+          "question": "Why use “may” in a legal opinion?",
+          "options": [
+            "To reflect a qualified possibility where appropriate",
+            "To make every conclusion uncertain",
+            "To replace legal analysis"
+          ],
+          "answer_index": 0,
+          "explanation": "Modal verbs should express the level of certainty supported by the analysis."
+        }
+      ]
+    },
+    {
+      "id": "legal-a1-finding-office-documents",
+      "title": "Finding an office and naming documents",
+      "level": "A1",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Ask for a legal office and identify basic documents.",
+      "objectives": [
+        "Ask where an office is",
+        "Recognize document names",
+        "Make polite requests"
+      ],
+      "vocabulary": [
+        {
+          "term": "Form",
+          "meaning": "استمارة",
+          "example": "Please complete this form."
+        },
+        {
+          "term": "Copy",
+          "meaning": "نسخة",
+          "example": "I need a copy of the document."
+        },
+        {
+          "term": "Signature",
+          "meaning": "توقيع",
+          "example": "Please add your signature here."
+        },
+        {
+          "term": "Reception",
+          "meaning": "الاستقبال",
+          "example": "The reception desk is downstairs."
+        },
+        {
+          "term": "Where",
+          "meaning": "أين",
+          "example": "Where is the lawyer's office?"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Dialogue",
+          "body": "Visitor: Excuse me, where is the lawyer's office? Receptionist: It is upstairs, on the left. Visitor: Do I need this form? Receptionist: Yes, please complete it and sign here."
+        },
+        {
+          "heading": "Language focus",
+          "body": "Use “Where is…?” to ask about location. A copy reproduces a document; a signature is a person's written name. Do not sign a document you do not understand."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "A signature is…",
+          "options": [
+            "A person's written name used to sign",
+            "A court building",
+            "A meeting time"
+          ],
+          "answer_index": 0,
+          "explanation": "A signature is used to authenticate a document."
+        },
+        {
+          "question": "Choose a polite request.",
+          "options": [
+            "Could I have a copy, please?",
+            "Give copy now!",
+            "Copy where yesterday?"
+          ],
+          "answer_index": 0,
+          "explanation": "Could I… please? is a polite request."
+        },
+        {
+          "question": "Which question asks for a location?",
+          "options": [
+            "Where is the office?",
+            "How much is the office?",
+            "Who signed yesterday?"
+          ],
+          "answer_index": 0,
+          "explanation": "Where asks about a place."
+        }
+      ]
+    },
+    {
+      "id": "legal-a2-explaining-problem",
+      "title": "Explaining a simple legal problem",
+      "level": "A2",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Describe a basic problem and ask which documents are needed.",
+      "objectives": [
+        "Explain what happened",
+        "Use past-tense verbs",
+        "Ask what documents to bring"
+      ],
+      "vocabulary": [
+        {
+          "term": "Receipt",
+          "meaning": "إيصال",
+          "example": "I have the receipt."
+        },
+        {
+          "term": "Paid",
+          "meaning": "دفع",
+          "example": "I paid the amount on Monday."
+        },
+        {
+          "term": "Missing",
+          "meaning": "مفقود",
+          "example": "One document is missing."
+        },
+        {
+          "term": "Explain",
+          "meaning": "يشرح",
+          "example": "Can you explain what happened?"
+        },
+        {
+          "term": "Agreement",
+          "meaning": "اتفاق",
+          "example": "I signed the agreement last month."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Client dialogue",
+          "body": "Client: I paid for the service last month, but I have not received it. Lawyer: Do you have a receipt or written agreement? Client: Yes, I have the receipt. Lawyer: Please bring it so I can review it."
+        },
+        {
+          "heading": "Language focus",
+          "body": "Use the past simple for completed events: paid, signed, sent. Separate what you personally know from what you believe happened."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which document may record a payment?",
+          "options": [
+            "Receipt",
+            "Appointment",
+            "Witness"
+          ],
+          "answer_index": 0,
+          "explanation": "A receipt records a payment or transaction."
+        },
+        {
+          "question": "Which sentence describes a past event?",
+          "options": [
+            "I paid on Monday.",
+            "I pay tomorrow yesterday.",
+            "I paying Monday."
+          ],
+          "answer_index": 0,
+          "explanation": "Paid is the past form of pay."
+        },
+        {
+          "question": "Why bring the relevant document?",
+          "options": [
+            "So the lawyer can review the information",
+            "To guarantee a result",
+            "To replace every other fact"
+          ],
+          "answer_index": 0,
+          "explanation": "Document review helps assess facts but does not guarantee an outcome."
+        }
+      ]
+    },
+    {
+      "id": "legal-b1-professional-email",
+      "title": "Writing a professional email to a lawyer",
+      "level": "B1",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Request a consultation and identify attachments in a clear email.",
+      "objectives": [
+        "Use an appropriate greeting and closing",
+        "State the purpose briefly",
+        "Refer clearly to attachments"
+      ],
+      "vocabulary": [
+        {
+          "term": "Subject line",
+          "meaning": "عنوان الرسالة",
+          "example": "Subject: Request for a consultation"
+        },
+        {
+          "term": "Attached",
+          "meaning": "مرفق",
+          "example": "I have attached a copy of the agreement."
+        },
+        {
+          "term": "Availability",
+          "meaning": "الأوقات المتاحة",
+          "example": "Please let me know your availability."
+        },
+        {
+          "term": "Regarding",
+          "meaning": "بخصوص",
+          "example": "I am writing regarding the contract."
+        },
+        {
+          "term": "Kind regards",
+          "meaning": "مع خالص التحية",
+          "example": "Kind regards, Ali"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Model email",
+          "body": "Subject: Request for a consultation. Dear Ms Ahmed, I am writing regarding a contract dispute. I would like to arrange a consultation next week. I have attached a copy of the agreement for your review. Please let me know your availability. Kind regards, Ali."
+        },
+        {
+          "heading": "Writing focus",
+          "body": "Keep the subject specific, explain the purpose early and identify attachments accurately. Use an appropriate secure channel for confidential information."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Attached means…",
+          "options": [
+            "Included as a file with the message",
+            "Sent on a different day",
+            "Deleted permanently"
+          ],
+          "answer_index": 0,
+          "explanation": "An attachment is a file included with an email."
+        },
+        {
+          "question": "Which phrase asks politely for meeting times?",
+          "options": [
+            "Please let me know your availability.",
+            "Tell me immediately or else.",
+            "I have no question."
+          ],
+          "answer_index": 0,
+          "explanation": "This phrase politely asks when the recipient is available."
+        },
+        {
+          "question": "A useful subject line should…",
+          "options": [
+            "Identify the purpose briefly",
+            "Contain the whole argument",
+            "Always be blank"
+          ],
+          "answer_index": 0,
+          "explanation": "A concise subject line helps the recipient understand the email."
+        }
+      ]
+    },
+    {
+      "id": "legal-b2-contractual-obligations",
+      "title": "Explaining contractual obligations",
+      "level": "B2",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Identify obligations, conditions and consequences in a sample clause.",
+      "objectives": [
+        "Explain obligation and permission language",
+        "Distinguish a condition from a duty",
+        "Describe a possible contractual consequence"
+      ],
+      "vocabulary": [
+        {
+          "term": "Obligation",
+          "meaning": "التزام",
+          "example": "The supplier has an obligation to deliver."
+        },
+        {
+          "term": "Condition",
+          "meaning": "شرط",
+          "example": "Payment is subject to inspection."
+        },
+        {
+          "term": "Breach",
+          "meaning": "إخلال",
+          "example": "Late delivery may constitute a breach."
+        },
+        {
+          "term": "Remedy",
+          "meaning": "وسيلة معالجة أو جبر",
+          "example": "The contract specifies a remedy for delay."
+        },
+        {
+          "term": "Subject to",
+          "meaning": "رهناً بـ",
+          "example": "Payment is subject to written confirmation."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Sample clause",
+          "body": "The supplier must deliver the goods by 30 June. Payment is subject to inspection and written confirmation by the buyer. If delivery is late, the buyer may exercise a remedy available under the contract and applicable law."
+        },
+        {
+          "heading": "Language focus",
+          "body": "Must generally expresses a requirement; may can express permission or possibility. The effect of shall depends on drafting context and governing law. Read the whole agreement before drawing a legal conclusion."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which word most directly expresses a requirement here?",
+          "options": [
+            "Must",
+            "May",
+            "Might"
+          ],
+          "answer_index": 0,
+          "explanation": "Must expresses an obligation in this sample."
+        },
+        {
+          "question": "A breach is…",
+          "options": [
+            "A failure to comply with an obligation",
+            "A meeting invitation",
+            "A signature"
+          ],
+          "answer_index": 0,
+          "explanation": "Breach describes failure to perform a duty."
+        },
+        {
+          "question": "Why check the governing law?",
+          "options": [
+            "Legal effects can depend on context and jurisdiction",
+            "All contracts have identical remedies",
+            "The title alone decides the outcome"
+          ],
+          "answer_index": 0,
+          "explanation": "Interpretation depends on the full agreement and applicable law."
+        }
+      ]
+    },
+    {
+      "id": "legal-c1-analyzing-judgments",
+      "title": "Analyzing a judgment and its reasoning",
+      "level": "C1",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Summarize the issue, reasoning and outcome of a judgment.",
+      "objectives": [
+        "Identify the issue and holding",
+        "Summarize judicial reasoning",
+        "Separate material facts from the rule"
+      ],
+      "vocabulary": [
+        {
+          "term": "Holding",
+          "meaning": "القاعدة أو النتيجة التي قررتها المحكمة",
+          "example": "The holding addressed the statutory duty."
+        },
+        {
+          "term": "Reasoning",
+          "meaning": "التعليل",
+          "example": "The reasoning relied on the statutory text."
+        },
+        {
+          "term": "Issue",
+          "meaning": "المسألة القانونية",
+          "example": "The issue was whether notice was timely."
+        },
+        {
+          "term": "Distinguish",
+          "meaning": "يميز",
+          "example": "The court distinguished the earlier case."
+        },
+        {
+          "term": "Rationale",
+          "meaning": "المسوغ",
+          "example": "The rationale appeared in the final section."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Case note",
+          "body": "Issue: whether notice complied with the statutory deadline. Holding: the notice was ineffective because it arrived late. Reasoning: the court treated the deadline as mandatory and found no applicable exception. Background facts describe what happened; the holding resolves the issue."
+        },
+        {
+          "heading": "Analysis method",
+          "body": "A concise case note identifies the issue, holding, material facts and reasoning. When comparing authorities, explain whether a prior case is followed, distinguished or merely discussed. Precedent rules vary by legal system."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "The holding is…",
+          "options": [
+            "The court's decision on the legal issue",
+            "Every fact mentioned by a witness",
+            "The lawyer's private opinion"
+          ],
+          "answer_index": 0,
+          "explanation": "The holding is the decision or rule applied to resolve the issue."
+        },
+        {
+          "question": "Why separate facts from reasoning?",
+          "options": [
+            "They play different roles in explaining the decision",
+            "They are always identical",
+            "Facts never matter"
+          ],
+          "answer_index": 0,
+          "explanation": "Facts describe events; reasoning explains how the court reached its decision."
+        },
+        {
+          "question": "To distinguish an earlier case is to…",
+          "options": [
+            "Explain relevant differences between cases",
+            "Automatically copy its outcome",
+            "Delete the earlier judgment"
+          ],
+          "answer_index": 0,
+          "explanation": "Distinguishing relies on material differences."
+        }
+      ]
+    },
+    {
+      "id": "legal-c2-opinion-risk-analysis",
+      "title": "Drafting a nuanced legal risk assessment",
+      "level": "C2",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Express legal risk with calibrated certainty, explicit assumptions and next steps.",
+      "objectives": [
+        "Separate facts from assumptions",
+        "Qualify conclusions in proportion to evidence",
+        "Recommend targeted verification"
+      ],
+      "vocabulary": [
+        {
+          "term": "Assumption",
+          "meaning": "افتراض",
+          "example": "This assessment assumes the copy is complete."
+        },
+        {
+          "term": "Exposure",
+          "meaning": "التعرض للمسؤولية أو المخاطر",
+          "example": "The company may face contractual exposure."
+        },
+        {
+          "term": "Mitigate",
+          "meaning": "يخفف",
+          "example": "Written notice may mitigate the risk."
+        },
+        {
+          "term": "Inconclusive",
+          "meaning": "غير حاسم",
+          "example": "The record is inconclusive on delivery."
+        },
+        {
+          "term": "Subject to verification",
+          "meaning": "رهناً بالتحقق",
+          "example": "The conclusion is subject to verification."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Opinion extract",
+          "body": "On the documents currently available, the claim presents a material but not determinative risk. This assessment assumes the supplied copy is complete; the delivery record remains inconclusive. Before a final recommendation, verify the original agreement and proof of notice."
+        },
+        {
+          "heading": "Drafting discipline",
+          "body": "State the basis of the assessment, identify uncertainties that could change the outcome and recommend proportionate next steps. Avoid numerical risk estimates unless a defensible method and sufficient data support them."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Inconclusive evidence…",
+          "options": [
+            "Does not establish a definite conclusion",
+            "Proves every allegation",
+            "Is always irrelevant"
+          ],
+          "answer_index": 0,
+          "explanation": "Inconclusive evidence does not settle the question."
+        },
+        {
+          "question": "Why state an assumption?",
+          "options": [
+            "To show what the conclusion depends on",
+            "To hide missing information",
+            "To guarantee the result"
+          ],
+          "answer_index": 0,
+          "explanation": "Explicit assumptions clarify the limits of an opinion."
+        },
+        {
+          "question": "A proportionate recommendation should…",
+          "options": [
+            "Address the identified uncertainty without overstating what is needed",
+            "Ignore the uncertainty",
+            "Promise a guaranteed outcome"
+          ],
+          "answer_index": 0,
+          "explanation": "A proportionate step responds to the actual risk and evidence."
         }
       ]
     }

@@ -1,12 +1,26 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:english_learning_legal_academy/app/academy_app.dart';
 
 void main() {
-  testWidgets('dashboard shows key learning tracks', (tester) async {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
+  setUp(() {
+    SharedPreferences.setMockInitialValues(<String, Object>{});
+  });
+
+  testWidgets('dashboard shows the game-like learning path', (tester) async {
     await tester.pumpWidget(const AcademyApp());
-    expect(find.text('أكاديمية الإنجليزية'), findsOneWidget);
-    expect(find.text('مسارات التعلّم'), findsOneWidget);
-    expect(find.text('أكاديمية الإنجليزية القانونية'), findsOneWidget);
-    expect(find.text('المعلّم الذكي'), findsOneWidget);
+    await tester.pumpAndSettle();
+
+    expect(find.text('LinguaPro'), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text('خريطة التعلّم'),
+      450,
+      scrollable: find.byType(Scrollable).first,
+    );
+    expect(find.text('خريطة التعلّم'), findsOneWidget);
+    expect(find.text('تحدياتك'), findsOneWidget);
   });
 }

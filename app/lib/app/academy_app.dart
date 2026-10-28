@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../features/home/home_screen.dart';
+import '../features/home/learning_map_screen.dart';
 import '../services/app_preferences.dart';
 
 class AcademyApp extends StatelessWidget {
@@ -9,7 +9,7 @@ class AcademyApp extends StatelessWidget {
   ThemeData _buildTheme(Brightness brightness) {
     final dark = brightness == Brightness.dark;
     final scheme = ColorScheme.fromSeed(
-      seedColor: const Color(0xFF4968E8),
+      seedColor: const Color(0xFF1D9B69),
       secondary: const Color(0xFFE9B95D),
       brightness: brightness,
     );
@@ -57,7 +57,7 @@ class AcademyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: const HomeScreen(),
+        home: const LearningMapScreen(),
       ),
     );
   }
