@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "content_version": "2026.10.28.7",
+  "lessons": [
+    {
+      "id": "a1-work-and-study",
+      "title": "Work, study and daily tasks",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "Talk about work, study and common tasks.",
+      "objectives": [
+        "Name work and study activities",
+        "Ask simple questions",
+        "Use present-simple sentences"
+      ],
+      "vocabulary": [
+        {
+          "term": "Office",
+          "meaning": "مكتب",
+          "example": "I work in an office.",
+          "pronunciation": "OFF-iss"
+        },
+        {
+          "term": "Colleague",
+          "meaning": "زميل عمل",
+          "example": "My colleague is helpful."
+        },
+        {
+          "term": "Meeting",
+          "meaning": "اجتماع",
+          "example": "The meeting starts at nine."
+        },
+        {
+          "term": "Study",
+          "meaning": "يدرس / دراسة",
+          "example": "I study English every day."
+        },
+        {
+          "term": "Task",
+          "meaning": "مهمة",
+          "example": "This is my first task."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Useful dialogue",
+          "body": "A: Where do you work?\nB: I work in an office.\nA: Do you have a meeting today?\nB: Yes, at nine o’clock."
+        },
+        {
+          "heading": "Language tip",
+          "body": "Use “I work” for a routine. Use “I am working” for an activity happening now."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Choose the correct sentence.",
+          "options": [
+            "I works in an office.",
+            "I work in an office.",
+            "I working in an office."
+          ],
+          "answer_index": 1,
+          "explanation": "With I, use the base verb: I work."
+        },
+        {
+          "question": "What is a colleague?",
+          "options": [
+            "A co-worker",
+            "A meal",
+            "A building"
+          ],
+          "answer_index": 0,
+          "explanation": "A colleague is someone you work with."
+        }
+      ]
+    },
+    {
+      "id": "a2-past-weekend",
+      "title": "Talking about last weekend",
+      "level": "A2",
+      "language": "en",
+      "track": "general-english",
+      "description": "Describe completed activities using common past-simple verbs.",
+      "objectives": [
+        "Use common past-tense verbs",
+        "Ask what someone did",
+        "Describe a past day"
+      ],
+      "vocabulary": [
+        {
+          "term": "Visited",
+          "meaning": "زار",
+          "example": "We visited our friends on Friday."
+        },
+        {
+          "term": "Bought",
+          "meaning": "اشترى",
+          "example": "She bought a new book."
+        },
+        {
+          "term": "Went",
+          "meaning": "ذهب",
+          "example": "They went to the market."
+        },
+        {
+          "term": "Stayed",
+          "meaning": "بقي",
+          "example": "I stayed at home."
+        },
+        {
+          "term": "Enjoyed",
+          "meaning": "استمتع",
+          "example": "We enjoyed the trip."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Useful dialogue",
+          "body": "A: What did you do last weekend?\nB: I visited my family and went to the market.\nA: Did you enjoy it?\nB: Yes, I did."
+        },
+        {
+          "heading": "Language tip",
+          "body": "In past questions, use did + the base verb: Did you go?"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Choose the correct question.",
+          "options": [
+            "Did you went home?",
+            "Did you go home?",
+            "Do you went home?"
+          ],
+          "answer_index": 1,
+          "explanation": "After did, use the base form go."
+        },
+        {
+          "question": "Past form of buy:",
+          "options": [
+            "Buyed",
+            "Bought",
+            "Buying"
+          ],
+          "answer_index": 1,
+          "explanation": "Buy is irregular; its past form is bought."
+        }
+      ]
+    }
+  ]
+}
