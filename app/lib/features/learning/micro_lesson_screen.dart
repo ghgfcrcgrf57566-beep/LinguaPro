@@ -139,10 +139,10 @@ class _MicroLessonScreenState extends State<MicroLessonScreen> {
       if (correct) {
         await LearningEngine.instance.awardXp(eventId: '$eventId:xp', points: 1);
         await LearningSoundService.instance.correct();
-        await HapticFeedback.lightImpact();
+        try { await HapticFeedback.lightImpact(); } catch (_) { /* Haptics are optional. */ }
       } else {
         await LearningSoundService.instance.incorrect();
-        await HapticFeedback.mediumImpact();
+        try { await HapticFeedback.mediumImpact(); } catch (_) { /* Haptics are optional. */ }
       }
       if (!mounted) return;
       setState(() {
@@ -240,7 +240,7 @@ class _MicroLessonScreenState extends State<MicroLessonScreen> {
       );
       await LearningStore.instance.markLessonComplete(widget.lesson.id);
       await LearningSoundService.instance.complete();
-      await HapticFeedback.heavyImpact();
+      try { await HapticFeedback.heavyImpact(); } catch (_) { /* Haptics are optional. */ }
       final xpAfter = await LearningEngine.instance.totalXp();
       if (!mounted) return;
       setState(() {
