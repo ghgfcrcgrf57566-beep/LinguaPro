@@ -78,7 +78,7 @@ void main() {
     test('word bank options contain every target token and are not the untouched sentence order', () {
       final steps = MicroLessonFlow.build(sampleLesson());
       final wordBank = steps.firstWhere((step) => step.type == MicroStepType.wordBank);
-      final expected = wordBank.acceptedAnswers.single.split(RegExp(r'\\s+'));
+      final expected = wordBank.acceptedAnswers.single.split(RegExp(r'\s+'));
       final actual = wordBank.options.toSet();
 
       for (final token in expected) {
