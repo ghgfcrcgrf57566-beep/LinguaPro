@@ -4,14 +4,15 @@
   "lessons": [
     {
       "id": "a1-greetings",
-      "title": "التحيات والتعارف",
+      "title": "Greetings and introductions",
       "level": "A1",
+      "language": "en",
       "track": "general-english",
-      "description": "تعلم التحية والتعريف بنفسك والسؤال عن الاسم.",
+      "description": "Learn common greetings and how to introduce yourself politely.",
       "objectives": [
-        "استخدام التحيات الأساسية",
-        "السؤال عن الاسم والإجابة",
-        "تكوين جملة تعريف بسيطة"
+        "Use a basic greeting.",
+        "Ask and answer someone's name.",
+        "Introduce yourself with a short sentence."
       ],
       "vocabulary": [
         {
@@ -21,124 +22,98 @@
           "pronunciation": "heh-LOH"
         },
         {
-          "term": "Name",
-          "meaning": "اسم",
-          "example": "What is your name?",
-          "pronunciation": "naym"
+          "term": "Nice to meet you",
+          "meaning": "سعيد بلقائك",
+          "example": "Nice to meet you, Ahmed."
         },
         {
-          "term": "Friend",
-          "meaning": "صديق",
-          "example": "He is my friend.",
-          "pronunciation": "frend"
-        },
-        {
-          "term": "Meet",
-          "meaning": "يقابل / يتعرف إلى",
-          "example": "Nice to meet you.",
-          "pronunciation": "meet"
+          "term": "My name is...",
+          "meaning": "اسمي...",
+          "example": "My name is Ali."
         }
       ],
       "sections": [
         {
-          "heading": "حوار قصير",
-          "body": "A: Hello! What is your name?\\nB: My name is Sara.\\nA: Nice to meet you.\\nB: Nice to meet you, too."
+          "heading": "Useful dialogue",
+          "body": "A: Hello! What is your name?\\nB: My name is Sara. What is your name?\\nA: I'm Omar. Nice to meet you.\\nB: Nice to meet you, too."
         },
         {
-          "heading": "ملاحظة لغوية",
-          "body": "تُستخدم عبارة What is your name? للسؤال عن الاسم، ويمكن قول I'm Omar اختصارًا لـ I am Omar."
+          "heading": "Language tip",
+          "body": "Use “What is your name?” to ask for a person's name. “I'm…” is a natural short form of “I am…”."
         }
       ],
       "quiz": [
         {
-          "question": "ما معنى Hello؟",
-          "options": [
-            "وداعًا",
-            "مرحبًا",
-            "شكرًا"
-          ],
-          "answer_index": 1,
-          "explanation": "Hello تعني مرحبًا، وتُستخدم عند التحية."
-        },
-        {
-          "question": "اختر الجملة الصحيحة للتعريف بالاسم.",
+          "question": "Which sentence introduces your name?",
           "options": [
             "My name is Ali.",
-            "My name are Ali.",
-            "I name Ali."
+            "Where are you?",
+            "Good night."
           ],
           "answer_index": 0,
-          "explanation": "My name is... تعني اسمي..."
+          "explanation": "“My name is…” is a common way to introduce yourself."
         }
       ]
     },
     {
       "id": "a1-likes",
-      "title": "التعبير عما تحب",
+      "title": "Talking about things you like",
       "level": "A1",
+      "language": "en",
       "track": "general-english",
-      "description": "تحدث عن الأشياء التي تحبها واسأل الآخرين عن تفضيلاتهم.",
+      "description": "Say what you like and ask another person about their preferences.",
       "objectives": [
-        "استخدام I like",
-        "السؤال What do you like?",
-        "تكوين جملة قصيرة عن التفضيلات"
+        "Use “I like…” with a noun.",
+        "Ask “What do you like?”",
+        "Give a simple positive or negative answer."
       ],
       "vocabulary": [
         {
-          "term": "Book",
+          "term": "book",
           "meaning": "كتاب",
-          "example": "I like books.",
-          "pronunciation": "book"
+          "example": "I like books."
         },
         {
-          "term": "Like",
+          "term": "like",
           "meaning": "يحب / يعجبه",
-          "example": "I like English.",
-          "pronunciation": "layk"
+          "example": "I like English."
         },
         {
-          "term": "Read",
+          "term": "don't like",
+          "meaning": "لا يحب / لا يعجبه",
+          "example": "I don't like cold coffee."
+        },
+        {
+          "term": "read",
           "meaning": "يقرأ",
-          "example": "I read a book.",
-          "pronunciation": "reed"
+          "example": "I read a book."
         },
         {
-          "term": "Music",
+          "term": "music",
           "meaning": "موسيقى",
-          "example": "I like music.",
-          "pronunciation": "MYOO-zik"
+          "example": "I like music."
         }
       ],
       "sections": [
         {
-          "heading": "حوار قصير",
+          "heading": "Ask and answer",
           "body": "A: What do you like?\\nB: I like books. What about you?\\nA: I like music."
         },
         {
-          "heading": "ملاحظة لغوية",
-          "body": "بعد I نستخدم الفعل بصيغته الأساسية: I like books. ولا نقول I likes books."
+          "heading": "Language tip",
+          "body": "Use “I like + noun” to talk about preferences. For example: “I like books.”"
         }
       ],
       "quiz": [
         {
-          "question": "اختر الجملة الصحيحة.",
+          "question": "Choose the correct sentence.",
           "options": [
             "I likes books.",
             "I like books.",
             "I liking books."
           ],
           "answer_index": 1,
-          "explanation": "مع I نستخدم like دون إضافة s."
-        },
-        {
-          "question": "ما معنى Read؟",
-          "options": [
-            "يكتب",
-            "يقرأ",
-            "يسمع"
-          ],
-          "answer_index": 1,
-          "explanation": "Read تعني يقرأ."
+          "explanation": "With “I”, use the base verb “like”."
         }
       ]
     }
