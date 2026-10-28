@@ -370,6 +370,11 @@ class _LessonScreenState extends State<LessonScreen> {
   });
 
   Future<void> _completeLesson() async {
+    await LearningStore.instance.recordQuizResult(
+      lessonId: widget.lesson.id,
+      score: _score,
+      total: widget.lesson.quiz.length,
+    );
     await LearningStore.instance.markLessonComplete(widget.lesson.id);
     if (!mounted) return;
     setState(() => _finished = true);
