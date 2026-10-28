@@ -390,7 +390,7 @@ class _ReviewListState extends State<_ReviewList> {
           Container(
             padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(color: const Color(0xFFEAF0FF), borderRadius: BorderRadius.circular(16)),
-            child: Text('لديك ${due.length} كلمة حان موعد مراجعتها من أصل ${all.length} كلمة مسجلة. الكلمات التي لم تتذكرها تعود للمراجعة بعد نحو أربع ساعات، ثم تتباعد المواعيد مع نجاح التذكر.', style: const TextStyle(height: 1.8)),
+            child: Text('لديك ${due.length} كلمة حان موعد مراجعتها من أصل ${all.length} كلمة مسجلة. يتضمن المحتوى الحالي ${widget.lessons.fold<int>(0, (sum, lesson) => sum + lesson.vocabulary.length)} مفردة تعليمية. الكلمات التي لم تتذكرها تعود للمراجعة بعد نحو أربع ساعات، ثم تتباعد المواعيد مع نجاح التذكر.', style: const TextStyle(height: 1.8)),
           ),
           const SizedBox(height: 14),
           if (all.isEmpty)
