@@ -5,6 +5,7 @@ import '../../models/learning_lesson.dart';
 import '../../services/learning_engine.dart';
 import '../../services/learning_store.dart';
 import '../learning/learning_screen.dart';
+import '../learning/micro_lesson_screen.dart';
 import '../learning/exercise_session_screen.dart';
 import '../learning/mistake_review_screen.dart';
 import '../learning/spaced_review_screen.dart';
@@ -177,7 +178,7 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
             _Level(level:level,count:grouped[level]!.length),const SizedBox(height:12),
             for(final lesson in grouped[level]!)...[
               _LessonNode(index:orderedLessons.indexOf(lesson),lesson:lesson,done:completed.contains(lesson.id),unlocked:orderedLessons.indexOf(lesson)==0||(completed.contains(orderedLessons[orderedLessons.indexOf(lesson)-1].id)&&bestScores[orderedLessons[orderedLessons.indexOf(lesson)-1].id]!=null&&bestScores[orderedLessons[orderedLessons.indexOf(lesson)-1].id]!.percentage>=0.7),onTap:(){
-                Navigator.of(context).push(MaterialPageRoute(builder:(_)=>LessonScreen(lesson:lesson))).then((_)=>refresh());
+                Navigator.of(context).push(MaterialPageRoute(builder:(_)=>MicroLessonScreen(lesson:lesson))).then((_)=>refresh());
               }),
               const SizedBox(height:4)
             ],const SizedBox(height:20)
