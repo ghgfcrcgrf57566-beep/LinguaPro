@@ -125,6 +125,32 @@ void main() {
     });
   });
 
+  test('offline review events remain queued until acknowledged', () async {
+    SharedPreferences.setMockInitialValues(<String, Object>{});
+    final store = LearningStore.instance;
+    await store.recordWord(
+      lessonId: 'a1-greetings',
+      term: 'hello',
+      meaning: 'مرحبًا',
+      correct: false,
+      eventId: 'review-event-1',
+    );
+    await store.recordWord(
+      lessonId: 'a1-greetings',
+      term: 'goodbye',
+      meaning: 'إلى اللقاء',
+      correct: true,
+      eventId: 'review-event-2',
+    );
+    final pending = await store.pendingSyncEvents();
+    expect(pending.map((event) => event['eventId']).toSet(),
+        containsAll(['review-event-1', 'review-event-2']));
+
+    await store.acknowledgeSyncEvents(['review-event-1']);
+    final remaining = await store.pendingSyncEvents();
+    expect(remaining.map((event) => event['eventId']).toList(), ['review-event-2']);
+  });
+
   test('general and legal tracks include lessons across all CEFR bands', () async {
     Future<List<Map<String, dynamic>>> read(String path) async {
       final data = jsonDecode(await rootBundle.loadString(path)) as Map<String, dynamic>;
