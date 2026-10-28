@@ -1,5 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:english_learning_legal_academy/services/exercise_engine.dart';
+import 'package:english_learning_legal_academy/features/learning/exercise_session_screen.dart';
+import 'package:english_learning_legal_academy/models/learning_lesson.dart';
 
 void main() {
   const engine = ExerciseEngine();
@@ -50,4 +52,32 @@ void main() {
       throwsFormatException,
     );
   });
+  test('lesson-specific exercise pack uses real vocabulary, quiz answers and speech text', () {
+    final lesson = LearningLesson.fromJson({
+      'id': 'a1-client-visit',
+      'title': 'Visiting a law office',
+      'level': 'A1',
+      'track': 'legal-english',
+      'description': 'Basic client visit',
+      'objectives': ['Greet a client'],
+      'vocabulary': [
+        {'term': 'Client', 'meaning': 'موكل', 'example': 'The client is here.'},
+        {'term': 'Lawyer', 'meaning': 'محامٍ', 'example': 'The lawyer is here.'},
+        {'term': 'Court', 'meaning': 'محكمة', 'example': 'The court is open.'}
+      ],
+      'sections': [
+        {'heading': 'Dialogue', 'body': 'A: Good morning. B: I have an appointment.'}
+      ],
+      'quiz': [
+        {'question': 'Who receives legal services?', 'options': ['A client', 'A chair'], 'answer_index': 0, 'explanation': 'A client receives legal services.'}
+      ]
+    });
+
+    final questions = buildExercisesForLesson(lesson);
+    expect(questions.any((q) => q.id == 'a1-client-visit-quiz-0'), isTrue);
+    expect(questions.any((q) => q.type == ExerciseType.translation && q.acceptedAnswers.contains('Client')), isTrue);
+    expect(questions.any((q) => q.type == ExerciseType.listeningChoice && q.spokenText.isNotEmpty), isTrue);
+    expect(questions.any((q) => q.type == ExerciseType.courtScenario && q.requiresHumanOrAIReview), isTrue);
+  });
+
 }
