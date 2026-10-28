@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a32">
+  <meta name="description" content="LinguaPro — تعلم الإنجليزية من الصفر إلى الاحتراف، مع مسار متخصص للإنجليزية القانونية.">
+  <title>LinguaPro | تعلّم الإنجليزية بذكاء</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="LinguaPro home">
+        <span class="brand-mark">L<span>+</span></span>
+        <span><b>LinguaPro</b><small>LEARN WITHOUT LIMITS</small></span>
+      </a>
+      <div class="nav-label">القائمة الرئيسية</div>
+      <nav class="nav-list" aria-label="القائمة الرئيسية">
+        <button class="nav-item active" data-view="home"><span>⌂</span> الرئيسية</button>
+        <button class="nav-item" data-view="lessons"><span>▤</span> الدروس</button>
+        <button class="nav-item" data-view="vocabulary"><span>Aa</span> المفردات</button>
+        <button class="nav-item" data-view="conversation"><span>☏</span> المحادثة</button>
+        <button class="nav-item" data-view="legal"><span>⚖</span> الإنجليزية القانونية <i>PRO</i></button>
+        <button class="nav-item" data-view="quiz"><span>✓</span> الاختبارات</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="upgrade-card"><div class="upgrade-icon">✦</div><b>رحلتك نحو الطلاقة</b><p>تعلّم قليلًا كل يوم، وتقدّم خطوة بخطوة.</p><button id="dailyBtn">ابدأ درس اليوم <span>←</span></button></div>
+        <div class="profile"><div class="avatar">L</div><div><b>متعلّم LinguaPro</b><small>المستوى المبتدئ</small></div><span class="profile-dots">•••</span></div>
+      </div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="menuBtn" aria-label="فتح القائمة">☰</button>
+        <div class="breadcrumb">مساحة التعلّم <span>/</span> <b id="pageTitle">الرئيسية</b></div>
+        <div class="top-actions"><label class="search-box"><span>⌕</span><input id="globalSearch" placeholder="ابحث عن كلمة أو درس..." aria-label="ابحث عن كلمة أو درس"><kbd>⌕</kbd></label><button class="icon-btn" id="langBtn" title="Switch language">EN</button><button class="icon-btn notification" title="التنبيهات">♧</button></div>
+      </header>
+      <section class="page-view" id="pageView">
+        <section class="welcome-row">
+          <div><div class="eyebrow"><span class="eyebrow-dot"></span> خطوتك الأولى تبدأ اليوم</div><h1>مرحبًا بك في <span>LinguaPro</span> 👋</h1><p class="muted">طوّر لغتك الإنجليزية، وافتح لنفسك آفاقًا جديدة كل يوم.</p></div>
+          <div class="date-chip"><span>☼</span><div><small>استمر على التعلّم</small><b id="todayDate">كل يوم فرصة جديدة</b></div></div>
+        </section>
+        <section class="hero-card">
+          <div class="hero-content"><div class="hero-tag">مسار تعلّمك الشخصي <span>✦</span></div><h2>الإنجليزية أقرب<br>مما تتخيّل.</h2><p>دروس قصيرة، مفردات عملية، وممارسة يومية تساعدك على التقدّم بثقة.</p><button class="primary-btn" id="continueBtn">تابع التعلّم <span>←</span></button><div class="hero-note"><span class="tiny-check">✓</span> تعلّم وفق سرعتك الخاصة</div></div>
+          <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="book book-back"></div><div class="book book-front"><span>ABC</span><small>ENGLISH<br>MADE SIMPLE</small></div><div class="float-bubble bubble-a">Hello!</div><div class="float-bubble bubble-b">مرحبا</div><div class="sparkle sparkle-a">✦</div><div class="sparkle sparkle-b">✧</div></div>
+        </section>
+        <section class="stats-grid">
+          <article class="stat-card"><div class="stat-icon blue">▤</div><div><small>الدروس المكتملة</small><strong id="lessonsDone">0 <em>/ 12</em></strong><div class="mini-progress"><span id="lessonBar"></span></div></div><span class="stat-arrow">↗</span></article>
+          <article class="stat-card"><div class="stat-icon orange">♨</div><div><small>سلسلة التعلّم</small><strong id="streakCount">0 <em>يوم</em></strong><p class="stat-hint">ابدأ اليوم لبناء عادتك</p></div><span class="stat-arrow">↗</span></article>
+          <article class="stat-card"><div class="stat-icon green">✧</div><div><small>مفردات تعلّمتها</small><strong id="wordsCount">0 <em>كلمة</em></strong><p class="stat-hint">كل كلمة تقرّبك من الطلاقة</p></div><span class="stat-arrow">↗</span></article>
+        </section>
+        <section class="section-block">
+          <div class="section-heading"><div><h2>تابع من حيث توقفت</h2><p>دروس مختارة لتساعدك على التقدّم</p></div><button class="text-btn" data-go="lessons">عرض جميع الدروس <span>←</span></button></div>
+          <div class="course-grid" id="courseGrid">
+            <article class="course-card" data-search="greetings التحيات hello good morning"><div class="course-visual visual-blue"><span class="visual-label">المستوى A1</span><div class="speech-illustration"><span>Hello!</span><span>مرحبًا</span><b>✦</b></div></div><div class="course-body"><div class="course-meta"><span>المفردات الأساسية</span><span>١٢ دقيقة</span></div><h3>التحيات والتعارف</h3><p>Greetings & Introductions</p><div class="course-footer"><div class="course-progress"><span style="width:0%" data-progress="greetings"></span></div><button class="round-arrow lesson-open" data-lesson="greetings" aria-label="ابدأ درس التحيات">←</button></div></div></article>
+            <article class="course-card" data-search="daily routine الروتين اليومي verbs"><div class="course-visual visual-peach"><span class="visual-label">المستوى A1</span><div class="routine-art"><span>☀</span><span>☕</span><span>📖</span></div></div><div class="course-body"><div class="course-meta"><span>محادثة يومية</span><span>١٥ دقيقة</span></div><h3>روتينك اليومي</h3><p>Daily Routines</p><div class="course-footer"><div class="course-progress"><span style="width:0%" data-progress="routine"></span></div><button class="round-arrow lesson-open" data-lesson="routine" aria-label="ابدأ درس الروتين اليومي">←</button></div></div></article>
+            <article class="course-card" data-search="legal english contract court law القانوني عقد محكمة"><div class="course-visual visual-purple"><span class="visual-label">مسار متخصص</span><div class="legal-art"><span>§</span><span>⚖</span><b>LEGAL ENGLISH</b></div></div><div class="course-body"><div class="course-meta"><span>الإنجليزية القانونية</span><span>١٨ دقيقة</span></div><h3>مصطلحات قانونية أساسية</h3><p>Essential Legal Vocabulary</p><div class="course-footer"><div class="course-progress"><span style="width:0%" data-progress="legal"></span></div><button class="round-arrow lesson-open" data-lesson="legal" aria-label="ابدأ درس المصطلحات القانونية">←</button></div></div></article>
+          </div>
+        </section>
+        <section class="lower-grid">
+          <article class="panel daily-panel"><div class="panel-heading"><div><span class="panel-icon">✦</span><div><h2>عبارة اليوم</h2><p>تعلّم عبارة واستخدمها اليوم</p></div></div><button class="sound-btn" id="phraseSpeak" title="استمع للنطق">🔊</button></div><div class="phrase-en" dir="ltr">Practice makes progress.</div><div class="phrase-ar">الممارسة تصنع التقدّم.</div><div class="phrase-bottom"><span class="level-pill">A1 · عبارة تحفيزية</span><button class="text-btn" id="savePhrase">＋ حفظ العبارة</button></div></article>
+          <article class="panel weekly-panel"><div class="panel-heading"><div><span class="panel-icon chart-icon">▥</span><div><h2>تقدّمك في التعلّم</h2><p>إنجازاتك على هذا الجهاز</p></div></div><span class="week-label">هذا الأسبوع</span></div><div class="weekly-chart"><div class="chart-y"><span>4</span><span>3</span><span>2</span><span>1</span><span>0</span></div><div class="chart-main"><div class="chart-gridlines"><i></i><i></i><i></i><i></i><i></i></div><div class="chart-bars"><div><span style="height:12%"></span><small>س</small></div><div><span style="height:22%"></span><small>ح</small></div><div><span style="height:8%"></span><small>ن</small></div><div><span style="height:38%"></span><small>ث</small></div><div><span style="height:16%"></span><small>ر</small></div><div><span style="height:55%"></span><small>خ</small></div><div><span style="height:10%"></span><small>ج</small></div></div></div></div><div class="chart-foot"><span><i></i> دقائق التعلّم</span><b id="minutesTotal">0 دقيقة مسجّلة</b></div></article>
+        </section>
+        <footer class="footer">© 2026 LinguaPro <span>•</span> تعلّم اليوم، وتحدّث بثقة غدًا.</footer>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop" id="modalBackdrop" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" id="modalClose" aria-label="إغلاق">×</button><div id="modalContent"></div></section></div>
+  <script src="app.js"></script>
+</body>
+</html>
