@@ -212,7 +212,9 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
   @override
   void initState() {
     super.initState();
-    if (widget.questions.isNotEmpty) _prepareQuestion(0);
+    if (widget.questions.isNotEmpty) {
+      _prepareQuestion(0);
+    }
   }
 
   void _prepareQuestion(int index) {
@@ -221,7 +223,9 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
     _usedWordIndices.clear();
     _pairs.clear();
     _selectedMatchKey = null;
-    if (index < 0 || index >= widget.questions.length) return;
+    if (index < 0 || index >= widget.questions.length) {
+      return;
+    }
     final question = widget.questions[index];
     if (question.type == ExerciseType.wordOrder && question.acceptedAnswers.isNotEmpty) {
       _wordBank.addAll(question.acceptedAnswers.first.trim().split(RegExp(r'\s+'))..shuffle());
@@ -243,7 +247,9 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
     String eventId,
   ) async {
     final lessonId = widget.lessonId;
-    if (lessonId == null || grade.isCorrect == null) return;
+    if (lessonId == null || grade.isCorrect == null) {
+      return;
+    }
     final correct = grade.isCorrect == true;
 
     if ((question.type == ExerciseType.translation || question.type == ExerciseType.fillBlank) && question.acceptedAnswers.isNotEmpty) {
@@ -289,7 +295,9 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
     }
   }
   Future<void> _submit() async {
-    if (_grade != null || _submitting || _index >= widget.questions.length) return;
+    if (_grade != null || _submitting || _index >= widget.questions.length) {
+      return;
+    }
     _submitting = true;
     final question = widget.questions[_index];
     Object? response;
@@ -326,7 +334,9 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
     }
     if (question.type == ExerciseType.wordOrder && _orderedWords.isEmpty) {
       _submitting = false;
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('اختر الكلمات ورتبها أولًا.')));
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('اختر الكلمات ورتبها أولًا.')));
+      }
       return;
     }
     if (question.type == ExerciseType.matching &&
@@ -388,8 +398,22 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
     }
     try {
       _speechAvailable = await _speech.initialize(
-        onStatus: (status) { if (mounted) setState(() { _speechStatus = status; _listening = status == 'listening'; }); },
-        onError: (error) { if (mounted) setState(() { _speechStatus = error.errorMsg; _listening = false; }); },
+        onStatus: (status) {
+          if (mounted) {
+            setState(() {
+              _speechStatus = status;
+              _listening = status == 'listening';
+            });
+          }
+        },
+        onError: (error) {
+          if (mounted) {
+            setState(() {
+              _speechStatus = error.errorMsg;
+              _listening = false;
+            });
+          }
+        },
       );
       if (!_speechAvailable) {
         if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('التعرف على الكلام غير متاح. تحقق من إذن الميكروفون وخدمة التعرف على الكلام في الجهاز.')));
@@ -405,7 +429,9 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
           setState(() {
             _answer.text = result.recognizedWords;
             _answer.selection = TextSelection.collapsed(offset: _answer.text.length);
-            if (result.finalResult) _listening = false;
+            if (result.finalResult) {
+            _listening = false;
+          }
           });
         },
       );
