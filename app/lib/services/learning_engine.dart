@@ -169,6 +169,14 @@ class LearningEngine {
       final dates = _readJsonMap(prefs.getString(_completionDatesKey));
       dates[lessonId] = _dateKey(current);
       await prefs.setString(_completionDatesKey, jsonEncode(dates));
+      final outbox = prefs.getStringList(_syncQueueKey) ?? <String>[];
+      outbox.add(jsonEncode({
+        'eventId': 'lesson-completed:$lessonId',
+        'type': 'lesson_completed',
+        'lessonId': lessonId,
+        'createdAt': current.toIso8601String(),
+      }));
+      await prefs.setStringList(_syncQueueKey, outbox);
     }
     final awarded = await awardXp(eventId: 'lesson:$lessonId', points: xp, now: current);
     return isNewCompletion || awarded;
@@ -194,6 +202,19 @@ class LearningEngine {
     if (events.contains(eventId)) return;
     events.add(eventId);
     await prefs.setStringList(_attemptsKey, events);
+    final outbox = prefs.getStringList(_syncQueueKey) ?? <String>[];
+    outbox.add(jsonEncode({
+      'eventId': 'answer:$eventId',
+      'type': 'answer_recorded',
+      'lessonId': lessonId,
+      'prompt': prompt,
+      'answer': answer,
+      'correct': correct,
+      'targetTerm': targetTerm,
+      'targetMeaning': targetMeaning,
+      'createdAt': (now ?? DateTime.now()).toIso8601String(),
+    }));
+    await prefs.setStringList(_syncQueueKey, outbox);
 
     if (!correct) {
       final mistakes = prefs.getStringList(_wrongAnswersKey) ?? <String>[];
