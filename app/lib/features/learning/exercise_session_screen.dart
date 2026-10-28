@@ -131,10 +131,10 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
               const SizedBox(width: 10),
               Expanded(child: DropdownButtonFormField<String>(
                 key: ValueKey('${q.id}-${pair.key}-$_index'),
-                value: _pairs[pair.key],
+                initialValue: _pairs[pair.key],
                 decoration: const InputDecoration(border: OutlineInputBorder(), isDense: true),
                 hint: const Text('اختر المعنى'),
-                items: q.pairs.map((item) => DropdownMenuItem(value: item.right, child: Text(item.right))).toList(),
+                items: q.pairs.map((item) => DropdownMenuItem(value: item.value, child: Text(item.right))).toList(),
                 onChanged: _grade == null ? (value) { if (value != null) setState(() => _pairs[pair.key] = value); } : null,
               )),
             ])),
