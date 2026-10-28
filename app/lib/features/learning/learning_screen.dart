@@ -195,6 +195,8 @@ class _LessonScreenState extends State<LessonScreen> {
   bool _listenAnswered = false;
   List<int> _listenOptionIndices = <int>[];
   int _earnedXp = 0;
+  int _totalXp = 0;
+  String _newBadge = '';
   final FlutterTts _tts = FlutterTts();
   bool _speaking = false;
 
@@ -555,8 +557,17 @@ class _LessonScreenState extends State<LessonScreen> {
     if (!completed.contains(widget.lesson.id)) {
       _earnedXp = 10;
       await LearningStore.instance.awardLessonXp(widget.lesson.id);
+      final completedCount = completed.length + 1;
+      const badges = <int, String>{
+        1: 'شارة البداية 🥉',
+        3: 'شارة المثابرة 🥈',
+        5: 'شارة المتعلم النشيط 🥇',
+        10: 'شارة خبير المسار 🏆',
+      };
+      _newBadge = badges[completedCount] ?? '';
     }
     await LearningStore.instance.markLessonComplete(widget.lesson.id);
+    _totalXp = await LearningStore.instance.totalXp();
     if (!mounted) return;
     setState(() => _finished = true);
   }
@@ -583,6 +594,15 @@ class _LessonScreenState extends State<LessonScreen> {
         Text('نتيجتك: $_score من ${widget.lesson.quiz.length}'),
         const SizedBox(height: 8),
         Text(_earnedXp > 0 ? 'مكافأتك: +$_earnedXp XP ⭐' : 'أعدت الدرس؛ نقاط الخبرة لا تتكرر لنفس المرحلة.'),
+        Text('إجمالي الخبرة: $_totalXp XP'),
+        if (_newBadge.isNotEmpty) ...[
+          const SizedBox(height: 10),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            decoration: BoxDecoration(color: const Color(0xFFFFF0D3), borderRadius: BorderRadius.circular(14)),
+            child: Text('شارة جديدة: $_newBadge', textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.w900)),
+          ),
+        ],
         const SizedBox(height: 18),
         FilledButton(onPressed: () => Navigator.of(context).pop(), child: const Text('العودة إلى المسار')),
       ]),
