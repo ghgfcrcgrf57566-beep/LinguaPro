@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "2026.10.28.5",
+  "content_version": "2026.10.28.6",
   "lessons": [
     {
       "id": "legal-contract-basics",
@@ -789,6 +789,421 @@
           ],
           "answer_index": 0,
           "explanation": "Kind regards من عبارات ختام المراسلات المهنية."
+        }
+      ]
+    },
+    {
+      "id": "legal-evidence-witness",
+      "title": "Evidence, witnesses and testimony",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "مفردات الأدلة والشهود والإدلاء بالشهادة مع أمثلة تعليمية.",
+      "objectives": [
+        "تمييز evidence وtestimony وwitness",
+        "قراءة جمل عن عرض الأدلة",
+        "التنبه إلى اختلاف المصطلحات بحسب النظام"
+      ],
+      "vocabulary": [
+        {
+          "term": "Evidence",
+          "meaning": "دليل / أدلة إثبات بحسب السياق",
+          "example": "The lawyer presented the evidence.",
+          "pronunciation": "EV-i-dens"
+        },
+        {
+          "term": "Witness",
+          "meaning": "شاهد",
+          "example": "The witness answered the question.",
+          "pronunciation": "WIT-niss"
+        },
+        {
+          "term": "Testimony",
+          "meaning": "شهادة / أقوال الشاهد",
+          "example": "The testimony was recorded.",
+          "pronunciation": "TES-tuh-moh-nee"
+        },
+        {
+          "term": "Exhibit",
+          "meaning": "مستند أو شيء مقدم كدليل",
+          "example": "The document was marked as an exhibit.",
+          "pronunciation": "ig-ZIB-it"
+        },
+        {
+          "term": "Statement",
+          "meaning": "إفادة / بيان",
+          "example": "The witness gave a statement.",
+          "pronunciation": "STAYT-munt"
+        },
+        {
+          "term": "Reliable",
+          "meaning": "موثوق",
+          "example": "The court considered whether the source was reliable.",
+          "pronunciation": "ri-LY-uh-bul"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Reading practice",
+          "body": "The lawyer called a witness. The witness gave testimony about what they had seen. The lawyer then presented a document as an exhibit. The court assessed the material under the applicable rules."
+        },
+        {
+          "heading": "Terminology note",
+          "body": "Evidence may refer to material used to prove a fact; testimony is spoken or recorded evidence from a witness. Exact procedures and admissibility rules differ between jurisdictions."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Who is a witness?",
+          "options": [
+            "شاهد",
+            "قاضٍ",
+            "مترجم"
+          ],
+          "answer_index": 0,
+          "explanation": "Witness تعني شاهدًا."
+        },
+        {
+          "question": "What can an exhibit be?",
+          "options": [
+            "دليل مادي أو مستند مقدم للمحكمة",
+            "موعد عطلة",
+            "خطة سفر"
+          ],
+          "answer_index": 0,
+          "explanation": "Exhibit قد يكون مستندًا أو شيئًا يقدم كدليل."
+        }
+      ]
+    },
+    {
+      "id": "legal-pleadings-hearings",
+      "title": "Pleadings and court hearings",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "مصطلحات عملية لقراءة المذكرات والطلبات والجلسات.",
+      "objectives": [
+        "فهم pleading وmotion وhearing",
+        "استخدام أفعال إجرائية شائعة",
+        "قراءة وصف موجز لجلسة"
+      ],
+      "vocabulary": [
+        {
+          "term": "Pleading",
+          "meaning": "مذكرة أو ورقة من أوراق الدعوى بحسب النظام",
+          "example": "The party filed a written pleading.",
+          "pronunciation": "PLEE-ding"
+        },
+        {
+          "term": "Motion",
+          "meaning": "طلب إجرائي يقدم إلى المحكمة في بعض الأنظمة",
+          "example": "The lawyer filed a motion.",
+          "pronunciation": "MOH-shun"
+        },
+        {
+          "term": "Hearing",
+          "meaning": "جلسة نظر / استماع",
+          "example": "The hearing is scheduled for Monday.",
+          "pronunciation": "HEER-ing"
+        },
+        {
+          "term": "Adjourn",
+          "meaning": "يؤجل الجلسة",
+          "example": "The judge decided to adjourn the hearing.",
+          "pronunciation": "uh-JURN"
+        },
+        {
+          "term": "Submit",
+          "meaning": "يقدم / يودع",
+          "example": "Please submit the document to the court.",
+          "pronunciation": "sub-MIT"
+        },
+        {
+          "term": "Deadline",
+          "meaning": "موعد نهائي / أجل",
+          "example": "The filing deadline is approaching.",
+          "pronunciation": "DED-lyn"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "At a hearing",
+          "body": "The parties appeared at the hearing. The claimant submitted a written pleading, and the defendant requested additional time. The court adjourned the hearing and set a new date."
+        },
+        {
+          "heading": "Language note",
+          "body": "Pleading, motion, application and petition do not have identical meanings in every legal system. Learn the term in the procedural context where it is used."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does “adjourn the hearing” mean?",
+          "options": [
+            "يؤجل الجلسة",
+            "يصدر فاتورة",
+            "يوقع عقدًا"
+          ],
+          "answer_index": 0,
+          "explanation": "Adjourn the hearing تعني تأجيل الجلسة."
+        },
+        {
+          "question": "A deadline is…",
+          "options": [
+            "موعد نهائي أو أجل",
+            "شاهد",
+            "صفة شخصية"
+          ],
+          "answer_index": 0,
+          "explanation": "Deadline تعني موعدًا نهائيًا أو أجلًا."
+        }
+      ]
+    },
+    {
+      "id": "legal-criminal-procedure",
+      "title": "Criminal procedure and rights",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "مصطلحات عامة في الإجراءات الجنائية مع التنبيه إلى اختلاف القوانين.",
+      "objectives": [
+        "تمييز arrest وcharge وtrial",
+        "فهم bail وdefence",
+        "قراءة فقرة عن مراحل الإجراء"
+      ],
+      "vocabulary": [
+        {
+          "term": "Arrest",
+          "meaning": "قبض على شخص",
+          "example": "The police made an arrest.",
+          "pronunciation": "uh-REST"
+        },
+        {
+          "term": "Charge",
+          "meaning": "اتهام رسمي في سياقات إجرائية معينة",
+          "example": "The defendant faced a criminal charge.",
+          "pronunciation": "charj"
+        },
+        {
+          "term": "Trial",
+          "meaning": "محاكمة",
+          "example": "The trial began on Monday.",
+          "pronunciation": "TRY-ul"
+        },
+        {
+          "term": "Defence",
+          "meaning": "دفاع",
+          "example": "The defence challenged the evidence.",
+          "pronunciation": "di-FENS"
+        },
+        {
+          "term": "Bail",
+          "meaning": "إفراج بكفالة أو ضمان وفق النظام",
+          "example": "The court considered whether bail was appropriate.",
+          "pronunciation": "bayl"
+        },
+        {
+          "term": "Presumption of innocence",
+          "meaning": "قرينة البراءة",
+          "example": "The presumption of innocence is a fundamental principle in many systems.",
+          "pronunciation": "pre-ZUMP-shun of IN-uh-sens"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Reading practice",
+          "body": "After an arrest, the competent authority may bring a charge under the applicable law. The case may proceed to trial, where the defence can challenge the evidence. The rules governing bail and procedure vary by jurisdiction."
+        },
+        {
+          "heading": "Important note",
+          "body": "These are general language examples, not a statement of Yemeni or any other jurisdiction's current procedural law. Verify local legislation and terminology before using them in a real case."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does “defence” mean in this context?",
+          "options": [
+            "دفاع",
+            "عقد بيع",
+            "موعد"
+          ],
+          "answer_index": 0,
+          "explanation": "Defence تعني الدفاع."
+        },
+        {
+          "question": "What is a trial?",
+          "options": [
+            "محاكمة",
+            "إيصال",
+            "دعوة"
+          ],
+          "answer_index": 0,
+          "explanation": "Trial تعني محاكمة."
+        }
+      ]
+    },
+    {
+      "id": "legal-judgment-appeal",
+      "title": "Judgments, appeals and remedies",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "تعلم لغة الأحكام والطعن وطلبات مراجعة القرار القضائي.",
+      "objectives": [
+        "تمييز judgment وorder وappeal",
+        "فهم grounds of appeal",
+        "صياغة جمل إجرائية عامة"
+      ],
+      "vocabulary": [
+        {
+          "term": "Judgment",
+          "meaning": "حكم قضائي",
+          "example": "The court delivered its judgment.",
+          "pronunciation": "JUHJ-munt"
+        },
+        {
+          "term": "Order",
+          "meaning": "أمر أو قرار قضائي بحسب السياق",
+          "example": "The court issued an order.",
+          "pronunciation": "OR-der"
+        },
+        {
+          "term": "Appeal",
+          "meaning": "استئناف أو طعن بحسب النظام",
+          "example": "The party filed an appeal.",
+          "pronunciation": "uh-PEEL"
+        },
+        {
+          "term": "Grounds of appeal",
+          "meaning": "أسباب الاستئناف أو الطعن",
+          "example": "The notice listed the grounds of appeal.",
+          "pronunciation": "grounds of uh-PEEL"
+        },
+        {
+          "term": "Uphold",
+          "meaning": "يؤيد الحكم أو القرار",
+          "example": "The appellate court upheld the judgment.",
+          "pronunciation": "up-HOHLD"
+        },
+        {
+          "term": "Reverse",
+          "meaning": "يلغي أو ينقض القرار في بعض السياقات",
+          "example": "The higher court reversed the decision.",
+          "pronunciation": "ri-VURS"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Reading practice",
+          "body": "The court delivered a judgment. One party filed an appeal and set out the grounds for challenging the decision. The appellate court reviewed the record and decided whether to uphold, vary or reverse the decision under the applicable procedure."
+        },
+        {
+          "heading": "Terminology note",
+          "body": "Appeal, cassation, reversal and setting aside are not interchangeable in every system. The proper remedy, deadline and court depend on the governing law."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What are “grounds of appeal”?",
+          "options": [
+            "أسباب الطعن",
+            "أتعاب المحامي",
+            "قائمة الشهود فقط"
+          ],
+          "answer_index": 0,
+          "explanation": "Grounds of appeal هي أسباب الاستئناف أو الطعن."
+        },
+        {
+          "question": "What does “uphold a judgment” mean?",
+          "options": [
+            "يؤيد الحكم",
+            "يؤجل الجلسة",
+            "يقدم شاهدًا"
+          ],
+          "answer_index": 0,
+          "explanation": "Uphold a judgment تعني تأييد الحكم."
+        }
+      ]
+    },
+    {
+      "id": "legal-client-interview",
+      "title": "Client interviews and legal correspondence",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "عبارات مهنية للمقابلة الأولية مع الموكل وطلب المستندات.",
+      "objectives": [
+        "طرح أسئلة مهنية واضحة",
+        "طلب الوثائق والتواريخ",
+        "تلخيص الوقائع دون افتراض النتائج"
+      ],
+      "vocabulary": [
+        {
+          "term": "Client",
+          "meaning": "موكل / عميل بحسب السياق",
+          "example": "The lawyer arranged a meeting with the client.",
+          "pronunciation": "KLY-ent"
+        },
+        {
+          "term": "Instructions",
+          "meaning": "تعليمات الموكل أو التكليف",
+          "example": "The lawyer took instructions from the client.",
+          "pronunciation": "in-STRUK-shunz"
+        },
+        {
+          "term": "Relevant documents",
+          "meaning": "المستندات ذات الصلة",
+          "example": "Please bring all relevant documents.",
+          "pronunciation": "REL-uh-vunt DOK-yuh-ments"
+        },
+        {
+          "term": "Chronology",
+          "meaning": "تسلسل زمني للوقائع",
+          "example": "We prepared a chronology of events.",
+          "pronunciation": "kruh-NOL-uh-jee"
+        },
+        {
+          "term": "Allege",
+          "meaning": "يدعي / يزعم",
+          "example": "The claimant alleges that payment was not made.",
+          "pronunciation": "uh-LEJ"
+        },
+        {
+          "term": "Without prejudice",
+          "meaning": "عبارة ذات أثر قانوني يختلف بحسب السياق والنظام",
+          "example": "The letter was marked “without prejudice.”",
+          "pronunciation": "with-OUT PREJ-uh-dis"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Client interview",
+          "body": "Lawyer: Could you explain what happened and when?\\nClient: The agreement was signed in March, but payment was not made.\\nLawyer: Do you have the agreement and proof of payment?\\nClient: Yes, I will send the relevant documents."
+        },
+        {
+          "heading": "Professional language",
+          "body": "Use neutral questions such as “Could you explain…?” and distinguish a client's allegation from an established fact. Phrases such as “without prejudice” can have specific legal effects; do not use them without checking local practice."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is a chronology?",
+          "options": [
+            "تسلسل زمني للوقائع",
+            "حكم نهائي",
+            "نوع من المحاكم"
+          ],
+          "answer_index": 0,
+          "explanation": "Chronology تعني ترتيب الوقائع زمنيًا."
+        },
+        {
+          "question": "Why distinguish an allegation from a fact?",
+          "options": [
+            "لأن الادعاء لا يعني ثبوت الواقعة",
+            "لأن كل ادعاء حكم نهائي",
+            "لأن المستندات غير مهمة"
+          ],
+          "answer_index": 0,
+          "explanation": "Allege تعني يدعي، ولا تثبت وحدها صحة الادعاء."
         }
       ]
     }
