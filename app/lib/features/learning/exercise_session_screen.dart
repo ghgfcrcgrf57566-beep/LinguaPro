@@ -3,6 +3,7 @@ import 'package:flutter_tts/flutter_tts.dart';
 import '../../models/learning_lesson.dart';
 import '../../services/exercise_engine.dart';
 import '../../services/learning_engine.dart';
+import '../../services/learning_store.dart';
 
 const demoExerciseQuestions = <ExerciseQuestion>[
   ExerciseQuestion(id: 'demo-mcq', type: ExerciseType.multipleChoice, prompt: 'Choose the correct greeting.', options: ['Good morning.', 'Yesterday morning.', 'Morningly.'], answerIndex: 0, explanation: 'Good morning is a natural greeting.'),
@@ -175,6 +176,58 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
     super.dispose();
   }
 
+  Future<void> _recordReviewProgress(
+    ExerciseQuestion question,
+    Object? response,
+    ExerciseGrade grade,
+    String eventId,
+  ) async {
+    final lessonId = widget.lessonId;
+    if (lessonId == null || grade.isCorrect == null) return;
+    final correct = grade.isCorrect == true;
+
+    if (question.type == ExerciseType.translation && question.acceptedAnswers.isNotEmpty) {
+      final promptParts = question.prompt.split(':');
+      final meaning = promptParts.length > 1 ? promptParts.skip(1).join(':').trim() : question.prompt;
+      await LearningStore.instance.recordWord(
+        lessonId: lessonId,
+        term: question.acceptedAnswers.first,
+        meaning: meaning,
+        correct: correct,
+        eventId: '$eventId:review:${question.acceptedAnswers.first.toLowerCase()}',
+      );
+      return;
+    }
+
+    if (question.type == ExerciseType.listeningChoice &&
+        question.spokenText.isNotEmpty &&
+        question.answerIndex != null &&
+        question.answerIndex! >= 0 &&
+        question.answerIndex! < question.options.length) {
+      await LearningStore.instance.recordWord(
+        lessonId: lessonId,
+        term: question.spokenText,
+        meaning: question.options[question.answerIndex!],
+        correct: correct,
+        eventId: '$eventId:review:${question.spokenText.toLowerCase()}',
+      );
+      return;
+    }
+
+    if (question.type == ExerciseType.matching && response is Map) {
+      for (final pair in question.pairs) {
+        final pairCorrect = response[pair.key]?.toString().trim().toLowerCase() ==
+            pair.value.trim().toLowerCase();
+        await LearningStore.instance.recordWord(
+          lessonId: lessonId,
+          term: pair.key,
+          meaning: pair.value,
+          correct: pairCorrect,
+          eventId: '$eventId:review:${pair.key.toLowerCase()}',
+        );
+      }
+    }
+  }
   Future<void> _submit() async {
     if (_grade != null || _submitting || _index >= widget.questions.length) return;
     _submitting = true;
@@ -208,6 +261,7 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
             ? question.options[question.answerIndex!] : (question.acceptedAnswers.isNotEmpty ? question.acceptedAnswers.first : null),
         targetMeaning: question.explanation,
       );
+      await _recordReviewProgress(question, response, grade, eventId);
       if (grade.isCorrect == true) {
         await LearningEngine.instance.awardXp(eventId: 'exercise-correct:${question.id}', points: 1);
       }
