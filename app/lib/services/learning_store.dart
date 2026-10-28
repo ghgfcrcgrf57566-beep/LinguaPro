@@ -134,7 +134,7 @@ class LearningStore {
     final current = now ?? DateTime.now();
     final queue = progress.values.where((word) => !word.dueAt.isAfter(current) || word.needsExtraPractice).toList();
     queue.sort((a, b) {
-      final dueOrder = (b.isDue ? 1 : 0).compareTo(a.isDue ? 1 : 0);
+      final dueOrder = ((!b.dueAt.isAfter(current)) ? 1 : 0).compareTo((!a.dueAt.isAfter(current)) ? 1 : 0);
       if (dueOrder != 0) return dueOrder;
       final accuracyOrder = a.accuracy.compareTo(b.accuracy);
       if (accuracyOrder != 0) return accuracyOrder;
