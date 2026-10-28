@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "2026.10.28.4",
+  "content_version": "2026.10.28.5",
   "lessons": [
     {
       "id": "legal-contract-basics",
@@ -404,6 +404,391 @@
           ],
           "answer_index": 0,
           "explanation": "Sincerely من عبارات الختام الشائعة في الرسائل الرسمية."
+        }
+      ]
+    },
+    {
+      "id": "legal-evidence-witnesses",
+      "title": "Evidence and witnesses",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "مصطلحات الأدلة والشهود في سياق قضائي تعليمي.",
+      "objectives": [
+        "Distinguish evidence from a witness.",
+        "Describe presenting evidence.",
+        "Read a short courtroom sentence."
+      ],
+      "vocabulary": [
+        {
+          "term": "Evidence",
+          "meaning": "دليل / أدلة إثبات",
+          "example": "The lawyer presented the evidence.",
+          "pronunciation": "EV-i-dens"
+        },
+        {
+          "term": "Witness",
+          "meaning": "شاهد",
+          "example": "The witness answered the question.",
+          "pronunciation": "WIT-niss"
+        },
+        {
+          "term": "Testimony",
+          "meaning": "شهادة / أقوال الشاهد",
+          "example": "The testimony was recorded.",
+          "pronunciation": "TES-ti-moh-nee"
+        },
+        {
+          "term": "Exhibit",
+          "meaning": "مستند أو معروض إثبات",
+          "example": "Exhibit A is attached to the file.",
+          "pronunciation": "ig-ZIB-it"
+        },
+        {
+          "term": "Reliable",
+          "meaning": "موثوق",
+          "example": "The court assessed whether the source was reliable.",
+          "pronunciation": "ri-LY-uh-bul"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Courtroom reading",
+          "body": "The witness gave testimony. The lawyer presented an exhibit, and the court considered the evidence."
+        },
+        {
+          "heading": "Language tip / ملاحظة",
+          "body": "The precise legal meaning of evidence, testimony and exhibit depends on the jurisdiction and procedural context."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Who gives testimony?",
+          "options": [
+            "A witness",
+            "A building",
+            "A contract"
+          ],
+          "answer_index": 0,
+          "explanation": "الشاهد witness هو من يدلي بالشهادة."
+        },
+        {
+          "question": "What does “evidence” mean here?",
+          "options": [
+            "أجرة",
+            "أدلة إثبات",
+            "موعد"
+          ],
+          "answer_index": 1,
+          "explanation": "Evidence تعني الدليل أو أدلة الإثبات بحسب السياق."
+        }
+      ]
+    },
+    {
+      "id": "legal-pleadings-filings",
+      "title": "Pleadings and court filings",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "تعلم مفردات المذكرات والطلبات والمستندات المقدمة للمحكمة.",
+      "objectives": [
+        "Identify a pleading and a motion.",
+        "Use file and submit in context.",
+        "Understand a basic filing sentence."
+      ],
+      "vocabulary": [
+        {
+          "term": "Pleading",
+          "meaning": "مذكرة أو ورقة من أوراق الخصومة",
+          "example": "The pleading sets out the party’s position.",
+          "pronunciation": "PLEE-ding"
+        },
+        {
+          "term": "Motion",
+          "meaning": "طلب إجرائي للمحكمة",
+          "example": "The lawyer filed a motion.",
+          "pronunciation": "MOH-shun"
+        },
+        {
+          "term": "Submit",
+          "meaning": "يقدم / يودع",
+          "example": "Please submit the document to the court.",
+          "pronunciation": "sub-MIT"
+        },
+        {
+          "term": "Filing",
+          "meaning": "إيداع مستند",
+          "example": "The filing was received yesterday.",
+          "pronunciation": "FY-ling"
+        },
+        {
+          "term": "Response",
+          "meaning": "رد / جواب",
+          "example": "The defendant filed a response.",
+          "pronunciation": "ri-SPONS"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Filing a response",
+          "body": "The claimant submitted a pleading. The defendant prepared a response and filed it with the court."
+        },
+        {
+          "heading": "Language tip / ملاحظة",
+          "body": "“Motion” and “pleading” do not map identically to every procedural system; translate according to local procedure."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does “submit” mean?",
+          "options": [
+            "يقدم",
+            "ينسحب",
+            "يحكم"
+          ],
+          "answer_index": 0,
+          "explanation": "Submit تعني يقدم أو يودع بحسب السياق."
+        },
+        {
+          "question": "Who filed a response in the example?",
+          "options": [
+            "The defendant",
+            "The witness",
+            "The judge"
+          ],
+          "answer_index": 0,
+          "explanation": "The defendant filed a response."
+        }
+      ]
+    },
+    {
+      "id": "legal-hearings-orders",
+      "title": "Hearings and court orders",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "مفردات الجلسات والأوامر والقرارات القضائية.",
+      "objectives": [
+        "Describe a hearing.",
+        "Distinguish an order from a judgment in simple context.",
+        "Read a procedural update."
+      ],
+      "vocabulary": [
+        {
+          "term": "Hearing",
+          "meaning": "جلسة نظر",
+          "example": "The hearing is scheduled for Monday.",
+          "pronunciation": "HEER-ing"
+        },
+        {
+          "term": "Court order",
+          "meaning": "أمر قضائي",
+          "example": "The court issued an order.",
+          "pronunciation": "kort OR-der"
+        },
+        {
+          "term": "Adjourn",
+          "meaning": "يؤجل الجلسة",
+          "example": "The judge adjourned the hearing.",
+          "pronunciation": "uh-JURN"
+        },
+        {
+          "term": "Schedule",
+          "meaning": "يحدد موعدًا",
+          "example": "The clerk scheduled the next hearing.",
+          "pronunciation": "SKEJ-ool"
+        },
+        {
+          "term": "Ruling",
+          "meaning": "قرار قضائي",
+          "example": "The court announced its ruling.",
+          "pronunciation": "ROO-ling"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "A procedural update",
+          "body": "The hearing was scheduled for Monday. The judge adjourned it, and the clerk set a new date."
+        },
+        {
+          "heading": "Language tip / ملاحظة",
+          "body": "The terms order, ruling and judgment may have different procedural effects under different legal systems."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does “adjourn” mean?",
+          "options": [
+            "يؤجل الجلسة",
+            "يوقع عقدًا",
+            "يستجوب شاهدًا"
+          ],
+          "answer_index": 0,
+          "explanation": "Adjourn تعني يؤجل الجلسة."
+        },
+        {
+          "question": "Who may issue a court order?",
+          "options": [
+            "The court",
+            "The translator only",
+            "A witness"
+          ],
+          "answer_index": 0,
+          "explanation": "Court order تعني أمرًا صادرًا عن المحكمة."
+        }
+      ]
+    },
+    {
+      "id": "legal-appeals-deadlines",
+      "title": "Appeals and procedural deadlines",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "مصطلحات الاستئناف والمواعيد الإجرائية مع تنبيه إلى اختلاف القوانين.",
+      "objectives": [
+        "Understand appeal and deadline.",
+        "Describe filing an appeal.",
+        "Recognize that deadlines depend on applicable rules."
+      ],
+      "vocabulary": [
+        {
+          "term": "Appeal",
+          "meaning": "استئناف / طعن بحسب النظام",
+          "example": "The party filed an appeal.",
+          "pronunciation": "uh-PEEL"
+        },
+        {
+          "term": "Deadline",
+          "meaning": "موعد نهائي",
+          "example": "The deadline is stated in the notice.",
+          "pronunciation": "DED-lyn"
+        },
+        {
+          "term": "Within",
+          "meaning": "خلال / في غضون",
+          "example": "The document must be filed within the required period.",
+          "pronunciation": "wi-THIN"
+        },
+        {
+          "term": "Extension",
+          "meaning": "تمديد",
+          "example": "The party requested an extension.",
+          "pronunciation": "ik-STEN-shun"
+        },
+        {
+          "term": "Dismiss",
+          "meaning": "يرفض / يقضي بعدم القبول بحسب السياق",
+          "example": "The court dismissed the appeal.",
+          "pronunciation": "dis-MISS"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Reading a notice",
+          "body": "The notice explains how to file an appeal and identifies the applicable deadline. A party should check the governing procedural rules."
+        },
+        {
+          "heading": "Language tip / ملاحظة",
+          "body": "This lesson is language learning only. Actual appeal deadlines depend on the applicable law, notification date and case type."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is a deadline?",
+          "options": [
+            "موعد نهائي",
+            "شاهد",
+            "مرفق"
+          ],
+          "answer_index": 0,
+          "explanation": "Deadline تعني الموعد النهائي."
+        },
+        {
+          "question": "What should determine an actual legal deadline?",
+          "options": [
+            "A generic English lesson",
+            "The applicable procedural law and case facts",
+            "A guess"
+          ],
+          "answer_index": 1,
+          "explanation": "المواعيد الفعلية تُحدد وفق القانون والوقائع ذات الصلة."
+        }
+      ]
+    },
+    {
+      "id": "legal-client-correspondence",
+      "title": "Professional legal correspondence",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "تدرب على عبارات المراسلات المهنية بين المحامي والعميل.",
+      "objectives": [
+        "Use polite professional openings.",
+        "Request a document clearly.",
+        "Close a short professional email."
+      ],
+      "vocabulary": [
+        {
+          "term": "Dear…",
+          "meaning": "عزيزي / عزيزتي…",
+          "example": "Dear Mr. Smith,",
+          "pronunciation": "deer"
+        },
+        {
+          "term": "Please find attached",
+          "meaning": "يرجى الاطلاع على المرفق",
+          "example": "Please find attached the draft agreement.",
+          "pronunciation": "pleez fynd uh-TACHT"
+        },
+        {
+          "term": "Review",
+          "meaning": "يراجع",
+          "example": "Please review the attached document.",
+          "pronunciation": "ri-VYOO"
+        },
+        {
+          "term": "Clarify",
+          "meaning": "يوضح",
+          "example": "Could you clarify this point?",
+          "pronunciation": "KLAIR-uh-fy"
+        },
+        {
+          "term": "Kind regards",
+          "meaning": "مع خالص التحية",
+          "example": "Kind regards,",
+          "pronunciation": "kynd ri-GARDZ"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "A short professional email",
+          "body": "Dear Ms. Ali, Please review the attached draft and clarify any comments by Thursday. Kind regards,"
+        },
+        {
+          "heading": "Language tip / ملاحظة",
+          "body": "Use concise, courteous wording. Avoid implying legal advice or a binding deadline unless the context supports it."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which phrase politely requests a review?",
+          "options": [
+            "Review it now!",
+            "Could you please review the draft?",
+            "You must reviewing."
+          ],
+          "answer_index": 1,
+          "explanation": "Could you please…? صيغة مهذبة للطلب."
+        },
+        {
+          "question": "What is a common professional closing?",
+          "options": [
+            "Kind regards",
+            "What is your age?",
+            "Turn left"
+          ],
+          "answer_index": 0,
+          "explanation": "Kind regards من عبارات ختام المراسلات المهنية."
         }
       ]
     }
