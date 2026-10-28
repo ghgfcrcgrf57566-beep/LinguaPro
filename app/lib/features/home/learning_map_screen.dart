@@ -35,9 +35,9 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
   }
   Future<void> refresh() async {
     final e = LearningEngine.instance;
-    final v = await Future.wait<Object>([LearningStore.instance.totalXp(),e.dailyGoal(),e.todayXp(),e.streak(),LearningStore.instance.completedLessons(),e.challengeSummary(),e.unlockedBadges(),e.dailyAttemptLimit(),e.attemptsRemaining(),LearningStore.instance.bestQuizResults()]);
+    final v = await Future.wait<Object>([LearningStore.instance.totalXp(),e.dailyGoal(),e.todayXp(),e.streak(),LearningStore.instance.completedLessons(),e.challengeSummary(),e.unlockedBadges(),e.dailyAttemptLimit(),e.attemptsRemaining().then((value) => value ?? -1),LearningStore.instance.bestQuizResults()]);
     if (!mounted) return;
-    setState(() { xp=v[0] as int; goal=v[1] as int; today=v[2] as int; streak=v[3] as int; completed=v[4] as Set<String>; challenges=v[5] as Map<String,int>; badges=v[6] as List<String>; attemptLimit=v[7] as int; attemptsLeft=v[8] as int?; bestScores=v[9] as Map<String, QuizResult>; });
+    setState(() { xp=v[0] as int; goal=v[1] as int; today=v[2] as int; streak=v[3] as int; completed=v[4] as Set<String>; challenges=v[5] as Map<String,int>; badges=v[6] as List<String>; attemptLimit=v[7] as int; attemptsLeft=(v[8] as int) < 0 ? null : v[8] as int; bestScores=v[9] as Map<String, QuizResult>; });
   }
   void switchTrack(bool value) { if (legal == value) return; setState(() { legal=value; lessonsFuture=loadLessons(); }); }
   Future<void> changeGoal() async {
