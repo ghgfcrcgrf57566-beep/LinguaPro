@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import '../../models/learning_lesson.dart';
 import '../../services/learning_engine.dart';
+import '../../services/learning_store.dart';
 import '../learning/learning_screen.dart';
 import '../settings/settings_screen.dart';
 
@@ -29,7 +30,7 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
   }
   Future<void> refresh() async {
     final e = LearningEngine.instance;
-    final v = await Future.wait<Object>([e.totalXp(),e.dailyGoal(),e.todayXp(),e.streak(),e.completedLessons()]);
+    final v = await Future.wait<Object>([LearningStore.instance.totalXp(),e.dailyGoal(),e.todayXp(),e.streak(),LearningStore.instance.completedLessons()]);
     if (!mounted) return;
     setState(() { xp=v[0] as int; goal=v[1] as int; today=v[2] as int; streak=v[3] as int; completed=v[4] as Set<String>; });
   }
@@ -77,13 +78,15 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
           ])),
           const SizedBox(height:22),Row(children:[const Expanded(child:Text('خريطة التعلّم',style:TextStyle(fontSize:21,fontWeight:FontWeight.w900))),Text(lessons.length.toString()+' درس',style:const TextStyle(color:Color(0xFF728078),fontWeight:FontWeight.w700))]),
           const SizedBox(height:5),const Text('أكمل الدروس بالترتيب لفتح الخطوة التالية.',style:TextStyle(color:Color(0xFF728078),fontSize:12)),const SizedBox(height:18),
+          var globalIndex = 0;
           for(final level in levels)...[
             _Level(level:level,count:grouped[level]!.length),const SizedBox(height:12),
-            for(var i=0;i<grouped[level]!.length;i++)...[
-              _LessonNode(index:i,lesson:grouped[level]![i],done:completed.contains(grouped[level]![i].id),unlocked:i==0||completed.contains(grouped[level]![i-1].id),onTap:(){
-                Navigator.of(context).push(MaterialPageRoute(builder:(_)=>LearningScreen(mode:legal?LearningMode.legal:LearningMode.general))).then((_)=>refresh());
+            for(final lesson in grouped[level]!)...[
+              _LessonNode(index:globalIndex,lesson:lesson,done:completed.contains(lesson.id),unlocked:globalIndex==0||completed.contains(lessons[globalIndex-1].id),onTap:(){
+                Navigator.of(context).push(MaterialPageRoute(builder:(_)=>LessonScreen(lesson:lesson))).then((_)=>refresh());
               }),
-              if(i<grouped[level]!.length-1)const SizedBox(height:4)
+              const SizedBox(height:4),
+              Builder(builder:(context){ globalIndex++; return const SizedBox.shrink(); }),
             ],const SizedBox(height:20)
           ],
           const Center(child:Text('خطوة صغيرة كل يوم تصنع فرقًا كبيرًا.',style:TextStyle(color:Color(0xFF7A897F),fontSize:12)))
