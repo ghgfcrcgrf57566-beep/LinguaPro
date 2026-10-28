@@ -434,6 +434,294 @@
           "explanation": "This phrase acknowledges the other person before disagreeing."
         }
       ]
+    },
+    {
+      "id": "a1-transport-travel",
+      "title": "Transport and travel",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "Ask about transport, tickets and travel times.",
+      "objectives": [
+        "Name common transport",
+        "Ask where a bus goes",
+        "Understand simple travel questions"
+      ],
+      "vocabulary": [
+        {
+          "term": "Bus stop",
+          "meaning": "موقف الحافلة",
+          "example": "The bus stop is near the bank."
+        },
+        {
+          "term": "Ticket",
+          "meaning": "تذكرة",
+          "example": "I need one ticket, please."
+        },
+        {
+          "term": "Station",
+          "meaning": "محطة",
+          "example": "The train station is downtown."
+        },
+        {
+          "term": "Platform",
+          "meaning": "رصيف القطار",
+          "example": "The train leaves from platform two."
+        },
+        {
+          "term": "Return ticket",
+          "meaning": "تذكرة ذهاب وعودة",
+          "example": "Can I have a return ticket?"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Useful dialogue",
+          "body": "A: Excuse me, where is the bus station?\nB: Go straight and turn left.\nA: Thank you. How much is a ticket?\nB: It is five pounds."
+        },
+        {
+          "heading": "Language tip",
+          "body": "Use “Where is…?” to ask for a place and “How much is…?” to ask for a price."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which phrase asks about price?",
+          "options": [
+            "How much is a ticket?",
+            "Where is the station?",
+            "What time is it?"
+          ],
+          "answer_index": 0,
+          "explanation": "How much is…? asks about cost."
+        },
+        {
+          "question": "A platform is usually found at a…",
+          "options": [
+            "Train station",
+            "Kitchen",
+            "Pharmacy"
+          ],
+          "answer_index": 0,
+          "explanation": "Passengers wait on a platform at a station."
+        }
+      ]
+    },
+    {
+      "id": "a1-asking-for-help",
+      "title": "Asking for help politely",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "Use simple polite expressions when asking for help.",
+      "objectives": [
+        "Ask someone to repeat",
+        "Request help politely",
+        "Say thank you"
+      ],
+      "vocabulary": [
+        {
+          "term": "Could you help me?",
+          "meaning": "هل يمكنك مساعدتي؟",
+          "example": "Could you help me, please?"
+        },
+        {
+          "term": "Please",
+          "meaning": "من فضلك",
+          "example": "Please speak slowly."
+        },
+        {
+          "term": "Repeat",
+          "meaning": "يكرر",
+          "example": "Could you repeat that?"
+        },
+        {
+          "term": "Understand",
+          "meaning": "يفهم",
+          "example": "I do not understand this word."
+        },
+        {
+          "term": "Thank you",
+          "meaning": "شكرًا لك",
+          "example": "Thank you for your help."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Useful dialogue",
+          "body": "A: Could you help me, please?\nB: Of course. What do you need?\nA: Could you repeat that slowly?\nB: Certainly."
+        },
+        {
+          "heading": "Language tip",
+          "body": "Could you…? is a polite way to make a request. Add please to sound friendly."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Choose a polite request.",
+          "options": [
+            "Help me now!",
+            "Could you help me, please?",
+            "You must help me."
+          ],
+          "answer_index": 1,
+          "explanation": "Could you… please? is polite and natural."
+        },
+        {
+          "question": "What does repeat mean?",
+          "options": [
+            "Say again",
+            "Leave early",
+            "Pay money"
+          ],
+          "answer_index": 0,
+          "explanation": "Repeat means to say or do something again."
+        }
+      ]
+    },
+    {
+      "id": "a2-restaurant-ordering",
+      "title": "Ordering food at a restaurant",
+      "level": "A2",
+      "language": "en",
+      "track": "general-english",
+      "description": "Order food, ask about ingredients and request the bill.",
+      "objectives": [
+        "Order a meal politely",
+        "Ask about menu items",
+        "Request the bill"
+      ],
+      "vocabulary": [
+        {
+          "term": "Menu",
+          "meaning": "قائمة الطعام",
+          "example": "Could I see the menu, please?"
+        },
+        {
+          "term": "Order",
+          "meaning": "يطلب / طلب",
+          "example": "I would like to order soup."
+        },
+        {
+          "term": "Ingredients",
+          "meaning": "مكونات",
+          "example": "What are the ingredients?"
+        },
+        {
+          "term": "Side dish",
+          "meaning": "طبق جانبي",
+          "example": "Can I have salad as a side dish?"
+        },
+        {
+          "term": "Bill",
+          "meaning": "الفاتورة",
+          "example": "Could we have the bill, please?"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Useful dialogue",
+          "body": "A: Are you ready to order?\nB: Yes, I would like chicken and rice.\nA: Would you like a drink?\nB: Water, please. And could we have the bill later?"
+        },
+        {
+          "heading": "Language tip",
+          "body": "“I would like…” is a polite way to order. Use “Could we have…?” to request something."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which phrase politely asks for the bill?",
+          "options": [
+            "Bring money!",
+            "Could we have the bill, please?",
+            "Where is my food always?"
+          ],
+          "answer_index": 1,
+          "explanation": "Could we have… please? is polite and clear."
+        },
+        {
+          "question": "Ingredients are…",
+          "options": [
+            "The items used to make food",
+            "A train ticket",
+            "A meeting time"
+          ],
+          "answer_index": 0,
+          "explanation": "Ingredients are the foods or substances used in a dish."
+        }
+      ]
+    },
+    {
+      "id": "b1-professional-email",
+      "title": "Writing a clear professional email",
+      "level": "B1",
+      "language": "en",
+      "track": "general-english",
+      "description": "Write concise professional emails with a clear request and next step.",
+      "objectives": [
+        "Use an appropriate opening",
+        "State a request clearly",
+        "Close with a next step"
+      ],
+      "vocabulary": [
+        {
+          "term": "Regarding",
+          "meaning": "بخصوص",
+          "example": "I am writing regarding your request."
+        },
+        {
+          "term": "Attached",
+          "meaning": "مرفق",
+          "example": "Please find the attached document."
+        },
+        {
+          "term": "Clarify",
+          "meaning": "يوضح",
+          "example": "Could you clarify the deadline?"
+        },
+        {
+          "term": "In advance",
+          "meaning": "مسبقًا",
+          "example": "Thank you in advance for your help."
+        },
+        {
+          "term": "Kind regards",
+          "meaning": "مع خالص التحية",
+          "example": "Kind regards, Alex."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Email example",
+          "body": "Dear Ms Lee,\nI am writing regarding the meeting scheduled for Thursday. Could you please clarify the start time? I have attached the updated agenda.\nKind regards,\nAlex"
+        },
+        {
+          "heading": "Writing tip",
+          "body": "Use a meaningful subject, put the request near the beginning, and explain the next step. Keep each paragraph focused on one idea."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which phrase refers to a document sent with an email?",
+          "options": [
+            "Attached",
+            "Available yesterday",
+            "Turn left"
+          ],
+          "answer_index": 0,
+          "explanation": "Attached describes a file included with the message."
+        },
+        {
+          "question": "What makes a professional email clearer?",
+          "options": [
+            "A clear request and next step",
+            "One very long paragraph",
+            "Leaving out the purpose"
+          ],
+          "answer_index": 0,
+          "explanation": "A clear purpose and next step help the reader respond."
+        }
+      ]
     }
   ]
 }
