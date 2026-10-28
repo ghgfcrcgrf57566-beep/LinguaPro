@@ -4,10 +4,14 @@ on:
   push:
     paths:
       - "app/**"
+      - "content/**"
+      - "scripts/**"
       - ".github/workflows/flutter-ci.yml"
   pull_request:
     paths:
       - "app/**"
+      - "content/**"
+      - "scripts/**"
       - ".github/workflows/flutter-ci.yml"
   workflow_dispatch:
 
@@ -32,7 +36,18 @@ jobs:
             flutter create --platforms=android --project-name english_learning_legal_academy /tmp/linguapro_android_template
             cp -R /tmp/linguapro_android_template/android ./android
           fi
+      - name: Validate lesson JSON before tests and build
+        run: python ../scripts/validate_content.py --content-dir ../content
+      - name: Test content validator
+        run: python -m unittest discover -s ../scripts -p 'test_*.py' -v
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
       - run: flutter build appbundle --release
+      - name: Upload Android App Bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: linguapro-android-aab
+          path: app/build/app/outputs/bundle/release/app-release.aab
+          if-no-files-found: error
+          retention-days: 14
