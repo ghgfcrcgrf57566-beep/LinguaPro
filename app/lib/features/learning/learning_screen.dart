@@ -563,6 +563,12 @@ class _LessonScreenState extends State<LessonScreen> {
     if (_typingAnswered || _typingIndex >= widget.lesson.vocabulary.length) return;
     final word = widget.lesson.vocabulary[_typingIndex];
     final correct = _normalizeTypingAnswer(_typingController.text) == _normalizeTypingAnswer(word.term);
+    await LearningStore.instance.recordWord(
+      lessonId: widget.lesson.id,
+      term: word.term,
+      meaning: word.meaning,
+      correct: correct,
+    );
     await (correct ? LearningSoundService.instance.correct() : LearningSoundService.instance.incorrect());
     await (correct ? HapticFeedback.lightImpact() : HapticFeedback.mediumImpact());
     if (!mounted) return;
@@ -570,6 +576,13 @@ class _LessonScreenState extends State<LessonScreen> {
   }
   Future<void> _answerListening(int index) async {
     final correct = _listenOptionIndices[index] == _listenIndex;
+    final word = widget.lesson.vocabulary[_listenIndex];
+    await LearningStore.instance.recordWord(
+      lessonId: widget.lesson.id,
+      term: word.term,
+      meaning: word.meaning,
+      correct: correct,
+    );
     await (correct
         ? LearningSoundService.instance.correct()
         : LearningSoundService.instance.incorrect());
@@ -698,9 +711,10 @@ class _LessonScreenState extends State<LessonScreen> {
     );
     final completed = await LearningStore.instance.completedLessons();
     if (!completed.contains(widget.lesson.id)) {
-      _earnedXp = 10;
-      await LearningStore.instance.awardLessonXp(widget.lesson.id);
+      final xpBefore = await LearningEngine.instance.totalXp();
       await LearningEngine.instance.completeLesson(lessonId: widget.lesson.id, completionEventId: 'lesson:${widget.lesson.id}', xp: 10);
+      final xpAfter = await LearningEngine.instance.totalXp();
+      _earnedXp = xpAfter - xpBefore;
       final completedCount = completed.length + 1;
       const badges = <int, String>{
         1: 'شارة البداية 🥉',
@@ -711,7 +725,7 @@ class _LessonScreenState extends State<LessonScreen> {
       _newBadge = badges[completedCount] ?? '';
     }
     await LearningStore.instance.markLessonComplete(widget.lesson.id);
-    _totalXp = await LearningStore.instance.totalXp();
+    _totalXp = await LearningEngine.instance.totalXp();
     await LearningSoundService.instance.complete();
     await HapticFeedback.heavyImpact();
     if (!mounted) return;
