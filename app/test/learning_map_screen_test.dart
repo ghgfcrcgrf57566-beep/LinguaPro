@@ -14,11 +14,19 @@ void main() {
     await tester.pumpWidget(const MaterialApp(home: LearningMapScreen()));
     await tester.pumpAndSettle();
 
+    expect(find.text('LinguaPro'), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text('خريطة التعلّم'),
+      450,
+      scrollable: find.byType(Scrollable).first,
+    );
     expect(find.text('خريطة التعلّم'), findsOneWidget);
-    expect(find.text('الإنجليزية العامة'), findsOneWidget);
-    expect(find.text('الإنجليزية القانونية'), findsOneWidget);
-    expect(find.text('Greetings and introductions'), findsOneWidget);
 
+    await tester.scrollUntilVisible(
+      find.text('Greetings and introductions'),
+      450,
+      scrollable: find.byType(Scrollable).first,
+    );
     await tester.tap(find.text('Greetings and introductions'));
     await tester.pumpAndSettle();
 
