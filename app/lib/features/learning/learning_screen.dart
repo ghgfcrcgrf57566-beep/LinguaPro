@@ -20,6 +20,7 @@ class LearningScreen extends StatefulWidget {
 class _LearningScreenState extends State<LearningScreen> {
   late Future<List<LearningLesson>> _lessonsFuture;
   Set<String> _completedIds = <String>{};
+  Map<String, QuizResult> _bestQuizResults = <String, QuizResult>{};
 
   @override
   void initState() {
@@ -30,7 +31,13 @@ class _LearningScreenState extends State<LearningScreen> {
 
   Future<void> _loadCompletedLessons() async {
     final completed = await LearningStore.instance.completedLessons();
-    if (mounted) setState(() => _completedIds = completed);
+    final bestResults = await LearningStore.instance.bestQuizResults();
+    if (mounted) {
+      setState(() {
+        _completedIds = completed;
+        _bestQuizResults = bestResults;
+      });
+    }
   }
 
   Future<List<LearningLesson>> _loadLessons() async {
@@ -125,7 +132,10 @@ class _LearningScreenState extends State<LearningScreen> {
                     title: Text(lesson.title, style: const TextStyle(fontWeight: FontWeight.w800)),
                     subtitle: Padding(
                       padding: const EdgeInsets.only(top: 6),
-                      child: Text('${lesson.description}\n${lesson.vocabulary.length} مفردات · ${lesson.quiz.length} أسئلة'),
+                      child: Text(
+                        '${lesson.description}\n${lesson.vocabulary.length} مفردات · ${lesson.quiz.length} أسئلة'
+                        '${_bestQuizResults[lesson.id] == null ? '' : '\nأفضل نتيجة: ${_bestQuizResults[lesson.id]!.score}/${_bestQuizResults[lesson.id]!.total}'}',
+                      ),
                     ),
                     isThreeLine: true,
                     trailing: _completedIds.contains(lesson.id)
