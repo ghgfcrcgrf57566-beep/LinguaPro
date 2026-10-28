@@ -193,6 +193,7 @@ class _LessonScreenState extends State<LessonScreen> {
   bool _answered = false;
   int _selectedAnswerIndex = -1;
   int _score = 0;
+  int _quizSessionId = DateTime.now().microsecondsSinceEpoch;
   bool _finished = false;
   int _listenIndex = 0;
   int _typingIndex = 0;
@@ -654,10 +655,25 @@ class _LessonScreenState extends State<LessonScreen> {
 
   Future<void> _answer(int index) async {
     final question = widget.lesson.quiz[_questionIndex];
+    final eventId = 'quiz:' + widget.lesson.id + ':' + _quizSessionId.toString() + ':' + _questionIndex.toString();
+    final allowed = await LearningEngine.instance.consumeAttempt(eventId);
+    if (!allowed) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('انتهت محاولاتك اليومية. يمكنك تغيير نظام المحاولات من خريطة التعلّم أو المتابعة غدًا.')));
+      }
+      return;
+    }
     final correct = index == question.answerIndex;
-    await (correct
-        ? LearningSoundService.instance.correct()
-        : LearningSoundService.instance.incorrect());
+    await LearningEngine.instance.recordAnswer(
+      eventId: eventId,
+      lessonId: widget.lesson.id,
+      prompt: question.question,
+      answer: question.options[index],
+      correct: correct,
+      targetTerm: question.options[question.answerIndex],
+      targetMeaning: question.explanation,
+    );
+    await (correct ? LearningSoundService.instance.correct() : LearningSoundService.instance.incorrect());
     await (correct ? HapticFeedback.lightImpact() : HapticFeedback.mediumImpact());
     if (!mounted) return;
     setState(() {
@@ -666,8 +682,8 @@ class _LessonScreenState extends State<LessonScreen> {
       if (correct) _score++;
     });
   }
-
   void _resetQuiz() => setState(() {
+    _quizSessionId = DateTime.now().microsecondsSinceEpoch;
     _questionIndex = 0;
     _score = 0;
     _answered = false;
