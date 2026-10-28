@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../services/learning_store.dart';
+import '../../services/learning_engine.dart';
 
 class SpacedReviewScreen extends StatefulWidget {
   const SpacedReviewScreen({super.key});
@@ -31,8 +32,7 @@ class _SpacedReviewScreenState extends State<SpacedReviewScreen> {
     super.dispose();
   }
 
-  String _normalize(String value) =>
-      value.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
+  String _normalize(String value) => LearningEngine.normalizeAnswer(value);
 
   Future<void> _check() async {
     if (_answered || _checking || _index >= _queue.length) return;
