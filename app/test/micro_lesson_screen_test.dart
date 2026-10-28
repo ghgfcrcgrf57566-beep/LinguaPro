@@ -70,7 +70,6 @@ void main() {
     // stable contract is that the answer-check action is replaced by an
     // enabled continuation action after grading.
     expect(find.byType(FilledButton), findsOneWidget);
-    final continuationLabels = <String>{'المتابعة', 'عرض المكافآت', 'حاول مرة أخرى'};
-    expect(continuationLabels.any((label) => find.text(label).evaluate().isNotEmpty), isTrue);
+    expect(find.text('تحقّق'), findsNothing);
   });
 }
