@@ -242,17 +242,21 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
     }
     if (response is String && response.trim().isEmpty) {
       _submitting = false;
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('أدخل إجابتك قبل المتابعة.')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('أدخل إجابتك قبل المتابعة.')),
+        );
+      }
       return;
     }
     if ((question.type == ExerciseType.multipleChoice || question.type == ExerciseType.listeningChoice) &&
         (response is! int || response < 0 || response >= question.options.length)) {
       _submitting = false;
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('اختر إجابة أولًا.')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('اختر إجابة أولًا.')),
+        );
+      }
       return;
     }
     final eventId = 'exercise-session:$_sessionId:${question.id}';
