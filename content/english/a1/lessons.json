@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "2026.10.28.2",
+  "content_version": "2026.10.28.3",
   "lessons": [
     {
       "id": "a1-greetings",
@@ -114,6 +114,93 @@
           ],
           "answer_index": 1,
           "explanation": "With “I”, use the base verb “like”."
+        }
+      ]
+    },
+    {
+      "id": "a1-daily-routine",
+      "title": "Daily routines and simple verbs",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "صف يومك بجمل قصيرة وتعلّم أفعالًا شائعة في الحياة اليومية.",
+      "objectives": [
+        "استخدام أفعال يومية في جمل بسيطة",
+        "وصف بداية اليوم",
+        "تكوين جملة صحيحة مع I"
+      ],
+      "vocabulary": [
+        {
+          "term": "wake up",
+          "meaning": "يستيقظ",
+          "example": "I wake up at seven.",
+          "pronunciation": "wayk up"
+        },
+        {
+          "term": "eat",
+          "meaning": "يأكل",
+          "example": "I eat breakfast in the morning.",
+          "pronunciation": "eet"
+        },
+        {
+          "term": "work",
+          "meaning": "يعمل",
+          "example": "I work every day.",
+          "pronunciation": "wurk"
+        },
+        {
+          "term": "study",
+          "meaning": "يدرس",
+          "example": "I study English after work.",
+          "pronunciation": "STUH-dee"
+        },
+        {
+          "term": "sleep",
+          "meaning": "ينام",
+          "example": "I sleep at night.",
+          "pronunciation": "sleep"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "A simple daily routine",
+          "body": "I wake up at seven. I eat breakfast. I work during the day, and I study English in the evening. I sleep at night."
+        },
+        {
+          "heading": "Grammar tip",
+          "body": "مع الضمير I نستخدم الفعل بصيغته الأساسية: I work, I study, I eat. لا نضيف s إلى الفعل مع I."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Choose the correct sentence.",
+          "options": [
+            "I studies English.",
+            "I study English.",
+            "I studying English."
+          ],
+          "answer_index": 1,
+          "explanation": "مع I نستخدم study دون s."
+        },
+        {
+          "question": "What does “wake up” mean?",
+          "options": [
+            "ينام",
+            "يستيقظ",
+            "يعمل"
+          ],
+          "answer_index": 1,
+          "explanation": "Wake up تعني يستيقظ."
+        },
+        {
+          "question": "Complete: I ___ breakfast in the morning.",
+          "options": [
+            "eat",
+            "eats",
+            "eating"
+          ],
+          "answer_index": 0,
+          "explanation": "نستخدم eat مع I."
         }
       ]
     }
