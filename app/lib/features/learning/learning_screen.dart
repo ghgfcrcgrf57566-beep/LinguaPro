@@ -200,9 +200,11 @@ class _LessonScreenState extends State<LessonScreen> {
       if (mounted) setState(() => _speaking = true);
       await _tts.speak(text);
     } catch (_) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('تعذر تشغيل النطق. تحقق من تثبيت محرك تحويل النص إلى كلام في الجهاز.'),
-      ));
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('تعذر تشغيل النطق. تحقق من تثبيت محرك تحويل النص إلى كلام في الجهاز.'),
+        ));
+      }
     } finally {
       if (mounted) setState(() => _speaking = false);
     }
