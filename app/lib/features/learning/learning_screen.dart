@@ -186,6 +186,7 @@ class _LessonScreenState extends State<LessonScreen> {
   int _questionIndex = 0;
   bool _meaningVisible = false;
   bool _answered = false;
+  int _selectedAnswerIndex = -1;
   int _score = 0;
   bool _finished = false;
   final FlutterTts _tts = FlutterTts();
@@ -394,8 +395,22 @@ class _LessonScreenState extends State<LessonScreen> {
             style: OutlinedButton.styleFrom(
               alignment: Alignment.centerRight,
               padding: const EdgeInsets.all(15),
-              side: BorderSide(color: _answered && i == question.answerIndex ? Colors.green : const Color(0xFFDDE3EF)),
-              backgroundColor: _answered && i == question.answerIndex ? const Color(0xFFE7F7EC) : null,
+              side: BorderSide(
+                color: !_answered
+                    ? const Color(0xFFDDE3EF)
+                    : i == question.answerIndex
+                        ? Colors.green
+                        : i == _selectedAnswerIndex
+                            ? Colors.red
+                            : const Color(0xFFDDE3EF),
+              ),
+              backgroundColor: !_answered
+                  ? null
+                  : i == question.answerIndex
+                      ? const Color(0xFFE7F7EC)
+                      : i == _selectedAnswerIndex
+                          ? const Color(0xFFFFEBEE)
+                          : null,
             ),
             onPressed: _answered ? null : () => _answer(i),
             child: Text(question.options[i], style: const TextStyle(fontSize: 15)),
@@ -411,6 +426,7 @@ class _LessonScreenState extends State<LessonScreen> {
         onPressed: () => setState(() {
           _questionIndex++;
           _answered = false;
+          _selectedAnswerIndex = -1;
         }),
         child: Text(_questionIndex == questions.length - 1 ? 'عرض النتيجة' : 'السؤال التالي'),
       ),
@@ -422,6 +438,7 @@ class _LessonScreenState extends State<LessonScreen> {
     final correct = index == question.answerIndex;
     setState(() {
       _answered = true;
+      _selectedAnswerIndex = index;
       if (correct) _score++;
     });
   }
@@ -430,6 +447,7 @@ class _LessonScreenState extends State<LessonScreen> {
     _questionIndex = 0;
     _score = 0;
     _answered = false;
+    _selectedAnswerIndex = -1;
   });
 
   Future<void> _completeLesson() async {
