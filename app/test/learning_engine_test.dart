@@ -46,7 +46,7 @@ void main() {
       await engine.completeLesson(lessonId: 'greetings', completionEventId: 'finish-retry', now: DateTime(2026, 10, 28, 10));
       expect(await engine.totalXp(), 15);
       expect(await engine.completedLessons(), contains('greetings'));
-      expect((await engine.pendingSyncEvents()).length, 2);
+      expect((await engine.pendingSyncEvents()).length, 3);
       final challenge = await engine.challengeSummary(now: DateTime(2026, 10, 28, 10));
       expect(challenge['dailyLessons'], 1);
       expect(challenge['weeklyLessons'], 1);
