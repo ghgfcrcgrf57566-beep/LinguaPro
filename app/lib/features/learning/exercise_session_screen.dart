@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+import '../../models/learning_lesson.dart';
 import '../../services/exercise_engine.dart';
+import '../../services/learning_engine.dart';
 
 const demoExerciseQuestions = <ExerciseQuestion>[
   ExerciseQuestion(id: 'demo-mcq', type: ExerciseType.multipleChoice, prompt: 'Choose the correct greeting.', options: ['Good morning.', 'Yesterday morning.', 'Morningly.'], answerIndex: 0, explanation: 'Good morning is a natural greeting.'),
@@ -17,6 +20,132 @@ const demoExerciseQuestions = <ExerciseQuestion>[
   ExerciseQuestion(id: 'demo-court', type: ExerciseType.courtScenario, prompt: 'Courtroom role-play: ask a witness one neutral question about what they saw. Avoid suggesting the answer.'),
 ];
 
+List<ExerciseQuestion> buildExercisesForLesson(LearningLesson lesson) {
+  final result = <ExerciseQuestion>[];
+  for (var i = 0; i < lesson.quiz.length; i++) {
+    final q = lesson.quiz[i];
+    result.add(ExerciseQuestion(
+      id: '${lesson.id}-quiz-$i',
+      type: ExerciseType.multipleChoice,
+      prompt: q.question,
+      options: q.options,
+      answerIndex: q.answerIndex,
+      explanation: q.explanation,
+    ));
+  }
+
+  for (var i = 0; i < lesson.vocabulary.length; i++) {
+    final word = lesson.vocabulary[i];
+    result.add(ExerciseQuestion(
+      id: '${lesson.id}-translate-$i',
+      type: ExerciseType.translation,
+      prompt: 'ترجم إلى الإنجليزية: ${word.meaning}',
+      acceptedAnswers: [word.term],
+      explanation: word.example.isEmpty ? 'تحقق من معنى المصطلح في سياق الدرس.' : 'مثال: ${word.example}',
+    ));
+    if (i < 2 && word.example.trim().isNotEmpty) {
+      result.add(ExerciseQuestion(
+        id: '${lesson.id}-dictation-$i',
+        type: ExerciseType.dictation,
+        prompt: 'استمع ثم اكتب الجملة كاملة.',
+        acceptedAnswers: [word.example],
+        spokenText: word.example,
+        explanation: 'راجع ترتيب الكلمات والتهجئة وعلامات الترقيم.',
+      ));
+      final parts = word.example.trim().split(RegExp(r'\s+'));
+      if (parts.length >= 3 && parts.length <= 9) {
+        final shuffled = List<String>.from(parts)..shuffle();
+        result.add(ExerciseQuestion(
+          id: '${lesson.id}-order-$i',
+          type: ExerciseType.wordOrder,
+          prompt: 'رتب الكلمات لتكوين المثال الصحيح: ${shuffled.join(' / ')}',
+          acceptedAnswers: [word.example],
+          explanation: 'راجع المثال الأصلي في قسم المفردات.',
+        ));
+      }
+      final escaped = RegExp(RegExp.escape(word.term), caseSensitive: false);
+      if (escaped.hasMatch(word.example)) {
+        result.add(ExerciseQuestion(
+          id: '${lesson.id}-blank-$i',
+          type: ExerciseType.fillBlank,
+          prompt: word.example.replaceFirst(escaped, '_____'),
+          acceptedAnswers: [word.term],
+          explanation: 'الكلمة الناقصة: ${word.term}. ${word.meaning}',
+        ));
+      }
+    }
+  }
+
+  if (lesson.vocabulary.length >= 2) {
+    final pairs = lesson.vocabulary.take(5)
+        .map((word) => MapEntry(word.term, word.meaning)).toList();
+    result.add(ExerciseQuestion(
+      id: '${lesson.id}-matching',
+      type: ExerciseType.matching,
+      prompt: 'طابق المصطلح الإنجليزي مع معناه العربي.',
+      pairs: pairs,
+      explanation: 'راجع المفردات ومعانيها في سياق الدرس.',
+    ));
+    final options = lesson.vocabulary.take(4).toList();
+    for (var i = 0; i < options.length; i++) {
+      result.add(ExerciseQuestion(
+        id: '${lesson.id}-listen-$i',
+        type: ExerciseType.listeningChoice,
+        prompt: 'استمع إلى الكلمة المنطوقة واختر معناها.',
+        options: options.map((word) => word.meaning).toList(),
+        answerIndex: i,
+        spokenText: options[i].term,
+        explanation: '${options[i].term} تعني: ${options[i].meaning}',
+      ));
+    }
+  }
+
+  if (lesson.sections.isNotEmpty && lesson.quiz.isNotEmpty) {
+    final section = lesson.sections.first;
+    final q = lesson.quiz.first;
+    result.add(ExerciseQuestion(
+      id: '${lesson.id}-reading',
+      type: ExerciseType.readingComprehension,
+      prompt: 'اقرأ النص التالي ثم أجب:\n${section.body}\n\n${q.question}',
+      options: q.options,
+      answerIndex: q.answerIndex,
+      explanation: q.explanation,
+    ));
+  }
+  result.add(ExerciseQuestion(
+    id: '${lesson.id}-dialogue',
+    type: ExerciseType.dialogue,
+    prompt: 'اكتب ردًا مهذبًا مناسبًا في حوار يتعلق بموضوع الدرس: ${lesson.title}.',
+    requiresHumanOrAIReview: true,
+    hint: 'استخدم عبارة واضحة ومناسبة للسياق، ثم راجعها مع المدرس.',
+  ));
+  result.add(ExerciseQuestion(
+    id: '${lesson.id}-writing',
+    type: ExerciseType.sentenceWriting,
+    prompt: 'اكتب جملتين تستخدم فيهما مفردات هذا الدرس: ${lesson.title}.',
+    requiresHumanOrAIReview: true,
+    hint: 'راجع صحة القواعد ووضوح المعنى واستخدام المفردات.',
+  ));
+  result.add(ExerciseQuestion(
+    id: '${lesson.id}-speaking',
+    type: ExerciseType.speakingPrompt,
+    prompt: lesson.isLegal
+        ? 'تحدث بالإنجليزية واشرح فكرة الدرس لشخص يتلقى استشارة قانونية.'
+        : 'تحدث بالإنجليزية ولخص ما تعلمته في درس: ${lesson.title}.',
+    requiresHumanOrAIReview: true,
+  ));
+  if (lesson.isLegal) {
+    result.add(ExerciseQuestion(
+      id: '${lesson.id}-court',
+      type: ExerciseType.courtScenario,
+      prompt: 'سيناريو قضائي تعليمي مرتبط بموضوع "${lesson.title}": صغ سؤالًا محايدًا أو طلبًا مهنيًا مناسبًا.',
+      requiresHumanOrAIReview: true,
+      hint: 'تختلف المصطلحات والإجراءات بحسب النظام القانوني والاختصاص القضائي.',
+    ));
+  }
+  return result;
+}
+
 class ExerciseSessionScreen extends StatefulWidget {
   const ExerciseSessionScreen({super.key, this.questions = demoExerciseQuestions});
   final List<ExerciseQuestion> questions;
@@ -33,15 +162,21 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
   ExerciseGrade? _grade;
   int _correct = 0;
   int _reviewRequired = 0;
+  bool _submitting = false;
+  bool _speaking = false;
+  final FlutterTts _tts = FlutterTts();
+  final int _sessionId = DateTime.now().microsecondsSinceEpoch;
 
   @override
   void dispose() {
     _answer.dispose();
+    _tts.stop();
     super.dispose();
   }
 
-  void _submit() {
-    if (_grade != null || _index >= widget.questions.length) return;
+  Future<void> _submit() async {
+    if (_grade != null || _submitting || _index >= widget.questions.length) return;
+    _submitting = true;
     final question = widget.questions[_index];
     Object? response;
     if (question.type == ExerciseType.multipleChoice || question.type == ExerciseType.listeningChoice) {
@@ -51,12 +186,52 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
     } else {
       response = _answer.text;
     }
+    final eventId = 'exercise-session:$_sessionId:${question.id}';
+    final allowed = await LearningEngine.instance.consumeAttempt(eventId);
+    if (!allowed) {
+      _submitting = false;
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('انتهت محاولاتك اليومية. يمكنك تعديلها من خريطة التعلم.')));
+      return;
+    }
     final grade = _engine.grade(question, response);
+    if (grade.isAutoGraded && grade.isCorrect != null) {
+      final chosen = response is int && response >= 0 && response < question.options.length
+          ? question.options[response] : response?.toString() ?? '';
+      await LearningEngine.instance.recordAnswer(
+        eventId: eventId,
+        lessonId: question.id.split('-').first,
+        prompt: question.prompt,
+        answer: chosen,
+        correct: grade.isCorrect == true,
+        targetTerm: question.answerIndex != null && question.answerIndex! < question.options.length
+            ? question.options[question.answerIndex!] : (question.acceptedAnswers.isNotEmpty ? question.acceptedAnswers.first : null),
+        targetMeaning: question.explanation,
+      );
+      if (grade.isCorrect == true) {
+        await LearningEngine.instance.awardXp(eventId: 'exercise-correct:${question.id}', points: 1);
+      }
+    }
+    _submitting = false;
+    if (!mounted) return;
     setState(() {
       _grade = grade;
       if (grade.isCorrect == true) _correct++;
       if (!grade.isAutoGraded) _reviewRequired++;
     });
+  }
+
+  Future<void> _speak(String text) async {
+    if (text.trim().isEmpty || _speaking) return;
+    try {
+      await _tts.setLanguage('en-US');
+      await _tts.setSpeechRate(0.42);
+      setState(() => _speaking = true);
+      await _tts.speak(text);
+    } catch (_) {
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('تعذر تشغيل النطق على هذا الجهاز.')));
+    } finally {
+      if (mounted) setState(() => _speaking = false);
+    }
   }
 
   void _next() {
@@ -108,10 +283,11 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
         Text(q.prompt, style: const TextStyle(fontSize: 21, height: 1.6, fontWeight: FontWeight.w900)),
         const SizedBox(height: 18),
         if (isChoice) ...[
-          if (q.type == ExerciseType.listeningChoice)
+          if (q.spokenText.isNotEmpty)
             Align(alignment: Alignment.centerRight, child: OutlinedButton.icon(
-              onPressed: () => ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('استخدم زر النطق في الدرس أو اقرأ الجملة بصوت مرتفع؛ يمكن إضافة تشغيل صوت مسجل لكل سؤال لاحقًا.'))),
-              icon: const Icon(Icons.volume_up_rounded), label: const Text('تلميح الاستماع'),
+              onPressed: _speaking ? null : () => _speak(q.spokenText),
+              icon: const Icon(Icons.volume_up_rounded),
+              label: Text(q.type == ExerciseType.listeningChoice ? 'استمع إلى الكلمة' : 'استمع إلى الجملة'),
             )),
           for (var i = 0; i < q.options.length; i++)
             Padding(padding: const EdgeInsets.only(bottom: 8), child: OutlinedButton(
