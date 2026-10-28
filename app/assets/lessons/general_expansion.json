@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "2026.10.28.7",
+  "content_version": "2026.10.28.9",
   "lessons": [
     {
       "id": "a1-work-and-study",
@@ -720,6 +720,252 @@
           ],
           "answer_index": 0,
           "explanation": "A clear purpose and next step help the reader respond."
+        }
+      ]
+    },
+    {
+      "id": "b2-evaluating-evidence",
+      "title": "Evaluating evidence and arguments",
+      "level": "B2",
+      "language": "en",
+      "track": "general-english",
+      "description": "Compare claims with evidence and express qualified conclusions.",
+      "objectives": [
+        "Distinguish a claim from supporting evidence",
+        "Use cautious language when evaluating information",
+        "Summarize a reasoned conclusion"
+      ],
+      "vocabulary": [
+        {
+          "term": "Evidence",
+          "meaning": "دليل / أدلة",
+          "example": "The evidence supports the main conclusion."
+        },
+        {
+          "term": "Reliable",
+          "meaning": "موثوق",
+          "example": "We need a reliable source before making a claim."
+        },
+        {
+          "term": "Assumption",
+          "meaning": "افتراض",
+          "example": "The argument depends on an assumption."
+        },
+        {
+          "term": "Nevertheless",
+          "meaning": "مع ذلك",
+          "example": "The sample was small; nevertheless, the result is useful."
+        },
+        {
+          "term": "Substantial",
+          "meaning": "جوهري / كبير",
+          "example": "There is substantial evidence for the proposal."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Reading",
+          "body": "A strong argument states a clear claim and supports it with relevant evidence. A reliable source explains where its information came from. If evidence is incomplete, a careful writer acknowledges the limitation rather than presenting an assumption as a fact."
+        },
+        {
+          "heading": "Language focus",
+          "body": "Use although, whereas, nevertheless and therefore to show contrast and consequence. Phrases such as “the evidence suggests” are more cautious than “this proves” when certainty is limited."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which word introduces a contrast with the previous statement?",
+          "options": [
+            "Nevertheless",
+            "Therefore",
+            "For instance"
+          ],
+          "answer_index": 0,
+          "explanation": "Nevertheless signals contrast or an unexpected result."
+        },
+        {
+          "question": "A reliable source is one that is…",
+          "options": [
+            "Trustworthy and dependable",
+            "Always very short",
+            "Written without evidence"
+          ],
+          "answer_index": 0,
+          "explanation": "Reliable means likely to be accurate or trustworthy."
+        },
+        {
+          "question": "Which sentence is appropriately cautious?",
+          "options": [
+            "The findings suggest a possible link.",
+            "The findings prove everything.",
+            "No evidence is needed."
+          ],
+          "answer_index": 0,
+          "explanation": "Suggests a possible link communicates a qualified conclusion."
+        }
+      ]
+    },
+    {
+      "id": "c1-nuanced-discussion",
+      "title": "Nuanced discussion and synthesis",
+      "level": "C1",
+      "language": "en",
+      "track": "general-english",
+      "description": "Synthesize different viewpoints and qualify complex claims.",
+      "objectives": [
+        "Synthesize two viewpoints",
+        "Use concessive structures naturally",
+        "Qualify a conclusion without losing clarity"
+      ],
+      "vocabulary": [
+        {
+          "term": "Conversely",
+          "meaning": "وعلى العكس",
+          "example": "The first approach is inexpensive; conversely, it takes longer."
+        },
+        {
+          "term": "Whereas",
+          "meaning": "بينما / في حين أن",
+          "example": "Whereas demand increased, supply remained stable."
+        },
+        {
+          "term": "To some extent",
+          "meaning": "إلى حد ما",
+          "example": "The proposal is, to some extent, effective."
+        },
+        {
+          "term": "Corroborate",
+          "meaning": "يؤيد / يعزز بالدليل",
+          "example": "Independent data corroborate the initial findings."
+        },
+        {
+          "term": "Implication",
+          "meaning": "دلالة / أثر محتمل",
+          "example": "One implication is that training must change."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Model paragraph",
+          "body": "Although the proposal may reduce short-term costs, its long-term implications remain uncertain. Independent data corroborate some of the expected benefits, whereas other findings point to implementation risks. To some extent, the outcome will depend on how consistently the policy is applied."
+        },
+        {
+          "heading": "Language focus",
+          "body": "Synthesis connects ideas rather than listing them. Use concessive clauses to acknowledge a limitation, contrast markers to compare evidence, and qualified expressions to avoid overstating a conclusion."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does corroborate mean?",
+          "options": [
+            "Support with additional evidence",
+            "Reject without review",
+            "Repeat word for word"
+          ],
+          "answer_index": 0,
+          "explanation": "Corroborate means confirm or support with additional evidence."
+        },
+        {
+          "question": "Which phrase explicitly limits the strength of a claim?",
+          "options": [
+            "To some extent",
+            "Without exception",
+            "Beyond all doubt"
+          ],
+          "answer_index": 0,
+          "explanation": "To some extent indicates a qualified or partial claim."
+        },
+        {
+          "question": "A synthesis should…",
+          "options": [
+            "Connect and compare ideas from different sources",
+            "List quotations without explanation",
+            "Remove all differences"
+          ],
+          "answer_index": 0,
+          "explanation": "Synthesis explains relationships between ideas and sources."
+        }
+      ]
+    },
+    {
+      "id": "c2-precision-and-register",
+      "title": "Precision, register and rhetorical control",
+      "level": "C2",
+      "language": "en",
+      "track": "general-english",
+      "description": "Choose precise wording and adapt register for complex professional communication.",
+      "objectives": [
+        "Distinguish subtle shades of meaning",
+        "Adapt register to audience and purpose",
+        "Revise a complex statement for precision"
+      ],
+      "vocabulary": [
+        {
+          "term": "Insofar as",
+          "meaning": "بقدر ما / من حيث إن",
+          "example": "The conclusion is valid insofar as the data are accurate."
+        },
+        {
+          "term": "Tentative",
+          "meaning": "متحفظ / غير جازم",
+          "example": "The report offers a tentative explanation."
+        },
+        {
+          "term": "Salient",
+          "meaning": "بارز / جوهري",
+          "example": "The salient issue is the lack of comparable data."
+        },
+        {
+          "term": "Underscore",
+          "meaning": "يؤكد / يبرز",
+          "example": "The results underscore the need for careful review."
+        },
+        {
+          "term": "Conspicuous",
+          "meaning": "واضح للعيان / لافت",
+          "example": "A conspicuous omission weakens the report."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Editing exercise",
+          "body": "Less precise: “The report says the plan is bad.” More precise: “The report identifies substantial implementation risks and offers a tentative explanation for the projected shortfall.” The revision distinguishes the source's finding from the writer's own judgment."
+        },
+        {
+          "heading": "Language focus",
+          "body": "At advanced levels, accuracy includes register, implication and degree of certainty. Use “insofar as” to state a limit, “salient” to identify what matters most, and “tentative” when a conclusion remains provisional."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which adjective identifies the most important point?",
+          "options": [
+            "Salient",
+            "Tentative",
+            "Conspicuous"
+          ],
+          "answer_index": 0,
+          "explanation": "Salient means most noticeable or important in a particular context."
+        },
+        {
+          "question": "A tentative conclusion is…",
+          "options": [
+            "Provisional and not fully certain",
+            "Guaranteed beyond doubt",
+            "Unrelated to the evidence"
+          ],
+          "answer_index": 0,
+          "explanation": "Tentative indicates caution or incomplete certainty."
+        },
+        {
+          "question": "Why revise “the plan is bad” in a professional report?",
+          "options": [
+            "To state specific risks and the basis for the assessment",
+            "To make the claim less clear",
+            "To hide the evidence"
+          ],
+          "answer_index": 0,
+          "explanation": "Precise wording identifies the nature and basis of an evaluation."
         }
       ]
     }
