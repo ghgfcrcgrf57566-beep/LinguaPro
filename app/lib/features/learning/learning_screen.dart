@@ -47,6 +47,8 @@ class _LearningScreenState extends State<LearningScreen> {
     final paths = <String>[
       if (widget.mode != LearningMode.legal) 'assets/lessons/english_a1.json',
       if (widget.mode != LearningMode.general) 'assets/lessons/legal_english.json',
+      if (widget.mode != LearningMode.legal) 'assets/lessons/general_expansion.json',
+      if (widget.mode != LearningMode.general) 'assets/lessons/legal_expansion.json',
     ];
     final lessons = <LearningLesson>[];
     for (final path in paths) {
