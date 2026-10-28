@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../learning/learning_screen.dart';
+import '../settings/settings_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -31,7 +32,9 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             tooltip: 'الإعدادات',
-            onPressed: () => _notice(context, 'ستُضاف إعدادات الحساب والمزامنة في مرحلة لاحقة.'),
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const SettingsScreen()),
+            ),
             icon: const Icon(Icons.settings_outlined),
           ),
           const SizedBox(width: 8),
@@ -41,7 +44,7 @@ class HomeScreen extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.fromLTRB(18, 22, 18, 30),
           children: [
-            const Text('ابدأ رحلتك نحو الطلاقة 👋', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800, color: Color(0xFF1D2941))),
+            Text('ابدأ رحلتك نحو الطلاقة 👋', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.onSurface)),
             const SizedBox(height: 7),
             const Text('تعلّم الإنجليزية خطوة بخطوة، من الأساسيات إلى التخصص المهني والقانوني.', style: TextStyle(height: 1.8, fontSize: 13, color: Color(0xFF7F899E))),
             const SizedBox(height: 20),
@@ -189,13 +192,17 @@ class _LearningNote extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         padding: const EdgeInsets.all(14),
-        decoration: BoxDecoration(color: const Color(0xFFEFF3FF), borderRadius: BorderRadius.circular(14), border: Border.all(color: const Color(0xFFDCE4FF))),
-        child: const Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Icon(Icons.psychology_alt_outlined, color: Color(0xFF4968E8)),
-          SizedBox(width: 10),
-          Expanded(child: Text(
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.secondaryContainer,
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
+        ),
+        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Icon(Icons.psychology_alt_outlined, color: Theme.of(context).colorScheme.primary),
+          const SizedBox(width: 10),
+          const Expanded(child: Text(
             'يتضمن الإصدار الحالي دروسًا محلية ومراجعة متباعدة أولية. الحسابات السحابية، المزامنة، الصوت التفاعلي ومدرس الذكاء الاصطناعي مراحل منفصلة لم تُفعّل بعد.',
-            style: TextStyle(color: Color(0xFF465675), fontSize: 11, height: 1.8),
+            style: TextStyle(fontSize: 11, height: 1.8),
           )),
         ]),
       );
