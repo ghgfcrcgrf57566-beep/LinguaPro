@@ -371,7 +371,7 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
         const SizedBox(height: 14),
         Row(children: [
           Expanded(child: Text('تمرين ${_index + 1} من ${widget.questions.length}', style: const TextStyle(color: Color(0xFF718078), fontWeight: FontWeight.w700))),
-          Chip(label: Text(_typeLabel(q.type))),
+          Chip(avatar: Icon(_typeIcon(q.type), size: 17), label: Text(_typeLabel(q.type))),
         ]),
         const SizedBox(height: 12),
         Text(q.prompt, style: const TextStyle(fontSize: 21, height: 1.6, fontWeight: FontWeight.w900)),
@@ -442,18 +442,34 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
   }
 
   String _typeLabel(ExerciseType type) => switch (type) {
-    ExerciseType.multipleChoice => 'اختيار',
-    ExerciseType.matching => 'مطابقة',
-    ExerciseType.wordOrder => 'ترتيب',
-    ExerciseType.fillBlank => 'فراغ',
-    ExerciseType.translation => 'ترجمة',
-    ExerciseType.listeningChoice => 'استماع',
-    ExerciseType.dictation => 'إملاء',
-    ExerciseType.correction => 'تصحيح',
-    ExerciseType.dialogue => 'حوار',
-    ExerciseType.readingComprehension => 'فهم مقروء',
-    ExerciseType.sentenceWriting => 'كتابة',
-    ExerciseType.speakingPrompt => 'محادثة',
-    ExerciseType.courtScenario => 'سيناريو قضائي',
+    ExerciseType.multipleChoice => 'اختر الإجابة الصحيحة',
+    ExerciseType.matching => 'طابق الأزواج',
+    ExerciseType.wordOrder => 'رتّب الكلمات',
+    ExerciseType.fillBlank => 'أكمل الجملة',
+    ExerciseType.translation => 'ترجم الجملة',
+    ExerciseType.listeningChoice => 'استمع واختر',
+    ExerciseType.dictation => 'استمع واكتب',
+    ExerciseType.correction => 'صحّح الجملة',
+    ExerciseType.dialogue => 'أكمل الحوار',
+    ExerciseType.readingComprehension => 'اقرأ وأجب',
+    ExerciseType.sentenceWriting => 'اكتب جملة',
+    ExerciseType.speakingPrompt => 'تحدّث بصوت عالٍ',
+    ExerciseType.courtScenario => 'تحدّث في موقف قانوني',
+  };
+
+IconData _typeIcon(ExerciseType type) => switch (type) {
+    ExerciseType.multipleChoice => Icons.checklist_rounded,
+    ExerciseType.matching => Icons.compare_arrows_rounded,
+    ExerciseType.wordOrder => Icons.reorder_rounded,
+    ExerciseType.fillBlank => Icons.edit_note_rounded,
+    ExerciseType.translation => Icons.translate_rounded,
+    ExerciseType.listeningChoice => Icons.hearing_rounded,
+    ExerciseType.dictation => Icons.keyboard_alt_rounded,
+    ExerciseType.correction => Icons.spellcheck_rounded,
+    ExerciseType.dialogue => Icons.forum_rounded,
+    ExerciseType.readingComprehension => Icons.menu_book_rounded,
+    ExerciseType.sentenceWriting => Icons.edit_document,
+    ExerciseType.speakingPrompt => Icons.record_voice_over_rounded,
+    ExerciseType.courtScenario => Icons.gavel_rounded,
   };
 }
