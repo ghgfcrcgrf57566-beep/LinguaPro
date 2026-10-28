@@ -464,7 +464,7 @@ class _ReviewListState extends State<_ReviewList> {
               leading: Icon(item.isDue ? Icons.notifications_active_outlined : Icons.schedule_rounded,
                   color: item.isDue ? Colors.deepOrange : Colors.blueGrey),
               title: Text(item.term, style: const TextStyle(fontWeight: FontWeight.w800)),
-              subtitle: Text('${item.meaning}\nالصحيحة: ${item.correctCount} · الأخطاء: ${item.wrongCount}'),
+              subtitle: Text('${item.meaning}\nدقة التذكر: ${(item.accuracy * 100).round()}% · الصحيحة: ${item.correctCount} · الأخطاء: ${item.wrongCount}${item.needsExtraPractice ? '\nتحتاج إلى تدريب إضافي' : ''}'),
               isThreeLine: true,
               trailing: Text(item.isDue ? 'مستحقة' : _remaining(item.dueAt)),
             )),
