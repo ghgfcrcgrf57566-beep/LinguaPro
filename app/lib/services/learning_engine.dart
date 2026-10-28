@@ -182,6 +182,26 @@ class LearningEngine {
     return isNewCompletion || awarded;
   }
 
+  /// One-time compatibility bridge from the former LearningStore ledger.
+  /// The engine becomes the canonical completion/XP source after this import.
+  Future<void> migrateLegacyProgress({
+    required Iterable<String> completedLessonIds,
+    required int legacyXp,
+  }) async {
+    final prefs = await SharedPreferences.getInstance();
+    final completed = prefs.getStringList(_completedKey) ?? <String>[];
+    var changed = false;
+    for (final id in completedLessonIds) {
+      if (id.trim().isNotEmpty && !completed.contains(id)) {
+        completed.add(id);
+        changed = true;
+      }
+    }
+    if (changed) await prefs.setStringList(_completedKey, completed);
+    final currentXp = prefs.getInt(_xpKey) ?? 0;
+    if (legacyXp > currentXp) await prefs.setInt(_xpKey, legacyXp);
+  }
+
   Future<Set<String>> completedLessons() async {
     final prefs = await SharedPreferences.getInstance();
     return (prefs.getStringList(_completedKey) ?? const <String>[]).toSet();
