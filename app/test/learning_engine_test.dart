@@ -47,6 +47,10 @@ void main() {
       expect(await engine.totalXp(), 15);
       expect(await engine.completedLessons(), contains('greetings'));
       expect((await engine.pendingSyncEvents()).length, 2);
+      final challenge = await engine.challengeSummary(now: DateTime(2026, 10, 28, 10));
+      expect(challenge['dailyLessons'], 1);
+      expect(challenge['weeklyLessons'], 1);
+      expect(await engine.unlockedBadges(), contains('البداية'));
     });
 
     test('daily goal is configurable with safe limits', () async {
@@ -56,6 +60,19 @@ void main() {
       expect(await engine.dailyGoal(), 35);
       await expectLater(engine.setDailyGoal(33), throwsArgumentError);
       await expectLater(engine.setDailyGoal(500), throwsArgumentError);
+    });
+
+    test('attempt limits are configurable, daily, and idempotent by event', () async {
+      final engine = LearningEngine.instance;
+      expect(await engine.attemptsRemaining(now: DateTime(2026, 10, 28)), isNull);
+      await engine.setDailyAttemptLimit(2);
+      expect(await engine.attemptsRemaining(now: DateTime(2026, 10, 28)), 2);
+      expect(await engine.consumeAttempt('try-1', now: DateTime(2026, 10, 28)), isTrue);
+      expect(await engine.consumeAttempt('try-1', now: DateTime(2026, 10, 28)), isTrue);
+      expect(await engine.attemptsRemaining(now: DateTime(2026, 10, 28)), 1);
+      expect(await engine.consumeAttempt('try-2', now: DateTime(2026, 10, 28)), isTrue);
+      expect(await engine.consumeAttempt('try-3', now: DateTime(2026, 10, 28)), isFalse);
+      expect(await engine.attemptsRemaining(now: DateTime(2026, 10, 29)), 2);
     });
 
     test('wrong answer events are stored once and can be reviewed/resolved', () async {
