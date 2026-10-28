@@ -58,6 +58,7 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
         for(final lesson in lessons){grouped.putIfAbsent(lesson.level,()=>[]).add(lesson);}
         final order=['A1','A2','B1','B2','C1','C2','LEGAL'];
         final levels=grouped.keys.toList()..sort((a,b)=>order.indexOf(a.toUpperCase()).compareTo(order.indexOf(b.toUpperCase())));
+        final orderedLessons = <LearningLesson>[for (final level in levels) ...grouped[level]!];
         final done=lessons.where((l)=>completed.contains(l.id)).length;
         return ListView(padding:const EdgeInsets.fromLTRB(16,8,16,28),children:[
           Container(padding:const EdgeInsets.all(18),decoration:BoxDecoration(color:const Color(0xFF176B4D),borderRadius:BorderRadius.circular(24)),child:Column(crossAxisAlignment:CrossAxisAlignment.start,children:[
@@ -78,15 +79,13 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
           ])),
           const SizedBox(height:22),Row(children:[const Expanded(child:Text('خريطة التعلّم',style:TextStyle(fontSize:21,fontWeight:FontWeight.w900))),Text(lessons.length.toString()+' درس',style:const TextStyle(color:Color(0xFF728078),fontWeight:FontWeight.w700))]),
           const SizedBox(height:5),const Text('أكمل الدروس بالترتيب لفتح الخطوة التالية.',style:TextStyle(color:Color(0xFF728078),fontSize:12)),const SizedBox(height:18),
-          var globalIndex = 0;
           for(final level in levels)...[
             _Level(level:level,count:grouped[level]!.length),const SizedBox(height:12),
             for(final lesson in grouped[level]!)...[
-              _LessonNode(index:globalIndex,lesson:lesson,done:completed.contains(lesson.id),unlocked:globalIndex==0||completed.contains(lessons[globalIndex-1].id),onTap:(){
+              _LessonNode(index:orderedLessons.indexOf(lesson),lesson:lesson,done:completed.contains(lesson.id),unlocked:orderedLessons.indexOf(lesson)==0||completed.contains(orderedLessons[orderedLessons.indexOf(lesson)-1].id),onTap:(){
                 Navigator.of(context).push(MaterialPageRoute(builder:(_)=>LessonScreen(lesson:lesson))).then((_)=>refresh());
               }),
-              const SizedBox(height:4),
-              Builder(builder:(context){ globalIndex++; return const SizedBox.shrink(); }),
+              const SizedBox(height:4)
             ],const SizedBox(height:20)
           ],
           const Center(child:Text('خطوة صغيرة كل يوم تصنع فرقًا كبيرًا.',style:TextStyle(color:Color(0xFF7A897F),fontSize:12)))
