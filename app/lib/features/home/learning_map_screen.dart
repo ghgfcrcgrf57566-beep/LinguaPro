@@ -19,6 +19,7 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
   bool legal = false;
   int tab = 0, xp = 0, goal = 20, today = 0, streak = 0, attemptLimit = 0;
   int? attemptsLeft;
+  int reviewCount = 0;
   Map<String, int> challenges = <String, int>{};
   List<String> badges = <String>[];
   List<Map<String, dynamic>> mistakes = <Map<String, dynamic>>[];
@@ -43,9 +44,9 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
       completedLessonIds: await store.completedLessons(),
       legacyXp: await store.totalXp(),
     );
-    final v = await Future.wait<Object>([e.totalXp(),e.dailyGoal(),e.todayXp(),e.streak(),e.completedLessons(),e.challengeSummary(),e.unlockedBadges(),e.dailyAttemptLimit(),e.attemptsRemaining().then((value) => value ?? -1),store.bestQuizResults(),e.mistakes()]);
+    final v = await Future.wait<Object>([e.totalXp(),e.dailyGoal(),e.todayXp(),e.streak(),e.completedLessons(),e.challengeSummary(),e.unlockedBadges(),e.dailyAttemptLimit(),e.attemptsRemaining().then((value) => value ?? -1),store.bestQuizResults(),e.mistakes(),store.loadReviewQueue().then((queue) => queue.length)]);
     if (!mounted) return;
-    setState(() { xp=v[0] as int; goal=v[1] as int; today=v[2] as int; streak=v[3] as int; completed=v[4] as Set<String>; challenges=v[5] as Map<String,int>; badges=v[6] as List<String>; attemptLimit=v[7] as int; attemptsLeft=(v[8] as int) < 0 ? null : v[8] as int; bestScores=v[9] as Map<String, QuizResult>; mistakes=v[10] as List<Map<String, dynamic>>; });
+    setState(() { xp=v[0] as int; goal=v[1] as int; today=v[2] as int; streak=v[3] as int; completed=v[4] as Set<String>; challenges=v[5] as Map<String,int>; badges=v[6] as List<String>; attemptLimit=v[7] as int; attemptsLeft=(v[8] as int) < 0 ? null : v[8] as int; bestScores=v[9] as Map<String, QuizResult>; mistakes=v[10] as List<Map<String, dynamic>>; reviewCount=v[11] as int; });
   }
   void switchTrack(bool value) { if (legal == value) return; setState(() { legal=value; lessonsFuture=loadLessons(); }); }
   Future<void> changeGoal() async {
@@ -158,7 +159,7 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
                   child: OutlinedButton.icon(
                     onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const SpacedReviewScreen())).then((_) => refresh()),
                     icon: const Icon(Icons.psychology_alt_rounded),
-                    label: const Text('المراجعة المتباعدة للمفردات'),
+                    label: Text(reviewCount > 0 ? 'المراجعة المتباعدة للمفردات ($reviewCount)' : 'المراجعة المتباعدة للمفردات'),
                   ),
                 ),
                 if (badges.isNotEmpty) ...[
