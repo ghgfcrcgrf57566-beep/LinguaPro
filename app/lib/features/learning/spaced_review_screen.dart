@@ -13,12 +13,15 @@ class _SpacedReviewScreenState extends State<SpacedReviewScreen> {
   List<WordProgress> _queue = const [];
   int _index = 0;
   bool _answered = false;
+  bool _checking = false;
   bool _correct = false;
+  late final String _sessionId;
   final _controller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
+    _sessionId = DateTime.now().microsecondsSinceEpoch.toString();
     _future = LearningStore.instance.loadReviewQueue();
   }
 
@@ -32,17 +35,34 @@ class _SpacedReviewScreenState extends State<SpacedReviewScreen> {
       value.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
 
   Future<void> _check() async {
-    if (_answered || _index >= _queue.length) return;
+    if (_answered || _checking || _index >= _queue.length) return;
     final word = _queue[_index];
-    final correct = _normalize(_controller.text) == _normalize(word.term);
-    await LearningStore.instance.recordWord(
-      lessonId: word.lessonId,
-      term: word.term,
-      meaning: word.meaning,
-      correct: correct,
-    );
-    if (!mounted) return;
-    setState(() { _answered = true; _correct = correct; });
+    final answer = _controller.text.trim();
+    if (answer.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('اكتب إجابتك أولًا.')),
+      );
+      return;
+    }
+    final correct = _normalize(answer) == _normalize(word.term);
+    setState(() => _checking = true);
+    try {
+      await LearningStore.instance.recordWord(
+        lessonId: word.lessonId,
+        term: word.term,
+        meaning: word.meaning,
+        correct: correct,
+        eventId: 'spaced-review:$_sessionId:$_index',
+      );
+      if (!mounted) return;
+      setState(() { _answered = true; _correct = correct; _checking = false; });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _checking = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('تعذر حفظ نتيجة المراجعة. حاول مرة أخرى.')),
+      );
+    }
   }
 
   void _next() {
@@ -131,7 +151,7 @@ class _SpacedReviewScreenState extends State<SpacedReviewScreen> {
           )),
           const SizedBox(height: 14),
           if (!_answered)
-            FilledButton.icon(onPressed: _check, icon: const Icon(Icons.check_rounded),
+            FilledButton.icon(onPressed: _checking ? null : _check, icon: _checking ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2)) : const Icon(Icons.check_rounded),
               label: const Text('تحقق من الإجابة'))
           else
             FilledButton(onPressed: _next,
