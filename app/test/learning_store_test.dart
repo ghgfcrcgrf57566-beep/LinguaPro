@@ -209,4 +209,32 @@ void main() {
     }
   });
 
+  group('review schedule clock', () {
+    test('correct answers schedule the next review and incorrect answers retry after four hours', () async {
+      final store = LearningStore.instance;
+      final start = DateTime(2026, 10, 28, 9);
+      await store.recordWord(
+        lessonId: 'schedule-test',
+        term: 'appeal',
+        meaning: 'استئناف',
+        correct: true,
+        eventId: 'schedule-correct',
+        now: start,
+      );
+      expect(await store.loadDueWords(now: start.add(const Duration(hours: 23))), isEmpty);
+      expect((await store.loadDueWords(now: start.add(const Duration(days: 1)))).single.term, 'appeal');
+
+      await store.recordWord(
+        lessonId: 'schedule-test',
+        term: 'appeal',
+        meaning: 'استئناف',
+        correct: false,
+        eventId: 'schedule-wrong',
+        now: start.add(const Duration(days: 1)),
+      );
+      expect(await store.loadDueWords(now: start.add(const Duration(days: 1, hours: 3))), isEmpty);
+      expect((await store.loadDueWords(now: start.add(const Duration(days: 1, hours: 4)))).single.term, 'appeal');
+    });
+  });
+
 }
