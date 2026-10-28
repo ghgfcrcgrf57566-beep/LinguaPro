@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "2026.10.28.2",
+  "content_version": "2026.10.28.3",
   "lessons": [
     {
       "id": "legal-contract-basics",
@@ -153,6 +153,93 @@
           ],
           "answer_index": 1,
           "explanation": "Evidence تعني دليلًا أو أدلة إثبات بحسب السياق."
+        }
+      ]
+    },
+    {
+      "id": "legal-procedure-basics",
+      "title": "أطراف الدعوى والجلسة والحكم",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "مفردات أساسية لقراءة وصف مبسط لإجراءات الدعوى دون افتراض تطابق الأنظمة القانونية.",
+      "objectives": [
+        "تمييز المدعي والمدعى عليه",
+        "فهم مصطلحي الجلسة والحكم",
+        "قراءة فقرة إجرائية قصيرة"
+      ],
+      "vocabulary": [
+        {
+          "term": "Claimant",
+          "meaning": "المدعي أو المطالب بحسب نوع الإجراء",
+          "example": "The claimant filed a claim.",
+          "pronunciation": "KLAY-munt"
+        },
+        {
+          "term": "Defendant",
+          "meaning": "المدعى عليه؛ وقد يختلف المقابل بحسب نوع القضية",
+          "example": "The defendant answered the claim.",
+          "pronunciation": "di-FEN-dunt"
+        },
+        {
+          "term": "Hearing",
+          "meaning": "جلسة نظر أو استماع بحسب السياق",
+          "example": "The hearing starts at ten.",
+          "pronunciation": "HEER-ing"
+        },
+        {
+          "term": "Judgment",
+          "meaning": "حكم قضائي",
+          "example": "The court delivered its judgment.",
+          "pronunciation": "JUHJ-munt"
+        },
+        {
+          "term": "File a claim",
+          "meaning": "يرفع دعوى أو يقدم مطالبة بحسب النظام",
+          "example": "They filed a claim in court.",
+          "pronunciation": "fyle uh klaym"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Reading practice",
+          "body": "The claimant filed a claim. The defendant responded. At the hearing, the court considered the arguments and later delivered a judgment."
+        },
+        {
+          "heading": "ملاحظة قانونية",
+          "body": "تختلف المصطلحات الإجرائية بين الأنظمة القانونية؛ فقد يتغير المقابل المناسب لكلمة Claimant أو Hearing وفق نوع المحكمة والإجراء. هذا الدرس لغوي ولا يقدم استشارة قانونية."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is a “hearing” in this context?",
+          "options": [
+            "جلسة",
+            "عقد",
+            "التزام"
+          ],
+          "answer_index": 0,
+          "explanation": "Hearing تعني جلسة نظر أو استماع وفق السياق."
+        },
+        {
+          "question": "ما المقابل الأقرب لـ Judgment؟",
+          "options": [
+            "مذكرة",
+            "حكم قضائي",
+            "شاهد"
+          ],
+          "answer_index": 1,
+          "explanation": "Judgment تعني الحكم القضائي في هذا السياق."
+        },
+        {
+          "question": "Who is the defendant?",
+          "options": [
+            "المدعى عليه",
+            "القاضي",
+            "المترجم"
+          ],
+          "answer_index": 0,
+          "explanation": "Defendant هو المدعى عليه، مع مراعاة المصطلح المعتمد في نوع القضية."
         }
       ]
     }
