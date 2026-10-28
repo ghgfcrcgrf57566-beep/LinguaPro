@@ -440,6 +440,20 @@ class _ReviewListState extends State<_ReviewList> {
             child: Text('لديك ${due.length} كلمة حان موعد مراجعتها من أصل ${all.length} كلمة مسجلة. يتضمن المحتوى الحالي ${widget.lessons.fold<int>(0, (sum, lesson) => sum + lesson.vocabulary.length)} مفردة تعليمية. الكلمات التي لم تتذكرها تعود للمراجعة بعد نحو أربع ساعات، ثم تتباعد المواعيد مع نجاح التذكر.', style: const TextStyle(height: 1.8)),
           ),
           const SizedBox(height: 14),
+          if (all.any((item) => item.needsExtraPractice))
+            OutlinedButton.icon(
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => const ReviewSessionScreen(weakOnly: true),
+              )).then((_) {
+                if (mounted) {
+                  setState(() {
+                    _future = LearningStore.instance.loadProgress();
+                  });
+                }
+              }),
+              icon: const Icon(Icons.psychology_alt_rounded),
+              label: Text('تدرب على الكلمات الصعبة ${all.where((item) => item.needsExtraPractice).length}'),
+            ),
           if (due.isNotEmpty)
             FilledButton.icon(
               onPressed: () => Navigator.of(context).push(MaterialPageRoute(
@@ -484,7 +498,8 @@ class _ReviewListState extends State<_ReviewList> {
 
 
 class ReviewSessionScreen extends StatefulWidget {
-  const ReviewSessionScreen({super.key});
+  const ReviewSessionScreen({super.key, this.weakOnly = false});
+  final bool weakOnly;
 
   @override
   State<ReviewSessionScreen> createState() => _ReviewSessionScreenState();
@@ -503,14 +518,14 @@ class _ReviewSessionScreenState extends State<ReviewSessionScreen> {
 
   Future<List<WordProgress>> _loadDue() async {
     final progress = await LearningStore.instance.loadProgress();
-    final due = progress.values.where((item) => item.isDue).toList()
+    final due = progress.values.where((item) => widget.weakOnly ? item.needsExtraPractice : item.isDue).toList()
       ..sort((a, b) => a.dueAt.compareTo(b.dueAt));
     return due;
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('مراجعة الكلمات')),
+    appBar: AppBar(title: Text(widget.weakOnly ? 'تدريب الكلمات الصعبة' : 'مراجعة الكلمات')),
     body: FutureBuilder<List<WordProgress>>(
       future: _dueFuture,
       builder: (context, snapshot) {
