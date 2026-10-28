@@ -8,18 +8,21 @@ Phase 1 provides the Flutter entry point, Arabic RTL dashboard, learning-track n
 
 ## Run locally
 
-Install the Flutter SDK and Android toolchain, then run:
+Install the Flutter SDK and Android toolchain. From this directory, run:
 
 ```sh
-cd app
-flutter create --platforms=android --project-name english_learning_legal_academy .
 flutter pub get
 flutter analyze
 flutter test
-flutter run
 ```
 
-If Android platform files already exist, review local changes before regenerating them.
+If Android platform files are missing, generate them in a temporary directory and copy only the Android platform folder to avoid overwriting the existing Dart source:
+
+```sh
+flutter create --platforms=android --project-name english_learning_legal_academy /tmp/linguapro_android_template
+cp -R /tmp/linguapro_android_template/android ./android
+flutter run
+```
 
 Set the public API base URL only after deploying a real HTTPS API:
 
