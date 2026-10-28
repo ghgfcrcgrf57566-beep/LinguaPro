@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "2026.10.28-1",
+  "content_version": "2026.10.28.2",
   "lessons": [
     {
       "id": "a1-greetings",
@@ -18,7 +18,8 @@
         {
           "term": "Hello",
           "meaning": "مرحبًا",
-          "example": "Hello, my name is Sara."
+          "example": "Hello, my name is Sara.",
+          "pronunciation": "heh-LOH"
         },
         {
           "term": "Nice to meet you",
@@ -34,7 +35,7 @@
       "sections": [
         {
           "heading": "Useful dialogue",
-          "body": "A: Hello! What is your name?\nB: My name is Sara. What is your name?\nA: I'm Omar. Nice to meet you.\nB: Nice to meet you, too."
+          "body": "A: Hello! What is your name?\\nB: My name is Sara. What is your name?\\nA: I'm Omar. Nice to meet you.\\nB: Nice to meet you, too."
         },
         {
           "heading": "Language tip",
@@ -44,7 +45,11 @@
       "quiz": [
         {
           "question": "Which sentence introduces your name?",
-          "options": ["My name is Ali.", "Where are you?", "Good night."],
+          "options": [
+            "My name is Ali.",
+            "Where are you?",
+            "Good night."
+          ],
           "answer_index": 0,
           "explanation": "“My name is…” is a common way to introduce yourself."
         }
@@ -77,12 +82,22 @@
           "term": "don't like",
           "meaning": "لا يحب / لا يعجبه",
           "example": "I don't like cold coffee."
+        },
+        {
+          "term": "read",
+          "meaning": "يقرأ",
+          "example": "I read a book."
+        },
+        {
+          "term": "music",
+          "meaning": "موسيقى",
+          "example": "I like music."
         }
       ],
       "sections": [
         {
           "heading": "Ask and answer",
-          "body": "A: What do you like?\nB: I like books. What about you?\nA: I like music."
+          "body": "A: What do you like?\\nB: I like books. What about you?\\nA: I like music."
         },
         {
           "heading": "Language tip",
@@ -92,7 +107,11 @@
       "quiz": [
         {
           "question": "Choose the correct sentence.",
-          "options": ["I likes books.", "I like books.", "I liking books."],
+          "options": [
+            "I likes books.",
+            "I like books.",
+            "I liking books."
+          ],
           "answer_index": 1,
           "explanation": "With “I”, use the base verb “like”."
         }
