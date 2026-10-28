@@ -14,7 +14,10 @@ class LearningMapScreen extends StatefulWidget {
 }
 class _LearningMapScreenState extends State<LearningMapScreen> {
   bool legal = false;
-  int tab = 0, xp = 0, goal = 20, today = 0, streak = 0;
+  int tab = 0, xp = 0, goal = 20, today = 0, streak = 0, attemptLimit = 0;
+  int? attemptsLeft;
+  Map<String, int> challenges = <String, int>{};
+  List<String> badges = <String>[];
   Set<String> completed = <String>{};
   late Future<List<LearningLesson>> lessonsFuture;
   @override
@@ -30,9 +33,9 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
   }
   Future<void> refresh() async {
     final e = LearningEngine.instance;
-    final v = await Future.wait<Object>([LearningStore.instance.totalXp(),e.dailyGoal(),e.todayXp(),e.streak(),LearningStore.instance.completedLessons()]);
+    final v = await Future.wait<Object>([LearningStore.instance.totalXp(),e.dailyGoal(),e.todayXp(),e.streak(),LearningStore.instance.completedLessons(),e.challengeSummary(),e.unlockedBadges(),e.dailyAttemptLimit(),e.attemptsRemaining()]);
     if (!mounted) return;
-    setState(() { xp=v[0] as int; goal=v[1] as int; today=v[2] as int; streak=v[3] as int; completed=v[4] as Set<String>; });
+    setState(() { xp=v[0] as int; goal=v[1] as int; today=v[2] as int; streak=v[3] as int; completed=v[4] as Set<String>; challenges=v[5] as Map<String,int>; badges=v[6] as List<String>; attemptLimit=v[7] as int; attemptsLeft=v[8] as int?; });
   }
   void switchTrack(bool value) { if (legal == value) return; setState(() { legal=value; lessonsFuture=loadLessons(); }); }
   Future<void> changeGoal() async {
@@ -42,6 +45,35 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
     ]))));
     if(n==null)return; await LearningEngine.instance.setDailyGoal(n); await refresh();
   }
+
+  Future<void> changeAttempts() async {
+    final selected = await showModalBottomSheet<int>(
+      context: context,
+      showDragHandle: true,
+      builder: (context) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Text('نظام المحاولات', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900)),
+            const SizedBox(height: 8),
+            const Text('اختر عدد المحاولات اليومية. لا يؤثر ذلك في حفظ تقدمك.'),
+            const SizedBox(height: 12),
+            for (final value in [0, 3, 5, 10])
+              ListTile(
+                leading: Icon(value == 0 ? Icons.all_inclusive_rounded : Icons.favorite_rounded),
+                title: Text(value == 0 ? 'غير محدود' : '$value محاولات يوميًا'),
+                trailing: attemptLimit == value ? const Icon(Icons.check_circle, color: Color(0xFF1D9B69)) : null,
+                onTap: () => Navigator.pop(context, value),
+              ),
+          ]),
+        ),
+      ),
+    );
+    if (selected == null) return;
+    await LearningEngine.instance.setDailyAttemptLimit(selected);
+    await refresh();
+  }
+
   @override
   Widget build(BuildContext context) {
     if(tab==1) return Scaffold(appBar:AppBar(title:const Text('المراجعة الذكية')),body:const LearningScreen(mode:LearningMode.review),bottomNavigationBar:nav());
@@ -77,6 +109,30 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
             Expanded(child:_TrackButton(label:'الإنجليزية العامة',selected:!legal,onTap:()=>switchTrack(false))),
             Expanded(child:_TrackButton(label:'الإنجليزية القانونية',selected:legal,onTap:()=>switchTrack(true)))
           ])),
+          const SizedBox(height:14),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Row(children: [
+                  const Icon(Icons.flag_rounded, color: Color(0xFF1D9B69)),
+                  const SizedBox(width: 8),
+                  const Expanded(child: Text('تحدياتك', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900))),
+                  TextButton.icon(onPressed: changeAttempts, icon: const Icon(Icons.favorite_border_rounded, size: 17), label: Text(attemptLimit == 0 ? 'محاولات غير محدودة' : 'المتبقي ${attemptsLeft ?? 0}')),
+                ]),
+                const SizedBox(height: 8),
+                _ChallengeLine(label: 'تحدي اليوم: أكمل درسًا', current: challenges['dailyLessons'] ?? 0, target: challenges['dailyTarget'] ?? 1),
+                const SizedBox(height: 10),
+                _ChallengeLine(label: 'تحدي الأسبوع: خمسة دروس', current: challenges['weeklyLessons'] ?? 0, target: challenges['weeklyTarget'] ?? 5),
+                if (badges.isNotEmpty) ...[
+                  const SizedBox(height: 12),
+                  const Text('شاراتك', style: TextStyle(fontWeight: FontWeight.w800)),
+                  const SizedBox(height: 6),
+                  Wrap(spacing: 6, runSpacing: 6, children: [for (final badge in badges) Chip(avatar: const Icon(Icons.workspace_premium_rounded, size: 17), label: Text(badge))]),
+                ],
+              ]),
+            ),
+          ),
           const SizedBox(height:22),Row(children:[const Expanded(child:Text('خريطة التعلّم',style:TextStyle(fontSize:21,fontWeight:FontWeight.w900))),Text(lessons.length.toString()+' درس',style:const TextStyle(color:Color(0xFF728078),fontWeight:FontWeight.w700))]),
           const SizedBox(height:5),const Text('أكمل الدروس بالترتيب لفتح الخطوة التالية.',style:TextStyle(color:Color(0xFF728078),fontSize:12)),const SizedBox(height:18),
           for(final level in levels)...[
@@ -98,6 +154,22 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
     NavigationDestination(icon:Icon(Icons.route_rounded),label:'التعلّم'),NavigationDestination(icon:Icon(Icons.refresh_rounded),label:'المراجعة'),NavigationDestination(icon:Icon(Icons.tune_rounded),label:'الإعدادات')
   ]);
 }
+class _ChallengeLine extends StatelessWidget {
+  const _ChallengeLine({required this.label, required this.current, required this.target});
+  final String label;
+  final int current;
+  final int target;
+  @override
+  Widget build(BuildContext context) {
+    final progress = target <= 0 ? 0.0 : (current / target).clamp(0.0, 1.0);
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Row(children: [Expanded(child: Text(label, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 12))), Text('$current/$target', style: const TextStyle(fontWeight: FontWeight.w900, color: Color(0xFF176B4D)))]),
+      const SizedBox(height: 5),
+      ClipRRect(borderRadius: BorderRadius.circular(6), child: LinearProgressIndicator(value: progress, minHeight: 6, backgroundColor: const Color(0xFFE5EEE8), color: const Color(0xFF55B879))),
+    ]);
+  }
+}
+
 class _Mark extends StatelessWidget { const _Mark(); @override Widget build(BuildContext context)=>Container(width:36,height:36,decoration:BoxDecoration(color:const Color(0xFF1D9B69),borderRadius:BorderRadius.circular(12)),child:const Icon(Icons.auto_stories_rounded,color:Colors.white,size:22));}
 class _Pill extends StatelessWidget {
   const _Pill({required this.icon,required this.label,required this.color}); final IconData icon;final String label;final Color color;
