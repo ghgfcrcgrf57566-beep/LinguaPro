@@ -8,6 +8,7 @@ import 'package:flutter_tts/flutter_tts.dart';
 
 import '../../models/learning_lesson.dart';
 import '../../services/learning_store.dart';
+import '../../services/learning_engine.dart';
 
 enum LearningMode { general, legal, review }
 
@@ -683,6 +684,7 @@ class _LessonScreenState extends State<LessonScreen> {
     if (!completed.contains(widget.lesson.id)) {
       _earnedXp = 10;
       await LearningStore.instance.awardLessonXp(widget.lesson.id);
+      await LearningEngine.instance.awardXp(eventId: 'lesson:' + widget.lesson.id, points: 10);
       final completedCount = completed.length + 1;
       const badges = <int, String>{
         1: 'شارة البداية 🥉',
