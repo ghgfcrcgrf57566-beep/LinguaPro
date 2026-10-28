@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "content_version": "2026.10.28.2",
+  "lessons": [
+    {
+      "id": "legal-contract-basics",
+      "title": "أساسيات مفردات العقود",
+      "level": "LEGAL",
+      "track": "legal-english",
+      "description": "تعلم مفردات شائعة في العقود والاتفاقيات مع أمثلة مبسطة.",
+      "objectives": [
+        "تمييز المصطلحات الأساسية للعقد",
+        "فهم الفرق بين الطرف والالتزام",
+        "استخدام المصطلحات في جمل قانونية تعليمية"
+      ],
+      "vocabulary": [
+        {
+          "term": "Contract",
+          "meaning": "عقد",
+          "example": "The parties signed the contract.",
+          "pronunciation": "KON-trakt"
+        },
+        {
+          "term": "Agreement",
+          "meaning": "اتفاق / اتفاقية",
+          "example": "They reached an agreement.",
+          "pronunciation": "uh-GREE-ment"
+        },
+        {
+          "term": "Party",
+          "meaning": "طرف في العقد أو الاتفاق",
+          "example": "Each party must read the agreement.",
+          "pronunciation": "PAR-tee"
+        },
+        {
+          "term": "Obligation",
+          "meaning": "التزام",
+          "example": "Payment is an obligation under the contract.",
+          "pronunciation": "ob-li-GAY-shun"
+        },
+        {
+          "term": "Clause",
+          "meaning": "بند في عقد أو وثيقة",
+          "example": "Please read this clause carefully.",
+          "pronunciation": "klawz"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "شرح مبسط باللغة الإنجليزية",
+          "body": "A contract is an agreement between parties. It may describe obligations, rights, and conditions. The legal effect depends on the applicable law and the facts."
+        },
+        {
+          "heading": "ملاحظة تخصصية",
+          "body": "هذا الدرس لتعلم اللغة الإنجليزية القانونية فقط، وليس استشارة قانونية. قد تختلف ترجمة المصطلح وأثره بحسب النظام القانوني والسياق."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does “obligation” mean?",
+          "options": [
+            "التزام",
+            "محكمة",
+            "شاهد"
+          ],
+          "answer_index": 0,
+          "explanation": "Obligation تعني التزامًا أو واجبًا."
+        },
+        {
+          "question": "ما معنى Clause في سياق العقد؟",
+          "options": [
+            "قاضٍ",
+            "بند",
+            "شهادة"
+          ],
+          "answer_index": 1,
+          "explanation": "Clause تعني بندًا ضمن عقد أو وثيقة."
+        }
+      ]
+    },
+    {
+      "id": "legal-court-vocabulary",
+      "title": "مصطلحات المحكمة والدعوى",
+      "level": "LEGAL",
+      "track": "legal-english",
+      "description": "تعرف إلى مصطلحات المحكمة والدعوى مع الانتباه لاختلاف المصطلح بحسب السياق القانوني.",
+      "objectives": [
+        "تمييز مصطلحات المحكمة الأساسية",
+        "فهم الفرق بين claim وevidence",
+        "قراءة جمل قانونية قصيرة"
+      ],
+      "vocabulary": [
+        {
+          "term": "Court",
+          "meaning": "محكمة",
+          "example": "The court heard the case.",
+          "pronunciation": "kort"
+        },
+        {
+          "term": "Judge",
+          "meaning": "قاضٍ",
+          "example": "The judge issued a decision.",
+          "pronunciation": "juhj"
+        },
+        {
+          "term": "Claim",
+          "meaning": "مطالبة أو دعوى بحسب السياق",
+          "example": "The claimant filed a claim.",
+          "pronunciation": "klaym"
+        },
+        {
+          "term": "Evidence",
+          "meaning": "دليل / أدلة إثبات بحسب السياق",
+          "example": "The evidence was presented in court.",
+          "pronunciation": "EV-i-dens"
+        },
+        {
+          "term": "Appeal",
+          "meaning": "استئناف؛ وقد تأتي فعلًا بمعنى يطعن بالاستئناف",
+          "example": "They filed an appeal.",
+          "pronunciation": "uh-PEEL"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "قراءة قصيرة",
+          "body": "The claimant filed a claim. The court reviewed the evidence, and the judge issued a decision. One party may appeal if the applicable procedure allows it."
+        },
+        {
+          "heading": "تنبيه في الترجمة",
+          "body": "Claim وevidence وappeal مصطلحات متعددة الدلالة؛ اختر المقابل العربي وفق نوع الدعوى والإجراء والنظام القانوني."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is a court?",
+          "options": [
+            "محكمة",
+            "عقد",
+            "التزام"
+          ],
+          "answer_index": 0,
+          "explanation": "Court تعني محكمة."
+        },
+        {
+          "question": "ما معنى evidence في هذا السياق؟",
+          "options": [
+            "موعد",
+            "أدلة إثبات",
+            "اتفاق"
+          ],
+          "answer_index": 1,
+          "explanation": "Evidence تعني دليلًا أو أدلة إثبات بحسب السياق."
+        }
+      ]
+    }
+  ]
+}
