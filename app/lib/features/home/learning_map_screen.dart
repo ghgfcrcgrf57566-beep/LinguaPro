@@ -19,6 +19,7 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
   Map<String, int> challenges = <String, int>{};
   List<String> badges = <String>[];
   Set<String> completed = <String>{};
+  Map<String, QuizResult> bestScores = <String, QuizResult>{};
   late Future<List<LearningLesson>> lessonsFuture;
   @override
   void initState() { super.initState(); lessonsFuture = loadLessons(); refresh(); }
@@ -33,9 +34,9 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
   }
   Future<void> refresh() async {
     final e = LearningEngine.instance;
-    final v = await Future.wait<Object>([LearningStore.instance.totalXp(),e.dailyGoal(),e.todayXp(),e.streak(),LearningStore.instance.completedLessons(),e.challengeSummary(),e.unlockedBadges(),e.dailyAttemptLimit(),e.attemptsRemaining()]);
+    final v = await Future.wait<Object>([LearningStore.instance.totalXp(),e.dailyGoal(),e.todayXp(),e.streak(),LearningStore.instance.completedLessons(),e.challengeSummary(),e.unlockedBadges(),e.dailyAttemptLimit(),e.attemptsRemaining(),LearningStore.instance.bestQuizResults()]);
     if (!mounted) return;
-    setState(() { xp=v[0] as int; goal=v[1] as int; today=v[2] as int; streak=v[3] as int; completed=v[4] as Set<String>; challenges=v[5] as Map<String,int>; badges=v[6] as List<String>; attemptLimit=v[7] as int; attemptsLeft=v[8] as int?; });
+    setState(() { xp=v[0] as int; goal=v[1] as int; today=v[2] as int; streak=v[3] as int; completed=v[4] as Set<String>; challenges=v[5] as Map<String,int>; badges=v[6] as List<String>; attemptLimit=v[7] as int; attemptsLeft=v[8] as int?; bestScores=v[9] as Map<String, QuizResult>; });
   }
   void switchTrack(bool value) { if (legal == value) return; setState(() { legal=value; lessonsFuture=loadLessons(); }); }
   Future<void> changeGoal() async {
@@ -138,7 +139,7 @@ class _LearningMapScreenState extends State<LearningMapScreen> {
           for(final level in levels)...[
             _Level(level:level,count:grouped[level]!.length),const SizedBox(height:12),
             for(final lesson in grouped[level]!)...[
-              _LessonNode(index:orderedLessons.indexOf(lesson),lesson:lesson,done:completed.contains(lesson.id),unlocked:orderedLessons.indexOf(lesson)==0||completed.contains(orderedLessons[orderedLessons.indexOf(lesson)-1].id),onTap:(){
+              _LessonNode(index:orderedLessons.indexOf(lesson),lesson:lesson,done:completed.contains(lesson.id),unlocked:orderedLessons.indexOf(lesson)==0||(completed.contains(orderedLessons[orderedLessons.indexOf(lesson)-1].id)&&bestScores[orderedLessons[orderedLessons.indexOf(lesson)-1].id]!=null&&bestScores[orderedLessons[orderedLessons.indexOf(lesson)-1].id]!.percentage>=0.7),onTap:(){
                 Navigator.of(context).push(MaterialPageRoute(builder:(_)=>LessonScreen(lesson:lesson))).then((_)=>refresh());
               }),
               const SizedBox(height:4)
@@ -193,7 +194,7 @@ class _LessonNode extends StatelessWidget {
     final color=done?const Color(0xFF1D9B69):unlocked?const Color(0xFF55B879):const Color(0xFFB8C3BC);
     return Column(children:[
       Align(alignment:index.isEven?Alignment.center:Alignment.centerRight,child:ConstrainedBox(constraints:const BoxConstraints(maxWidth:310),child:InkWell(
-        onTap:unlocked?onTap:()=>ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('أكمل الدرس السابق أولًا لفتح هذه الخطوة.'))),
+        onTap:unlocked?onTap:()=>ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text('أكمل الدرس السابق واحصل على 70% على الأقل لفتح هذه الخطوة.'))),
         borderRadius:BorderRadius.circular(22),child:Row(mainAxisSize:MainAxisSize.min,children:[
           Container(width:66,height:66,decoration:BoxDecoration(color:color,shape:BoxShape.circle,border:Border.all(color:color.withValues(alpha:.45),width:5),boxShadow:[BoxShadow(color:color.withValues(alpha:.20),blurRadius:0,offset:const Offset(0,5))]),child:Icon(done?Icons.check_rounded:unlocked?(lesson.isLegal?Icons.gavel_rounded:Icons.star_rounded):Icons.lock_rounded,color:Colors.white,size:29)),
           const SizedBox(width:12),Flexible(child:Container(padding:const EdgeInsets.symmetric(horizontal:13,vertical:12),decoration:BoxDecoration(color:Colors.white,borderRadius:BorderRadius.circular(15),border:Border.all(color:const Color(0xFFE2EAE4))),child:Column(crossAxisAlignment:CrossAxisAlignment.start,children:[
