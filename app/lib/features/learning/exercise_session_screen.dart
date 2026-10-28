@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 import '../../models/learning_lesson.dart';
 import '../../services/exercise_engine.dart';
 import '../../services/learning_engine.dart';
@@ -167,12 +168,40 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
   bool _submitting = false;
   bool _speaking = false;
   final FlutterTts _tts = FlutterTts();
+  final stt.SpeechToText _speech = stt.SpeechToText();
+  bool _listening = false;
+  bool _speechAvailable = false;
+  String _speechStatus = '';
+  final List<String> _wordBank = <String>[];
+  final List<String> _orderedWords = <String>[];
+  final List<int> _usedWordIndices = <int>[];
+  String? _selectedMatchKey;
   final int _sessionId = DateTime.now().microsecondsSinceEpoch;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.questions.isNotEmpty) _prepareQuestion(0);
+  }
+
+  void _prepareQuestion(int index) {
+    _wordBank.clear();
+    _orderedWords.clear();
+    _usedWordIndices.clear();
+    _pairs.clear();
+    _selectedMatchKey = null;
+    if (index < 0 || index >= widget.questions.length) return;
+    final question = widget.questions[index];
+    if (question.type == ExerciseType.wordOrder && question.acceptedAnswers.isNotEmpty) {
+      _wordBank.addAll(question.acceptedAnswers.first.trim().split(RegExp(r'\\s+'))..shuffle());
+    }
+  }
 
   @override
   void dispose() {
     _answer.dispose();
     _tts.stop();
+    _speech.stop();
     super.dispose();
   }
 
@@ -237,6 +266,10 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
       response = _selected;
     } else if (question.type == ExerciseType.matching) {
       response = Map<String, String>.from(_pairs);
+    } else if (question.type == ExerciseType.wordOrder) {
+      response = _orderedWords.join(' ');
+    } else if (question.type == ExerciseType.fillBlank && question.options.isNotEmpty) {
+      response = _selected;
     } else {
       response = _answer.text;
     }
@@ -249,7 +282,8 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
       }
       return;
     }
-    if ((question.type == ExerciseType.multipleChoice || question.type == ExerciseType.listeningChoice) &&
+    if ((question.type == ExerciseType.multipleChoice || question.type == ExerciseType.listeningChoice ||
+        (question.type == ExerciseType.fillBlank && question.options.isNotEmpty)) &&
         (response is! int || response < 0 || response >= question.options.length)) {
       _submitting = false;
       if (mounted) {
@@ -257,6 +291,11 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
           const SnackBar(content: Text('اختر إجابة أولًا.')),
         );
       }
+      return;
+    }
+    if (question.type == ExerciseType.wordOrder && _orderedWords.isEmpty) {
+      _submitting = false;
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('اختر الكلمات ورتبها أولًا.')));
       return;
     }
     if (question.type == ExerciseType.matching &&
@@ -310,6 +349,43 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
     });
   }
 
+  Future<void> _startListening() async {
+    if (_listening) {
+      await _speech.stop();
+      if (mounted) setState(() => _listening = false);
+      return;
+    }
+    try {
+      _speechAvailable = await _speech.initialize(
+        onStatus: (status) { if (mounted) setState(() { _speechStatus = status; _listening = status == 'listening'; }); },
+        onError: (error) { if (mounted) setState(() { _speechStatus = error.errorMsg; _listening = false; }); },
+      );
+      if (!_speechAvailable) {
+        if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('التعرف على الكلام غير متاح. تحقق من إذن الميكروفون وخدمة التعرف على الكلام في الجهاز.')));
+        return;
+      }
+      if (mounted) setState(() { _listening = true; _speechStatus = 'listening'; });
+      await _speech.listen(
+        localeId: 'en_US',
+        listenFor: const Duration(seconds: 30),
+        pauseFor: const Duration(seconds: 3),
+        onResult: (result) {
+          if (!mounted) return;
+          setState(() {
+            _answer.text = result.recognizedWords;
+            _answer.selection = TextSelection.collapsed(offset: _answer.text.length);
+            if (result.finalResult) _listening = false;
+          });
+        },
+      );
+    } catch (_) {
+      if (mounted) {
+        setState(() => _listening = false);
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('تعذر بدء التعرف على الكلام. يمكنك كتابة إجابتك يدويًا.')));
+      }
+    }
+  }
+
   Future<void> _speak(String text) async {
     if (text.trim().isEmpty || _speaking) return;
     try {
@@ -338,7 +414,7 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
       _selected = null;
       _grade = null;
       _answer.clear();
-      _pairs.clear();
+      _prepareQuestion(_index);
     });
   }
 
@@ -363,7 +439,8 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
       );
     }
     final q = widget.questions[_index];
-    final isChoice = q.type == ExerciseType.multipleChoice || q.type == ExerciseType.listeningChoice;
+    final isChoice = q.type == ExerciseType.multipleChoice || q.type == ExerciseType.listeningChoice ||
+        (q.type == ExerciseType.fillBlank && q.options.isNotEmpty);
     return Scaffold(
       appBar: AppBar(title: const Text('تمارين LinguaPro المتنوعة')),
       body: ListView(padding: const EdgeInsets.all(18), children: [
@@ -376,6 +453,12 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
         const SizedBox(height: 12),
         Text(q.prompt, style: const TextStyle(fontSize: 21, height: 1.6, fontWeight: FontWeight.w900)),
         const SizedBox(height: 18),
+        if (q.type == ExerciseType.dictation && q.spokenText.isNotEmpty)
+          Align(alignment: Alignment.centerRight, child: OutlinedButton.icon(
+            onPressed: _speaking ? null : () => _speak(q.spokenText),
+            icon: const Icon(Icons.volume_up_rounded),
+            label: const Text('استمع إلى الجملة ثم اكتبها'),
+          )),
         if (isChoice) ...[
           if (q.spokenText.isNotEmpty)
             Align(alignment: Alignment.centerRight, child: OutlinedButton.icon(
@@ -395,20 +478,71 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
               child: Text(q.options[i]),
             )),
         ] else if (q.type == ExerciseType.matching) ...[
+          const Text('اضغط على المصطلح ثم اضغط على معناه لإتمام المطابقة.', style: TextStyle(color: Color(0xFF64748B))),
+          const SizedBox(height: 12),
           for (final pair in q.pairs)
-            Padding(padding: const EdgeInsets.only(bottom: 10), child: Row(children: [
-              Expanded(child: Text(pair.key, style: const TextStyle(fontWeight: FontWeight.w800))),
-              const SizedBox(width: 10),
-              Expanded(child: DropdownButtonFormField<String>(
-                key: ValueKey('${q.id}-${pair.key}-$_index'),
-                initialValue: _pairs[pair.key],
-                decoration: const InputDecoration(border: OutlineInputBorder(), isDense: true),
-                hint: const Text('اختر المعنى'),
-                items: q.pairs.map((item) => DropdownMenuItem(value: item.value, child: Text(item.value))).toList(),
-                onChanged: _grade == null ? (value) { if (value != null) setState(() => _pairs[pair.key] = value); } : null,
-              )),
-            ])),
+            Padding(padding: const EdgeInsets.only(bottom: 8), child: InkWell(
+              onTap: _grade == null ? () => setState(() => _selectedMatchKey = pair.key) : null,
+              borderRadius: BorderRadius.circular(14),
+              child: Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(14),
+                  border: Border.all(color: _selectedMatchKey == pair.key ? const Color(0xFF58CC02) : const Color(0xFFD8E1E8), width: _selectedMatchKey == pair.key ? 2 : 1),
+                  color: _pairs.containsKey(pair.key) ? const Color(0xFFE8F8DF) : Colors.white,
+                ),
+                child: Row(children: [Expanded(child: Text(pair.key, style: const TextStyle(fontWeight: FontWeight.w800))), const Icon(Icons.touch_app_rounded, color: Color(0xFF7A8A99))]),
+              ),
+            )),
+          const Divider(height: 22),
+          Wrap(spacing: 8, runSpacing: 8, children: [
+            for (final pair in q.pairs)
+              ChoiceChip(
+                label: Text(pair.value),
+                selected: _pairs.values.contains(pair.value),
+                onSelected: _grade != null || _selectedMatchKey == null ? null : (_) => setState(() {
+                  _pairs.removeWhere((key, value) => value == pair.value);
+                  _pairs[_selectedMatchKey!] = pair.value;
+                  _selectedMatchKey = null;
+                }),
+              ),
+          ]),
+          if (_pairs.isNotEmpty) Text('تمت مطابقة ${_pairs.length} من ${q.pairs.length}', style: const TextStyle(fontWeight: FontWeight.w700)),
+        ] else if (q.type == ExerciseType.wordOrder) ...[
+          const Text('اضغط الكلمات بالترتيب لتكوين الجملة.', style: TextStyle(color: Color(0xFF64748B))),
+          const SizedBox(height: 12),
+          Container(
+            constraints: const BoxConstraints(minHeight: 66),
+            width: double.infinity,
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(color: const Color(0xFFF0F8E9), borderRadius: BorderRadius.circular(14), border: Border.all(color: const Color(0xFFB9DCA4))),
+            child: Wrap(spacing: 7, runSpacing: 7, children: [
+              for (var i = 0; i < _orderedWords.length; i++)
+                ActionChip(label: Text(_orderedWords[i]), onPressed: _grade == null ? () => setState(() {
+                  final word = _orderedWords.removeAt(i);
+                  final sourceIndex = _usedWordIndices.removeAt(i);
+                  _wordBank.insert(sourceIndex, word);
+                  _usedWordIndices.insert(i, -1);
+                  _usedWordIndices.remove(-1);
+                }) : null),
+            ]),
+          ),
+          const SizedBox(height: 12),
+          Wrap(spacing: 8, runSpacing: 8, children: [
+            for (var i = 0; i < _wordBank.length; i++)
+              if (!_usedWordIndices.contains(i))
+                ActionChip(label: Text(_wordBank[i]), onPressed: _grade == null ? () => setState(() { _usedWordIndices.add(i); _orderedWords.add(_wordBank[i]); }) : null),
+          ]),
+          TextButton.icon(onPressed: _grade == null ? () => setState(() { _orderedWords.clear(); _usedWordIndices.clear(); }) : null, icon: const Icon(Icons.refresh_rounded), label: const Text('إعادة الترتيب')),
         ] else ...[
+          if (q.type == ExerciseType.speakingPrompt || q.type == ExerciseType.courtScenario)
+            Align(alignment: Alignment.centerRight, child: FilledButton.tonalIcon(
+              onPressed: _grade == null ? _startListening : null,
+              icon: Icon(_listening ? Icons.stop_circle_rounded : Icons.mic_rounded),
+              label: Text(_listening ? 'إيقاف التسجيل' : 'تحدث بالإنجليزية'),
+            )),
+          if (_speechStatus.isNotEmpty && (q.type == ExerciseType.speakingPrompt || q.type == ExerciseType.courtScenario))
+            Padding(padding: const EdgeInsets.only(top: 6), child: Text(_listening ? 'يستمع الآن… تحدث بوضوح.' : 'النص الذي تعرّف عليه الجهاز يظهر أدناه. هذا تفريغ للكلام وليس درجة نطق صوتية دقيقة.', style: const TextStyle(fontSize: 12, color: Color(0xFF64748B)))),
           TextField(
             controller: _answer,
             enabled: _grade == null,
@@ -445,7 +579,7 @@ class _ExerciseSessionScreenState extends State<ExerciseSessionScreen> {
     ExerciseType.multipleChoice => 'اختيار',
     ExerciseType.matching => 'مطابقة',
     ExerciseType.wordOrder => 'ترتيب',
-    ExerciseType.fillBlank => 'فراغ',
+    ExerciseType.fillBlank => 'أكمل الجملة',
     ExerciseType.translation => 'ترجمة',
     ExerciseType.listeningChoice => 'استماع',
     ExerciseType.dictation => 'إملاء',
