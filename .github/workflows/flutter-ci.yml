@@ -26,7 +26,6 @@ jobs:
         with:
           channel: stable
           cache: true
-          cache-dependency-path: app/pubspec.yaml
       - name: Generate Android platform files if missing
         run: |
           if [ ! -f android/gradlew ]; then
