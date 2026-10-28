@@ -39,6 +39,19 @@ class ContentValidationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             self.assertEqual(validate_file(self.write_document(directory, VALID_DOCUMENT)), 1)
 
+    def test_accepts_optional_pronunciation_hint(self) -> None:
+        document = json.loads(json.dumps(VALID_DOCUMENT))
+        document["lessons"][0]["vocabulary"][0]["pronunciation"] = "heh-LOH"
+        with tempfile.TemporaryDirectory() as directory:
+            self.assertEqual(validate_file(self.write_document(directory, document)), 1)
+
+    def test_rejects_empty_pronunciation_hint(self) -> None:
+        document = json.loads(json.dumps(VALID_DOCUMENT))
+        document["lessons"][0]["vocabulary"][0]["pronunciation"] = "  "
+        with tempfile.TemporaryDirectory() as directory:
+            with self.assertRaises(ContentValidationError):
+                validate_file(self.write_document(directory, document))
+
     def test_rejects_out_of_range_answer_index(self) -> None:
         document = json.loads(json.dumps(VALID_DOCUMENT))
         document["lessons"][0]["quiz"][0]["answer_index"] = 7

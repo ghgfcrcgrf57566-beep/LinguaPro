@@ -1,0 +1,1673 @@
+{
+  "schema_version": 1,
+  "content_version": "2026.10.28.7",
+  "lessons": [
+    {
+      "id": "legal-contract-basics",
+      "title": "أساسيات مفردات العقود",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "تعلم مفردات شائعة في العقود والاتفاقيات مع أمثلة مبسطة.",
+      "objectives": [
+        "تمييز المصطلحات الأساسية للعقد",
+        "فهم الفرق بين الطرف والالتزام",
+        "استخدام المصطلحات في جمل قانونية تعليمية"
+      ],
+      "vocabulary": [
+        {
+          "term": "Contract",
+          "meaning": "عقد",
+          "example": "The parties signed the contract.",
+          "pronunciation": "KON-trakt"
+        },
+        {
+          "term": "Agreement",
+          "meaning": "اتفاق / اتفاقية",
+          "example": "They reached an agreement.",
+          "pronunciation": "uh-GREE-ment"
+        },
+        {
+          "term": "Party",
+          "meaning": "طرف في العقد أو الاتفاق",
+          "example": "Each party must read the agreement.",
+          "pronunciation": "PAR-tee"
+        },
+        {
+          "term": "Obligation",
+          "meaning": "التزام",
+          "example": "Payment is an obligation under the contract.",
+          "pronunciation": "ob-li-GAY-shun"
+        },
+        {
+          "term": "Clause",
+          "meaning": "بند في عقد أو وثيقة",
+          "example": "Please read this clause carefully.",
+          "pronunciation": "klawz"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "شرح مبسط باللغة الإنجليزية",
+          "body": "A contract is an agreement between parties. It may describe obligations, rights, and conditions. The legal effect depends on the applicable law and the facts."
+        },
+        {
+          "heading": "ملاحظة تخصصية",
+          "body": "هذا الدرس لتعلم اللغة الإنجليزية القانونية فقط، وليس استشارة قانونية. قد تختلف ترجمة المصطلح وأثره بحسب النظام القانوني والسياق."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does “obligation” mean?",
+          "options": [
+            "التزام",
+            "محكمة",
+            "شاهد"
+          ],
+          "answer_index": 0,
+          "explanation": "Obligation تعني التزامًا أو واجبًا."
+        },
+        {
+          "question": "ما معنى Clause في سياق العقد؟",
+          "options": [
+            "قاضٍ",
+            "بند",
+            "شهادة"
+          ],
+          "answer_index": 1,
+          "explanation": "Clause تعني بندًا ضمن عقد أو وثيقة."
+        }
+      ]
+    },
+    {
+      "id": "legal-court-vocabulary",
+      "title": "مصطلحات المحكمة والدعوى",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "تعرف إلى مصطلحات المحكمة والدعوى مع الانتباه لاختلاف المصطلح بحسب السياق القانوني.",
+      "objectives": [
+        "تمييز مصطلحات المحكمة الأساسية",
+        "فهم الفرق بين claim وevidence",
+        "قراءة جمل قانونية قصيرة"
+      ],
+      "vocabulary": [
+        {
+          "term": "Court",
+          "meaning": "محكمة",
+          "example": "The court heard the case.",
+          "pronunciation": "kort"
+        },
+        {
+          "term": "Judge",
+          "meaning": "قاضٍ",
+          "example": "The judge issued a decision.",
+          "pronunciation": "juhj"
+        },
+        {
+          "term": "Claim",
+          "meaning": "مطالبة أو دعوى بحسب السياق",
+          "example": "The claimant filed a claim.",
+          "pronunciation": "klaym"
+        },
+        {
+          "term": "Evidence",
+          "meaning": "دليل / أدلة إثبات بحسب السياق",
+          "example": "The evidence was presented in court.",
+          "pronunciation": "EV-i-dens"
+        },
+        {
+          "term": "Appeal",
+          "meaning": "استئناف؛ وقد تأتي فعلًا بمعنى يطعن بالاستئناف",
+          "example": "They filed an appeal.",
+          "pronunciation": "uh-PEEL"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "قراءة قصيرة",
+          "body": "The claimant filed a claim. The court reviewed the evidence, and the judge issued a decision. One party may appeal if the applicable procedure allows it."
+        },
+        {
+          "heading": "تنبيه في الترجمة",
+          "body": "Claim وevidence وappeal مصطلحات متعددة الدلالة؛ اختر المقابل العربي وفق نوع الدعوى والإجراء والنظام القانوني."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is a court?",
+          "options": [
+            "محكمة",
+            "عقد",
+            "التزام"
+          ],
+          "answer_index": 0,
+          "explanation": "Court تعني محكمة."
+        },
+        {
+          "question": "ما معنى evidence في هذا السياق؟",
+          "options": [
+            "موعد",
+            "أدلة إثبات",
+            "اتفاق"
+          ],
+          "answer_index": 1,
+          "explanation": "Evidence تعني دليلًا أو أدلة إثبات بحسب السياق."
+        }
+      ]
+    },
+    {
+      "id": "legal-procedure-basics",
+      "title": "أطراف الدعوى والجلسة والحكم",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "مفردات أساسية لقراءة وصف مبسط لإجراءات الدعوى دون افتراض تطابق الأنظمة القانونية.",
+      "objectives": [
+        "تمييز المدعي والمدعى عليه",
+        "فهم مصطلحي الجلسة والحكم",
+        "قراءة فقرة إجرائية قصيرة"
+      ],
+      "vocabulary": [
+        {
+          "term": "Claimant",
+          "meaning": "المدعي أو المطالب بحسب نوع الإجراء",
+          "example": "The claimant filed a claim.",
+          "pronunciation": "KLAY-munt"
+        },
+        {
+          "term": "Defendant",
+          "meaning": "المدعى عليه؛ وقد يختلف المقابل بحسب نوع القضية",
+          "example": "The defendant answered the claim.",
+          "pronunciation": "di-FEN-dunt"
+        },
+        {
+          "term": "Hearing",
+          "meaning": "جلسة نظر أو استماع بحسب السياق",
+          "example": "The hearing starts at ten.",
+          "pronunciation": "HEER-ing"
+        },
+        {
+          "term": "Judgment",
+          "meaning": "حكم قضائي",
+          "example": "The court delivered its judgment.",
+          "pronunciation": "JUHJ-munt"
+        },
+        {
+          "term": "File a claim",
+          "meaning": "يرفع دعوى أو يقدم مطالبة بحسب النظام",
+          "example": "They filed a claim in court.",
+          "pronunciation": "fyle uh klaym"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Reading practice",
+          "body": "The claimant filed a claim. The defendant responded. At the hearing, the court considered the arguments and later delivered a judgment."
+        },
+        {
+          "heading": "ملاحظة قانونية",
+          "body": "تختلف المصطلحات الإجرائية بين الأنظمة القانونية؛ فقد يتغير المقابل المناسب لكلمة Claimant أو Hearing وفق نوع المحكمة والإجراء. هذا الدرس لغوي ولا يقدم استشارة قانونية."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is a “hearing” in this context?",
+          "options": [
+            "جلسة",
+            "عقد",
+            "التزام"
+          ],
+          "answer_index": 0,
+          "explanation": "Hearing تعني جلسة نظر أو استماع وفق السياق."
+        },
+        {
+          "question": "ما المقابل الأقرب لـ Judgment؟",
+          "options": [
+            "مذكرة",
+            "حكم قضائي",
+            "شاهد"
+          ],
+          "answer_index": 1,
+          "explanation": "Judgment تعني الحكم القضائي في هذا السياق."
+        },
+        {
+          "question": "Who is the defendant?",
+          "options": [
+            "المدعى عليه",
+            "القاضي",
+            "المترجم"
+          ],
+          "answer_index": 0,
+          "explanation": "Defendant هو المدعى عليه، مع مراعاة المصطلح المعتمد في نوع القضية."
+        }
+      ]
+    },
+    {
+      "id": "legal-evidence-and-witnesses",
+      "title": "Evidence, witnesses and documents",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "تعلم مفردات الأدلة والشهود والمستندات في نصوص قانونية تعليمية عامة.",
+      "objectives": [
+        "تمييز evidence وwitness وdocument",
+        "قراءة جملة عن تقديم دليل",
+        "فهم أن الترجمة تعتمد على السياق والنظام القانوني"
+      ],
+      "vocabulary": [
+        {
+          "term": "Witness",
+          "meaning": "شاهد",
+          "example": "The witness answered the questions.",
+          "pronunciation": "WIT-niss"
+        },
+        {
+          "term": "Statement",
+          "meaning": "إفادة أو بيان بحسب السياق",
+          "example": "The witness gave a statement.",
+          "pronunciation": "STAYT-munt"
+        },
+        {
+          "term": "Document",
+          "meaning": "مستند أو وثيقة",
+          "example": "Please attach the document.",
+          "pronunciation": "DOK-yuh-munt"
+        },
+        {
+          "term": "Exhibit",
+          "meaning": "مستند أو شيء مقدم كدليل في الدعوى",
+          "example": "The document was marked as an exhibit.",
+          "pronunciation": "ig-ZIB-it"
+        },
+        {
+          "term": "Testimony",
+          "meaning": "شهادة أو أقوال الشاهد",
+          "example": "The testimony was recorded.",
+          "pronunciation": "TES-tuh-moh-nee"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Reading practice",
+          "body": "The witness gave a statement. The lawyer submitted a document as evidence. The court considered the material according to the applicable rules."
+        },
+        {
+          "heading": "ملاحظة مصطلحية",
+          "body": "قد يختلف المقابل الدقيق لكلمات statement وexhibit وtestimony بحسب نوع الإجراء وقواعد الإثبات في النظام المعني. هذا المحتوى لتعلم اللغة وليس استشارة قانونية."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does witness mean?",
+          "options": [
+            "شاهد",
+            "عقد",
+            "موعد"
+          ],
+          "answer_index": 0,
+          "explanation": "Witness تعني شاهدًا."
+        },
+        {
+          "question": "A document may be submitted as...",
+          "options": [
+            "evidence",
+            "breakfast",
+            "direction"
+          ],
+          "answer_index": 0,
+          "explanation": "Evidence تعني دليلًا أو أدلة إثبات بحسب السياق."
+        },
+        {
+          "question": "What is testimony most closely related to?",
+          "options": [
+            "أقوال الشاهد أو شهادته",
+            "قائمة طعام",
+            "وقت الدوام"
+          ],
+          "answer_index": 0,
+          "explanation": "Testimony تعني الشهادة أو أقوال الشاهد في سياق قانوني."
+        }
+      ]
+    },
+    {
+      "id": "legal-letters-and-notices",
+      "title": "Legal letters and formal notices",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "مصطلحات عملية لقراءة المراسلات والإشعارات الرسمية بلغة إنجليزية واضحة.",
+      "objectives": [
+        "تمييز notice وrequest وresponse",
+        "فهم عبارات المراسلات الرسمية",
+        "كتابة جملة مهذبة ومباشرة"
+      ],
+      "vocabulary": [
+        {
+          "term": "Notice",
+          "meaning": "إشعار أو إخطار بحسب السياق",
+          "example": "The company sent a written notice.",
+          "pronunciation": "NOH-tiss"
+        },
+        {
+          "term": "Request",
+          "meaning": "طلب",
+          "example": "We received your request.",
+          "pronunciation": "ri-KWEST"
+        },
+        {
+          "term": "Response",
+          "meaning": "رد أو استجابة",
+          "example": "Please send your response by Friday.",
+          "pronunciation": "ri-SPONS"
+        },
+        {
+          "term": "Attached",
+          "meaning": "مرفق",
+          "example": "Please find the document attached.",
+          "pronunciation": "uh-TACHT"
+        },
+        {
+          "term": "Sincerely",
+          "meaning": "مع خالص التحية؛ ختام رسمي للرسالة",
+          "example": "Sincerely, Alex Morgan.",
+          "pronunciation": "sin-SEER-lee"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Sample formal email",
+          "body": "Dear Ms. Ali,\\nPlease find the requested document attached. We would appreciate your response by Friday.\\nSincerely,\\nAlex Morgan"
+        },
+        {
+          "heading": "Writing tip",
+          "body": "ابدأ الرسالة الرسمية بتحية مناسبة، وضح الغرض بجملة مباشرة، ثم اذكر المرفقات أو الموعد عند الحاجة. لا تفترض أن مهلة واردة في مثال لغوي تمثل مهلة قانونية فعلية."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does attached mean in an email?",
+          "options": [
+            "مرفق",
+            "مرفوض دائمًا",
+            "جلسة محكمة"
+          ],
+          "answer_index": 0,
+          "explanation": "Attached تشير إلى ملف أو مستند مرفق بالرسالة."
+        },
+        {
+          "question": "Which is a formal closing?",
+          "options": [
+            "Sincerely",
+            "What food?",
+            "Turn left"
+          ],
+          "answer_index": 0,
+          "explanation": "Sincerely من عبارات الختام الشائعة في الرسائل الرسمية."
+        }
+      ]
+    },
+    {
+      "id": "legal-evidence-witnesses",
+      "title": "Evidence and witnesses",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "مصطلحات الأدلة والشهود في سياق قضائي تعليمي.",
+      "objectives": [
+        "Distinguish evidence from a witness.",
+        "Describe presenting evidence.",
+        "Read a short courtroom sentence."
+      ],
+      "vocabulary": [
+        {
+          "term": "Evidence",
+          "meaning": "دليل / أدلة إثبات",
+          "example": "The lawyer presented the evidence.",
+          "pronunciation": "EV-i-dens"
+        },
+        {
+          "term": "Witness",
+          "meaning": "شاهد",
+          "example": "The witness answered the question.",
+          "pronunciation": "WIT-niss"
+        },
+        {
+          "term": "Testimony",
+          "meaning": "شهادة / أقوال الشاهد",
+          "example": "The testimony was recorded.",
+          "pronunciation": "TES-ti-moh-nee"
+        },
+        {
+          "term": "Exhibit",
+          "meaning": "مستند أو معروض إثبات",
+          "example": "Exhibit A is attached to the file.",
+          "pronunciation": "ig-ZIB-it"
+        },
+        {
+          "term": "Reliable",
+          "meaning": "موثوق",
+          "example": "The court assessed whether the source was reliable.",
+          "pronunciation": "ri-LY-uh-bul"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Courtroom reading",
+          "body": "The witness gave testimony. The lawyer presented an exhibit, and the court considered the evidence."
+        },
+        {
+          "heading": "Language tip / ملاحظة",
+          "body": "The precise legal meaning of evidence, testimony and exhibit depends on the jurisdiction and procedural context."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Who gives testimony?",
+          "options": [
+            "A witness",
+            "A building",
+            "A contract"
+          ],
+          "answer_index": 0,
+          "explanation": "الشاهد witness هو من يدلي بالشهادة."
+        },
+        {
+          "question": "What does “evidence” mean here?",
+          "options": [
+            "أجرة",
+            "أدلة إثبات",
+            "موعد"
+          ],
+          "answer_index": 1,
+          "explanation": "Evidence تعني الدليل أو أدلة الإثبات بحسب السياق."
+        }
+      ]
+    },
+    {
+      "id": "legal-pleadings-filings",
+      "title": "Pleadings and court filings",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "تعلم مفردات المذكرات والطلبات والمستندات المقدمة للمحكمة.",
+      "objectives": [
+        "Identify a pleading and a motion.",
+        "Use file and submit in context.",
+        "Understand a basic filing sentence."
+      ],
+      "vocabulary": [
+        {
+          "term": "Pleading",
+          "meaning": "مذكرة أو ورقة من أوراق الخصومة",
+          "example": "The pleading sets out the party’s position.",
+          "pronunciation": "PLEE-ding"
+        },
+        {
+          "term": "Motion",
+          "meaning": "طلب إجرائي للمحكمة",
+          "example": "The lawyer filed a motion.",
+          "pronunciation": "MOH-shun"
+        },
+        {
+          "term": "Submit",
+          "meaning": "يقدم / يودع",
+          "example": "Please submit the document to the court.",
+          "pronunciation": "sub-MIT"
+        },
+        {
+          "term": "Filing",
+          "meaning": "إيداع مستند",
+          "example": "The filing was received yesterday.",
+          "pronunciation": "FY-ling"
+        },
+        {
+          "term": "Response",
+          "meaning": "رد / جواب",
+          "example": "The defendant filed a response.",
+          "pronunciation": "ri-SPONS"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Filing a response",
+          "body": "The claimant submitted a pleading. The defendant prepared a response and filed it with the court."
+        },
+        {
+          "heading": "Language tip / ملاحظة",
+          "body": "“Motion” and “pleading” do not map identically to every procedural system; translate according to local procedure."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does “submit” mean?",
+          "options": [
+            "يقدم",
+            "ينسحب",
+            "يحكم"
+          ],
+          "answer_index": 0,
+          "explanation": "Submit تعني يقدم أو يودع بحسب السياق."
+        },
+        {
+          "question": "Who filed a response in the example?",
+          "options": [
+            "The defendant",
+            "The witness",
+            "The judge"
+          ],
+          "answer_index": 0,
+          "explanation": "The defendant filed a response."
+        }
+      ]
+    },
+    {
+      "id": "legal-hearings-orders",
+      "title": "Hearings and court orders",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "مفردات الجلسات والأوامر والقرارات القضائية.",
+      "objectives": [
+        "Describe a hearing.",
+        "Distinguish an order from a judgment in simple context.",
+        "Read a procedural update."
+      ],
+      "vocabulary": [
+        {
+          "term": "Hearing",
+          "meaning": "جلسة نظر",
+          "example": "The hearing is scheduled for Monday.",
+          "pronunciation": "HEER-ing"
+        },
+        {
+          "term": "Court order",
+          "meaning": "أمر قضائي",
+          "example": "The court issued an order.",
+          "pronunciation": "kort OR-der"
+        },
+        {
+          "term": "Adjourn",
+          "meaning": "يؤجل الجلسة",
+          "example": "The judge adjourned the hearing.",
+          "pronunciation": "uh-JURN"
+        },
+        {
+          "term": "Schedule",
+          "meaning": "يحدد موعدًا",
+          "example": "The clerk scheduled the next hearing.",
+          "pronunciation": "SKEJ-ool"
+        },
+        {
+          "term": "Ruling",
+          "meaning": "قرار قضائي",
+          "example": "The court announced its ruling.",
+          "pronunciation": "ROO-ling"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "A procedural update",
+          "body": "The hearing was scheduled for Monday. The judge adjourned it, and the clerk set a new date."
+        },
+        {
+          "heading": "Language tip / ملاحظة",
+          "body": "The terms order, ruling and judgment may have different procedural effects under different legal systems."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does “adjourn” mean?",
+          "options": [
+            "يؤجل الجلسة",
+            "يوقع عقدًا",
+            "يستجوب شاهدًا"
+          ],
+          "answer_index": 0,
+          "explanation": "Adjourn تعني يؤجل الجلسة."
+        },
+        {
+          "question": "Who may issue a court order?",
+          "options": [
+            "The court",
+            "The translator only",
+            "A witness"
+          ],
+          "answer_index": 0,
+          "explanation": "Court order تعني أمرًا صادرًا عن المحكمة."
+        }
+      ]
+    },
+    {
+      "id": "legal-appeals-deadlines",
+      "title": "Appeals and procedural deadlines",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "مصطلحات الاستئناف والمواعيد الإجرائية مع تنبيه إلى اختلاف القوانين.",
+      "objectives": [
+        "Understand appeal and deadline.",
+        "Describe filing an appeal.",
+        "Recognize that deadlines depend on applicable rules."
+      ],
+      "vocabulary": [
+        {
+          "term": "Appeal",
+          "meaning": "استئناف / طعن بحسب النظام",
+          "example": "The party filed an appeal.",
+          "pronunciation": "uh-PEEL"
+        },
+        {
+          "term": "Deadline",
+          "meaning": "موعد نهائي",
+          "example": "The deadline is stated in the notice.",
+          "pronunciation": "DED-lyn"
+        },
+        {
+          "term": "Within",
+          "meaning": "خلال / في غضون",
+          "example": "The document must be filed within the required period.",
+          "pronunciation": "wi-THIN"
+        },
+        {
+          "term": "Extension",
+          "meaning": "تمديد",
+          "example": "The party requested an extension.",
+          "pronunciation": "ik-STEN-shun"
+        },
+        {
+          "term": "Dismiss",
+          "meaning": "يرفض / يقضي بعدم القبول بحسب السياق",
+          "example": "The court dismissed the appeal.",
+          "pronunciation": "dis-MISS"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Reading a notice",
+          "body": "The notice explains how to file an appeal and identifies the applicable deadline. A party should check the governing procedural rules."
+        },
+        {
+          "heading": "Language tip / ملاحظة",
+          "body": "This lesson is language learning only. Actual appeal deadlines depend on the applicable law, notification date and case type."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is a deadline?",
+          "options": [
+            "موعد نهائي",
+            "شاهد",
+            "مرفق"
+          ],
+          "answer_index": 0,
+          "explanation": "Deadline تعني الموعد النهائي."
+        },
+        {
+          "question": "What should determine an actual legal deadline?",
+          "options": [
+            "A generic English lesson",
+            "The applicable procedural law and case facts",
+            "A guess"
+          ],
+          "answer_index": 1,
+          "explanation": "المواعيد الفعلية تُحدد وفق القانون والوقائع ذات الصلة."
+        }
+      ]
+    },
+    {
+      "id": "legal-client-correspondence",
+      "title": "Professional legal correspondence",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "تدرب على عبارات المراسلات المهنية بين المحامي والعميل.",
+      "objectives": [
+        "Use polite professional openings.",
+        "Request a document clearly.",
+        "Close a short professional email."
+      ],
+      "vocabulary": [
+        {
+          "term": "Dear…",
+          "meaning": "عزيزي / عزيزتي…",
+          "example": "Dear Mr. Smith,",
+          "pronunciation": "deer"
+        },
+        {
+          "term": "Please find attached",
+          "meaning": "يرجى الاطلاع على المرفق",
+          "example": "Please find attached the draft agreement.",
+          "pronunciation": "pleez fynd uh-TACHT"
+        },
+        {
+          "term": "Review",
+          "meaning": "يراجع",
+          "example": "Please review the attached document.",
+          "pronunciation": "ri-VYOO"
+        },
+        {
+          "term": "Clarify",
+          "meaning": "يوضح",
+          "example": "Could you clarify this point?",
+          "pronunciation": "KLAIR-uh-fy"
+        },
+        {
+          "term": "Kind regards",
+          "meaning": "مع خالص التحية",
+          "example": "Kind regards,",
+          "pronunciation": "kynd ri-GARDZ"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "A short professional email",
+          "body": "Dear Ms. Ali, Please review the attached draft and clarify any comments by Thursday. Kind regards,"
+        },
+        {
+          "heading": "Language tip / ملاحظة",
+          "body": "Use concise, courteous wording. Avoid implying legal advice or a binding deadline unless the context supports it."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which phrase politely requests a review?",
+          "options": [
+            "Review it now!",
+            "Could you please review the draft?",
+            "You must reviewing."
+          ],
+          "answer_index": 1,
+          "explanation": "Could you please…? صيغة مهذبة للطلب."
+        },
+        {
+          "question": "What is a common professional closing?",
+          "options": [
+            "Kind regards",
+            "What is your age?",
+            "Turn left"
+          ],
+          "answer_index": 0,
+          "explanation": "Kind regards من عبارات ختام المراسلات المهنية."
+        }
+      ]
+    },
+    {
+      "id": "legal-evidence-witness",
+      "title": "Evidence, witnesses and testimony",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "مفردات الأدلة والشهود والإدلاء بالشهادة مع أمثلة تعليمية.",
+      "objectives": [
+        "تمييز evidence وtestimony وwitness",
+        "قراءة جمل عن عرض الأدلة",
+        "التنبه إلى اختلاف المصطلحات بحسب النظام"
+      ],
+      "vocabulary": [
+        {
+          "term": "Evidence",
+          "meaning": "دليل / أدلة إثبات بحسب السياق",
+          "example": "The lawyer presented the evidence.",
+          "pronunciation": "EV-i-dens"
+        },
+        {
+          "term": "Witness",
+          "meaning": "شاهد",
+          "example": "The witness answered the question.",
+          "pronunciation": "WIT-niss"
+        },
+        {
+          "term": "Testimony",
+          "meaning": "شهادة / أقوال الشاهد",
+          "example": "The testimony was recorded.",
+          "pronunciation": "TES-tuh-moh-nee"
+        },
+        {
+          "term": "Exhibit",
+          "meaning": "مستند أو شيء مقدم كدليل",
+          "example": "The document was marked as an exhibit.",
+          "pronunciation": "ig-ZIB-it"
+        },
+        {
+          "term": "Statement",
+          "meaning": "إفادة / بيان",
+          "example": "The witness gave a statement.",
+          "pronunciation": "STAYT-munt"
+        },
+        {
+          "term": "Reliable",
+          "meaning": "موثوق",
+          "example": "The court considered whether the source was reliable.",
+          "pronunciation": "ri-LY-uh-bul"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Reading practice",
+          "body": "The lawyer called a witness. The witness gave testimony about what they had seen. The lawyer then presented a document as an exhibit. The court assessed the material under the applicable rules."
+        },
+        {
+          "heading": "Terminology note",
+          "body": "Evidence may refer to material used to prove a fact; testimony is spoken or recorded evidence from a witness. Exact procedures and admissibility rules differ between jurisdictions."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Who is a witness?",
+          "options": [
+            "شاهد",
+            "قاضٍ",
+            "مترجم"
+          ],
+          "answer_index": 0,
+          "explanation": "Witness تعني شاهدًا."
+        },
+        {
+          "question": "What can an exhibit be?",
+          "options": [
+            "دليل مادي أو مستند مقدم للمحكمة",
+            "موعد عطلة",
+            "خطة سفر"
+          ],
+          "answer_index": 0,
+          "explanation": "Exhibit قد يكون مستندًا أو شيئًا يقدم كدليل."
+        }
+      ]
+    },
+    {
+      "id": "legal-pleadings-hearings",
+      "title": "Pleadings and court hearings",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "مصطلحات عملية لقراءة المذكرات والطلبات والجلسات.",
+      "objectives": [
+        "فهم pleading وmotion وhearing",
+        "استخدام أفعال إجرائية شائعة",
+        "قراءة وصف موجز لجلسة"
+      ],
+      "vocabulary": [
+        {
+          "term": "Pleading",
+          "meaning": "مذكرة أو ورقة من أوراق الدعوى بحسب النظام",
+          "example": "The party filed a written pleading.",
+          "pronunciation": "PLEE-ding"
+        },
+        {
+          "term": "Motion",
+          "meaning": "طلب إجرائي يقدم إلى المحكمة في بعض الأنظمة",
+          "example": "The lawyer filed a motion.",
+          "pronunciation": "MOH-shun"
+        },
+        {
+          "term": "Hearing",
+          "meaning": "جلسة نظر / استماع",
+          "example": "The hearing is scheduled for Monday.",
+          "pronunciation": "HEER-ing"
+        },
+        {
+          "term": "Adjourn",
+          "meaning": "يؤجل الجلسة",
+          "example": "The judge decided to adjourn the hearing.",
+          "pronunciation": "uh-JURN"
+        },
+        {
+          "term": "Submit",
+          "meaning": "يقدم / يودع",
+          "example": "Please submit the document to the court.",
+          "pronunciation": "sub-MIT"
+        },
+        {
+          "term": "Deadline",
+          "meaning": "موعد نهائي / أجل",
+          "example": "The filing deadline is approaching.",
+          "pronunciation": "DED-lyn"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "At a hearing",
+          "body": "The parties appeared at the hearing. The claimant submitted a written pleading, and the defendant requested additional time. The court adjourned the hearing and set a new date."
+        },
+        {
+          "heading": "Language note",
+          "body": "Pleading, motion, application and petition do not have identical meanings in every legal system. Learn the term in the procedural context where it is used."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does “adjourn the hearing” mean?",
+          "options": [
+            "يؤجل الجلسة",
+            "يصدر فاتورة",
+            "يوقع عقدًا"
+          ],
+          "answer_index": 0,
+          "explanation": "Adjourn the hearing تعني تأجيل الجلسة."
+        },
+        {
+          "question": "A deadline is…",
+          "options": [
+            "موعد نهائي أو أجل",
+            "شاهد",
+            "صفة شخصية"
+          ],
+          "answer_index": 0,
+          "explanation": "Deadline تعني موعدًا نهائيًا أو أجلًا."
+        }
+      ]
+    },
+    {
+      "id": "legal-criminal-procedure",
+      "title": "Criminal procedure and rights",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "مصطلحات عامة في الإجراءات الجنائية مع التنبيه إلى اختلاف القوانين.",
+      "objectives": [
+        "تمييز arrest وcharge وtrial",
+        "فهم bail وdefence",
+        "قراءة فقرة عن مراحل الإجراء"
+      ],
+      "vocabulary": [
+        {
+          "term": "Arrest",
+          "meaning": "قبض على شخص",
+          "example": "The police made an arrest.",
+          "pronunciation": "uh-REST"
+        },
+        {
+          "term": "Charge",
+          "meaning": "اتهام رسمي في سياقات إجرائية معينة",
+          "example": "The defendant faced a criminal charge.",
+          "pronunciation": "charj"
+        },
+        {
+          "term": "Trial",
+          "meaning": "محاكمة",
+          "example": "The trial began on Monday.",
+          "pronunciation": "TRY-ul"
+        },
+        {
+          "term": "Defence",
+          "meaning": "دفاع",
+          "example": "The defence challenged the evidence.",
+          "pronunciation": "di-FENS"
+        },
+        {
+          "term": "Bail",
+          "meaning": "إفراج بكفالة أو ضمان وفق النظام",
+          "example": "The court considered whether bail was appropriate.",
+          "pronunciation": "bayl"
+        },
+        {
+          "term": "Presumption of innocence",
+          "meaning": "قرينة البراءة",
+          "example": "The presumption of innocence is a fundamental principle in many systems.",
+          "pronunciation": "pre-ZUMP-shun of IN-uh-sens"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Reading practice",
+          "body": "After an arrest, the competent authority may bring a charge under the applicable law. The case may proceed to trial, where the defence can challenge the evidence. The rules governing bail and procedure vary by jurisdiction."
+        },
+        {
+          "heading": "Important note",
+          "body": "These are general language examples, not a statement of Yemeni or any other jurisdiction's current procedural law. Verify local legislation and terminology before using them in a real case."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does “defence” mean in this context?",
+          "options": [
+            "دفاع",
+            "عقد بيع",
+            "موعد"
+          ],
+          "answer_index": 0,
+          "explanation": "Defence تعني الدفاع."
+        },
+        {
+          "question": "What is a trial?",
+          "options": [
+            "محاكمة",
+            "إيصال",
+            "دعوة"
+          ],
+          "answer_index": 0,
+          "explanation": "Trial تعني محاكمة."
+        }
+      ]
+    },
+    {
+      "id": "legal-judgment-appeal",
+      "title": "Judgments, appeals and remedies",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "تعلم لغة الأحكام والطعن وطلبات مراجعة القرار القضائي.",
+      "objectives": [
+        "تمييز judgment وorder وappeal",
+        "فهم grounds of appeal",
+        "صياغة جمل إجرائية عامة"
+      ],
+      "vocabulary": [
+        {
+          "term": "Judgment",
+          "meaning": "حكم قضائي",
+          "example": "The court delivered its judgment.",
+          "pronunciation": "JUHJ-munt"
+        },
+        {
+          "term": "Order",
+          "meaning": "أمر أو قرار قضائي بحسب السياق",
+          "example": "The court issued an order.",
+          "pronunciation": "OR-der"
+        },
+        {
+          "term": "Appeal",
+          "meaning": "استئناف أو طعن بحسب النظام",
+          "example": "The party filed an appeal.",
+          "pronunciation": "uh-PEEL"
+        },
+        {
+          "term": "Grounds of appeal",
+          "meaning": "أسباب الاستئناف أو الطعن",
+          "example": "The notice listed the grounds of appeal.",
+          "pronunciation": "grounds of uh-PEEL"
+        },
+        {
+          "term": "Uphold",
+          "meaning": "يؤيد الحكم أو القرار",
+          "example": "The appellate court upheld the judgment.",
+          "pronunciation": "up-HOHLD"
+        },
+        {
+          "term": "Reverse",
+          "meaning": "يلغي أو ينقض القرار في بعض السياقات",
+          "example": "The higher court reversed the decision.",
+          "pronunciation": "ri-VURS"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Reading practice",
+          "body": "The court delivered a judgment. One party filed an appeal and set out the grounds for challenging the decision. The appellate court reviewed the record and decided whether to uphold, vary or reverse the decision under the applicable procedure."
+        },
+        {
+          "heading": "Terminology note",
+          "body": "Appeal, cassation, reversal and setting aside are not interchangeable in every system. The proper remedy, deadline and court depend on the governing law."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What are “grounds of appeal”?",
+          "options": [
+            "أسباب الطعن",
+            "أتعاب المحامي",
+            "قائمة الشهود فقط"
+          ],
+          "answer_index": 0,
+          "explanation": "Grounds of appeal هي أسباب الاستئناف أو الطعن."
+        },
+        {
+          "question": "What does “uphold a judgment” mean?",
+          "options": [
+            "يؤيد الحكم",
+            "يؤجل الجلسة",
+            "يقدم شاهدًا"
+          ],
+          "answer_index": 0,
+          "explanation": "Uphold a judgment تعني تأييد الحكم."
+        }
+      ]
+    },
+    {
+      "id": "legal-client-interview",
+      "title": "Client interviews and legal correspondence",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "عبارات مهنية للمقابلة الأولية مع الموكل وطلب المستندات.",
+      "objectives": [
+        "طرح أسئلة مهنية واضحة",
+        "طلب الوثائق والتواريخ",
+        "تلخيص الوقائع دون افتراض النتائج"
+      ],
+      "vocabulary": [
+        {
+          "term": "Client",
+          "meaning": "موكل / عميل بحسب السياق",
+          "example": "The lawyer arranged a meeting with the client.",
+          "pronunciation": "KLY-ent"
+        },
+        {
+          "term": "Instructions",
+          "meaning": "تعليمات الموكل أو التكليف",
+          "example": "The lawyer took instructions from the client.",
+          "pronunciation": "in-STRUK-shunz"
+        },
+        {
+          "term": "Relevant documents",
+          "meaning": "المستندات ذات الصلة",
+          "example": "Please bring all relevant documents.",
+          "pronunciation": "REL-uh-vunt DOK-yuh-ments"
+        },
+        {
+          "term": "Chronology",
+          "meaning": "تسلسل زمني للوقائع",
+          "example": "We prepared a chronology of events.",
+          "pronunciation": "kruh-NOL-uh-jee"
+        },
+        {
+          "term": "Allege",
+          "meaning": "يدعي / يزعم",
+          "example": "The claimant alleges that payment was not made.",
+          "pronunciation": "uh-LEJ"
+        },
+        {
+          "term": "Without prejudice",
+          "meaning": "عبارة ذات أثر قانوني يختلف بحسب السياق والنظام",
+          "example": "The letter was marked “without prejudice.”",
+          "pronunciation": "with-OUT PREJ-uh-dis"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Client interview",
+          "body": "Lawyer: Could you explain what happened and when?\\nClient: The agreement was signed in March, but payment was not made.\\nLawyer: Do you have the agreement and proof of payment?\\nClient: Yes, I will send the relevant documents."
+        },
+        {
+          "heading": "Professional language",
+          "body": "Use neutral questions such as “Could you explain…?” and distinguish a client's allegation from an established fact. Phrases such as “without prejudice” can have specific legal effects; do not use them without checking local practice."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is a chronology?",
+          "options": [
+            "تسلسل زمني للوقائع",
+            "حكم نهائي",
+            "نوع من المحاكم"
+          ],
+          "answer_index": 0,
+          "explanation": "Chronology تعني ترتيب الوقائع زمنيًا."
+        },
+        {
+          "question": "Why distinguish an allegation from a fact?",
+          "options": [
+            "لأن الادعاء لا يعني ثبوت الواقعة",
+            "لأن كل ادعاء حكم نهائي",
+            "لأن المستندات غير مهمة"
+          ],
+          "answer_index": 0,
+          "explanation": "Allege تعني يدعي، ولا تثبت وحدها صحة الادعاء."
+        }
+      ]
+    },
+    {
+      "id": "legal-civil-claims",
+      "title": "Civil claims and parties",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Learn basic English used to describe civil claims, claimants and defendants.",
+      "objectives": [
+        "Identify parties in a civil case",
+        "Describe a claim in plain English",
+        "Distinguish claimant from defendant"
+      ],
+      "vocabulary": [
+        {
+          "term": "Claimant",
+          "meaning": "المدعي",
+          "example": "The claimant filed a civil claim.",
+          "pronunciation": "KLAY-munt"
+        },
+        {
+          "term": "Defendant",
+          "meaning": "المدعى عليه",
+          "example": "The defendant received the claim.",
+          "pronunciation": "di-FEN-dunt"
+        },
+        {
+          "term": "Civil claim",
+          "meaning": "دعوى مدنية",
+          "example": "The civil claim concerns unpaid rent.",
+          "pronunciation": "SIV-ul klaym"
+        },
+        {
+          "term": "Relief",
+          "meaning": "طلب أو جبر قضائي",
+          "example": "The claimant seeks monetary relief.",
+          "pronunciation": "ri-LEEF"
+        },
+        {
+          "term": "Respondent",
+          "meaning": "المستجيب / المدعى عليه بحسب الإجراء",
+          "example": "The respondent filed a reply.",
+          "pronunciation": "ri-SPON-dunt"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Courtroom example",
+          "body": "The claimant filed a civil claim. The defendant submitted a response. The court will review the documents and hear both parties."
+        },
+        {
+          "heading": "Usage note",
+          "body": "Legal terms can vary by jurisdiction and procedure. Respondent is common in some applications and appeals; defendant is common in many civil claims."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Who usually brings a civil claim?",
+          "options": [
+            "The claimant",
+            "The witness",
+            "The interpreter"
+          ],
+          "answer_index": 0,
+          "explanation": "The claimant brings the claim before the court."
+        },
+        {
+          "question": "Who is the defendant?",
+          "options": [
+            "The person responding to the claim",
+            "The court clerk",
+            "The expert witness"
+          ],
+          "answer_index": 0,
+          "explanation": "The defendant is the party against whom the claim is brought."
+        }
+      ]
+    },
+    {
+      "id": "legal-motions-applications",
+      "title": "Motions and court applications",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Use common terms for asking a court to make a procedural order.",
+      "objectives": [
+        "Recognize motion and application",
+        "State the order requested",
+        "Use respectful formal wording"
+      ],
+      "vocabulary": [
+        {
+          "term": "Application",
+          "meaning": "طلب قضائي",
+          "example": "The lawyer filed an application for an extension.",
+          "pronunciation": "ap-li-KAY-shun"
+        },
+        {
+          "term": "Motion",
+          "meaning": "طلب / عريضة إجرائية بحسب النظام",
+          "example": "The motion asks the court to dismiss the case.",
+          "pronunciation": "MOH-shun"
+        },
+        {
+          "term": "Grant",
+          "meaning": "يقبل أو يمنح الطلب",
+          "example": "The court may grant the application.",
+          "pronunciation": "grant"
+        },
+        {
+          "term": "Dismiss",
+          "meaning": "يرفض الدعوى أو الطلب إجرائيًا",
+          "example": "The court dismissed the motion.",
+          "pronunciation": "dis-MISS"
+        },
+        {
+          "term": "Extension",
+          "meaning": "تمديد",
+          "example": "The party requested an extension of time.",
+          "pronunciation": "ik-STEN-shun"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Formal wording",
+          "body": "The applicant respectfully requests an extension of time to file the response. The request is supported by the reasons set out below."
+        },
+        {
+          "heading": "Usage note",
+          "body": "Motion and application are not interchangeable in every legal system. Learn the term used by the relevant court and procedure."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does “extension of time” mean?",
+          "options": [
+            "More time is requested or allowed",
+            "The case is transferred permanently",
+            "Evidence is destroyed"
+          ],
+          "answer_index": 0,
+          "explanation": "An extension gives additional time for a procedural step."
+        },
+        {
+          "question": "Which phrase is appropriately formal?",
+          "options": [
+            "Give me more time now.",
+            "The applicant respectfully requests an extension.",
+            "I want it because I said so."
+          ],
+          "answer_index": 1,
+          "explanation": "Formal legal writing states the request respectfully and precisely."
+        }
+      ]
+    },
+    {
+      "id": "legal-settlement-negotiation",
+      "title": "Settlement and negotiation",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Discuss settlement proposals, terms and without-prejudice communications in general terms.",
+      "objectives": [
+        "Describe a settlement offer",
+        "Negotiate terms politely",
+        "Recognize common settlement language"
+      ],
+      "vocabulary": [
+        {
+          "term": "Settlement",
+          "meaning": "تسوية",
+          "example": "The parties reached a settlement.",
+          "pronunciation": "SET-ul-ment"
+        },
+        {
+          "term": "Offer",
+          "meaning": "عرض",
+          "example": "The defendant made a settlement offer.",
+          "pronunciation": "OFF-er"
+        },
+        {
+          "term": "Counteroffer",
+          "meaning": "عرض مقابل",
+          "example": "The claimant sent a counteroffer.",
+          "pronunciation": "KOWN-ter-off-er"
+        },
+        {
+          "term": "Terms",
+          "meaning": "شروط",
+          "example": "The agreement sets out the payment terms.",
+          "pronunciation": "turmz"
+        },
+        {
+          "term": "Dispute",
+          "meaning": "نزاع",
+          "example": "The parties want to resolve the dispute.",
+          "pronunciation": "dis-PYOOT"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Negotiation dialogue",
+          "body": "A: Our client is willing to consider a settlement.\nB: Please send the proposed terms in writing.\nA: We will review the offer and respond by Friday."
+        },
+        {
+          "heading": "Usage note",
+          "body": "The legal effect of settlement communications and labels such as without prejudice depends on the applicable law. This lesson teaches language, not jurisdiction-specific advice."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is a counteroffer?",
+          "options": [
+            "A response proposing different terms",
+            "A final court judgment",
+            "A witness statement"
+          ],
+          "answer_index": 0,
+          "explanation": "A counteroffer proposes different or revised terms."
+        },
+        {
+          "question": "Which word means an unresolved disagreement?",
+          "options": [
+            "Dispute",
+            "Invoice",
+            "Appointment"
+          ],
+          "answer_index": 0,
+          "explanation": "A dispute is a disagreement between parties."
+        }
+      ]
+    },
+    {
+      "id": "legal-cross-examination",
+      "title": "Questions, testimony and cross-examination",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Practice neutral courtroom phrases about testimony and questioning witnesses.",
+      "objectives": [
+        "Identify testimony and witness",
+        "Understand leading questions",
+        "Use neutral questioning phrases"
+      ],
+      "vocabulary": [
+        {
+          "term": "Testimony",
+          "meaning": "شهادة",
+          "example": "The witness gave testimony in court.",
+          "pronunciation": "TES-tuh-moh-nee"
+        },
+        {
+          "term": "Cross-examination",
+          "meaning": "استجواب الشاهد من الطرف الآخر",
+          "example": "Counsel began cross-examination.",
+          "pronunciation": "kross-ig-zam-uh-NAY-shun"
+        },
+        {
+          "term": "Leading question",
+          "meaning": "سؤال إيحائي",
+          "example": "The judge considered whether the question was leading.",
+          "pronunciation": "LEE-ding KWES-chun"
+        },
+        {
+          "term": "Credibility",
+          "meaning": "المصداقية",
+          "example": "The court assessed the witness’s credibility.",
+          "pronunciation": "kred-uh-BIL-uh-tee"
+        },
+        {
+          "term": "Recall",
+          "meaning": "يتذكر / يستدعي مجددًا بحسب السياق",
+          "example": "Do you recall the date of the meeting?",
+          "pronunciation": "ri-KAWL"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Questioning example",
+          "body": "Counsel: Do you recall the date of the meeting?\nWitness: I believe it was 12 May.\nCounsel: Did you make a written note that day?"
+        },
+        {
+          "heading": "Language tip",
+          "body": "Use short, clear questions. Court rules about leading questions and witness examination differ by jurisdiction."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is testimony?",
+          "options": [
+            "A witness’s evidence or statement",
+            "A court building",
+            "A payment receipt"
+          ],
+          "answer_index": 0,
+          "explanation": "Testimony is evidence given by a witness, often orally."
+        },
+        {
+          "question": "Which phrase asks about memory neutrally?",
+          "options": [
+            "You remember it, don't you?",
+            "Do you recall the date?",
+            "You must agree with me."
+          ],
+          "answer_index": 1,
+          "explanation": "“Do you recall…?” is a neutral question form."
+        }
+      ]
+    },
+    {
+      "id": "legal-judgment-enforcement",
+      "title": "Judgments and enforcement",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Learn common terms used after a court issues a judgment.",
+      "objectives": [
+        "Distinguish judgment from enforcement",
+        "Describe a payment order",
+        "Recognize appeal-related wording"
+      ],
+      "vocabulary": [
+        {
+          "term": "Judgment",
+          "meaning": "حكم قضائي",
+          "example": "The court delivered its judgment.",
+          "pronunciation": "JUJ-ment"
+        },
+        {
+          "term": "Enforcement",
+          "meaning": "تنفيذ الحكم",
+          "example": "The creditor applied for enforcement.",
+          "pronunciation": "en-FORSS-ment"
+        },
+        {
+          "term": "Creditor",
+          "meaning": "دائن",
+          "example": "The creditor seeks payment under the judgment.",
+          "pronunciation": "KRED-it-er"
+        },
+        {
+          "term": "Debtor",
+          "meaning": "مدين",
+          "example": "The debtor disputed the amount due.",
+          "pronunciation": "DET-er"
+        },
+        {
+          "term": "Stay of enforcement",
+          "meaning": "وقف تنفيذ الحكم",
+          "example": "The party requested a stay of enforcement.",
+          "pronunciation": "stay uhv en-FORSS-ment"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Practice paragraph",
+          "body": "The court delivered a judgment ordering payment. The creditor applied for enforcement. The debtor requested a stay while an appeal was considered."
+        },
+        {
+          "heading": "Usage note",
+          "body": "The availability and effect of a stay, appeal or enforcement procedure depend on the governing law and court order."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Who is owed money?",
+          "options": [
+            "The creditor",
+            "The debtor",
+            "The interpreter"
+          ],
+          "answer_index": 0,
+          "explanation": "A creditor is the person or entity to whom a debt is owed."
+        },
+        {
+          "question": "What does “stay of enforcement” generally refer to?",
+          "options": [
+            "A pause in enforcement",
+            "A new contract",
+            "A witness interview"
+          ],
+          "answer_index": 0,
+          "explanation": "A stay temporarily suspends enforcement, subject to the applicable law."
+        }
+      ]
+    },
+    {
+      "id": "legal-drafting-clauses",
+      "title": "Drafting clear contract clauses",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Use precise English for obligations, conditions, notices and termination clauses.",
+      "objectives": [
+        "Write a clear obligation",
+        "Identify a condition and a notice period",
+        "Use concise drafting language"
+      ],
+      "vocabulary": [
+        {
+          "term": "Shall",
+          "meaning": "يلتزم / يجب بحسب سياق الصياغة",
+          "example": "The buyer shall pay within ten days.",
+          "pronunciation": "shal"
+        },
+        {
+          "term": "Provided that",
+          "meaning": "بشرط أن",
+          "example": "Payment is due, provided that the invoice is valid.",
+          "pronunciation": "pruh-VY-did that"
+        },
+        {
+          "term": "Notice period",
+          "meaning": "مدة الإشعار",
+          "example": "The contract requires a 30-day notice period.",
+          "pronunciation": "NOH-tis PEER-ee-ud"
+        },
+        {
+          "term": "Terminate",
+          "meaning": "ينهي العقد",
+          "example": "Either party may terminate the agreement under this clause.",
+          "pronunciation": "TUR-muh-nayt"
+        },
+        {
+          "term": "Breach",
+          "meaning": "إخلال أو مخالفة تعاقدية",
+          "example": "Late payment may constitute a breach.",
+          "pronunciation": "breech"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Drafting example",
+          "body": "The buyer shall pay the invoice within ten days of receipt. Either party may terminate this agreement by giving 30 days’ written notice, subject to the terms of this agreement."
+        },
+        {
+          "heading": "Language tip",
+          "body": "Drafting should identify who must act, what action is required, when it must happen and any condition or exception. The legal effect of shall can vary by drafting convention."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "A “notice period” is…",
+          "options": [
+            "A period of advance warning",
+            "A court fee",
+            "A witness’s answer"
+          ],
+          "answer_index": 0,
+          "explanation": "A notice period is the time between notice and the relevant effective action."
+        },
+        {
+          "question": "What can “breach of contract” mean?",
+          "options": [
+            "Failure to comply with a contractual duty",
+            "Signing every page",
+            "A court holiday"
+          ],
+          "answer_index": 0,
+          "explanation": "A breach occurs when a party fails to meet a contractual obligation."
+        }
+      ]
+    }
+  ]
+}

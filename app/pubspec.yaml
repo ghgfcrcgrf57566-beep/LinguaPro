@@ -1,16 +1,24 @@
 name: english_learning_legal_academy
 description: English Learning Academy with a dedicated Legal English learning track.
 publish_to: "none"
-version: 0.1.0+1
+version: 0.2.0+2
 environment:
   sdk: ">=3.4.0 <4.0.0"
   flutter: ">=3.22.0"
 dependencies:
   flutter:
     sdk: flutter
+  shared_preferences: ^2.3.2
+  flutter_tts: ^4.2.3
+  audioplayers: ^6.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
 flutter:
   uses-material-design: true
+  assets:
+    - assets/lessons/english_a1.json
+    - assets/lessons/legal_english.json
+    - assets/lessons/general_expansion.json
+    - assets/lessons/legal_expansion.json

@@ -1,0 +1,727 @@
+{
+  "schema_version": 1,
+  "content_version": "2026.10.28.7",
+  "lessons": [
+    {
+      "id": "a1-work-and-study",
+      "title": "Work, study and daily tasks",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "Talk about work, study and common tasks.",
+      "objectives": [
+        "Name work and study activities",
+        "Ask simple questions",
+        "Use present-simple sentences"
+      ],
+      "vocabulary": [
+        {
+          "term": "Office",
+          "meaning": "مكتب",
+          "example": "I work in an office.",
+          "pronunciation": "OFF-iss"
+        },
+        {
+          "term": "Colleague",
+          "meaning": "زميل عمل",
+          "example": "My colleague is helpful."
+        },
+        {
+          "term": "Meeting",
+          "meaning": "اجتماع",
+          "example": "The meeting starts at nine."
+        },
+        {
+          "term": "Study",
+          "meaning": "يدرس / دراسة",
+          "example": "I study English every day."
+        },
+        {
+          "term": "Task",
+          "meaning": "مهمة",
+          "example": "This is my first task."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Useful dialogue",
+          "body": "A: Where do you work?\nB: I work in an office.\nA: Do you have a meeting today?\nB: Yes, at nine o’clock."
+        },
+        {
+          "heading": "Language tip",
+          "body": "Use “I work” for a routine. Use “I am working” for an activity happening now."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Choose the correct sentence.",
+          "options": [
+            "I works in an office.",
+            "I work in an office.",
+            "I working in an office."
+          ],
+          "answer_index": 1,
+          "explanation": "With I, use the base verb: I work."
+        },
+        {
+          "question": "What is a colleague?",
+          "options": [
+            "A co-worker",
+            "A meal",
+            "A building"
+          ],
+          "answer_index": 0,
+          "explanation": "A colleague is someone you work with."
+        }
+      ]
+    },
+    {
+      "id": "a2-past-weekend",
+      "title": "Talking about last weekend",
+      "level": "A2",
+      "language": "en",
+      "track": "general-english",
+      "description": "Describe completed activities using common past-simple verbs.",
+      "objectives": [
+        "Use common past-tense verbs",
+        "Ask what someone did",
+        "Describe a past day"
+      ],
+      "vocabulary": [
+        {
+          "term": "Visited",
+          "meaning": "زار",
+          "example": "We visited our friends on Friday."
+        },
+        {
+          "term": "Bought",
+          "meaning": "اشترى",
+          "example": "She bought a new book."
+        },
+        {
+          "term": "Went",
+          "meaning": "ذهب",
+          "example": "They went to the market."
+        },
+        {
+          "term": "Stayed",
+          "meaning": "بقي",
+          "example": "I stayed at home."
+        },
+        {
+          "term": "Enjoyed",
+          "meaning": "استمتع",
+          "example": "We enjoyed the trip."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Useful dialogue",
+          "body": "A: What did you do last weekend?\nB: I visited my family and went to the market.\nA: Did you enjoy it?\nB: Yes, I did."
+        },
+        {
+          "heading": "Language tip",
+          "body": "In past questions, use did + the base verb: Did you go?"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Choose the correct question.",
+          "options": [
+            "Did you went home?",
+            "Did you go home?",
+            "Do you went home?"
+          ],
+          "answer_index": 1,
+          "explanation": "After did, use the base form go."
+        },
+        {
+          "question": "Past form of buy:",
+          "options": [
+            "Buyed",
+            "Bought",
+            "Buying"
+          ],
+          "answer_index": 1,
+          "explanation": "Buy is irregular; its past form is bought."
+        }
+      ]
+    },
+    {
+      "id": "a1-clothes-weather",
+      "title": "Clothes and the weather",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "Describe weather and everyday clothes.",
+      "objectives": [
+        "Describe the weather",
+        "Name common clothes",
+        "Make simple suggestions"
+      ],
+      "vocabulary": [
+        {
+          "term": "Sunny",
+          "meaning": "مشمس",
+          "example": "It is sunny today."
+        },
+        {
+          "term": "Rainy",
+          "meaning": "ممطر",
+          "example": "It is rainy this morning."
+        },
+        {
+          "term": "Jacket",
+          "meaning": "سترة",
+          "example": "Take your jacket."
+        },
+        {
+          "term": "Shoes",
+          "meaning": "أحذية",
+          "example": "These shoes are comfortable."
+        },
+        {
+          "term": "Cold",
+          "meaning": "بارد",
+          "example": "It is cold outside."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Useful dialogue",
+          "body": "A: What is the weather like?\nB: It is cold and rainy.\nA: Take your jacket.\nB: Good idea, thank you."
+        },
+        {
+          "heading": "Language tip",
+          "body": "Use “It is…” to describe weather: It is sunny. It is cold."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which word describes wet weather?",
+          "options": [
+            "Rainy",
+            "Sunny",
+            "Quiet"
+          ],
+          "answer_index": 0,
+          "explanation": "Rainy means that rain is falling or likely."
+        },
+        {
+          "question": "Complete: It ___ cold today.",
+          "options": [
+            "are",
+            "is",
+            "am"
+          ],
+          "answer_index": 1,
+          "explanation": "Use “it is” to describe the weather."
+        }
+      ]
+    },
+    {
+      "id": "a2-making-appointments",
+      "title": "Making appointments",
+      "level": "A2",
+      "language": "en",
+      "track": "general-english",
+      "description": "Arrange a meeting and respond politely.",
+      "objectives": [
+        "Suggest a time",
+        "Accept an invitation politely",
+        "Confirm an arrangement"
+      ],
+      "vocabulary": [
+        {
+          "term": "Available",
+          "meaning": "متاح",
+          "example": "Are you available tomorrow?"
+        },
+        {
+          "term": "Appointment",
+          "meaning": "موعد",
+          "example": "I have an appointment at ten."
+        },
+        {
+          "term": "Reschedule",
+          "meaning": "يعيد تحديد الموعد",
+          "example": "Can we reschedule the meeting?"
+        },
+        {
+          "term": "Confirm",
+          "meaning": "يؤكد",
+          "example": "Please confirm the time."
+        },
+        {
+          "term": "Convenient",
+          "meaning": "مناسب",
+          "example": "Is three o’clock convenient?"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Useful dialogue",
+          "body": "A: Are you available on Tuesday?\nB: I am available after two.\nA: Shall we meet at three?\nB: That is convenient."
+        },
+        {
+          "heading": "Language tip",
+          "body": "“Could we…?” and “Would … be convenient?” are polite ways to arrange a meeting."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Choose a polite suggestion.",
+          "options": [
+            "Come now.",
+            "Could we meet at three?",
+            "You must come at three."
+          ],
+          "answer_index": 1,
+          "explanation": "Could we…? is a polite suggestion."
+        },
+        {
+          "question": "What does reschedule mean?",
+          "options": [
+            "Change the date or time",
+            "Pay a bill",
+            "Read a book"
+          ],
+          "answer_index": 0,
+          "explanation": "To reschedule is to arrange a new date or time."
+        }
+      ]
+    },
+    {
+      "id": "a2-health-advice",
+      "title": "Health problems and advice",
+      "level": "A2",
+      "language": "en",
+      "track": "general-english",
+      "description": "Describe common symptoms and understand everyday advice.",
+      "objectives": [
+        "Describe symptoms",
+        "Ask for help",
+        "Use should for advice"
+      ],
+      "vocabulary": [
+        {
+          "term": "Headache",
+          "meaning": "صداع",
+          "example": "I have a headache."
+        },
+        {
+          "term": "Fever",
+          "meaning": "حمّى",
+          "example": "He has a fever."
+        },
+        {
+          "term": "Rest",
+          "meaning": "راحة / يستريح",
+          "example": "You should get some rest."
+        },
+        {
+          "term": "Medicine",
+          "meaning": "دواء",
+          "example": "Take the medicine as directed."
+        },
+        {
+          "term": "Symptom",
+          "meaning": "عَرَض مرضي",
+          "example": "A cough can be a symptom."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Useful dialogue",
+          "body": "A: What is wrong?\nB: I have a headache.\nA: You should rest.\nB: Thank you."
+        },
+        {
+          "heading": "Language tip",
+          "body": "Use should + base verb to give advice: You should rest."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Choose the correct sentence.",
+          "options": [
+            "You should to rest.",
+            "You should rest.",
+            "You should resting."
+          ],
+          "answer_index": 1,
+          "explanation": "Use should followed by the base verb."
+        },
+        {
+          "question": "A headache is a…",
+          "options": [
+            "Symptom",
+            "Schedule",
+            "Contract"
+          ],
+          "answer_index": 0,
+          "explanation": "A headache is a symptom."
+        }
+      ]
+    },
+    {
+      "id": "b1-opinions-reasons",
+      "title": "Giving opinions and reasons",
+      "level": "B1",
+      "language": "en",
+      "track": "general-english",
+      "description": "Express an opinion, support it with reasons and disagree politely.",
+      "objectives": [
+        "State an opinion",
+        "Connect reasons and results",
+        "Disagree politely"
+      ],
+      "vocabulary": [
+        {
+          "term": "In my view",
+          "meaning": "من وجهة نظري",
+          "example": "In my view, practice is essential."
+        },
+        {
+          "term": "However",
+          "meaning": "ومع ذلك",
+          "example": "The plan is useful; however, it is expensive."
+        },
+        {
+          "term": "Therefore",
+          "meaning": "لذلك",
+          "example": "The road was closed; therefore, we arrived late."
+        },
+        {
+          "term": "Although",
+          "meaning": "على الرغم من",
+          "example": "Although it was difficult, we finished."
+        },
+        {
+          "term": "Evidence",
+          "meaning": "دليل / أدلة",
+          "example": "The evidence supports this view."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Useful dialogue",
+          "body": "A: In my view, online lessons save time.\nB: I agree to some extent. However, classroom practice is also useful."
+        },
+        {
+          "heading": "Language tip",
+          "body": "Use however to introduce contrast and therefore to introduce a result."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which connector introduces a result?",
+          "options": [
+            "Although",
+            "Therefore",
+            "However"
+          ],
+          "answer_index": 1,
+          "explanation": "Therefore introduces a consequence or result."
+        },
+        {
+          "question": "Choose a polite disagreement.",
+          "options": [
+            "You are wrong.",
+            "I see your point, but I have a different view.",
+            "That makes no sense."
+          ],
+          "answer_index": 1,
+          "explanation": "This phrase acknowledges the other person before disagreeing."
+        }
+      ]
+    },
+    {
+      "id": "a1-transport-travel",
+      "title": "Transport and travel",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "Ask about transport, tickets and travel times.",
+      "objectives": [
+        "Name common transport",
+        "Ask where a bus goes",
+        "Understand simple travel questions"
+      ],
+      "vocabulary": [
+        {
+          "term": "Bus stop",
+          "meaning": "موقف الحافلة",
+          "example": "The bus stop is near the bank."
+        },
+        {
+          "term": "Ticket",
+          "meaning": "تذكرة",
+          "example": "I need one ticket, please."
+        },
+        {
+          "term": "Station",
+          "meaning": "محطة",
+          "example": "The train station is downtown."
+        },
+        {
+          "term": "Platform",
+          "meaning": "رصيف القطار",
+          "example": "The train leaves from platform two."
+        },
+        {
+          "term": "Return ticket",
+          "meaning": "تذكرة ذهاب وعودة",
+          "example": "Can I have a return ticket?"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Useful dialogue",
+          "body": "A: Excuse me, where is the bus station?\nB: Go straight and turn left.\nA: Thank you. How much is a ticket?\nB: It is five pounds."
+        },
+        {
+          "heading": "Language tip",
+          "body": "Use “Where is…?” to ask for a place and “How much is…?” to ask for a price."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which phrase asks about price?",
+          "options": [
+            "How much is a ticket?",
+            "Where is the station?",
+            "What time is it?"
+          ],
+          "answer_index": 0,
+          "explanation": "How much is…? asks about cost."
+        },
+        {
+          "question": "A platform is usually found at a…",
+          "options": [
+            "Train station",
+            "Kitchen",
+            "Pharmacy"
+          ],
+          "answer_index": 0,
+          "explanation": "Passengers wait on a platform at a station."
+        }
+      ]
+    },
+    {
+      "id": "a1-asking-for-help",
+      "title": "Asking for help politely",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "Use simple polite expressions when asking for help.",
+      "objectives": [
+        "Ask someone to repeat",
+        "Request help politely",
+        "Say thank you"
+      ],
+      "vocabulary": [
+        {
+          "term": "Could you help me?",
+          "meaning": "هل يمكنك مساعدتي؟",
+          "example": "Could you help me, please?"
+        },
+        {
+          "term": "Please",
+          "meaning": "من فضلك",
+          "example": "Please speak slowly."
+        },
+        {
+          "term": "Repeat",
+          "meaning": "يكرر",
+          "example": "Could you repeat that?"
+        },
+        {
+          "term": "Understand",
+          "meaning": "يفهم",
+          "example": "I do not understand this word."
+        },
+        {
+          "term": "Thank you",
+          "meaning": "شكرًا لك",
+          "example": "Thank you for your help."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Useful dialogue",
+          "body": "A: Could you help me, please?\nB: Of course. What do you need?\nA: Could you repeat that slowly?\nB: Certainly."
+        },
+        {
+          "heading": "Language tip",
+          "body": "Could you…? is a polite way to make a request. Add please to sound friendly."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Choose a polite request.",
+          "options": [
+            "Help me now!",
+            "Could you help me, please?",
+            "You must help me."
+          ],
+          "answer_index": 1,
+          "explanation": "Could you… please? is polite and natural."
+        },
+        {
+          "question": "What does repeat mean?",
+          "options": [
+            "Say again",
+            "Leave early",
+            "Pay money"
+          ],
+          "answer_index": 0,
+          "explanation": "Repeat means to say or do something again."
+        }
+      ]
+    },
+    {
+      "id": "a2-restaurant-ordering",
+      "title": "Ordering food at a restaurant",
+      "level": "A2",
+      "language": "en",
+      "track": "general-english",
+      "description": "Order food, ask about ingredients and request the bill.",
+      "objectives": [
+        "Order a meal politely",
+        "Ask about menu items",
+        "Request the bill"
+      ],
+      "vocabulary": [
+        {
+          "term": "Menu",
+          "meaning": "قائمة الطعام",
+          "example": "Could I see the menu, please?"
+        },
+        {
+          "term": "Order",
+          "meaning": "يطلب / طلب",
+          "example": "I would like to order soup."
+        },
+        {
+          "term": "Ingredients",
+          "meaning": "مكونات",
+          "example": "What are the ingredients?"
+        },
+        {
+          "term": "Side dish",
+          "meaning": "طبق جانبي",
+          "example": "Can I have salad as a side dish?"
+        },
+        {
+          "term": "Bill",
+          "meaning": "الفاتورة",
+          "example": "Could we have the bill, please?"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Useful dialogue",
+          "body": "A: Are you ready to order?\nB: Yes, I would like chicken and rice.\nA: Would you like a drink?\nB: Water, please. And could we have the bill later?"
+        },
+        {
+          "heading": "Language tip",
+          "body": "“I would like…” is a polite way to order. Use “Could we have…?” to request something."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which phrase politely asks for the bill?",
+          "options": [
+            "Bring money!",
+            "Could we have the bill, please?",
+            "Where is my food always?"
+          ],
+          "answer_index": 1,
+          "explanation": "Could we have… please? is polite and clear."
+        },
+        {
+          "question": "Ingredients are…",
+          "options": [
+            "The items used to make food",
+            "A train ticket",
+            "A meeting time"
+          ],
+          "answer_index": 0,
+          "explanation": "Ingredients are the foods or substances used in a dish."
+        }
+      ]
+    },
+    {
+      "id": "b1-professional-email",
+      "title": "Writing a clear professional email",
+      "level": "B1",
+      "language": "en",
+      "track": "general-english",
+      "description": "Write concise professional emails with a clear request and next step.",
+      "objectives": [
+        "Use an appropriate opening",
+        "State a request clearly",
+        "Close with a next step"
+      ],
+      "vocabulary": [
+        {
+          "term": "Regarding",
+          "meaning": "بخصوص",
+          "example": "I am writing regarding your request."
+        },
+        {
+          "term": "Attached",
+          "meaning": "مرفق",
+          "example": "Please find the attached document."
+        },
+        {
+          "term": "Clarify",
+          "meaning": "يوضح",
+          "example": "Could you clarify the deadline?"
+        },
+        {
+          "term": "In advance",
+          "meaning": "مسبقًا",
+          "example": "Thank you in advance for your help."
+        },
+        {
+          "term": "Kind regards",
+          "meaning": "مع خالص التحية",
+          "example": "Kind regards, Alex."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Email example",
+          "body": "Dear Ms Lee,\nI am writing regarding the meeting scheduled for Thursday. Could you please clarify the start time? I have attached the updated agenda.\nKind regards,\nAlex"
+        },
+        {
+          "heading": "Writing tip",
+          "body": "Use a meaningful subject, put the request near the beginning, and explain the next step. Keep each paragraph focused on one idea."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which phrase refers to a document sent with an email?",
+          "options": [
+            "Attached",
+            "Available yesterday",
+            "Turn left"
+          ],
+          "answer_index": 0,
+          "explanation": "Attached describes a file included with the message."
+        },
+        {
+          "question": "What makes a professional email clearer?",
+          "options": [
+            "A clear request and next step",
+            "One very long paragraph",
+            "Leaving out the purpose"
+          ],
+          "answer_index": 0,
+          "explanation": "A clear purpose and next step help the reader respond."
+        }
+      ]
+    }
+  ]
+}
