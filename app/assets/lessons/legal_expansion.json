@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "content_version": "2026.10.28.7",
+  "lessons": [
+    {
+      "id": "legal-civil-claims",
+      "title": "Civil claims and parties",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Learn English used to describe civil claims and parties.",
+      "objectives": [
+        "Identify parties in a civil case",
+        "Describe a claim simply",
+        "Distinguish claimant from defendant"
+      ],
+      "vocabulary": [
+        {
+          "term": "Claimant",
+          "meaning": "المدعي",
+          "example": "The claimant filed a civil claim."
+        },
+        {
+          "term": "Defendant",
+          "meaning": "المدعى عليه",
+          "example": "The defendant received the claim."
+        },
+        {
+          "term": "Civil claim",
+          "meaning": "دعوى مدنية",
+          "example": "The civil claim concerns unpaid rent."
+        },
+        {
+          "term": "Relief",
+          "meaning": "طلب أو جبر قضائي",
+          "example": "The claimant seeks monetary relief."
+        },
+        {
+          "term": "Respondent",
+          "meaning": "المستجيب أو المدعى عليه بحسب الإجراء",
+          "example": "The respondent filed a reply."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Courtroom example",
+          "body": "The claimant filed a civil claim. The defendant submitted a response. The court will review the documents and hear both parties."
+        },
+        {
+          "heading": "Usage note",
+          "body": "Legal terms vary by jurisdiction. Respondent is common in some applications and appeals; defendant is common in many civil claims."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Who usually brings a civil claim?",
+          "options": [
+            "The claimant",
+            "The witness",
+            "The interpreter"
+          ],
+          "answer_index": 0,
+          "explanation": "The claimant brings the claim before the court."
+        },
+        {
+          "question": "Who is the defendant?",
+          "options": [
+            "The party against whom a claim is brought",
+            "The court clerk",
+            "The expert witness"
+          ],
+          "answer_index": 0,
+          "explanation": "The defendant is the party against whom the claim is brought."
+        }
+      ]
+    },
+    {
+      "id": "legal-settlement-negotiation",
+      "title": "Settlement and negotiation",
+      "level": "LEGAL",
+      "language": "en",
+      "track": "legal-english",
+      "description": "Discuss settlement proposals and terms in clear professional English.",
+      "objectives": [
+        "Describe a settlement offer",
+        "Negotiate terms politely",
+        "Recognize common settlement language"
+      ],
+      "vocabulary": [
+        {
+          "term": "Settlement",
+          "meaning": "تسوية",
+          "example": "The parties reached a settlement."
+        },
+        {
+          "term": "Offer",
+          "meaning": "عرض",
+          "example": "The defendant made a settlement offer."
+        },
+        {
+          "term": "Counteroffer",
+          "meaning": "عرض مقابل",
+          "example": "The claimant sent a counteroffer."
+        },
+        {
+          "term": "Terms",
+          "meaning": "شروط",
+          "example": "The agreement sets out the payment terms."
+        },
+        {
+          "term": "Dispute",
+          "meaning": "نزاع",
+          "example": "The parties want to resolve the dispute."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Negotiation dialogue",
+          "body": "A: Our client is willing to consider a settlement.\nB: Please send the proposed terms in writing.\nA: We will review the offer and respond by Friday."
+        },
+        {
+          "heading": "Usage note",
+          "body": "The legal effect of settlement communications depends on the applicable law. This lesson teaches language, not jurisdiction-specific legal advice."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is a counteroffer?",
+          "options": [
+            "A response proposing different terms",
+            "A final court judgment",
+            "A witness statement"
+          ],
+          "answer_index": 0,
+          "explanation": "A counteroffer proposes different or revised terms."
+        },
+        {
+          "question": "Which word means an unresolved disagreement?",
+          "options": [
+            "Dispute",
+            "Invoice",
+            "Appointment"
+          ],
+          "answer_index": 0,
+          "explanation": "A dispute is a disagreement between parties."
+        }
+      ]
+    }
+  ]
+}
