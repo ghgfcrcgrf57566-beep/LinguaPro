@@ -237,4 +237,46 @@ void main() {
     });
   });
 
+  group('shared spaced repetition schedule', () {
+    test('uses the 1, 3, 7, 14 day progression and a four-hour retry after an error', () async {
+      final store = LearningStore.instance;
+      final start = DateTime(2026, 10, 28, 9);
+      await store.recordWord(
+        lessonId: 'schedule-test',
+        term: 'evidence',
+        meaning: 'دليل',
+        correct: true,
+        eventId: 'schedule-1',
+        now: start,
+      );
+      var word = (await store.loadProgress()).values.single;
+      expect(word.intervalDays, 1);
+      expect(word.dueAt, start.add(const Duration(days: 1)));
+
+      await store.recordWord(
+        lessonId: 'schedule-test',
+        term: 'evidence',
+        meaning: 'دليل',
+        correct: true,
+        eventId: 'schedule-2',
+        now: start.add(const Duration(days: 1)),
+      );
+      word = (await store.loadProgress()).values.single;
+      expect(word.intervalDays, 3);
+      expect(word.dueAt, start.add(const Duration(days: 4)));
+
+      await store.recordWord(
+        lessonId: 'schedule-test',
+        term: 'evidence',
+        meaning: 'دليل',
+        correct: false,
+        eventId: 'schedule-3',
+        now: start.add(const Duration(days: 4)),
+      );
+      word = (await store.loadProgress()).values.single;
+      expect(word.intervalDays, 0);
+      expect(word.dueAt, start.add(const Duration(days: 4, hours: 4)));
+    });
+  });
+
 }
