@@ -35,8 +35,14 @@ class _LearningScreenState extends State<LearningScreen> {
   }
 
   Future<void> _loadCompletedLessons() async {
-    final completed = await LearningStore.instance.completedLessons();
-    final bestResults = await LearningStore.instance.bestQuizResults();
+    final store = LearningStore.instance;
+    final engine = LearningEngine.instance;
+    await engine.migrateLegacyProgress(
+      completedLessonIds: await store.completedLessons(),
+      legacyXp: await store.totalXp(),
+    );
+    final completed = await engine.completedLessons();
+    final bestResults = await store.bestQuizResults();
     if (mounted) {
       setState(() {
         _completedIds = completed;
@@ -745,11 +751,17 @@ class _LessonScreenState extends State<LessonScreen> {
       score: _score,
       total: widget.lesson.quiz.length,
     );
-    final completed = await LearningStore.instance.completedLessons();
+    final store = LearningStore.instance;
+    final engine = LearningEngine.instance;
+    await engine.migrateLegacyProgress(
+      completedLessonIds: await store.completedLessons(),
+      legacyXp: await store.totalXp(),
+    );
+    final completed = await engine.completedLessons();
     if (!completed.contains(widget.lesson.id)) {
-      final xpBefore = await LearningEngine.instance.totalXp();
-      await LearningEngine.instance.completeLesson(lessonId: widget.lesson.id, completionEventId: 'lesson:${widget.lesson.id}', xp: 10);
-      final xpAfter = await LearningEngine.instance.totalXp();
+      final xpBefore = await engine.totalXp();
+      await engine.completeLesson(lessonId: widget.lesson.id, completionEventId: 'lesson:${widget.lesson.id}', xp: 10);
+      final xpAfter = await engine.totalXp();
       _earnedXp = xpAfter - xpBefore;
       final completedCount = completed.length + 1;
       const badges = <int, String>{
@@ -761,7 +773,7 @@ class _LessonScreenState extends State<LessonScreen> {
       _newBadge = badges[completedCount] ?? '';
     }
     await LearningStore.instance.markLessonComplete(widget.lesson.id);
-    _totalXp = await LearningEngine.instance.totalXp();
+    _totalXp = await engine.totalXp();
     await LearningSoundService.instance.complete();
     await HapticFeedback.heavyImpact();
     if (!mounted) return;
