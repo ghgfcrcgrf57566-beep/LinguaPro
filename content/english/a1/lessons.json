@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "2026.10.28.4",
+  "content_version": "2026.10.28.6",
   "lessons": [
     {
       "id": "a1-greetings",
@@ -442,6 +442,883 @@
           ],
           "answer_index": 1,
           "explanation": "Tomorrow تعني غدًا."
+        }
+      ]
+    },
+    {
+      "id": "a1-places-directions",
+      "title": "Places and asking for directions",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "تعلم أسماء الأماكن وطلب الاتجاهات بأدب.",
+      "objectives": [
+        "Ask where a place is.",
+        "Understand left, right and straight ahead.",
+        "Use a short polite question."
+      ],
+      "vocabulary": [
+        {
+          "term": "Where is…?",
+          "meaning": "أين…؟",
+          "example": "Where is the bus station?",
+          "pronunciation": "wair iz"
+        },
+        {
+          "term": "Turn left",
+          "meaning": "انعطف يسارًا",
+          "example": "Turn left at the bank.",
+          "pronunciation": "turn left"
+        },
+        {
+          "term": "Turn right",
+          "meaning": "انعطف يمينًا",
+          "example": "Turn right at the corner.",
+          "pronunciation": "turn right"
+        },
+        {
+          "term": "Straight ahead",
+          "meaning": "إلى الأمام مباشرة",
+          "example": "Go straight ahead.",
+          "pronunciation": "strayt uh-hed"
+        },
+        {
+          "term": "Near",
+          "meaning": "قريب من",
+          "example": "The hotel is near the park.",
+          "pronunciation": "neer"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "A short conversation",
+          "body": "A: Excuse me, where is the museum? B: Go straight ahead and turn left. A: Is it near the park? B: Yes, it is."
+        },
+        {
+          "heading": "Language tip / ملاحظة",
+          "body": "Use “Excuse me” to get someone's attention politely."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does “Turn left” mean?",
+          "options": [
+            "انعطف يمينًا",
+            "انعطف يسارًا",
+            "توقف"
+          ],
+          "answer_index": 1,
+          "explanation": "Turn left تعني انعطف يسارًا."
+        },
+        {
+          "question": "Choose a polite question.",
+          "options": [
+            "Where museum?",
+            "Where is the museum, please?",
+            "Museum where you?"
+          ],
+          "answer_index": 1,
+          "explanation": "نستخدم Where is…? ويمكن إضافة please للتهذيب."
+        }
+      ]
+    },
+    {
+      "id": "a1-shopping-prices",
+      "title": "Shopping and prices",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "تدرب على السؤال عن السعر والشراء في متجر.",
+      "objectives": [
+        "Ask how much something costs.",
+        "Use this and these.",
+        "Make a simple purchase."
+      ],
+      "vocabulary": [
+        {
+          "term": "How much is it?",
+          "meaning": "كم سعره؟",
+          "example": "How much is this bag?",
+          "pronunciation": "how much iz it"
+        },
+        {
+          "term": "Cheap",
+          "meaning": "رخيص",
+          "example": "This book is cheap.",
+          "pronunciation": "cheep"
+        },
+        {
+          "term": "Expensive",
+          "meaning": "غالي",
+          "example": "That watch is expensive.",
+          "pronunciation": "ik-SPEN-siv"
+        },
+        {
+          "term": "Receipt",
+          "meaning": "إيصال",
+          "example": "Can I have a receipt, please?",
+          "pronunciation": "ri-SEET"
+        },
+        {
+          "term": "I would like…",
+          "meaning": "أود…",
+          "example": "I would like a bottle of water.",
+          "pronunciation": "eye wood lyk"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "At the shop",
+          "body": "Customer: How much is this shirt? Shop assistant: It is ten dollars. Customer: Great. I would like one, please."
+        },
+        {
+          "heading": "Language tip / ملاحظة",
+          "body": "Use “How much is…?” for one item and “How much are…?” for plural items."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "How do you ask about a price?",
+          "options": [
+            "How old is it?",
+            "How much is it?",
+            "Where are you?"
+          ],
+          "answer_index": 1,
+          "explanation": "How much is it? تعني كم سعره؟"
+        },
+        {
+          "question": "Complete: I ___ like a coffee, please.",
+          "options": [
+            "would",
+            "am",
+            "does"
+          ],
+          "answer_index": 0,
+          "explanation": "I would like… صيغة مهذبة للطلب."
+        }
+      ]
+    },
+    {
+      "id": "a1-time-schedules",
+      "title": "Time and daily schedules",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "تعلّم الوقت والمواعيد والتعبير عن أوقات اليوم.",
+      "objectives": [
+        "Ask the time.",
+        "Understand today, tomorrow and early/late.",
+        "Talk about a simple appointment."
+      ],
+      "vocabulary": [
+        {
+          "term": "What time is it?",
+          "meaning": "كم الساعة؟",
+          "example": "What time is it now?",
+          "pronunciation": "wot tym iz it"
+        },
+        {
+          "term": "At nine o’clock",
+          "meaning": "في الساعة التاسعة",
+          "example": "The lesson starts at nine o’clock.",
+          "pronunciation": "at nyn uh-klok"
+        },
+        {
+          "term": "Today",
+          "meaning": "اليوم",
+          "example": "I have a meeting today.",
+          "pronunciation": "tuh-DAY"
+        },
+        {
+          "term": "Tomorrow",
+          "meaning": "غدًا",
+          "example": "See you tomorrow.",
+          "pronunciation": "tuh-MOR-oh"
+        },
+        {
+          "term": "Appointment",
+          "meaning": "موعد",
+          "example": "I have a doctor’s appointment.",
+          "pronunciation": "uh-POINT-munt"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Making plans",
+          "body": "A: What time is the meeting? B: At ten o’clock tomorrow. A: Thank you. See you then."
+        },
+        {
+          "heading": "Language tip / ملاحظة",
+          "body": "Use “at” with clock times: at nine, at half past two."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Which word means غدًا?",
+          "options": [
+            "Today",
+            "Yesterday",
+            "Tomorrow"
+          ],
+          "answer_index": 2,
+          "explanation": "Tomorrow تعني غدًا."
+        },
+        {
+          "question": "Complete: The class starts ___ eight.",
+          "options": [
+            "in",
+            "at",
+            "on"
+          ],
+          "answer_index": 1,
+          "explanation": "نستخدم at مع الساعة المحددة."
+        }
+      ]
+    },
+    {
+      "id": "a1-home-family",
+      "title": "Home and family",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "مفردات الأسرة والمنزل ووصف الأشياء البسيطة.",
+      "objectives": [
+        "Name family members.",
+        "Describe rooms and furniture.",
+        "Use my, your and their."
+      ],
+      "vocabulary": [
+        {
+          "term": "Parents",
+          "meaning": "الوالدان",
+          "example": "My parents live nearby.",
+          "pronunciation": "PAIR-ents"
+        },
+        {
+          "term": "Kitchen",
+          "meaning": "مطبخ",
+          "example": "The kitchen is clean.",
+          "pronunciation": "KITCH-in"
+        },
+        {
+          "term": "Bedroom",
+          "meaning": "غرفة نوم",
+          "example": "My bedroom is small.",
+          "pronunciation": "BED-room"
+        },
+        {
+          "term": "Neighbor",
+          "meaning": "جار",
+          "example": "Our neighbor is friendly.",
+          "pronunciation": "NAY-ber"
+        },
+        {
+          "term": "Comfortable",
+          "meaning": "مريح",
+          "example": "This chair is comfortable.",
+          "pronunciation": "KUMF-ter-bul"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Describing a home",
+          "body": "I live with my family. Our home has two bedrooms and a small kitchen. The living room is comfortable."
+        },
+        {
+          "heading": "Language tip / ملاحظة",
+          "body": "Use “my” for something belonging to you: my family, my room."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Where do you cook?",
+          "options": [
+            "In the kitchen",
+            "In the bedroom",
+            "In the garden"
+          ],
+          "answer_index": 0,
+          "explanation": "Kitchen تعني مطبخ."
+        },
+        {
+          "question": "Choose the correct phrase.",
+          "options": [
+            "Me family",
+            "My family",
+            "I family"
+          ],
+          "answer_index": 1,
+          "explanation": "نستخدم my قبل الاسم للدلالة على الملكية."
+        }
+      ]
+    },
+    {
+      "id": "a1-health-appointments",
+      "title": "Health and appointments",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "عبارات أساسية للتحدث عن الصحة وحجز موعد.",
+      "objectives": [
+        "Describe common symptoms.",
+        "Ask for an appointment.",
+        "Use should for simple advice."
+      ],
+      "vocabulary": [
+        {
+          "term": "Headache",
+          "meaning": "صداع",
+          "example": "I have a headache.",
+          "pronunciation": "HED-ayk"
+        },
+        {
+          "term": "Fever",
+          "meaning": "حمّى",
+          "example": "She has a fever.",
+          "pronunciation": "FEE-ver"
+        },
+        {
+          "term": "Appointment",
+          "meaning": "موعد",
+          "example": "I need an appointment.",
+          "pronunciation": "uh-POINT-munt"
+        },
+        {
+          "term": "Pharmacy",
+          "meaning": "صيدلية",
+          "example": "The pharmacy is across the street.",
+          "pronunciation": "FAR-muh-see"
+        },
+        {
+          "term": "Rest",
+          "meaning": "راحة / يستريح",
+          "example": "You should rest.",
+          "pronunciation": "rest"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "At the clinic",
+          "body": "Patient: I have a headache. Receptionist: Would you like an appointment? Patient: Yes, please."
+        },
+        {
+          "heading": "Language tip / ملاحظة",
+          "body": "“I have a…” is useful for symptoms. This is language practice, not medical advice."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is a pharmacy?",
+          "options": [
+            "محكمة",
+            "صيدلية",
+            "محطة"
+          ],
+          "answer_index": 1,
+          "explanation": "Pharmacy تعني صيدلية."
+        },
+        {
+          "question": "Choose a polite request.",
+          "options": [
+            "I need appointment now!",
+            "Could I have an appointment, please?",
+            "You appointment me."
+          ],
+          "answer_index": 1,
+          "explanation": "Could I…? صيغة مهذبة للطلب."
+        }
+      ]
+    },
+    {
+      "id": "a2-past-events",
+      "title": "Talking about yesterday (A2)",
+      "level": "A2",
+      "language": "en",
+      "track": "general-english",
+      "description": "ابدأ الانتقال إلى A2 بوصف أحداث انتهت في الماضي.",
+      "objectives": [
+        "Use common past-tense verbs.",
+        "Ask what someone did yesterday.",
+        "Build a short past-tense story."
+      ],
+      "vocabulary": [
+        {
+          "term": "Visited",
+          "meaning": "زار",
+          "example": "I visited my uncle yesterday.",
+          "pronunciation": "VIZ-it-id"
+        },
+        {
+          "term": "Went",
+          "meaning": "ذهب",
+          "example": "We went to the market.",
+          "pronunciation": "went"
+        },
+        {
+          "term": "Bought",
+          "meaning": "اشترى",
+          "example": "She bought a new notebook.",
+          "pronunciation": "bawt"
+        },
+        {
+          "term": "Watched",
+          "meaning": "شاهد",
+          "example": "They watched a film.",
+          "pronunciation": "wotcht"
+        },
+        {
+          "term": "Yesterday",
+          "meaning": "أمس",
+          "example": "I studied English yesterday.",
+          "pronunciation": "YES-ter-day"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "A short story",
+          "body": "Yesterday, I went to the market. I bought some fruit and visited my friend. In the evening, we watched a film."
+        },
+        {
+          "heading": "Language tip / ملاحظة",
+          "body": "Regular verbs often add -ed; some common verbs are irregular: go → went, buy → bought."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What is the past of “go”?",
+          "options": [
+            "Goed",
+            "Went",
+            "Going"
+          ],
+          "answer_index": 1,
+          "explanation": "Go فعل غير منتظم، وماضيه went."
+        },
+        {
+          "question": "Complete: I ___ a film yesterday.",
+          "options": [
+            "watch",
+            "watched",
+            "watching"
+          ],
+          "answer_index": 1,
+          "explanation": "نستخدم watched للحدث المكتمل في الماضي."
+        }
+      ]
+    },
+    {
+      "id": "a1-family-and-people",
+      "title": "Family, people and descriptions",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "تعلّم الحديث عن الأسرة والأشخاص ووصفهم بجمل قصيرة.",
+      "objectives": [
+        "تسمية أفراد الأسرة",
+        "وصف الأشخاص بصفات شائعة",
+        "استخدام is وare في جمل بسيطة"
+      ],
+      "vocabulary": [
+        {
+          "term": "Family",
+          "meaning": "أسرة / عائلة",
+          "example": "My family is kind.",
+          "pronunciation": "FAM-uh-lee"
+        },
+        {
+          "term": "Parents",
+          "meaning": "الوالدان",
+          "example": "My parents live nearby.",
+          "pronunciation": "PAIR-ents"
+        },
+        {
+          "term": "Brother",
+          "meaning": "أخ",
+          "example": "My brother studies English.",
+          "pronunciation": "BRUH-thur"
+        },
+        {
+          "term": "Sister",
+          "meaning": "أخت",
+          "example": "My sister is a teacher.",
+          "pronunciation": "SIS-tur"
+        },
+        {
+          "term": "Friendly",
+          "meaning": "ودود",
+          "example": "Our teacher is friendly.",
+          "pronunciation": "FREND-lee"
+        },
+        {
+          "term": "Tall",
+          "meaning": "طويل القامة",
+          "example": "He is tall.",
+          "pronunciation": "tawl"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Short conversation",
+          "body": "A: Do you have a brother?\\nB: Yes, I have one brother and two sisters.\\nA: What is your sister like?\\nB: She is friendly and funny."
+        },
+        {
+          "heading": "Grammar tip",
+          "body": "Use is with he, she and it: She is friendly. Use are with you, we and they: They are friendly. Use my before a family word to show relation: my brother."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Choose the correct sentence.",
+          "options": [
+            "She are friendly.",
+            "She is friendly.",
+            "She be friendly."
+          ],
+          "answer_index": 1,
+          "explanation": "نستخدم is مع she."
+        },
+        {
+          "question": "What does “parents” mean?",
+          "options": [
+            "الأصدقاء",
+            "الوالدان",
+            "الأطفال"
+          ],
+          "answer_index": 1,
+          "explanation": "Parents تعني الوالدين."
+        }
+      ]
+    },
+    {
+      "id": "a1-shopping-and-money",
+      "title": "Shopping, prices and money",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "تدرّب على السؤال عن الأسعار وشراء الأشياء بأدب.",
+      "objectives": [
+        "السؤال عن السعر",
+        "استخدام this وthat",
+        "طلب غرض بطريقة مهذبة"
+      ],
+      "vocabulary": [
+        {
+          "term": "Price",
+          "meaning": "سعر",
+          "example": "What is the price?",
+          "pronunciation": "prys"
+        },
+        {
+          "term": "Cheap",
+          "meaning": "رخيص",
+          "example": "This bag is cheap.",
+          "pronunciation": "cheep"
+        },
+        {
+          "term": "Expensive",
+          "meaning": "غالٍ",
+          "example": "That watch is expensive.",
+          "pronunciation": "ik-SPEN-siv"
+        },
+        {
+          "term": "Cash",
+          "meaning": "نقدًا / نقود نقدية",
+          "example": "Can I pay in cash?",
+          "pronunciation": "kash"
+        },
+        {
+          "term": "Receipt",
+          "meaning": "إيصال",
+          "example": "Can I have a receipt, please?",
+          "pronunciation": "ri-SEET"
+        },
+        {
+          "term": "How much?",
+          "meaning": "بكم؟ / كم السعر؟",
+          "example": "How much is this shirt?",
+          "pronunciation": "how much"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "At the shop",
+          "body": "Customer: Excuse me, how much is this shirt?\\nShop assistant: It is fifteen dollars.\\nCustomer: Can I pay by card?\\nShop assistant: Yes, of course."
+        },
+        {
+          "heading": "Useful language",
+          "body": "Ask “How much is this?” for one item. Say “I'd like…” or “Can I have…?” to make a polite request. Prices and payment options vary by shop."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "How do you ask for the price?",
+          "options": [
+            "How old is it?",
+            "How much is it?",
+            "Where is it from?"
+          ],
+          "answer_index": 1,
+          "explanation": "How much is it? تعني كم سعره؟"
+        },
+        {
+          "question": "What is a receipt?",
+          "options": [
+            "إيصال",
+            "خصم",
+            "مقاس"
+          ],
+          "answer_index": 0,
+          "explanation": "Receipt تعني إيصالًا."
+        }
+      ]
+    },
+    {
+      "id": "a1-directions-and-travel",
+      "title": "Directions and getting around",
+      "level": "A1",
+      "language": "en",
+      "track": "general-english",
+      "description": "اسأل عن الطريق والمواصلات والأماكن القريبة.",
+      "objectives": [
+        "السؤال عن مكان",
+        "فهم تعليمات الاتجاهات",
+        "استخدام كلمات المكان الأساسية"
+      ],
+      "vocabulary": [
+        {
+          "term": "Street",
+          "meaning": "شارع",
+          "example": "The bank is on this street.",
+          "pronunciation": "street"
+        },
+        {
+          "term": "Turn left",
+          "meaning": "انعطف يسارًا",
+          "example": "Turn left at the corner.",
+          "pronunciation": "turn left"
+        },
+        {
+          "term": "Turn right",
+          "meaning": "انعطف يمينًا",
+          "example": "Turn right after the bank.",
+          "pronunciation": "turn ryt"
+        },
+        {
+          "term": "Straight ahead",
+          "meaning": "إلى الأمام مباشرة",
+          "example": "Go straight ahead.",
+          "pronunciation": "strayt uh-HED"
+        },
+        {
+          "term": "Near",
+          "meaning": "بالقرب من",
+          "example": "The court is near the station.",
+          "pronunciation": "neer"
+        },
+        {
+          "term": "Station",
+          "meaning": "محطة",
+          "example": "Where is the bus station?",
+          "pronunciation": "STAY-shun"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Asking for directions",
+          "body": "A: Excuse me, where is the bus station?\\nB: Go straight ahead and turn right. It is near the bank.\\nA: Thank you.\\nB: You're welcome."
+        },
+        {
+          "heading": "Language tip",
+          "body": "Use “Where is…?” to ask about a place. Direction phrases often begin with an action: go straight, turn left, cross the street. Follow local signs and instructions."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "What does “turn left” mean?",
+          "options": [
+            "انعطف يمينًا",
+            "انعطف يسارًا",
+            "واصل النوم"
+          ],
+          "answer_index": 1,
+          "explanation": "Turn left تعني انعطف يسارًا."
+        },
+        {
+          "question": "Complete: Go ___ ahead.",
+          "options": [
+            "straight",
+            "expensive",
+            "receipt"
+          ],
+          "answer_index": 0,
+          "explanation": "التعبير الصحيح هو go straight ahead."
+        }
+      ]
+    },
+    {
+      "id": "a2-past-simple",
+      "title": "Talking about yesterday: past simple",
+      "level": "A2",
+      "language": "en",
+      "track": "general-english",
+      "description": "تعلّم وصف أحداث انتهت في الماضي باستخدام past simple.",
+      "objectives": [
+        "استخدام أفعال الماضي الشائعة",
+        "صياغة جملة مثبتة ومنفية",
+        "السؤال عن حدث سابق"
+      ],
+      "vocabulary": [
+        {
+          "term": "Visited",
+          "meaning": "زار",
+          "example": "I visited my friend yesterday.",
+          "pronunciation": "VIZ-it-id"
+        },
+        {
+          "term": "Went",
+          "meaning": "ذهب",
+          "example": "We went to the market.",
+          "pronunciation": "went"
+        },
+        {
+          "term": "Bought",
+          "meaning": "اشترى",
+          "example": "She bought a new book.",
+          "pronunciation": "bawt"
+        },
+        {
+          "term": "Saw",
+          "meaning": "رأى",
+          "example": "I saw the bus.",
+          "pronunciation": "saw"
+        },
+        {
+          "term": "Yesterday",
+          "meaning": "أمس",
+          "example": "They arrived yesterday.",
+          "pronunciation": "YES-tur-day"
+        },
+        {
+          "term": "Last week",
+          "meaning": "الأسبوع الماضي",
+          "example": "He called me last week.",
+          "pronunciation": "last week"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "A short story",
+          "body": "Yesterday, I went to the library. I saw an old friend and we talked for an hour. I bought a notebook before I went home."
+        },
+        {
+          "heading": "Grammar tip",
+          "body": "Use the past form for completed past events: go → went, buy → bought, see → saw. For many regular verbs, add -ed: visit → visited. For negatives, use did not + base verb: I did not go."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Choose the correct sentence.",
+          "options": [
+            "Yesterday I go home.",
+            "Yesterday I went home.",
+            "Yesterday I going home."
+          ],
+          "answer_index": 1,
+          "explanation": "Went هو الماضي من go."
+        },
+        {
+          "question": "Complete: She ___ a book yesterday.",
+          "options": [
+            "buy",
+            "buys",
+            "bought"
+          ],
+          "answer_index": 2,
+          "explanation": "Bought هو الماضي من buy."
+        }
+      ]
+    },
+    {
+      "id": "a2-future-plans",
+      "title": "Plans and invitations",
+      "level": "A2",
+      "language": "en",
+      "track": "general-english",
+      "description": "عبّر عن خططك القريبة وادعُ الآخرين إلى نشاط.",
+      "objectives": [
+        "استخدام going to للخطط",
+        "اقتراح موعد",
+        "قبول الدعوة أو الاعتذار عنها"
+      ],
+      "vocabulary": [
+        {
+          "term": "Plan",
+          "meaning": "خطة",
+          "example": "I have a plan for tomorrow.",
+          "pronunciation": "plan"
+        },
+        {
+          "term": "I'm going to…",
+          "meaning": "سوف / أنوي أن…",
+          "example": "I'm going to study tonight.",
+          "pronunciation": "aim GO-ing too"
+        },
+        {
+          "term": "Available",
+          "meaning": "متاح / متفرغ",
+          "example": "Are you available on Friday?",
+          "pronunciation": "uh-VAY-luh-bul"
+        },
+        {
+          "term": "Invite",
+          "meaning": "يدعو",
+          "example": "I'd like to invite you to dinner.",
+          "pronunciation": "in-VYT"
+        },
+        {
+          "term": "Perhaps",
+          "meaning": "ربما",
+          "example": "Perhaps we can meet later.",
+          "pronunciation": "pur-HAPS"
+        },
+        {
+          "term": "Sounds good",
+          "meaning": "يبدو ذلك جيدًا / موافق",
+          "example": "Saturday sounds good to me.",
+          "pronunciation": "sounds good"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Making plans",
+          "body": "A: Are you available tomorrow?\\nB: I think so. Why?\\nA: I'm going to visit the museum. Would you like to come?\\nB: Sounds good! What time shall we meet?"
+        },
+        {
+          "heading": "Grammar tip",
+          "body": "Use be going to + base verb for plans: I am going to study. Use “Would you like to…?” for a polite invitation. “I’m afraid I can’t” is a polite way to decline."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Choose the correct plan.",
+          "options": [
+            "I going to study.",
+            "I am going to study.",
+            "I am go study."
+          ],
+          "answer_index": 1,
+          "explanation": "الصيغة: am/is/are + going to + الفعل الأساسي."
+        },
+        {
+          "question": "Which phrase politely invites someone?",
+          "options": [
+            "Would you like to join us?",
+            "You are wrong.",
+            "I lost it."
+          ],
+          "answer_index": 0,
+          "explanation": "Would you like to…? صيغة مهذبة للدعوة."
         }
       ]
     }
