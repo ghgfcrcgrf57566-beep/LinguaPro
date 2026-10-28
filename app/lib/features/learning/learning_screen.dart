@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter_tts/flutter_tts.dart';
 
 import '../../models/learning_lesson.dart';
 import '../../services/learning_store.dart';
@@ -21,6 +22,7 @@ class _LearningScreenState extends State<LearningScreen> {
   late Future<List<LearningLesson>> _lessonsFuture;
   Set<String> _completedIds = <String>{};
   Map<String, QuizResult> _bestQuizResults = <String, QuizResult>{};
+  bool _surpriseUnlocked = false;
 
   @override
   void initState() {
@@ -120,14 +122,21 @@ class _LearningScreenState extends State<LearningScreen> {
                 ]),
               ),
               const SizedBox(height: 10),
-              for (final lesson in lessons)
-                Card(
+              for (var index = 0; index < lessons.length; index++) ...[
+                Builder(builder: (context) {
+                  final lesson = lessons[index];
+                  final isLocked = index > 0 && !_completedIds.contains(lessons[index - 1].id);
+                  final isCompleted = _completedIds.contains(lesson.id);
+                  return Card(
                   child: ListTile(
                     contentPadding: const EdgeInsets.all(14),
                     leading: CircleAvatar(
-                      backgroundColor: lesson.isLegal ? const Color(0xFFFFF0D3) : const Color(0xFFEAF0FF),
-                      child: Icon(lesson.isLegal ? Icons.gavel_rounded : Icons.menu_book_rounded,
-                          color: const Color(0xFF4059A7)),
+                      backgroundColor: isLocked ? Colors.grey.shade200 : (lesson.isLegal ? const Color(0xFFFFF0D3) : const Color(0xFFEAF0FF)),
+                      child: isCompleted
+                          ? const Icon(Icons.check_rounded, color: Colors.green)
+                          : isLocked
+                              ? const Icon(Icons.lock_outline_rounded, color: Colors.grey)
+                              : Center(child: Text('${index + 1}', style: const TextStyle(fontWeight: FontWeight.w900, color: Color(0xFF4059A7)))),
                     ),
                     title: Text(lesson.title, style: const TextStyle(fontWeight: FontWeight.w800)),
                     subtitle: Padding(
@@ -138,17 +147,24 @@ class _LearningScreenState extends State<LearningScreen> {
                       ),
                     ),
                     isThreeLine: true,
-                    trailing: _completedIds.contains(lesson.id)
+                    trailing: isCompleted
                         ? const Icon(Icons.check_circle_rounded, color: Colors.green)
-                        : const Icon(Icons.chevron_left_rounded),
+                        : Icon(isLocked ? Icons.lock_rounded : Icons.chevron_left_rounded, color: isLocked ? Colors.grey : null),
                     onTap: () async {
+                      if (isLocked) {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('مفاجأة قريبة! أكمل المرحلة السابقة أولًا لفتح هذه المرحلة.'),
+                        ));
+                        return;
+                      }
                       await Navigator.of(context).push(MaterialPageRoute(
                         builder: (_) => LessonScreen(lesson: lesson),
                       ));
                       await _loadCompletedLessons();
                     },
-                  ),
-                ),
+                  ));
+                }),
+              ],
             ],
           );
         },
@@ -173,6 +189,31 @@ class _LessonScreenState extends State<LessonScreen> {
   bool _answered = false;
   int _score = 0;
   bool _finished = false;
+  final FlutterTts _tts = FlutterTts();
+  bool _speaking = false;
+
+  Future<void> _speak(String text) async {
+    try {
+      await _tts.setLanguage('en-US');
+      await _tts.setSpeechRate(0.42);
+      await _tts.setPitch(1.0);
+      await _tts.stop();
+      if (mounted) setState(() => _speaking = true);
+      await _tts.speak(text);
+    } catch (_) {
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('تعذر تشغيل النطق. تحقق من تثبيت محرك تحويل النص إلى كلام في الجهاز.'),
+      ));
+    } finally {
+      if (mounted) setState(() => _speaking = false);
+    }
+  }
+
+  @override
+  void dispose() {
+    _tts.stop();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -214,7 +255,15 @@ class _LessonScreenState extends State<LessonScreen> {
         Card(child: Padding(
           padding: const EdgeInsets.all(24),
           child: Column(children: [
-            Text(word.term, style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w900, color: Color(0xFF263E81))),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Flexible(child: Text(word.term, textAlign: TextAlign.center, style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w900, color: Color(0xFF263E81)))),
+              const SizedBox(width: 8),
+              IconButton.filledTonal(
+                tooltip: 'استمع إلى النطق الإنجليزي',
+                onPressed: _speaking ? null : () => _speak(word.term),
+                icon: const Icon(Icons.volume_up_rounded),
+              ),
+            ]),
             if (word.pronunciation.isNotEmpty) ...[
               const SizedBox(height: 8),
               Text('مساعدة للنطق: ${word.pronunciation}', style: const TextStyle(color: Colors.grey)),
@@ -332,7 +381,10 @@ class _LessonScreenState extends State<LessonScreen> {
       const SizedBox(height: 20),
       Text('السؤال ${_questionIndex + 1} من ${questions.length}', style: const TextStyle(color: Colors.grey)),
       const SizedBox(height: 12),
-      Text(question.question, style: const TextStyle(fontSize: 21, fontWeight: FontWeight.w800, height: 1.6)),
+      Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Expanded(child: Text(question.question, style: const TextStyle(fontSize: 21, fontWeight: FontWeight.w800, height: 1.6))),
+        IconButton(tooltip: 'استمع إلى السؤال', onPressed: _speaking ? null : () => _speak(question.question), icon: const Icon(Icons.volume_up_rounded)),
+      ]),
       const SizedBox(height: 18),
       for (var i = 0; i < question.options.length; i++)
         Padding(
@@ -394,9 +446,20 @@ class _LessonScreenState extends State<LessonScreen> {
     child: Padding(
       padding: const EdgeInsets.all(24),
       child: Column(mainAxisSize: MainAxisSize.min, children: [
-        const Icon(Icons.check_circle_rounded, size: 58, color: Colors.green),
-        const SizedBox(height: 12),
-        const Text('أحسنت! أكملت الدرس', style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900)),
+        AnimatedContainer(
+          duration: const Duration(milliseconds: 650),
+          padding: const EdgeInsets.all(22),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: const LinearGradient(colors: [Color(0xFFFFE7A3), Color(0xFFFFC94F), Color(0xFFFFF3CC)]),
+            boxShadow: [BoxShadow(color: const Color(0xFFFFC94F).withValues(alpha: 0.35), blurRadius: 24, spreadRadius: 3)],
+          ),
+          child: const Icon(Icons.auto_awesome_rounded, size: 48, color: Color(0xFF5B3C00)),
+        ),
+        const SizedBox(height: 16),
+        const Text('مفاجأة! فتحت إنجازًا جديدًا 🎉', textAlign: TextAlign.center, style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900)),
+        const SizedBox(height: 8),
+        Text('أكملت: ${widget.lesson.title}', textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.w700)),
         const SizedBox(height: 8),
         Text('نتيجتك: $_score من ${widget.lesson.quiz.length}'),
         const SizedBox(height: 18),
