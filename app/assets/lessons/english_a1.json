@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "content_version": "2026.10.28.2",
+  "lessons": [
+    {
+      "id": "a1-greetings",
+      "title": "التحيات والتعارف",
+      "level": "A1",
+      "track": "general-english",
+      "description": "تعلم التحية والتعريف بنفسك والسؤال عن الاسم.",
+      "objectives": [
+        "استخدام التحيات الأساسية",
+        "السؤال عن الاسم والإجابة",
+        "تكوين جملة تعريف بسيطة"
+      ],
+      "vocabulary": [
+        {
+          "term": "Hello",
+          "meaning": "مرحبًا",
+          "example": "Hello, my name is Sara.",
+          "pronunciation": "heh-LOH"
+        },
+        {
+          "term": "Name",
+          "meaning": "اسم",
+          "example": "What is your name?",
+          "pronunciation": "naym"
+        },
+        {
+          "term": "Friend",
+          "meaning": "صديق",
+          "example": "He is my friend.",
+          "pronunciation": "frend"
+        },
+        {
+          "term": "Meet",
+          "meaning": "يقابل / يتعرف إلى",
+          "example": "Nice to meet you.",
+          "pronunciation": "meet"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "حوار قصير",
+          "body": "A: Hello! What is your name?\\nB: My name is Sara.\\nA: Nice to meet you.\\nB: Nice to meet you, too."
+        },
+        {
+          "heading": "ملاحظة لغوية",
+          "body": "تُستخدم عبارة What is your name? للسؤال عن الاسم، ويمكن قول I'm Omar اختصارًا لـ I am Omar."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "ما معنى Hello؟",
+          "options": [
+            "وداعًا",
+            "مرحبًا",
+            "شكرًا"
+          ],
+          "answer_index": 1,
+          "explanation": "Hello تعني مرحبًا، وتُستخدم عند التحية."
+        },
+        {
+          "question": "اختر الجملة الصحيحة للتعريف بالاسم.",
+          "options": [
+            "My name is Ali.",
+            "My name are Ali.",
+            "I name Ali."
+          ],
+          "answer_index": 0,
+          "explanation": "My name is... تعني اسمي..."
+        }
+      ]
+    },
+    {
+      "id": "a1-likes",
+      "title": "التعبير عما تحب",
+      "level": "A1",
+      "track": "general-english",
+      "description": "تحدث عن الأشياء التي تحبها واسأل الآخرين عن تفضيلاتهم.",
+      "objectives": [
+        "استخدام I like",
+        "السؤال What do you like?",
+        "تكوين جملة قصيرة عن التفضيلات"
+      ],
+      "vocabulary": [
+        {
+          "term": "Book",
+          "meaning": "كتاب",
+          "example": "I like books.",
+          "pronunciation": "book"
+        },
+        {
+          "term": "Like",
+          "meaning": "يحب / يعجبه",
+          "example": "I like English.",
+          "pronunciation": "layk"
+        },
+        {
+          "term": "Read",
+          "meaning": "يقرأ",
+          "example": "I read a book.",
+          "pronunciation": "reed"
+        },
+        {
+          "term": "Music",
+          "meaning": "موسيقى",
+          "example": "I like music.",
+          "pronunciation": "MYOO-zik"
+        }
+      ],
+      "sections": [
+        {
+          "heading": "حوار قصير",
+          "body": "A: What do you like?\\nB: I like books. What about you?\\nA: I like music."
+        },
+        {
+          "heading": "ملاحظة لغوية",
+          "body": "بعد I نستخدم الفعل بصيغته الأساسية: I like books. ولا نقول I likes books."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "اختر الجملة الصحيحة.",
+          "options": [
+            "I likes books.",
+            "I like books.",
+            "I liking books."
+          ],
+          "answer_index": 1,
+          "explanation": "مع I نستخدم like دون إضافة s."
+        },
+        {
+          "question": "ما معنى Read؟",
+          "options": [
+            "يكتب",
+            "يقرأ",
+            "يسمع"
+          ],
+          "answer_index": 1,
+          "explanation": "Read تعني يقرأ."
+        }
+      ]
+    }
+  ]
+}
